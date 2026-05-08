@@ -287,8 +287,8 @@ const activity = await getGitHubActivity()
 <SkillsSection />
 ```
 
-- Dependencies: `framer-motion`, `AnimatedSection`, `Card`, portfolio skill data.
-- How it works: Maps typed skill groups into staggered animated cards.
+- Dependencies: `framer-motion`, `next/image`, `AnimatedSection`, `SectionHeading`, `Card`, `cn`, portfolio skill data, Lucide icons, external logo URLs.
+- How it works: Builds a typed skill list from centralized data, matches each skill to a logo or Lucide icon, then renders the carousel and grouped skill cards.
 
 ### `ProjectFilter`
 
@@ -359,8 +359,8 @@ const activity = await getGitHubActivity()
 </Suspense>
 ```
 
-- Dependencies: `getGitHubActivity`, `AnimatedSection`, `SectionHeading`, `Card`.
-- How it works: Awaits service data in a Server Component and renders the activity dashboard.
+- Dependencies: `getGitHubActivity`, `AnimatedSection`, `SectionHeading`, `Button`, `Card`, portfolio profile data, `next/link`, Lucide icons.
+- How it works: Awaits service data in a Server Component, links to the centralized GitHub profile URL, and renders the activity dashboard.
 
 ### `GitHubActivitySkeleton`
 

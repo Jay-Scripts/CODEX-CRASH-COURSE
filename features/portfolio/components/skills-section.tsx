@@ -46,6 +46,9 @@ const skillLogoMap: Record<string, SkillLogoMeta> = {
     logo:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
   },
+  "Lucide React": {
+    logo: "https://cdn.simpleicons.org/lucide",
+  },
   "MySQL Workbench": {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
   },
@@ -72,6 +75,9 @@ const skillLogoMap: Record<string, SkillLogoMeta> = {
   "Tailwind CSS": {
     logo:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+  },
+  "shadcn/ui": {
+    logo: "https://cdn.simpleicons.org/shadcnui",
   },
   UAT: {
     icon: UserCheck,

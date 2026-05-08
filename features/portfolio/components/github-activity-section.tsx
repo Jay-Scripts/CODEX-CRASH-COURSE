@@ -1,5 +1,9 @@
+import { GitBranch } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { profile } from "@/features/portfolio/data";
 import { getGitHubActivity } from "@/features/portfolio/services/github-activity";
 import { AnimatedSection } from "./animated-section";
 import { SectionHeading } from "./section-heading";
@@ -22,6 +26,14 @@ export const GitHubActivitySection = async () => {
           eyebrow="GitHub Activity"
           title="Repository activity and technical signals"
         />
+        <div className="mb-8 flex justify-center">
+          <Button asChild variant="outline">
+            <Link href={profile.githubUrl} rel="noreferrer" target="_blank">
+              <GitBranch />
+              View GitHub Profile
+            </Link>
+          </Button>
+        </div>
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <Card>
             <CardContent className="p-6">

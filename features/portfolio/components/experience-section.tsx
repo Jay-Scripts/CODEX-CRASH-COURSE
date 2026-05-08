@@ -34,7 +34,7 @@ export const ExperienceSection = () => (
                     <p className="text-sm text-muted-foreground">
                       {experience.organization}
                     </p>
-                    <ul className="mt-4 space-y-2 text-sm leading-6 text-muted-foreground">
+                    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground marker:text-primary">
                       {experience.highlights.map((highlight) => (
                         <li key={highlight}>{highlight}</li>
                       ))}

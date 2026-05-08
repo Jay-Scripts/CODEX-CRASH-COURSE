@@ -43,12 +43,13 @@ export type Experience = {
 };
 
 export const profile = {
-  name: "Cornelio Jay Scripts",
+  name: "Cornelio A. Gatbonton Jr",
   role: "Junior Full-Stack Developer",
-  email: "hello@example.com",
+  email: "corneliogatbontonjr21@gmail.com",
   location: "Philippines",
-  linkedinUrl: "https://www.linkedin.com/",
-  githubUrl: "https://github.com/",
+  linkedinUrl:
+    "https://www.linkedin.com/in/corneliogatbonton/?skipRedirect=true",
+  githubUrl: "https://github.com/Jay-Scripts",
   resumeUrl: "/resume.pdf",
   summary:
     "BSIT developer focused on reliable full-stack systems, QA discipline, database design, and enterprise-ready user experiences.",
@@ -66,7 +67,15 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Frontend",
     icon: Code2,
-    skills: ["Next.js", "React", "JavaScript ES6", "Tailwind CSS", "Bootstrap"],
+    skills: [
+      "Next.js",
+      "React",
+      "JavaScript ES6",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Lucide React",
+      "Bootstrap",
+    ],
   },
   {
     title: "Backend and Database",
@@ -97,7 +106,13 @@ export const projects: Project[] = [
     summary:
       "Enterprise-style point-of-sale ecosystem with service-specific views, real-time analytics, inventory workflows, and QA testing coverage.",
     category: "full-stack",
-    techStack: ["Next.js", "Supabase", "PostgreSQL", "Chart.js", "Tailwind CSS"],
+    techStack: [
+      "Next.js",
+      "Supabase",
+      "PostgreSQL",
+      "Chart.js",
+      "Tailwind CSS",
+    ],
     architecture: [
       "POS interface",
       "Self-Service Kiosk",
@@ -153,43 +168,62 @@ export const projects: Project[] = [
 
 export const experiences: Experience[] = [
   {
-    role: "IT Intern",
-    organization: "Little Ark Foundation",
-    period: "Internship",
-    icon: BriefcaseBusiness,
+    role: "Service Crew",
+    organization: "Golden Arches Development Corporation - McDonald's",
+    period: "Aug 2023 - Present",
+    icon: ShieldCheck,
     highlights: [
-      "Supported technical workflows and documentation.",
-      "Practiced debugging, issue tracking, and stakeholder communication.",
-      "Worked with client-server concepts and database-backed systems.",
+      "Handled customer orders, prepared meals, maintained dining area cleanliness, and ensured a welcoming environment.",
+      "Delivered friendly, efficient service while using product knowledge to help customers make informed meal choices.",
     ],
   },
   {
     role: "IT Support Assistant",
-    organization: "Technical Support Experience",
-    period: "Support role",
+    organization: "Global Reciprocal Colleges",
+    period: "Jul 2023 - Dec 2025",
     icon: Headphones,
     highlights: [
-      "Assisted users with troubleshooting and system support.",
-      "Resolved issues through step-by-step diagnosis.",
-      "Translated technical problems into clear user guidance.",
+      "Performed hardware maintenance and repairs, including soldering, component replacement, and peripheral troubleshooting.",
+      "Installed and configured operating systems, software, printers, and laboratory equipment.",
+      "Provided technical support to users by diagnosing and resolving hardware, software, and system issues.",
+    ],
+  },
+  {
+    role: "Stock Clerk",
+    organization: "Be Connected Management Services - Bench",
+    period: "Jul 2021 - Aug 2022",
+    icon: BriefcaseBusiness,
+    highlights: [
+      "Analyzed inventory to identify excess, slow-moving, and obsolete stock for proper disposition.",
+      "Prepared regular inventory reports for upper management and recommended improvements for inventory control.",
+    ],
+  },
+  {
+    role: "Bagger",
+    organization: "Rustan Supercenters, Inc. - Shopwise",
+    period: "Jun 2020 - Nov 2020",
+    icon: BriefcaseBusiness,
+    highlights: [
+      "Packed customer purchases efficiently and carefully while assisting cashiers during checkout.",
+      "Provided polite and helpful customer assistance, including cart support and grocery carry-out service.",
     ],
   },
   {
     role: "Service Crew",
-    organization: "McDonald's",
-    period: "Customer service",
+    organization: "Jollibee Food Corporation - Jollibee",
+    period: "Sep 2018 - Sep 2019",
     icon: ShieldCheck,
     highlights: [
-      "Built teamwork, discipline, and customer-first communication.",
-      "Handled fast-paced operational pressure with consistency.",
-      "Strengthened accountability and service reliability.",
+      "Served as part of the customer service team by taking orders, preparing food, and maintaining cleanliness.",
+      "Provided attentive customer service while demonstrating product knowledge and responsiveness to customer needs.",
     ],
   },
 ];
 
 export const education = {
   degree: "Bachelor of Science in Information Technology",
-  specialization: "Full-stack development, QA testing, database design, and system analysis",
+  specialization:
+    "Full-stack development, QA testing, database design, and system analysis",
   coursework: [
     "Client-server architecture",
     "Database management systems",
@@ -214,7 +248,8 @@ export const recentRepositories = [
   },
   {
     name: "car-rental-management",
-    description: "Booking, admin reporting, vehicle tracking, and notification flows.",
+    description:
+      "Booking, admin reporting, vehicle tracking, and notification flows.",
     stack: "PHP, MySQL, Bootstrap",
   },
   {
