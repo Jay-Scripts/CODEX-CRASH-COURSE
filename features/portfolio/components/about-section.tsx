@@ -1,0 +1,35 @@
+import { Card, CardContent } from "@/components/ui/card";
+import { aboutHighlights } from "@/features/portfolio/data";
+import { AnimatedSection } from "./animated-section";
+import { SectionHeading } from "./section-heading";
+
+export const AboutSection = () => (
+  <AnimatedSection className="px-4 py-20 sm:px-6 lg:px-8" id="about">
+    <div className="mx-auto max-w-7xl">
+      <SectionHeading
+        description="A practical developer profile centered on reliable web systems, QA discipline, database design, and clear communication."
+        eyebrow="About"
+        title="Built for enterprise delivery habits"
+      />
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {aboutHighlights.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <Card key={item.title}>
+              <CardContent className="p-6">
+                <div className="mb-5 grid size-11 place-items-center rounded-md bg-primary/10 text-primary">
+                  <Icon className="size-5" />
+                </div>
+                <h3 className="text-lg font-semibold">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                  {item.description}
+                </p>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
+    </div>
+  </AnimatedSection>
+);
