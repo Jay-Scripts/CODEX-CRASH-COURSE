@@ -7,7 +7,6 @@ import {
   TestTube2,
   UserCheck,
 } from "lucide-react";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
 import { skillGroups } from "@/constants/portfolio.constants";
@@ -15,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { AnimatedSection } from "./animated-section";
+import { RevealGroup, RevealItem } from "./scroll-reveal";
 import { SectionHeading } from "./section-heading";
 
 type SkillLogoMeta = {
@@ -93,8 +93,6 @@ const allSkills = skillGroups.flatMap((group) =>
   })),
 );
 
-const carouselSkills = [...allSkills, ...allSkills];
-
 type SkillLogoPillProps = {
   className?: string;
   compact?: boolean;
@@ -153,25 +151,21 @@ export const SkillsSection = () => (
     className="bg-muted/30 px-4 py-20 sm:px-6 lg:px-8"
     id="skills"
   >
-    <div className="mx-auto max-w-7xl">
-      <SectionHeading
-        description="A structured overview of my technical skills across frontend development, backend integration, quality assurance, and delivery workflows."
-        eyebrow="Technical Skills"
-        title="Frontend, backend, QA, and delivery tooling"
-      />
+    <RevealGroup className="mx-auto max-w-7xl">
+      <RevealItem>
+        <SectionHeading
+          description="A structured overview of my technical skills across frontend development, backend integration, quality assurance, and delivery workflows."
+          eyebrow="Technical Skills"
+          title="Frontend, backend, QA, and delivery tooling"
+        />
+      </RevealItem>
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {skillGroups.map((group, groupIndex) => {
+      <RevealGroup className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {skillGroups.map((group) => {
           const Icon = group.icon;
 
           return (
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              key={group.title}
-              transition={{ delay: groupIndex * 0.08, duration: 0.35 }}
-              viewport={{ once: true }}
-              whileInView={{ opacity: 1, y: 0 }}
-            >
+            <RevealItem key={group.title}>
               <Card className="h-full">
                 <CardContent className="p-6">
                   <div className="mb-5 flex items-center gap-3">
@@ -197,10 +191,10 @@ export const SkillsSection = () => (
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </RevealItem>
           );
         })}
-      </div>
-    </div>
+      </RevealGroup>
+    </RevealGroup>
   </AnimatedSection>
 );

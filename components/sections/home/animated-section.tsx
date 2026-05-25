@@ -6,6 +6,11 @@ import { cn } from "@/lib/utils";
 
 type AnimatedSectionProps = ComponentProps<typeof motion.section>;
 
+const sectionRevealState = {
+  hidden: {},
+  visible: {},
+};
+
 /**
  * Displays a reusable motion-powered section wrapper with viewport reveal.
  */
@@ -16,10 +21,10 @@ export const AnimatedSection = ({
 }: AnimatedSectionProps) => (
   <motion.section
     className={cn("scroll-mt-24", className)}
-    initial={{ opacity: 0, y: 18 }}
-    transition={{ duration: 0.45, ease: "easeOut" }}
+    initial="hidden"
+    variants={sectionRevealState}
     viewport={{ once: true, amount: 0.18 }}
-    whileInView={{ opacity: 1, y: 0 }}
+    whileInView="visible"
     {...props}
   >
     {children}

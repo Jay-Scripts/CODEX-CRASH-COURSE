@@ -38,7 +38,7 @@
 - Purpose: Compose the recruiter-facing home page sections.
 - Location: `components/sections/home/*`
 
-### `ProjectFilter`, `ContactForm`, `CommandMenu`, `AnimatedSection`, `SectionHeading`, `ScrollProgress`
+### `ProjectFilter`, `ContactForm`, `CommandMenu`, `AnimatedSection`, `RevealGroup`, `RevealItem`, `SectionHeading`, `ScrollProgress`
 
-- Purpose: Support interactive filtering, contact validation, an anchored command search dropdown, animation, consistent headings, and progress feedback on the home page.
+- Purpose: Support interactive filtering, contact validation, an anchored command search dropdown, synchronized scroll-reveal animation, consistent headings, and progress feedback on the home page.
 - Location: `components/sections/home/*`
