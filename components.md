@@ -42,3 +42,8 @@
 
 - Purpose: Support interactive filtering, project detail cards with architecture, features, flowchart activities, ordered SVG carousel previews with an Expand button that opens a fullscreen modal, contact validation, an anchored command search dropdown, synchronized scroll-reveal animation, consistent headings, and progress feedback on the home page.
 - Location: `components/sections/home/*`
+
+### `ProjectFlowchartOverlay`
+
+- Purpose: Renders the system flow diagram in a viewport-level fullscreen overlay with a backdrop, scrollable preview area, and close controls.
+- Location: `components/sections/home/project-flowchart-overlay.tsx`

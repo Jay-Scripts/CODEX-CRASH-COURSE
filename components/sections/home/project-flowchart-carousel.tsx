@@ -1,11 +1,12 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, ImageIcon, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, ImageIcon } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import type { FlowchartPreview } from "@/types/portfolio.types";
+import { ProjectFlowchartOverlay } from "./project-flowchart-overlay";
 
 type ProjectFlowchartCarouselProps = {
   previews: FlowchartPreview[];
@@ -21,29 +22,6 @@ export const ProjectFlowchartCarousel = ({
   const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
 
   const activePreview = previews[activeIndex];
-
-  useEffect(() => {
-    if (!isFullscreenOpen) {
-      return;
-    }
-
-    // ==========================================================================
-    // Handle Fullscreen Preview Escape
-    //
-    // Close the fullscreen flowchart overlay when the user presses Escape.
-    // ==========================================================================
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsFullscreenOpen(false);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isFullscreenOpen]);
 
   const handlePrevious = () => {
     setActiveIndex((currentIndex) =>
@@ -102,6 +80,7 @@ export const ProjectFlowchartCarousel = ({
               </div>
               <div className="flex gap-2">
                 <Button
+                  aria-haspopup="dialog"
                   onClick={() => setIsFullscreenOpen(true)}
                   type="button"
                   variant="outline"
@@ -142,69 +121,15 @@ export const ProjectFlowchartCarousel = ({
         </CardContent>
       </Card>
 
-      {isFullscreenOpen ? (
-        <div
-          aria-label={`${activePreview.label} flowchart fullscreen preview`}
-          aria-modal="true"
-          className="fixed inset-0 z-50 bg-background/95 backdrop-blur-md"
-          onClick={() => setIsFullscreenOpen(false)}
-          role="dialog"
-        >
-          <div
-            className="flex h-full w-full flex-col overflow-hidden bg-background"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/70 px-4 py-3 sm:px-6">
-              <div>
-                <p className="text-base font-semibold sm:text-lg">
-                  {activePreview.label} Flowchart
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Fullscreen system diagram preview
-                </p>
-              </div>
-              <div className="flex items-center gap-2">
-                <Button
-                  onClick={handlePrevious}
-                  size="icon"
-                  type="button"
-                  variant="outline"
-                >
-                  <ChevronLeft />
-                </Button>
-                <Button
-                  onClick={handleNext}
-                  size="icon"
-                  type="button"
-                  variant="outline"
-                >
-                  <ChevronRight />
-                </Button>
-                <Button
-                  aria-label="Close fullscreen preview"
-                  onClick={() => setIsFullscreenOpen(false)}
-                  size="icon"
-                  type="button"
-                  variant="outline"
-                >
-                  <X />
-                </Button>
-              </div>
-            </div>
-
-            <div className="relative min-h-0 flex-1 bg-[radial-gradient(circle_at_top,_color-mix(in_oklab,_var(--primary)_12%,_transparent),_transparent_60%)]">
-              <Image
-                alt={activePreview.alt}
-                className="object-contain p-3 sm:p-6"
-                fill
-                sizes="100vw"
-                src={activePreview.src}
-                unoptimized
-              />
-            </div>
-          </div>
-        </div>
-      ) : null}
+      <ProjectFlowchartOverlay
+        activePreview={activePreview}
+        currentIndex={activeIndex}
+        isOpen={isFullscreenOpen}
+        onClose={() => setIsFullscreenOpen(false)}
+        onNext={handleNext}
+        onPrevious={handlePrevious}
+        total={previews.length}
+      />
     </>
   );
 };
