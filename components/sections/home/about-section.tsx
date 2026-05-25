@@ -1,8 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { aboutHighlights } from "@/features/portfolio/data";
+import { aboutHighlights } from "@/constants/portfolio.constants";
 import { AnimatedSection } from "./animated-section";
 import { SectionHeading } from "./section-heading";
 
+/**
+ * Displays the portfolio summary highlights for enterprise-ready delivery traits.
+ */
 export const AboutSection = () => (
   <AnimatedSection className="px-4 py-20 sm:px-6 lg:px-8" id="about">
     <div className="mx-auto max-w-7xl">

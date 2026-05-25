@@ -11,38 +11,19 @@ import {
   TestTube2,
   Wrench,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import type {
+  AboutHighlight,
+  Education,
+  Experience,
+  NavigationItem,
+  Profile,
+  Project,
+  RecentRepository,
+  SkillGroup,
+  TechStat,
+} from "@/types/portfolio.types";
 
-export type SkillGroup = {
-  title: string;
-  icon: LucideIcon;
-  skills: string[];
-};
-
-export type ProjectCategory = "all" | "full-stack" | "dashboard" | "qa";
-
-export type Project = {
-  id: string;
-  title: string;
-  summary: string;
-  category: Exclude<ProjectCategory, "all">;
-  techStack: string[];
-  architecture: string[];
-  features: string[];
-  challenges: string[];
-  githubUrl: string;
-  liveDemoUrl: string;
-};
-
-export type Experience = {
-  role: string;
-  organization: string;
-  period: string;
-  icon: LucideIcon;
-  highlights: string[];
-};
-
-export const profile = {
+export const profile: Profile = {
   name: "Cornelio A. Gatbonton Jr",
   role: "Junior Full-Stack Developer",
   email: "corneliogatbontonjr21@gmail.com",
@@ -55,7 +36,7 @@ export const profile = {
     "BSIT developer focused on reliable full-stack systems, QA discipline, database design, and enterprise-ready user experiences.",
 };
 
-export const navigationItems = [
+export const navigationItems: NavigationItem[] = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
@@ -220,7 +201,7 @@ export const experiences: Experience[] = [
   },
 ];
 
-export const education = {
+export const education: Education = {
   degree: "Bachelor of Science in Information Technology",
   specialization:
     "Full-stack development, QA testing, database design, and system analysis",
@@ -233,14 +214,14 @@ export const education = {
   ],
 };
 
-export const techStats = [
+export const techStats: TechStat[] = [
   { label: "Primary focus", value: "Full-stack", icon: Server },
   { label: "Architecture", value: "Database-first", icon: Database },
   { label: "Quality", value: "QA-driven", icon: ShieldCheck },
   { label: "Versioning", value: "Git workflow", icon: GitBranch },
 ];
 
-export const recentRepositories = [
+export const recentRepositories: RecentRepository[] = [
   {
     name: "smart-pos-system",
     description: "POS, kiosk, analytics, and inventory workflow prototype.",
@@ -259,7 +240,7 @@ export const recentRepositories = [
   },
 ];
 
-export const aboutHighlights = [
+export const aboutHighlights: AboutHighlight[] = [
   {
     title: "Full-stack foundation",
     icon: Server,

@@ -1,17 +1,20 @@
 import { Suspense } from "react";
-import { AboutSection } from "@/features/portfolio/components/about-section";
-import { ContactSection } from "@/features/portfolio/components/contact-section";
-import { EducationSection } from "@/features/portfolio/components/education-section";
-import { ExperienceSection } from "@/features/portfolio/components/experience-section";
+import { AboutSection } from "@/components/sections/home/about-section";
+import { ContactSection } from "@/components/sections/home/contact-section";
+import { EducationSection } from "@/components/sections/home/education-section";
+import { ExperienceSection } from "@/components/sections/home/experience-section";
 import {
   GitHubActivitySection,
   GitHubActivitySkeleton,
-} from "@/features/portfolio/components/github-activity-section";
-import { HeroSection } from "@/features/portfolio/components/hero-section";
-import { ProjectsSection } from "@/features/portfolio/components/projects-section";
-import { SkillsSection } from "@/features/portfolio/components/skills-section";
+} from "@/components/sections/home/github-activity-section";
+import { HeroSection } from "@/components/sections/home/hero-section";
+import { ProjectsSection } from "@/components/sections/home/projects-section";
+import { SkillsSection } from "@/components/sections/home/skills-section";
 
-export default function Home() {
+/**
+ * Composes the recruiter-facing home page from reusable section components.
+ */
+const Home = () => {
   return (
     <>
       <HeroSection />
@@ -26,4 +29,6 @@ export default function Home() {
       <ContactSection />
     </>
   );
-}
+};
+
+export default Home;

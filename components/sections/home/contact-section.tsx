@@ -1,8 +1,8 @@
 import { BriefcaseBusiness, Download, GitBranch, Mail } from "lucide-react";
 import Link from "next/link";
+import { profile } from "@/constants/portfolio.constants";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { profile } from "@/features/portfolio/data";
 import { AnimatedSection } from "./animated-section";
 import { ContactForm } from "./contact-form";
 import { SectionHeading } from "./section-heading";
@@ -25,6 +25,9 @@ const contactLinks = [
   },
 ];
 
+/**
+ * Displays profile links, resume access, and the validated contact form.
+ */
 export const ContactSection = () => (
   <AnimatedSection
     className="bg-muted/30 px-4 py-20 sm:px-6 lg:px-8"
@@ -43,17 +46,28 @@ export const ContactSection = () => (
               const Icon = item.icon;
 
               return (
-                <Link
-                  className="flex items-center justify-between rounded-md border border-border bg-background p-4 text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
-                  href={item.href}
+                <Button
+                  asChild
+                  className="h-auto w-full justify-between bg-background px-4 py-4 text-sm"
                   key={item.label}
+                  variant="outline"
                 >
-                  <span className="flex items-center gap-3">
-                    <Icon className="size-4 text-primary" />
-                    {item.label}
-                  </span>
-                  <span className="text-muted-foreground">Open</span>
-                </Link>
+                  <Link
+                    href={item.href}
+                    rel={
+                      item.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    target={item.href.startsWith("http") ? "_blank" : undefined}
+                  >
+                    <span className="flex items-center gap-3">
+                      <Icon className="size-4 text-primary" />
+                      {item.label}
+                    </span>
+                    <span className="text-muted-foreground">Open</span>
+                  </Link>
+                </Button>
               );
             })}
             <Button asChild className="w-full" size="lg">

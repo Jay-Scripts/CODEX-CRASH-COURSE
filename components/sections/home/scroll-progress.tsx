@@ -2,6 +2,9 @@
 
 import { motion, useScroll, useSpring } from "framer-motion";
 
+/**
+ * Displays the fixed page-scroll progress bar at the top of the viewport.
+ */
 export const ScrollProgress = () => {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {

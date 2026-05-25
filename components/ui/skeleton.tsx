@@ -1,6 +1,9 @@
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
+/**
+ * Displays a reusable skeleton placeholder for loading states.
+ */
 const Skeleton = ({ className, ...props }: ComponentProps<"div">) => (
   <div
     className={cn("animate-pulse rounded-md bg-muted", className)}

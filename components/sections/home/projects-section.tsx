@@ -1,15 +1,18 @@
-import { projects } from "@/features/portfolio/data";
+import { projects } from "@/constants/portfolio.constants";
 import { AnimatedSection } from "./animated-section";
 import { ProjectFilter } from "./project-filter";
 import { SectionHeading } from "./section-heading";
 
+/**
+ * Displays the featured projects section with interactive category filtering.
+ */
 export const ProjectsSection = () => (
   <AnimatedSection className="px-4 py-20 sm:px-6 lg:px-8" id="projects">
     <div className="mx-auto max-w-7xl">
       <SectionHeading
-        description="Project cards are written for recruiters and hiring managers: what the system does, how it is structured, and what problems it solves."
+        description="A selection of projects showcasing my ability to design, build, test, document, and deliver practical full-stack systems."
         eyebrow="Featured Projects"
-        title="Full-stack systems with dashboard and QA depth"
+        title="Full-stack projects with system design and QA depth"
       />
       <ProjectFilter projects={projects} />
     </div>

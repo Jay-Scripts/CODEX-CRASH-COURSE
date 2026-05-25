@@ -1,6 +1,9 @@
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
+/**
+ * Displays a reusable shadcn-style multiline form input.
+ */
 const Textarea = ({ className, ...props }: ComponentProps<"textarea">) => (
   <textarea
     className={cn(

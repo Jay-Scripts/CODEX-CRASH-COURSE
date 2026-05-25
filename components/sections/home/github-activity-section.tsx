@@ -1,13 +1,16 @@
 import { GitBranch } from "lucide-react";
 import Link from "next/link";
+import { profile } from "@/constants/portfolio.constants";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { profile } from "@/features/portfolio/data";
-import { getGitHubActivity } from "@/features/portfolio/services/github-activity";
+import { getGitHubActivity } from "@/lib/github-activity";
 import { AnimatedSection } from "./animated-section";
 import { SectionHeading } from "./section-heading";
 
+/**
+ * Displays the loading shell for the GitHub activity section.
+ */
 export const GitHubActivitySkeleton = () => (
   <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
     <Skeleton className="h-72" />
@@ -15,6 +18,9 @@ export const GitHubActivitySkeleton = () => (
   </div>
 );
 
+/**
+ * Displays async GitHub activity, repository, and technical focus signals.
+ */
 export const GitHubActivitySection = async () => {
   const activity = await getGitHubActivity();
 
@@ -28,7 +34,11 @@ export const GitHubActivitySection = async () => {
         />
         <div className="mb-8 flex justify-center">
           <Button asChild variant="outline">
-            <Link href={profile.githubUrl} rel="noreferrer" target="_blank">
+            <Link
+              href={profile.githubUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <GitBranch />
               View GitHub Profile
             </Link>
@@ -85,20 +95,19 @@ export const GitHubActivitySection = async () => {
                 </h3>
                 <div className="space-y-4">
                   {activity.recentRepositories.map((repository) => (
-                    <div
-                      className="rounded-md border border-border bg-background p-4"
-                      key={repository.name}
-                    >
-                      <p className="font-mono text-sm font-semibold">
-                        {repository.name}
-                      </p>
-                      <p className="mt-2 text-sm text-muted-foreground">
-                        {repository.description}
-                      </p>
-                      <p className="mt-3 text-xs text-primary">
-                        {repository.stack}
-                      </p>
-                    </div>
+                    <Card className="bg-background shadow-none" key={repository.name}>
+                      <CardContent className="p-4">
+                        <p className="font-mono text-sm font-semibold">
+                          {repository.name}
+                        </p>
+                        <p className="mt-2 text-sm text-muted-foreground">
+                          {repository.description}
+                        </p>
+                        <p className="mt-3 text-xs text-primary">
+                          {repository.stack}
+                        </p>
+                      </CardContent>
+                    </Card>
                   ))}
                 </div>
               </CardContent>

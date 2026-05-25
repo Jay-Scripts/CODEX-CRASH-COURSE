@@ -22,8 +22,16 @@ const badgeVariants = cva(
 
 type BadgeProps = ComponentProps<"div"> & VariantProps<typeof badgeVariants>;
 
+/**
+ * Generates shadcn-style badge classes for shared label variants.
+ */
+const documentedBadgeVariants = badgeVariants;
+
+/**
+ * Displays a reusable shadcn-style badge for compact labels and status chips.
+ */
 const Badge = ({ className, variant, ...props }: BadgeProps) => (
   <div className={cn(badgeVariants({ variant, className }))} {...props} />
 );
 
-export { Badge, badgeVariants };
+export { Badge, documentedBadgeVariants as badgeVariants };

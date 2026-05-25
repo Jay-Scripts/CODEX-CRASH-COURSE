@@ -1,10 +1,13 @@
 import { ArrowRight, Download, Mail, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { profile } from "@/constants/portfolio.constants";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { profile } from "@/features/portfolio/data";
 
+/**
+ * Displays the recruiter-facing hero section with primary calls to action.
+ */
 export const HeroSection = () => (
   <section
     className="relative overflow-hidden border-b border-border bg-background"
@@ -13,10 +16,6 @@ export const HeroSection = () => (
     <div className="absolute inset-x-0 top-0 -z-10 h-96 bg-[radial-gradient(circle_at_top,_color-mix(in_oklab,_var(--primary)_22%,_transparent),_transparent_55%)]" />
     <div className="mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
       <div className="max-w-3xl">
-        <Badge className="mb-6 gap-2" variant="secondary">
-          <ShieldCheck className="size-3.5" />
-          Recruiter-ready enterprise portfolio
-        </Badge>
         <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
           {profile.name}
         </h1>

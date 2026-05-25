@@ -5,6 +5,9 @@ import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { useMounted } from "@/hooks/use-mounted";
 
+/**
+ * Displays the light and dark mode toggle used in the site header.
+ */
 export const ThemeToggle = () => {
   const mounted = useMounted();
   const { setTheme, theme } = useTheme();

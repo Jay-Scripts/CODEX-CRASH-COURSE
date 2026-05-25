@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import { ScrollProgress } from "@/features/portfolio/components/scroll-progress";
+import { ScrollProgress } from "@/components/sections/home/scroll-progress";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -57,11 +57,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+/**
+ * Wraps the application with global fonts, metadata, theme state, and layout.
+ */
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
   return (
     <html
       className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth`}
@@ -83,4 +86,6 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

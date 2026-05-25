@@ -1,6 +1,9 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function Loading() {
+/**
+ * Displays the route-level loading shell while the home page resolves.
+ */
+const Loading = () => {
   return (
     <div className="mx-auto w-full max-w-7xl space-y-6 px-4 py-20 sm:px-6 lg:px-8">
       <Skeleton className="h-12 w-2/3" />
@@ -12,4 +15,6 @@ export default function Loading() {
       </div>
     </div>
   );
-}
+};
+
+export default Loading;

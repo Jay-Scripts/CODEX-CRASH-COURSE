@@ -1,5 +1,8 @@
-import { recentRepositories, techStats } from "@/features/portfolio/data";
+import { recentRepositories, techStats } from "@/constants/portfolio.constants";
 
+/**
+ * Returns async GitHub activity data for the recruiter-facing activity section.
+ */
 export const getGitHubActivity = async () => {
   await new Promise((resolve) => setTimeout(resolve, 80));
 

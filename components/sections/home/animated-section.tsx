@@ -6,6 +6,9 @@ import { cn } from "@/lib/utils";
 
 type AnimatedSectionProps = ComponentProps<typeof motion.section>;
 
+/**
+ * Displays a reusable motion-powered section wrapper with viewport reveal.
+ */
 export const AnimatedSection = ({
   children,
   className,

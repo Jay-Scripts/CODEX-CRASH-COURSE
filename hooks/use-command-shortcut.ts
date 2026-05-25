@@ -7,6 +7,9 @@ type UseCommandShortcutOptions = {
   onToggle: () => void;
 };
 
+/**
+ * Registers a Ctrl/Cmd + K shortcut that toggles the command menu.
+ */
 export const useCommandShortcut = ({
   enabled = true,
   onToggle,

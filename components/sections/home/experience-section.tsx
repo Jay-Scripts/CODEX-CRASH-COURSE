@@ -1,8 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { experiences } from "@/features/portfolio/data";
+import { experiences } from "@/constants/portfolio.constants";
 import { AnimatedSection } from "./animated-section";
 import { SectionHeading } from "./section-heading";
 
+/**
+ * Displays the work history timeline with recruiter-relevant highlights.
+ */
 export const ExperienceSection = () => (
   <AnimatedSection
     className="bg-muted/30 px-4 py-20 sm:px-6 lg:px-8"
@@ -10,9 +13,9 @@ export const ExperienceSection = () => (
   >
     <div className="mx-auto max-w-5xl">
       <SectionHeading
-        description="Experience is positioned around teamwork, support, debugging, communication, and practical troubleshooting."
+        description="Professional experience spanning IT support, customer service, inventory control, troubleshooting, and collaborative workplace operations."
         eyebrow="Experience"
-        title="Timeline of technical and customer-facing work"
+        title="Technical support and professional work experience"
       />
       <div className="relative space-y-5 before:absolute before:left-6 before:top-4 before:h-[calc(100%-2rem)] before:w-px before:bg-border md:before:left-1/2">
         {experiences.map((experience, index) => {

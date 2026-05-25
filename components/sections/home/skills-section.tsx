@@ -10,8 +10,9 @@ import {
 import { motion } from "framer-motion";
 import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
+import { skillGroups } from "@/constants/portfolio.constants";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { skillGroups } from "@/features/portfolio/data";
 import { cn } from "@/lib/utils";
 import { AnimatedSection } from "./animated-section";
 import { SectionHeading } from "./section-heading";
@@ -23,8 +24,7 @@ type SkillLogoMeta = {
 
 const skillLogoMap: Record<string, SkillLogoMeta> = {
   Bootstrap: {
-    logo:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
   },
   "Bug Documentation": {
     icon: FileWarning,
@@ -36,15 +36,13 @@ const skillLogoMap: Record<string, SkillLogoMeta> = {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
   },
   GitHub: {
-    logo:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
   },
   "Integration Testing": {
     icon: GitBranch,
   },
   "JavaScript ES6": {
-    logo:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
   },
   "Lucide React": {
     logo: "https://cdn.simpleicons.org/lucide",
@@ -56,15 +54,13 @@ const skillLogoMap: Record<string, SkillLogoMeta> = {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
   },
   "Next.js": {
-    logo:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
   },
   PHP: {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
   },
   PostgreSQL: {
-    logo:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
   },
   React: {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
@@ -73,8 +69,7 @@ const skillLogoMap: Record<string, SkillLogoMeta> = {
     logo: "https://cdn.simpleicons.org/supabase/3FCF8E",
   },
   "Tailwind CSS": {
-    logo:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
   },
   "shadcn/ui": {
     logo: "https://cdn.simpleicons.org/shadcnui",
@@ -83,8 +78,7 @@ const skillLogoMap: Record<string, SkillLogoMeta> = {
     icon: UserCheck,
   },
   "VS Code": {
-    logo:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
   },
   XAMPP: {
     logo: "https://cdn.simpleicons.org/xampp/FB7A24",
@@ -117,13 +111,14 @@ const SkillLogoPill = ({
   const Icon = skill.icon ?? TestTube2;
 
   return (
-    <span
+    <Badge
       aria-hidden={isDuplicate || undefined}
       className={cn(
-        "inline-flex shrink-0 items-center gap-2 rounded-md border border-border bg-background px-3 py-2 text-sm font-medium text-foreground shadow-sm",
+        "shrink-0 gap-2 border-border bg-background px-3 py-2 text-sm font-medium text-foreground shadow-sm",
         compact && "px-2.5 py-1.5 text-xs text-muted-foreground shadow-none",
         className,
       )}
+      variant="outline"
     >
       <span
         className={cn(
@@ -146,38 +141,25 @@ const SkillLogoPill = ({
         )}
       </span>
       <span className="whitespace-nowrap">{skill.name}</span>
-    </span>
+    </Badge>
   );
 };
 
+/**
+ * Displays the grouped technical skills section and animated skills carousel.
+ */
 export const SkillsSection = () => (
-  <AnimatedSection className="bg-muted/30 px-4 py-20 sm:px-6 lg:px-8" id="skills">
+  <AnimatedSection
+    className="bg-muted/30 px-4 py-20 sm:px-6 lg:px-8"
+    id="skills"
+  >
     <div className="mx-auto max-w-7xl">
       <SectionHeading
-        description="Skills are grouped by the way recruiters and engineering teams evaluate junior full-stack candidates."
+        description="A structured overview of my technical skills across frontend development, backend integration, quality assurance, and delivery workflows."
         eyebrow="Technical Skills"
         title="Frontend, backend, QA, and delivery tooling"
       />
-      <motion.div
-        className="skills-carousel-mask mb-8 overflow-hidden rounded-lg border border-border bg-card py-4 shadow-sm"
-        initial={{ opacity: 0, y: 14 }}
-        transition={{ duration: 0.35 }}
-        viewport={{ once: true }}
-        whileInView={{ opacity: 1, y: 0 }}
-      >
-        <div
-          aria-label="Technical skills logo carousel"
-          className="skills-carousel-track flex gap-3 px-3"
-        >
-          {carouselSkills.map((skill, index) => (
-            <SkillLogoPill
-              isDuplicate={index >= allSkills.length}
-              key={`${skill.name}-${index}`}
-              skill={skill}
-            />
-          ))}
-        </div>
-      </motion.div>
+
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {skillGroups.map((group, groupIndex) => {
           const Icon = group.icon;

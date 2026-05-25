@@ -36,6 +36,14 @@ type ButtonProps = ComponentProps<"button"> &
     asChild?: boolean;
   };
 
+/**
+ * Generates shadcn-style button classes for shared action variants.
+ */
+const documentedButtonVariants = buttonVariants;
+
+/**
+ * Displays a reusable shadcn-style button with variant and size support.
+ */
 const Button = ({
   className,
   variant,
@@ -53,4 +61,4 @@ const Button = ({
   );
 };
 
-export { Button, buttonVariants };
+export { Button, documentedButtonVariants as buttonVariants };

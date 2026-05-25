@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import type { Project, ProjectCategory } from "@/features/portfolio/data";
+import type { Project, ProjectCategory } from "@/types/portfolio.types";
 
 const filters: { label: string; value: ProjectCategory }[] = [
   { label: "All", value: "all" },
@@ -19,6 +19,9 @@ type ProjectFilterProps = {
   projects: Project[];
 };
 
+/**
+ * Displays project filter controls and the matching recruiter-facing project cards.
+ */
 export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
   const [activeFilter, setActiveFilter] = useState<ProjectCategory>("all");
 
@@ -55,25 +58,27 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
         {visibleProjects.map((project) => (
           <Card className="overflow-hidden" id={project.id} key={project.id}>
             <div className="grid min-h-52 place-items-center border-b border-border bg-muted/50 p-6">
-              <div className="w-full max-w-sm rounded-lg border border-border bg-background p-4 shadow-sm">
-                <div className="mb-4 flex items-center justify-between">
-                  <div className="h-2.5 w-24 rounded bg-primary/70" />
-                  <div className="flex gap-1.5">
-                    <div className="size-2 rounded-full bg-muted-foreground/40" />
-                    <div className="size-2 rounded-full bg-muted-foreground/40" />
-                    <div className="size-2 rounded-full bg-muted-foreground/40" />
+              <Card className="w-full max-w-sm bg-background shadow-sm">
+                <CardContent className="p-4">
+                  <div className="mb-4 flex items-center justify-between">
+                    <div className="h-2.5 w-24 rounded bg-primary/70" />
+                    <div className="flex gap-1.5">
+                      <div className="size-2 rounded-full bg-muted-foreground/40" />
+                      <div className="size-2 rounded-full bg-muted-foreground/40" />
+                      <div className="size-2 rounded-full bg-muted-foreground/40" />
+                    </div>
                   </div>
-                </div>
-                <div className="grid gap-2">
-                  <div className="h-3 rounded bg-muted" />
-                  <div className="h-3 w-5/6 rounded bg-muted" />
-                  <div className="mt-3 grid grid-cols-3 gap-2">
-                    <div className="h-12 rounded-md bg-primary/10" />
-                    <div className="h-12 rounded-md bg-primary/10" />
-                    <div className="h-12 rounded-md bg-primary/10" />
+                  <div className="grid gap-2">
+                    <div className="h-3 rounded bg-muted" />
+                    <div className="h-3 w-5/6 rounded bg-muted" />
+                    <div className="mt-3 grid grid-cols-3 gap-2">
+                      <div className="h-12 rounded-md bg-primary/10" />
+                      <div className="h-12 rounded-md bg-primary/10" />
+                      <div className="h-12 rounded-md bg-primary/10" />
+                    </div>
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </div>
             <CardContent className="p-6">
               <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
@@ -118,23 +123,35 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
                   </ul>
                 </div>
               </div>
-              <div className="mt-5 rounded-md border border-border bg-muted/40 p-4">
-                <h4 className="mb-2 text-sm font-semibold">Challenges solved</h4>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  {project.challenges.map((challenge) => (
-                    <li key={challenge}>{challenge}</li>
-                  ))}
-                </ul>
-              </div>
+              <Card className="mt-5 bg-muted/40 shadow-none">
+                <CardContent className="p-4">
+                  <h4 className="mb-2 text-sm font-semibold">
+                    Challenges solved
+                  </h4>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    {project.challenges.map((challenge) => (
+                      <li key={challenge}>{challenge}</li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Button asChild variant="outline">
-                  <Link href={project.githubUrl}>
+                  <Link
+                    href={project.githubUrl}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
                     <GitBranch />
                     GitHub
                   </Link>
                 </Button>
                 <Button asChild>
-                  <Link href={project.liveDemoUrl}>
+                  <Link
+                    href={project.liveDemoUrl}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
                     <ExternalLink />
                     Live demo
                   </Link>

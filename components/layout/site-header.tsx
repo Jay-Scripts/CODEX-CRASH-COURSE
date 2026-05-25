@@ -1,9 +1,12 @@
 import Link from "next/link";
+import { profile, navigationItems } from "@/constants/portfolio.constants";
 import { Button } from "@/components/ui/button";
-import { CommandMenu } from "@/features/portfolio/components/command-menu";
-import { navigationItems, profile } from "@/features/portfolio/data";
+import { CommandMenu } from "@/components/sections/home/command-menu";
 import { ThemeToggle } from "./theme-toggle";
 
+/**
+ * Displays the sticky site header with navigation, search, and theme controls.
+ */
 export const SiteHeader = () => (
   <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur-xl">
     <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
