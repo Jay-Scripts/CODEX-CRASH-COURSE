@@ -40,5 +40,5 @@
 
 ### `ProjectFilter`, `ContactForm`, `CommandMenu`, `AnimatedSection`, `SectionHeading`, `ScrollProgress`
 
-- Purpose: Support interactive filtering, contact validation, keyboard navigation, animation, consistent headings, and progress feedback on the home page.
+- Purpose: Support interactive filtering, contact validation, an anchored command search dropdown, animation, consistent headings, and progress feedback on the home page.
 - Location: `components/sections/home/*`
