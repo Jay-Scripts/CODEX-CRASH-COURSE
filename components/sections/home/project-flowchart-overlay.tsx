@@ -69,14 +69,14 @@ export const ProjectFlowchartOverlay = ({
         type="button"
       />
 
-      <div className="relative flex h-full w-full items-center justify-center p-4 sm:p-6 lg:p-8">
+      <div className="relative flex h-full w-full items-center justify-center p-0 sm:p-4 md:p-6 lg:p-8">
         <div
           aria-label={`${activePreview.label} flowchart fullscreen preview`}
           aria-modal="true"
-          className="relative flex h-full w-full max-w-7xl flex-col overflow-hidden rounded-[2rem] border border-border/70 bg-background/95 shadow-[0_32px_120px_-48px_rgba(15,23,42,0.65)]"
+          className="relative flex h-dvh w-screen flex-col overflow-hidden bg-background/95 shadow-[0_32px_120px_-48px_rgba(15,23,42,0.65)] sm:h-[calc(100dvh-2rem)] sm:w-full sm:max-w-5xl sm:rounded-[1.75rem] sm:border sm:border-border/70 md:max-w-6xl lg:max-w-7xl lg:rounded-[2rem]"
           role="dialog"
         >
-          <div className="flex flex-wrap items-start justify-between gap-3 border-b border-border/70 px-4 py-3 sm:px-6">
+          <div className="sticky top-0 z-10 flex flex-col gap-3 border-b border-border/70 bg-background/95 px-3 py-3 backdrop-blur sm:px-5 md:flex-row md:items-start md:justify-between md:px-6">
             <div>
               <p className="text-base font-semibold sm:text-lg">
                 {activePreview.label} Flowchart
@@ -86,7 +86,7 @@ export const ProjectFlowchartOverlay = ({
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center justify-end gap-2">
+            <div className="flex flex-wrap items-center gap-2 md:justify-end">
               <div className="rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
                 {currentIndex + 1} / {total}
               </div>
@@ -115,7 +115,7 @@ export const ProjectFlowchartOverlay = ({
           </div>
 
           <div
-            className="min-h-0 flex-1 overflow-auto bg-[radial-gradient(circle_at_top,_color-mix(in_oklab,_var(--primary)_12%,_transparent),_transparent_60%)] p-4 sm:p-6"
+            className="min-h-0 flex-1 overflow-auto overscroll-contain bg-[radial-gradient(circle_at_top,_color-mix(in_oklab,_var(--primary)_12%,_transparent),_transparent_60%)] p-3 sm:p-5 md:p-6"
             style={{ touchAction: "pan-x pan-y pinch-zoom" }}
           >
             <div className="flex min-h-full min-w-full items-center justify-center">
@@ -124,7 +124,7 @@ export const ProjectFlowchartOverlay = ({
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   alt={activePreview.alt}
-                  className="mx-auto h-auto max-h-[calc(100vh-11rem)] w-auto max-w-full rounded-xl object-contain"
+                  className="mx-auto h-auto max-h-[calc(100dvh-12rem)] w-auto max-w-full rounded-xl object-contain sm:max-h-[calc(100dvh-13rem)] lg:max-h-[calc(100dvh-11rem)]"
                   draggable="false"
                   src={activePreview.src}
                 />
