@@ -42,11 +42,12 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
 
   return (
     <RevealGroup>
-      <RevealGroup className="mb-8 flex flex-wrap justify-center gap-2">
+      <RevealGroup className="mb-8 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center">
         {filters.map((filter) => (
           <RevealItem key={filter.value}>
             <Button
               aria-pressed={activeFilter === filter.value}
+              className="w-full sm:w-auto"
               onClick={() => setActiveFilter(filter.value)}
               type="button"
               variant={activeFilter === filter.value ? "default" : "outline"}
@@ -60,9 +61,9 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
         {visibleProjects.map((project) => (
           <RevealItem key={project.id}>
             <Card className="overflow-hidden" id={project.id}>
-              <div className="grid min-h-52 place-items-center border-b border-border bg-muted/50 p-6">
+              <div className="grid min-h-44 place-items-center border-b border-border bg-muted/50 p-4 sm:min-h-52 sm:p-6">
                 <Card className="w-full max-w-sm bg-background shadow-sm">
-                  <CardContent className="p-4">
+                  <CardContent className="p-3 sm:p-4">
                     <div className="mb-4 flex items-center justify-between">
                       <div className="h-2.5 w-24 rounded bg-primary/70" />
                       <div className="flex gap-1.5">
@@ -83,10 +84,10 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
                   </CardContent>
                 </Card>
               </div>
-              <CardContent className="p-6">
+              <CardContent className="p-5 sm:p-6">
                 <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
-                  <div>
-                    <h3 className="text-2xl font-semibold tracking-tight">
+                  <div className="min-w-0">
+                    <h3 className="text-xl font-semibold tracking-tight sm:text-2xl">
                       {project.title}
                     </h3>
                     <p className="mt-3 text-sm leading-6 text-muted-foreground">
@@ -110,7 +111,9 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
                     </h4>
                     <ul className="space-y-2 text-sm text-muted-foreground">
                       {project.architecture.map((item) => (
-                        <li key={item}>{item}</li>
+                        <li className="break-words" key={item}>
+                          {item}
+                        </li>
                       ))}
                     </ul>
                   </div>
@@ -121,7 +124,9 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
                     </h4>
                     <ul className="space-y-2 text-sm text-muted-foreground">
                       {project.features.map((feature) => (
-                        <li key={feature}>{feature}</li>
+                        <li className="break-words" key={feature}>
+                          {feature}
+                        </li>
                       ))}
                     </ul>
                   </div>
@@ -133,7 +138,9 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
                     </h4>
                     <ul className="space-y-2 text-sm text-muted-foreground">
                       {project.challenges.map((challenge) => (
-                        <li key={challenge}>{challenge}</li>
+                        <li className="break-words" key={challenge}>
+                          {challenge}
+                        </li>
                       ))}
                     </ul>
                   </CardContent>

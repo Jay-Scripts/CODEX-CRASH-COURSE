@@ -31,7 +31,7 @@ const contactLinks = [
  */
 export const ContactSection = () => (
   <AnimatedSection
-    className="bg-muted/30 px-4 py-20 sm:px-6 lg:px-8"
+    className="bg-muted/30 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
     id="contact"
   >
     <RevealGroup className="mx-auto max-w-6xl">
@@ -45,14 +45,14 @@ export const ContactSection = () => (
       <RevealGroup className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
         <RevealItem>
           <Card>
-            <CardContent className="space-y-4 p-6">
+            <CardContent className="space-y-4 p-5 sm:p-6">
               {contactLinks.map((item) => {
                 const Icon = item.icon;
 
                 return (
                   <Button
                     asChild
-                    className="h-auto w-full justify-between bg-background px-4 py-4 text-sm"
+                    className="h-auto w-full justify-between bg-background px-4 py-3.5 text-sm"
                     key={item.label}
                     variant="outline"
                   >
@@ -65,9 +65,9 @@ export const ContactSection = () => (
                       }
                       target={item.href.startsWith("http") ? "_blank" : undefined}
                     >
-                      <span className="flex items-center gap-3">
+                      <span className="flex min-w-0 items-center gap-3">
                         <Icon className="size-4 text-primary" />
-                        {item.label}
+                        <span className="truncate">{item.label}</span>
                       </span>
                       <span className="text-muted-foreground">Open</span>
                     </Link>
@@ -85,7 +85,7 @@ export const ContactSection = () => (
         </RevealItem>
         <RevealItem>
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-5 sm:p-6">
               <ContactForm />
             </CardContent>
           </Card>

@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { profile } from "@/constants/portfolio.constants";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 const smoothEase = [0.22, 1, 0.36, 1] as const;

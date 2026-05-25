@@ -9,7 +9,7 @@ import { SectionHeading } from "./section-heading";
  */
 export const ExperienceSection = () => (
   <AnimatedSection
-    className="bg-muted/30 px-4 py-20 sm:px-6 lg:px-8"
+    className="bg-muted/30 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
     id="experience"
   >
     <RevealGroup className="mx-auto max-w-5xl">
@@ -20,19 +20,19 @@ export const ExperienceSection = () => (
           title="Technical support and professional work experience"
         />
       </RevealItem>
-      <RevealGroup className="relative space-y-5 before:absolute before:left-6 before:top-4 before:h-[calc(100%-2rem)] before:w-px before:bg-border md:before:left-1/2">
+      <RevealGroup className="relative space-y-5 before:absolute before:left-5 before:top-4 before:h-[calc(100%-2rem)] before:w-px before:bg-border md:before:left-1/2">
         {experiences.map((experience, index) => {
           const Icon = experience.icon;
           const isEven = index % 2 === 0;
 
           return (
             <RevealItem key={`${experience.role}-${experience.organization}`}>
-              <div className="relative grid gap-4 md:grid-cols-[1fr_3rem_1fr]">
+              <div className="relative grid gap-4 pl-14 md:grid-cols-[1fr_3rem_1fr] md:pl-0">
                 <div className={isEven ? "md:col-start-1" : "md:col-start-3"}>
                   <Card>
-                    <CardContent className="p-6">
+                    <CardContent className="p-5 sm:p-6">
                       <p className="text-sm text-primary">{experience.period}</p>
-                      <h3 className="mt-2 text-xl font-semibold">
+                      <h3 className="mt-2 text-lg font-semibold sm:text-xl">
                         {experience.role}
                       </h3>
                       <p className="text-sm text-muted-foreground">
@@ -46,8 +46,8 @@ export const ExperienceSection = () => (
                     </CardContent>
                   </Card>
                 </div>
-                <div className="absolute left-0 top-6 grid size-12 place-items-center rounded-full border border-border bg-background text-primary md:static md:col-start-2">
-                  <Icon className="size-5" />
+                <div className="absolute left-0 top-5 grid size-10 place-items-center rounded-full border border-border bg-background text-primary md:static md:col-start-2 md:size-12">
+                  <Icon className="size-4 md:size-5" />
                 </div>
               </div>
             </RevealItem>

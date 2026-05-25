@@ -112,8 +112,9 @@ const SkillLogoPill = ({
     <Badge
       aria-hidden={isDuplicate || undefined}
       className={cn(
-        "shrink-0 gap-2 border-border bg-background px-3 py-2 text-sm font-medium text-foreground shadow-sm",
-        compact && "px-2.5 py-1.5 text-xs text-muted-foreground shadow-none",
+        "max-w-full shrink-0 gap-2 border-border bg-background px-3 py-2 text-sm font-medium text-foreground shadow-sm",
+        compact &&
+          "px-2.5 py-1.5 text-xs text-muted-foreground shadow-none sm:max-w-none",
         className,
       )}
       variant="outline"
@@ -138,7 +139,14 @@ const SkillLogoPill = ({
           <Icon className={cn("size-4", compact && "size-3.5")} />
         )}
       </span>
-      <span className="whitespace-nowrap">{skill.name}</span>
+      <span
+        className={cn(
+          "break-words",
+          compact ? "sm:whitespace-nowrap" : "whitespace-nowrap",
+        )}
+      >
+        {skill.name}
+      </span>
     </Badge>
   );
 };
@@ -148,7 +156,7 @@ const SkillLogoPill = ({
  */
 export const SkillsSection = () => (
   <AnimatedSection
-    className="bg-muted/30 px-4 py-20 sm:px-6 lg:px-8"
+    className="bg-muted/30 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
     id="skills"
   >
     <RevealGroup className="mx-auto max-w-7xl">
@@ -167,12 +175,14 @@ export const SkillsSection = () => (
           return (
             <RevealItem key={group.title}>
               <Card className="h-full">
-                <CardContent className="p-6">
-                  <div className="mb-5 flex items-center gap-3">
-                    <span className="grid size-10 place-items-center rounded-md bg-primary/10 text-primary">
+                <CardContent className="p-5 sm:p-6">
+                  <div className="mb-4 flex items-center gap-3 sm:mb-5">
+                    <span className="grid size-9 place-items-center rounded-md bg-primary/10 text-primary sm:size-10">
                       <Icon className="size-5" />
                     </span>
-                    <h3 className="font-semibold">{group.title}</h3>
+                    <h3 className="text-sm font-semibold sm:text-base">
+                      {group.title}
+                    </h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {group.skills.map((skill) => {

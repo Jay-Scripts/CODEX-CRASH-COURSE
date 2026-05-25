@@ -10,7 +10,7 @@ import { SectionHeading } from "./section-heading";
  * Displays the education section and relevant coursework badges.
  */
 export const EducationSection = () => (
-  <AnimatedSection className="px-4 py-20 sm:px-6 lg:px-8" id="education">
+  <AnimatedSection className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8" id="education">
     <RevealGroup className="mx-auto max-w-5xl">
       <RevealItem>
         <SectionHeading
@@ -21,12 +21,14 @@ export const EducationSection = () => (
       </RevealItem>
       <RevealItem>
         <Card>
-          <CardContent className="grid gap-8 p-6 md:grid-cols-[0.8fr_1.2fr]">
+          <CardContent className="grid gap-6 p-5 sm:gap-8 sm:p-6 md:grid-cols-[0.8fr_1.2fr]">
             <div>
-              <div className="mb-5 grid size-12 place-items-center rounded-md bg-primary/10 text-primary">
-                <GraduationCap className="size-6" />
+              <div className="mb-4 grid size-10 place-items-center rounded-md bg-primary/10 text-primary sm:mb-5 sm:size-12">
+                <GraduationCap className="size-5 sm:size-6" />
               </div>
-              <h3 className="text-2xl font-semibold">{education.degree}</h3>
+              <h3 className="text-xl font-semibold sm:text-2xl">
+                {education.degree}
+              </h3>
               <p className="mt-3 text-sm leading-6 text-muted-foreground">
                 {education.specialization}
               </p>

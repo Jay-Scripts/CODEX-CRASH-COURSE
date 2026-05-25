@@ -26,7 +26,7 @@ export const GitHubActivitySection = async () => {
   const activity = await getGitHubActivity();
 
   return (
-    <AnimatedSection className="px-4 py-20 sm:px-6 lg:px-8" id="github">
+    <AnimatedSection className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8" id="github">
       <RevealGroup className="mx-auto max-w-7xl">
         <RevealItem>
           <SectionHeading
@@ -50,27 +50,29 @@ export const GitHubActivitySection = async () => {
         <RevealGroup className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <RevealItem>
             <Card>
-              <CardContent className="p-6">
-                <div className="mb-6 flex items-center justify-between">
-                  <h3 className="text-lg font-semibold">
+              <CardContent className="p-5 sm:p-6">
+                <div className="mb-5 flex flex-col gap-2 sm:mb-6 sm:flex-row sm:items-center sm:justify-between">
+                  <h3 className="text-base font-semibold sm:text-lg">
                     Contribution graph placeholder
                   </h3>
                   <span className="font-mono text-xs text-muted-foreground">
                     12 weeks
                   </span>
                 </div>
-                <div className="grid grid-cols-12 gap-2">
-                  {activity.contributionWeeks.map((value, index) => (
-                    <div
-                      className="flex h-32 items-end rounded-md bg-muted p-1"
-                      key={`${value}-${index}`}
-                    >
+                <div className="-mx-1 overflow-x-auto pb-2">
+                  <div className="grid min-w-[32rem] grid-cols-12 gap-2 px-1">
+                    {activity.contributionWeeks.map((value, index) => (
                       <div
-                        className="w-full rounded-sm bg-primary"
-                        style={{ height: `${value}%` }}
-                      />
-                    </div>
-                  ))}
+                        className="flex h-28 items-end rounded-md bg-muted p-1 sm:h-32"
+                        key={`${value}-${index}`}
+                      >
+                        <div
+                          className="w-full rounded-sm bg-primary"
+                          style={{ height: `${value}%` }}
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -83,7 +85,7 @@ export const GitHubActivitySection = async () => {
                 return (
                   <RevealItem key={stat.label}>
                     <Card>
-                      <CardContent className="p-5">
+                      <CardContent className="p-4 sm:p-5">
                         <Icon className="mb-4 size-5 text-primary" />
                         <p className="text-sm text-muted-foreground">
                           {stat.label}
@@ -97,8 +99,8 @@ export const GitHubActivitySection = async () => {
             </RevealGroup>
             <RevealItem>
               <Card>
-                <CardContent className="p-6">
-                  <h3 className="mb-4 text-lg font-semibold">
+                <CardContent className="p-5 sm:p-6">
+                  <h3 className="mb-4 text-base font-semibold sm:text-lg">
                     Recent repositories
                   </h3>
                   <RevealGroup className="space-y-4">
@@ -106,7 +108,7 @@ export const GitHubActivitySection = async () => {
                       <RevealItem key={repository.name}>
                         <Card className="bg-background shadow-none">
                           <CardContent className="p-4">
-                            <p className="font-mono text-sm font-semibold">
+                            <p className="break-words font-mono text-sm font-semibold">
                               {repository.name}
                             </p>
                             <p className="mt-2 text-sm text-muted-foreground">

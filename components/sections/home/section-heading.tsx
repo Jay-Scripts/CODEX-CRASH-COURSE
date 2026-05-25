@@ -14,17 +14,17 @@ export const SectionHeading = ({
   eyebrow,
   title,
 }: SectionHeadingProps) => (
-  <div className="mx-auto mb-10 max-w-3xl text-center lg:mb-12">
+  <div className="mx-auto mb-8 max-w-3xl text-center sm:mb-10 lg:mb-12">
     <Badge
-      className="mb-3 px-3 py-1 uppercase tracking-[0.18em]"
+      className="mb-3 px-3 py-1 text-[11px] uppercase tracking-[0.18em] sm:text-xs"
       variant="outline"
     >
       {eyebrow}
     </Badge>
-    <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+    <h2 className="text-balance text-2xl font-semibold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
       {title}
     </h2>
-    <p className="mt-4 text-base leading-7 text-muted-foreground">
+    <p className="mt-3 text-sm leading-7 text-muted-foreground sm:mt-4 sm:text-base">
       {description}
     </p>
   </div>
