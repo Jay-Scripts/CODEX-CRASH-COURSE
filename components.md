@@ -4,7 +4,7 @@
 
 ### `SiteHeader`
 
-- Purpose: Renders the sticky site navigation with command search and theme controls.
+- Purpose: Renders the sticky site navigation with desktop links, a mobile menu, command search, and theme controls.
 - Location: `components/layout/site-header.tsx`
 
 ### `SiteFooter`
