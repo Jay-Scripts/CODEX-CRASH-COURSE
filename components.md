@@ -35,7 +35,7 @@
 
 ### `HeroSection`, `AboutSection`, `SkillsSection`, `ProjectsSection`, `ExperienceSection`, `EducationSection`, `GitHubActivitySection`, `ContactSection`
 
-- Purpose: Compose the recruiter-facing home page sections.
+- Purpose: Compose the recruiter-facing home page sections, including a more responsive and dark-mode-friendly hero introduction.
 - Location: `components/sections/home/*`
 
 ### `ProjectFilter`, `ContactForm`, `CommandMenu`, `AnimatedSection`, `RevealGroup`, `RevealItem`, `SectionHeading`, `ScrollProgress`
