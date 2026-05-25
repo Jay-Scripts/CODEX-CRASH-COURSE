@@ -8,11 +8,20 @@ export type SkillGroup = {
 
 export type ProjectCategory = "all" | "full-stack" | "dashboard" | "qa";
 
+export type FlowchartPreview = {
+  alt: string;
+  id: string;
+  label: string;
+  src: string;
+};
+
 export type Project = {
   architecture: string[];
   category: Exclude<ProjectCategory, "all">;
   challenges: string[];
   features: string[];
+  flowchartActivities?: string[];
+  flowchartPreviews?: FlowchartPreview[];
   githubUrl: string;
   id: string;
   liveDemoUrl: string;

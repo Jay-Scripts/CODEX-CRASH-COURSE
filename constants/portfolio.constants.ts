@@ -15,6 +15,7 @@ import type {
   AboutHighlight,
   Education,
   Experience,
+  FlowchartPreview,
   NavigationItem,
   Profile,
   Project,
@@ -22,6 +23,57 @@ import type {
   SkillGroup,
   TechStat,
 } from "@/types/portfolio.types";
+
+const smartPosFlowchartPreviews: FlowchartPreview[] = [
+  {
+    id: "options",
+    label: "Options",
+    src: "/sysflow-svg/SYSTEM FLOW SMART POS-Options Module.drawio.svg",
+    alt: "Smart POS system flowchart preview for options module",
+  },
+  {
+    id: "kiosk",
+    label: "Kiosk",
+    src: "/sysflow-svg/SYSTEM FLOW SMART POS-KIOSK Module.drawio.svg",
+    alt: "Smart POS system flowchart preview for kiosk module",
+  },
+  {
+    id: "pos",
+    label: "POS",
+    src: "/sysflow-svg/SYSTEM FLOW SMART POS-POS Module .drawio.svg",
+    alt: "Smart POS system flowchart preview for POS module",
+  },
+  {
+    id: "bvs",
+    label: "BVS",
+    src: "/sysflow-svg/SYSTEM FLOW SMART POS-BVS Module.drawio.svg",
+    alt: "Smart POS system flowchart preview for BVS module",
+  },
+  {
+    id: "managers",
+    label: "Managers",
+    src: "/sysflow-svg/SYSTEM FLOW SMART POS-Manager's Module.drawio.svg",
+    alt: "Smart POS system flowchart preview for managers module",
+  },
+  {
+    id: "cvs",
+    label: "CVS",
+    src: "/sysflow-svg/SYSTEM FLOW SMART POS-CVS Module.drawio.svg",
+    alt: "Smart POS system flowchart preview for CVS module",
+  },
+  {
+    id: "crm",
+    label: "CRM",
+    src: "/sysflow-svg/SYSTEM FLOW SMART POS-CRM Module.drawio.svg",
+    alt: "Smart POS system flowchart preview for CRM module",
+  },
+  {
+    id: "db",
+    label: "DB",
+    src: "/sysflow-svg/SYSTEM FLOW SMART POS-Smart POS DB.drawio.svg",
+    alt: "Smart POS system flowchart preview for database module",
+  },
+];
 
 export const profile: Profile = {
   name: "Cornelio A. Gatbonton Jr",
@@ -108,6 +160,13 @@ export const projects: Project[] = [
       "Role-based operational screens",
       "QA testing workflows",
     ],
+    flowchartActivities: [
+      "Customer order entry from cashier POS or self-service kiosk",
+      "Automatic ticket routing to the barista preparation screen",
+      "Live order status updates reflected on the customer view display",
+      "Completed sales posting to inventory and analytics records",
+    ],
+    flowchartPreviews: smartPosFlowchartPreviews,
     challenges: [
       "Connected multiple service views without duplicating business logic.",
       "Designed inventory updates around clear transaction states.",
@@ -136,6 +195,12 @@ export const projects: Project[] = [
       "Fleet status monitoring",
       "Admin reports",
       "Flowcharts and ERD planning",
+    ],
+    flowchartActivities: [
+      "Customer submits a booking request with rental details",
+      "Admin reviews vehicle availability and approves the reservation",
+      "System updates fleet status for pickup, return, or maintenance",
+      "Rental completion triggers report generation and record archiving",
     ],
     challenges: [
       "Mapped rental workflows into maintainable database relationships.",

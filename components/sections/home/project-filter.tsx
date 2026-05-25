@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import type { Project, ProjectCategory } from "@/types/portfolio.types";
+import { ProjectFlowchartCarousel } from "./project-flowchart-carousel";
 import { RevealGroup, RevealItem } from "./scroll-reveal";
 
 const filters: { label: string; value: ProjectCategory }[] = [
@@ -131,6 +132,26 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
                     </ul>
                   </div>
                 </div>
+                {project.flowchartPreviews?.length ? (
+                  <ProjectFlowchartCarousel previews={project.flowchartPreviews} />
+                ) : null}
+                {project.flowchartActivities?.length ? (
+                  <Card className="mt-5 bg-muted/40 shadow-none">
+                    <CardContent className="p-4">
+                      <h4 className="mb-3 flex items-center gap-2 text-sm font-semibold">
+                        <GitBranch className="size-4 text-primary" />
+                        System flowchart activities
+                      </h4>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        {project.flowchartActivities.map((activity) => (
+                          <li className="break-words" key={activity}>
+                            {activity}
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                ) : null}
                 <Card className="mt-5 bg-muted/40 shadow-none">
                   <CardContent className="p-4">
                     <h4 className="mb-2 text-sm font-semibold">

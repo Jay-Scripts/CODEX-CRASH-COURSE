@@ -38,7 +38,7 @@
 - Purpose: Compose the recruiter-facing home page sections with responsive layouts across mobile and desktop, including a stronger hero introduction.
 - Location: `components/sections/home/*`
 
-### `ProjectFilter`, `ContactForm`, `CommandMenu`, `AnimatedSection`, `RevealGroup`, `RevealItem`, `SectionHeading`, `ScrollProgress`
+### `ProjectFilter`, `ProjectFlowchartCarousel`, `ContactForm`, `CommandMenu`, `AnimatedSection`, `RevealGroup`, `RevealItem`, `SectionHeading`, `ScrollProgress`
 
-- Purpose: Support interactive filtering, contact validation, an anchored command search dropdown, synchronized scroll-reveal animation, consistent headings, and progress feedback on the home page.
+- Purpose: Support interactive filtering, project detail cards with architecture, features, flowchart activities, ordered SVG carousel previews with an Expand button that opens a fullscreen modal, contact validation, an anchored command search dropdown, synchronized scroll-reveal animation, consistent headings, and progress feedback on the home page.
 - Location: `components/sections/home/*`
