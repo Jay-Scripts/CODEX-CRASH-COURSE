@@ -5,6 +5,8 @@ import {
   GitBranch,
   GraduationCap,
   Headphones,
+  MonitorSmartphone,
+  Palette,
   LineChart,
   Server,
   ShieldCheck,
@@ -20,6 +22,7 @@ import type {
   Profile,
   Project,
   RecentRepository,
+  ServiceOffering,
   SkillGroup,
   TechStat,
 } from "@/types/portfolio.types";
@@ -94,6 +97,33 @@ export const navigationItems: NavigationItem[] = [
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
+];
+
+export const serviceOfferings: ServiceOffering[] = [
+  {
+    title: "Full-stack Development",
+    icon: Server,
+    description:
+      "Build complete web applications from interface to backend logic and data flow.",
+  },
+  {
+    title: "Responsive Design",
+    icon: MonitorSmartphone,
+    description:
+      "Create layouts that stay clear, usable, and polished across mobile and desktop screens.",
+  },
+  {
+    title: "UI/UX",
+    icon: Palette,
+    description:
+      "Design interfaces that feel intuitive, visually consistent, and easy to navigate.",
+  },
+  {
+    title: "QA",
+    icon: ShieldCheck,
+    description:
+      "Support quality with testing, validation, and careful attention to user-facing details.",
+  },
 ];
 
 export const skillGroups: SkillGroup[] = [

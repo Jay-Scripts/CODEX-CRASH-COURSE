@@ -9,6 +9,7 @@ import {
 } from "@/components/sections/home/github-activity-section";
 import { HeroSection } from "@/components/sections/home/hero-section";
 import { ProjectsSection } from "@/components/sections/home/projects-section";
+import { ServicesSection } from "@/components/sections/home/services-section";
 import { SkillsSection } from "@/components/sections/home/skills-section";
 
 /**
@@ -18,6 +19,7 @@ const Home = () => {
   return (
     <>
       <HeroSection />
+      <ServicesSection />
       <AboutSection />
       <SkillsSection />
       <ProjectsSection />

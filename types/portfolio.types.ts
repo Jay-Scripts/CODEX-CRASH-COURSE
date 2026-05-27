@@ -77,3 +77,9 @@ export type AboutHighlight = {
   icon: LucideIcon;
   title: string;
 };
+
+export type ServiceOffering = {
+  description: string;
+  icon: LucideIcon;
+  title: string;
+};
