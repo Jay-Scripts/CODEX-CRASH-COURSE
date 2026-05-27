@@ -72,8 +72,8 @@ export type RecentRepository = {
   stack: string;
 };
 
-export type AboutHighlight = {
-  description: string;
+export type AboutEntry = {
+  description: string[];
   icon: LucideIcon;
   title: string;
 };

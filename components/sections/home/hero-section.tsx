@@ -60,9 +60,7 @@ export const HeroSection = () => (
         <motion.p
           className="mt-4 text-lg font-medium text-primary sm:text-2xl"
           variants={heroItemVariants}
-        >
-          {profile.role}
-        </motion.p>
+        ></motion.p>
         <motion.div
           className="mt-5 flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground lg:justify-start"
           variants={heroItemVariants}
@@ -76,13 +74,7 @@ export const HeroSection = () => (
             QA-focused delivery mindset
           </span>
         </motion.div>
-        <motion.p
-          className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-8 text-muted-foreground sm:text-lg lg:mx-0"
-          variants={heroItemVariants}
-        >
-          {profile.summary} Built to show enterprise-ready delivery traits:
-          quality, clarity, system thinking, and maintainable execution.
-        </motion.p>
+
         <motion.div
           className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start"
           variants={heroItemVariants}

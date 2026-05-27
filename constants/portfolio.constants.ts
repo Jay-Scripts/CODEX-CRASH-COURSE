@@ -3,18 +3,18 @@ import {
   Code2,
   Database,
   GitBranch,
-  GraduationCap,
   Headphones,
+  Info,
   MonitorSmartphone,
   Palette,
-  LineChart,
   Server,
   ShieldCheck,
+  Target,
   TestTube2,
   Wrench,
 } from "lucide-react";
 import type {
-  AboutHighlight,
+  AboutEntry,
   Education,
   Experience,
   FlowchartPreview,
@@ -335,29 +335,21 @@ export const recentRepositories: RecentRepository[] = [
   },
 ];
 
-export const aboutHighlights: AboutHighlight[] = [
+export const aboutEntries: AboutEntry[] = [
   {
-    title: "Full-stack foundation",
-    icon: Server,
-    description:
-      "Comfortable connecting UI flows to backend services, relational data models, and operational dashboards.",
+    title: "Personal details",
+    icon: Info,
+    description: [
+      profile.summary,
+      "Built to show enterprise-ready delivery traits: quality, clarity, system thinking, and maintainable execution.",
+    ],
   },
   {
-    title: "QA mindset",
-    icon: ShieldCheck,
-    description:
-      "Uses functional testing, integration testing, UAT, and bug documentation to improve delivery quality.",
-  },
-  {
-    title: "Systems thinking",
-    icon: LineChart,
-    description:
-      "Focuses on client-server architecture, database structure, workflows, and maintainable feature boundaries.",
-  },
-  {
-    title: "Continuous learning",
-    icon: GraduationCap,
-    description:
-      "Builds with modern frontend tooling while strengthening backend, database, and enterprise delivery habits.",
+    title: "About my goals",
+    icon: Target,
+    description: [
+      "My goal is to grow into a dependable full-stack developer who helps teams ship thoughtful, maintainable products.",
+      "I want to keep improving in UI/UX, responsive frontend work, backend systems, and QA so I can contribute across the full delivery process.",
+    ],
   },
 ];
