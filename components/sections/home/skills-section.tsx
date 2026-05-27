@@ -10,12 +10,12 @@ import {
 import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
 import { skillGroups } from "@/constants/portfolio.constants";
+import { AnimatedSection } from "@/components/common/animated-section";
+import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
+import { SectionHeading } from "@/components/common/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { AnimatedSection } from "./animated-section";
-import { RevealGroup, RevealItem } from "./scroll-reveal";
-import { SectionHeading } from "./section-heading";
 
 type SkillLogoMeta = {
   icon?: LucideIcon;
@@ -121,7 +121,7 @@ const SkillLogoPill = ({
     >
       <span
         className={cn(
-          "grid size-8 shrink-0 place-items-center rounded-md bg-white text-primary shadow-inner ring-1 ring-border",
+          "grid size-8 shrink-0 place-items-center rounded-md bg-card text-primary shadow-inner ring-1 ring-border",
           compact && "size-7",
         )}
       >
@@ -176,6 +176,7 @@ export const SkillsSection = () => (
             <RevealItem key={group.title}>
               <Card className="h-full">
                 <CardContent className="p-5 sm:p-6">
+                  <article>
                   <div className="mb-4 flex items-center gap-3 sm:mb-5">
                     <span className="grid size-9 place-items-center rounded-md bg-primary/10 text-primary sm:size-10">
                       <Icon className="size-5" />
@@ -199,6 +200,7 @@ export const SkillsSection = () => (
                       ) : null;
                     })}
                   </div>
+                  </article>
                 </CardContent>
               </Card>
             </RevealItem>

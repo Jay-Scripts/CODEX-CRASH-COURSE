@@ -146,6 +146,49 @@ Is the data used in more than one place, OR is it a list of 3+ items?
 
 ---
 
+## Design Consistency Rules
+
+### Color Rules
+
+- Use semantic theme tokens only: `bg-background`, `text-foreground`, `bg-card`, `text-muted-foreground`, `border-border`, `bg-primary`, etc.
+- Do not hardcode colors in components with hex, rgb, oklch, or arbitrary Tailwind values unless you are updating the global theme in `app/globals.css`.
+- Treat `primary` as the single main accent color for CTAs, active states, focus states, and key highlights.
+- Use `secondary`, `muted`, and `accent` for support surfaces only. Do not introduce extra accent palettes per section.
+- Keep light and dark mode behavior aligned by updating tokens in `app/globals.css`, not by styling one-off overrides in component files.
+- New reusable components must inherit the existing border, background, and foreground tokens instead of defining their own visual system.
+
+### Font Rules
+
+- Use the global font setup already defined in `app/layout.tsx` and `app/globals.css`.
+- Default UI, headings, labels, buttons, and body copy use `font-sans`.
+- Use `font-mono` only for code, numbers that benefit from alignment, or technical metadata.
+- Do not introduce extra font families unless explicitly requested.
+- Keep heading hierarchy consistent: one clear page hero heading, then descending section and card headings. Do not mix oversized display text into small UI surfaces.
+- Prefer weight and size changes over switching fonts to create emphasis.
+
+### UI Consistency Rules
+
+- Reuse the same spacing rhythm, radii, shadows, and border treatments across sections and components.
+- Keep interactive states consistent: hover, focus, active, and disabled states should follow the same token-based pattern across buttons, links, cards, and inputs.
+- If a new visual pattern will appear in more than one place, extract it into a reusable component or shared variant instead of restyling each instance separately.
+- Before adding a new color, text treatment, or surface style, check whether an existing shadcn/ui variant or shared component already solves it.
+
+---
+
+## Semantic HTML and SEO Rules
+
+- Use semantic layout tags whenever they match the content: `header`, `nav`, `main`, `section`, `article`, `aside`, and `footer`.
+- Do not use `div` when a semantic element communicates structure more clearly.
+- Every page must have one primary `h1`, with headings descending in order (`h2`, `h3`, etc.) without skipping levels unnecessarily.
+- Use `section` only when the content has a meaningful heading or grouped purpose.
+- Use `article` for standalone, reusable content blocks such as project cards, blog entries, or case studies when appropriate.
+- Navigation links belong inside `nav`, and the main page content belongs inside `main`.
+- Buttons must be real `<button>` elements for actions; links must be real `<a>` elements for navigation.
+- Use descriptive link text and accessible labels so structure is clear to users and search engines.
+- Preserve SEO metadata in Next.js route files: title, description, and relevant Open Graph / Twitter metadata should stay accurate for each page.
+
+---
+
 ## Required Comment Format
 
 Every exported function, hook, util, validator, and component needs a JSDoc comment:

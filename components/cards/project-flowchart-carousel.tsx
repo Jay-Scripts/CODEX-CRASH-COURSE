@@ -3,9 +3,8 @@
 import { ChevronLeft, ChevronRight, ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import type { FlowchartPreview } from "@/types/portfolio.types";
+import { Button } from "@/components/ui/button";
 import { ProjectFlowchartOverlay } from "./project-flowchart-overlay";
 
 type ProjectFlowchartCarouselProps = {
@@ -37,8 +36,8 @@ export const ProjectFlowchartCarousel = ({
 
   return (
     <>
-      <Card className="mt-5 overflow-hidden border-border/70 bg-muted/40 shadow-none">
-        <CardContent className="p-4 sm:p-5">
+      <div className="mt-5 overflow-hidden rounded-lg border border-border/70 bg-muted/40">
+        <div className="p-4 sm:p-5">
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <div>
               <h4 className="flex items-center gap-2 text-sm font-semibold">
@@ -50,7 +49,7 @@ export const ProjectFlowchartCarousel = ({
                 BVS, Managers, CVS, CRM, and DB.
               </p>
             </div>
-            <div className="rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
+            <div className="rounded-md border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
               {activeIndex + 1} / {previews.length}
             </div>
           </div>
@@ -70,7 +69,7 @@ export const ProjectFlowchartCarousel = ({
             ))}
           </div>
 
-          <div className="relative overflow-hidden rounded-2xl border border-border/70 bg-background">
+          <div className="relative overflow-hidden rounded-lg border border-border/70 bg-background">
             <div className="flex items-center justify-between border-b border-border/70 px-4 py-3">
               <div>
                 <p className="text-sm font-semibold">{activePreview.label}</p>
@@ -106,7 +105,7 @@ export const ProjectFlowchartCarousel = ({
               </div>
             </div>
 
-            <div className="relative aspect-[16/10] bg-[radial-gradient(circle_at_top,_color-mix(in_oklab,_var(--primary)_10%,_transparent),_transparent_58%)]">
+            <figure className="relative aspect-[16/10] bg-muted/30">
               <Image
                 alt={activePreview.alt}
                 className="object-contain p-3 sm:p-4"
@@ -116,10 +115,10 @@ export const ProjectFlowchartCarousel = ({
                 src={activePreview.src}
                 unoptimized
               />
-            </div>
+            </figure>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
 
       <ProjectFlowchartOverlay
         activePreview={activePreview}

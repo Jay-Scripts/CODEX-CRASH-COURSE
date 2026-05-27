@@ -1,8 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { aboutHighlights } from "@/constants/portfolio.constants";
-import { AnimatedSection } from "./animated-section";
-import { RevealGroup, RevealItem } from "./scroll-reveal";
-import { SectionHeading } from "./section-heading";
+import { AnimatedSection } from "@/components/common/animated-section";
+import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
+import { SectionHeading } from "@/components/common/section-heading";
 
 /**
  * Displays the portfolio summary highlights for enterprise-ready delivery traits.
@@ -25,15 +25,17 @@ export const AboutSection = () => (
             <RevealItem key={item.title}>
               <Card>
                 <CardContent className="p-5 sm:p-6">
-                  <div className="mb-4 grid size-10 place-items-center rounded-md bg-primary/10 text-primary sm:mb-5 sm:size-11">
-                    <Icon className="size-5" />
-                  </div>
-                  <h3 className="text-base font-semibold sm:text-lg">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                    {item.description}
-                  </p>
+                  <article>
+                    <div className="mb-4 grid size-10 place-items-center rounded-md bg-primary/10 text-primary sm:mb-5 sm:size-11">
+                      <Icon className="size-5" />
+                    </div>
+                    <h3 className="text-base font-semibold sm:text-lg">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </article>
                 </CardContent>
               </Card>
             </RevealItem>

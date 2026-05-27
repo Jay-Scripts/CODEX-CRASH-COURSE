@@ -3,8 +3,8 @@
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Button } from "@/components/ui/button";
 import type { FlowchartPreview } from "@/types/portfolio.types";
+import { Button } from "@/components/ui/button";
 
 type ProjectFlowchartOverlayProps = {
   activePreview: FlowchartPreview;
@@ -73,7 +73,7 @@ export const ProjectFlowchartOverlay = ({
         <div
           aria-label={`${activePreview.label} flowchart fullscreen preview`}
           aria-modal="true"
-          className="relative flex h-dvh w-screen flex-col overflow-hidden bg-background/95 shadow-[0_32px_120px_-48px_rgba(15,23,42,0.65)] sm:h-[calc(100dvh-2rem)] sm:w-full sm:max-w-5xl sm:rounded-[1.75rem] sm:border sm:border-border/70 md:max-w-6xl lg:max-w-7xl lg:rounded-[2rem]"
+          className="relative flex h-dvh w-screen flex-col overflow-hidden bg-background/95 shadow-2xl sm:h-[calc(100dvh-2rem)] sm:w-full sm:max-w-5xl sm:rounded-lg sm:border sm:border-border/70 md:max-w-6xl lg:max-w-7xl"
           role="dialog"
         >
           <div className="sticky top-0 z-10 flex flex-col gap-3 border-b border-border/70 bg-background/95 px-3 py-3 backdrop-blur sm:px-5 md:flex-row md:items-start md:justify-between md:px-6">
@@ -87,7 +87,7 @@ export const ProjectFlowchartOverlay = ({
             </div>
 
             <div className="flex flex-wrap items-center gap-2 md:justify-end">
-              <div className="rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
+              <div className="rounded-md border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
                 {currentIndex + 1} / {total}
               </div>
               <Button
@@ -115,20 +115,20 @@ export const ProjectFlowchartOverlay = ({
           </div>
 
           <div
-            className="min-h-0 flex-1 overflow-auto overscroll-contain bg-[radial-gradient(circle_at_top,_color-mix(in_oklab,_var(--primary)_12%,_transparent),_transparent_60%)] p-3 sm:p-5 md:p-6"
+            className="min-h-0 flex-1 overflow-auto overscroll-contain bg-muted/30 p-3 sm:p-5 md:p-6"
             style={{ touchAction: "pan-x pan-y pinch-zoom" }}
           >
             <div className="flex min-h-full min-w-full items-center justify-center">
-              <div className="inline-flex max-w-full rounded-[1.5rem] border border-border/70 bg-background/95 p-3 shadow-sm sm:p-4">
+              <figure className="inline-flex max-w-full rounded-lg border border-border/70 bg-background/95 p-3 shadow-sm sm:p-4">
                 {/* SVG assets keep their native scaling and remain easier to inspect in a scrollable overlay with a plain image element. */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   alt={activePreview.alt}
-                  className="mx-auto h-auto max-h-[calc(100dvh-12rem)] w-auto max-w-full rounded-xl object-contain sm:max-h-[calc(100dvh-13rem)] lg:max-h-[calc(100dvh-11rem)]"
+                  className="mx-auto h-auto max-h-[calc(100dvh-12rem)] w-auto max-w-full rounded-md object-contain sm:max-h-[calc(100dvh-13rem)] lg:max-h-[calc(100dvh-11rem)]"
                   draggable="false"
                   src={activePreview.src}
                 />
-              </div>
+              </figure>
             </div>
           </div>
         </div>

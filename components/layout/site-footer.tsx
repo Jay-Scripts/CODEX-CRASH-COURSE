@@ -15,7 +15,7 @@ export const SiteFooter = () => (
         <p>
           Built with Next.js, React, TypeScript, Tailwind CSS, and shadcn/ui.
         </p>
-        <div className="flex items-center gap-3">
+        <nav aria-label="Profile links" className="flex items-center gap-3">
           <Button asChild size="icon" variant="ghost">
             <Link
               aria-label="GitHub"
@@ -41,7 +41,7 @@ export const SiteFooter = () => (
               <Mail className="size-4" />
             </Link>
           </Button>
-        </div>
+        </nav>
       </div>
     </div>
   </footer>

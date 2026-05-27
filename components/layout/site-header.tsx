@@ -3,10 +3,10 @@
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { CommandMenu } from "@/components/sections/home/command-menu";
 import { Button } from "@/components/ui/button";
 import { profile, navigationItems } from "@/constants/portfolio.constants";
 import { cn } from "@/lib/utils";
+import { CommandMenu } from "./command-menu";
 import { ThemeToggle } from "./theme-toggle";
 
 const smoothEase = [0.22, 1, 0.36, 1] as const;
@@ -176,7 +176,7 @@ export const SiteHeader = () => {
           {isMobileMenuOpen ? (
             <motion.div
               animate="open"
-              className="absolute inset-x-4 top-full overflow-hidden rounded-b-3xl border border-t-0 border-border/70 bg-background/95 shadow-[0_24px_60px_-32px_rgba(15,23,42,0.45)] backdrop-blur-2xl sm:inset-x-6 lg:hidden"
+              className="absolute inset-x-4 top-full overflow-hidden rounded-b-lg border border-t-0 border-border/70 bg-background/95 shadow-2xl backdrop-blur-2xl sm:inset-x-6 lg:hidden"
               exit="closed"
               id="mobile-navigation"
               initial="closed"
@@ -186,7 +186,7 @@ export const SiteHeader = () => {
                 className="border-b border-border/70 px-4 pb-3 pt-4"
                 variants={mobileItemVariants}
               >
-                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                   Navigation
                 </p>
                 <p className="mt-2 text-sm text-muted-foreground">

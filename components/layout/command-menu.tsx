@@ -4,11 +4,11 @@ import { Search, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { navigationItems, profile, projects } from "@/constants/portfolio.constants";
+import { useCommandShortcut } from "@/hooks/use-command-shortcut";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
-import { useCommandShortcut } from "@/hooks/use-command-shortcut";
 
 const commandItems = [
   ...navigationItems.map((item) => ({
@@ -95,7 +95,7 @@ export const CommandMenu = () => {
           <Search />
           Quick search
         </span>
-        <kbd className="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+        <kbd className="rounded-md border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">
           Ctrl K
         </kbd>
       </Button>
@@ -122,8 +122,8 @@ export const CommandMenu = () => {
                   <div className="flex items-center gap-3 border-b border-border p-4">
                     <Search className="size-4 text-muted-foreground" />
                     <Input
-                      autoFocus
                       aria-label="Search portfolio"
+                      autoFocus
                       className="border-0 bg-transparent px-0 shadow-none focus-visible:ring-0"
                       onChange={(event) => setQuery(event.target.value)}
                       placeholder="Search sections, projects, or actions..."
@@ -176,8 +176,8 @@ export const CommandMenu = () => {
               <div className="flex items-center gap-3 border-b border-border p-4">
                 <Search className="size-4 text-muted-foreground" />
                 <Input
-                  autoFocus
                   aria-label="Search portfolio"
+                  autoFocus
                   className="border-0 bg-transparent px-0 shadow-none focus-visible:ring-0"
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder="Search sections, projects, or actions..."

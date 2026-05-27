@@ -45,11 +45,9 @@ export const HeroSection = () => (
     initial="hidden"
     variants={heroContentVariants}
   >
-    <div className="absolute inset-x-0 top-0 -z-10 h-[28rem] bg-[radial-gradient(circle_at_top,_color-mix(in_oklab,_var(--primary)_26%,_transparent),_transparent_58%)] sm:h-[34rem]" />
-    <div className="absolute right-[-12%] top-24 -z-10 hidden size-72 rounded-full bg-primary/12 blur-3xl dark:block lg:block" />
-    <div className="absolute left-[-10%] top-16 -z-10 hidden size-56 rounded-full bg-primary/10 blur-3xl sm:block" />
+    <div className="absolute inset-x-0 top-0 -z-10 h-72 bg-gradient-to-b from-primary/10 via-background to-background sm:h-80" />
     <div className="mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-7xl items-center gap-12 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16 lg:px-8 lg:py-24">
-      <motion.div
+      <motion.header
         className="order-2 max-w-3xl text-center lg:order-1 lg:text-left"
         variants={heroContentVariants}
       >
@@ -117,17 +115,15 @@ export const HeroSection = () => (
             </Link>
           </Button>
         </motion.div>
-      </motion.div>
-      <motion.div
+      </motion.header>
+      <motion.figure
         className="order-1 mx-auto w-full max-w-[26rem] lg:order-2 lg:max-w-[32rem] lg:justify-self-end"
         variants={heroItemVariants}
       >
-        <div className="relative isolate overflow-hidden rounded-[2rem] border border-border/70 backdrop-blur-xl ">
-          <div className="absolute inset-x-8 top-0 h-32 rounded-full bg-primary/18 blur-3xl" />
-
+        <div className="relative isolate overflow-hidden rounded-lg border border-border/70 bg-card/60 shadow-lg backdrop-blur-xl">
           <Image
             alt={`${profile.name} portrait`}
-            className="mx-auto h-auto w-full max-w-[22rem] object-contain drop-shadow-[0_28px_36px_rgba(15,23,42,0.28)] sm:max-w-[26rem]"
+            className="mx-auto h-auto w-full max-w-[22rem] object-contain drop-shadow-lg sm:max-w-[26rem]"
             height={938}
             priority
             sizes="(min-width: 1024px) 32rem, (min-width: 640px) 26rem, calc(100vw - 4rem)"
@@ -136,7 +132,7 @@ export const HeroSection = () => (
             width={1064}
           />
         </div>
-      </motion.div>
+      </motion.figure>
     </div>
   </motion.section>
 );

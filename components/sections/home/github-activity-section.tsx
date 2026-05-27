@@ -1,13 +1,13 @@
 import { GitBranch } from "lucide-react";
 import Link from "next/link";
 import { profile } from "@/constants/portfolio.constants";
+import { AnimatedSection } from "@/components/common/animated-section";
+import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
+import { SectionHeading } from "@/components/common/section-heading";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getGitHubActivity } from "@/lib/github-activity";
-import { AnimatedSection } from "./animated-section";
-import { RevealGroup, RevealItem } from "./scroll-reveal";
-import { SectionHeading } from "./section-heading";
 
 /**
  * Displays the loading shell for the GitHub activity section.
@@ -106,19 +106,17 @@ export const GitHubActivitySection = async () => {
                   <RevealGroup className="space-y-4">
                     {activity.recentRepositories.map((repository) => (
                       <RevealItem key={repository.name}>
-                        <Card className="bg-background shadow-none">
-                          <CardContent className="p-4">
-                            <p className="break-words font-mono text-sm font-semibold">
-                              {repository.name}
-                            </p>
-                            <p className="mt-2 text-sm text-muted-foreground">
-                              {repository.description}
-                            </p>
-                            <p className="mt-3 text-xs text-primary">
-                              {repository.stack}
-                            </p>
-                          </CardContent>
-                        </Card>
+                        <article className="rounded-lg border border-border bg-background p-4">
+                          <p className="break-words font-mono text-sm font-semibold">
+                            {repository.name}
+                          </p>
+                          <p className="mt-2 text-sm text-muted-foreground">
+                            {repository.description}
+                          </p>
+                          <p className="mt-3 text-xs text-primary">
+                            {repository.stack}
+                          </p>
+                        </article>
                       </RevealItem>
                     ))}
                   </RevealGroup>

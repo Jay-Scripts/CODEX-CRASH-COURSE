@@ -1,8 +1,8 @@
 import { projects } from "@/constants/portfolio.constants";
-import { AnimatedSection } from "./animated-section";
+import { AnimatedSection } from "@/components/common/animated-section";
+import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
+import { SectionHeading } from "@/components/common/section-heading";
 import { ProjectFilter } from "./project-filter";
-import { RevealGroup, RevealItem } from "./scroll-reveal";
-import { SectionHeading } from "./section-heading";
 
 /**
  * Displays the featured projects section with interactive category filtering.
