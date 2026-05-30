@@ -2,15 +2,19 @@
 
 import { useMemo, useState } from "react";
 import { ProjectCard } from "@/components/cards/project-card";
-import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
+import { RevealItem } from "@/components/common/scroll-reveal";
 import { Button } from "@/components/ui/button";
-import type { Project, ProjectCategory } from "@/types/portfolio.types";
+import type {
+  Project,
+  ProjectFilterValue,
+} from "@/types/portfolio.types";
 
-const filters: { label: string; value: ProjectCategory }[] = [
+const filters: { label: string; value: ProjectFilterValue }[] = [
   { label: "All", value: "all" },
-  { label: "Full-stack", value: "full-stack" },
-  { label: "Dashboard", value: "dashboard" },
-  { label: "QA workflows", value: "qa" },
+  { label: "Stand Alone", value: "stand-alone" },
+  { label: "Cloud Hosted", value: "cloud-hosted" },
+  { label: "QA", value: "qa" },
+  { label: "User Manuals", value: "user-manuals" },
 ];
 
 type ProjectFilterProps = {
@@ -21,25 +25,19 @@ type ProjectFilterProps = {
  * Displays project filter controls and the matching recruiter-facing project cards.
  */
 export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
-  const [activeFilter, setActiveFilter] = useState<ProjectCategory>("all");
+  const [activeFilter, setActiveFilter] = useState<ProjectFilterValue>("all");
 
   const visibleProjects = useMemo(() => {
     if (activeFilter === "all") {
       return projects;
     }
 
-    if (activeFilter === "qa") {
-      return projects.filter((project) =>
-        project.features.some((feature) => feature.toLowerCase().includes("qa")),
-      );
-    }
-
-    return projects.filter((project) => project.category === activeFilter);
+    return projects.filter((project) => project.categories.includes(activeFilter));
   }, [activeFilter, projects]);
 
   return (
-    <RevealGroup>
-      <RevealGroup className="mb-8 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center">
+    <>
+      <div className="mb-8 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center">
         {filters.map((filter) => (
           <RevealItem key={filter.value}>
             <Button
@@ -53,14 +51,22 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
             </Button>
           </RevealItem>
         ))}
-      </RevealGroup>
-      <RevealGroup className="grid gap-6 lg:grid-cols-2">
-        {visibleProjects.map((project) => (
-          <RevealItem key={project.id}>
-            <ProjectCard project={project} />
-          </RevealItem>
-        ))}
-      </RevealGroup>
-    </RevealGroup>
+      </div>
+      <div className="grid gap-6 lg:grid-cols-2" key={activeFilter}>
+        {visibleProjects.length ? (
+          visibleProjects.map((project) => (
+            <div key={project.id}>
+              <ProjectCard project={project} />
+            </div>
+          ))
+        ) : (
+          <div>
+            <div className="rounded-lg border border-dashed border-border bg-muted/30 p-8 text-center text-sm text-muted-foreground lg:col-span-2">
+              No projects are tagged under this tab yet.
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 };

@@ -6,9 +6,26 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ProjectFlowchartCarousel } from "./project-flowchart-carousel";
 
+const projectCategoryLabels = {
+  "cloud-hosted": "Cloud Hosted",
+  qa: "QA",
+  "stand-alone": "Stand Alone",
+  "user-manuals": "User Manuals",
+} as const;
+
+const projectActionLabels = {
+  "cloud-hosted": "Live demo",
+  qa: "View project",
+  "stand-alone": "Live demo",
+  "user-manuals": "View manual",
+} as const;
+
 type ProjectCardProps = {
   project: Project;
 };
+
+const isPdfPreview = (previewSrc: string) =>
+  previewSrc.toLowerCase().includes(".pdf");
 
 /**
  * Displays one recruiter-facing project card with architecture, features, and project links.
@@ -17,25 +34,36 @@ export const ProjectCard = ({ project }: ProjectCardProps) => (
   <Card className="overflow-hidden" id={project.id}>
     <article aria-labelledby={`${project.id}-title`}>
       <div className="grid min-h-44 place-items-center border-b border-border bg-muted/50 p-4 sm:min-h-52 sm:p-6">
-        <div className="w-full max-w-sm rounded-lg border border-border bg-background p-3 shadow-sm sm:p-4">
-          <div className="mb-4 flex items-center justify-between">
-            <div className="h-2.5 w-24 rounded bg-primary/70" />
-            <div className="flex gap-1.5">
-              <div className="size-2 rounded-full bg-muted-foreground/40" />
-              <div className="size-2 rounded-full bg-muted-foreground/40" />
-              <div className="size-2 rounded-full bg-muted-foreground/40" />
+        {project.previewSrc && isPdfPreview(project.previewSrc) ? (
+          <div className="w-full max-w-sm overflow-hidden rounded-lg border border-border bg-background shadow-sm">
+            <iframe
+              aria-label={project.previewAlt}
+              className="h-60 w-full bg-background sm:h-72"
+              src={project.previewSrc}
+              title={project.previewAlt ?? `${project.title} preview`}
+            />
+          </div>
+        ) : (
+          <div className="w-full max-w-sm rounded-lg border border-border bg-background p-3 shadow-sm sm:p-4">
+            <div className="mb-4 flex items-center justify-between">
+              <div className="h-2.5 w-24 rounded bg-primary/70" />
+              <div className="flex gap-1.5">
+                <div className="size-2 rounded-full bg-muted-foreground/40" />
+                <div className="size-2 rounded-full bg-muted-foreground/40" />
+                <div className="size-2 rounded-full bg-muted-foreground/40" />
+              </div>
+            </div>
+            <div className="grid gap-2">
+              <div className="h-3 rounded bg-muted" />
+              <div className="h-3 w-5/6 rounded bg-muted" />
+              <div className="mt-3 grid grid-cols-3 gap-2">
+                <div className="h-12 rounded-md bg-primary/10" />
+                <div className="h-12 rounded-md bg-primary/10" />
+                <div className="h-12 rounded-md bg-primary/10" />
+              </div>
             </div>
           </div>
-          <div className="grid gap-2">
-            <div className="h-3 rounded bg-muted" />
-            <div className="h-3 w-5/6 rounded bg-muted" />
-            <div className="mt-3 grid grid-cols-3 gap-2">
-              <div className="h-12 rounded-md bg-primary/10" />
-              <div className="h-12 rounded-md bg-primary/10" />
-              <div className="h-12 rounded-md bg-primary/10" />
-            </div>
-          </div>
-        </div>
+        )}
       </div>
       <CardContent className="p-5 sm:p-6">
         <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
@@ -50,7 +78,9 @@ export const ProjectCard = ({ project }: ProjectCardProps) => (
               {project.summary}
             </p>
           </div>
-          <Badge variant="secondary">{project.category}</Badge>
+          <Badge variant="secondary">
+            {projectCategoryLabels[project.primaryCategory]}
+          </Badge>
         </div>
         <div className="mb-5 flex flex-wrap gap-2">
           {project.techStack.map((tech) => (
@@ -150,7 +180,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => (
               target="_blank"
             >
               <ExternalLink />
-              Live demo
+              {projectActionLabels[project.primaryCategory]}
             </Link>
           </Button>
         </div>

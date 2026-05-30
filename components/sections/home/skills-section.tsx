@@ -177,29 +177,29 @@ export const SkillsSection = () => (
               <Card className="h-full">
                 <CardContent className="p-5 sm:p-6">
                   <article>
-                  <div className="mb-4 flex items-center gap-3 sm:mb-5">
-                    <span className="grid size-9 place-items-center rounded-md bg-primary/10 text-primary sm:size-10">
-                      <Icon className="size-5" />
-                    </span>
-                    <h3 className="text-sm font-semibold sm:text-base">
-                      {group.title}
-                    </h3>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {group.skills.map((skill) => {
-                      const skillWithLogo = allSkills.find(
-                        (item) => item.name === skill,
-                      );
+                    <div className="mb-4 flex items-center gap-3 sm:mb-5">
+                      <span className="grid size-9 place-items-center text-primary sm:size-10">
+                        <Icon className="size-5" />
+                      </span>
+                      <h3 className="text-sm font-semibold sm:text-base">
+                        {group.title}
+                      </h3>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {group.skills.map((skill) => {
+                        const skillWithLogo = allSkills.find(
+                          (item) => item.name === skill,
+                        );
 
-                      return skillWithLogo ? (
-                        <SkillLogoPill
-                          compact
-                          key={skill}
-                          skill={skillWithLogo}
-                        />
-                      ) : null;
-                    })}
-                  </div>
+                        return skillWithLogo ? (
+                          <SkillLogoPill
+                            compact
+                            key={skill}
+                            skill={skillWithLogo}
+                          />
+                        ) : null;
+                      })}
+                    </div>
                   </article>
                 </CardContent>
               </Card>

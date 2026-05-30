@@ -168,13 +168,15 @@ export const projects: Project[] = [
     title: "Smart POS System",
     summary:
       "Enterprise-style point-of-sale ecosystem with service-specific views, real-time analytics, inventory workflows, and QA testing coverage.",
-    category: "full-stack",
+    primaryCategory: "stand-alone",
+    categories: ["stand-alone", "qa"],
     techStack: [
-      "Next.js",
-      "Supabase",
-      "PostgreSQL",
+      "HTML",
+      "Tailwind CSS4",
+      "MySQL",
       "Chart.js",
-      "Tailwind CSS",
+      "PHP",
+      "Flowbite",
     ],
     architecture: [
       "POS interface",
@@ -210,8 +212,18 @@ export const projects: Project[] = [
     title: "Car Rental Management System",
     summary:
       "Booking and fleet management platform with admin workflows, notifications, reporting, and database-first planning.",
-    category: "dashboard",
-    techStack: ["PHP", "MySQL", "Bootstrap", "XAMPP", "MySQL Workbench"],
+    primaryCategory: "cloud-hosted",
+    categories: ["cloud-hosted"],
+    techStack: [
+      "HTML",
+      "Tailwind CSS4",
+      "JavaScript ES6",
+      "Node Mailer",
+      "PHP",
+      "MySQL",
+      "Chart.js",
+      "Flowbite",
+    ],
     architecture: [
       "Booking system",
       "Admin dashboard",
@@ -239,6 +251,37 @@ export const projects: Project[] = [
     ],
     githubUrl: "https://github.com/",
     liveDemoUrl: "https://example.com/",
+  },
+  {
+    id: "smart-pos-user-manual",
+    title: "Smart POS User Manual",
+    summary:
+      "Step-by-step product documentation covering core Smart POS workflows, guided usage, and operator reference material for day-to-day system handling.",
+    primaryCategory: "user-manuals",
+    categories: ["user-manuals"],
+    techStack: ["PDF Documentation", "Process Mapping", "User Guidance"],
+    architecture: [
+      "Introduction and system overview",
+      "User navigation instructions",
+      "Operational workflow walkthroughs",
+      "Reference material for daily usage",
+    ],
+    features: [
+      "Step-by-step usage guidance",
+      "Operator-facing workflow instructions",
+      "Clear task sequencing for common actions",
+      "Documentation support for onboarding",
+    ],
+    challenges: [
+      "Organized technical workflows into instructions that are easy for end users to follow.",
+      "Balanced clarity and completeness so the manual stays useful during actual operations.",
+      "Turned system behavior into documentation that supports training and consistency.",
+    ],
+    githubUrl: "https://github.com/Jay-Scripts",
+    liveDemoUrl: "/user-manual/SMART%20POS%20USER%20MANUAL.pdf",
+    previewAlt: "First page preview of the Smart POS user manual PDF",
+    previewSrc:
+      "/user-manual/SMART%20POS%20USER%20MANUAL.pdf#page=1&view=FitH&toolbar=0&navpanes=0&scrollbar=0",
   },
 ];
 

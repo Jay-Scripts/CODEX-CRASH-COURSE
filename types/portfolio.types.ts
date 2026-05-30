@@ -6,7 +6,13 @@ export type SkillGroup = {
   title: string;
 };
 
-export type ProjectCategory = "all" | "full-stack" | "dashboard" | "qa";
+export type ProjectCategory =
+  | "stand-alone"
+  | "cloud-hosted"
+  | "qa"
+  | "user-manuals";
+
+export type ProjectFilterValue = "all" | ProjectCategory;
 
 export type FlowchartPreview = {
   alt: string;
@@ -17,7 +23,8 @@ export type FlowchartPreview = {
 
 export type Project = {
   architecture: string[];
-  category: Exclude<ProjectCategory, "all">;
+  categories: ProjectCategory[];
+  primaryCategory: ProjectCategory;
   challenges: string[];
   features: string[];
   flowchartActivities?: string[];
@@ -25,6 +32,8 @@ export type Project = {
   githubUrl: string;
   id: string;
   liveDemoUrl: string;
+  previewAlt?: string;
+  previewSrc?: string;
   summary: string;
   techStack: string[];
   title: string;

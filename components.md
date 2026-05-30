@@ -71,5 +71,5 @@
 
 ### `ProjectFilter`
 
-- Purpose: Supports interactive project category filtering before handing off each result to the shared project card layer.
+- Purpose: Supports interactive category-tab filtering for featured projects before handing each visible result to the shared project card layer.
 - Location: `components/sections/home/project-filter.tsx`
