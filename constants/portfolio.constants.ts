@@ -279,9 +279,11 @@ export const projects: Project[] = [
     ],
     githubUrl: "https://github.com/Jay-Scripts",
     liveDemoUrl: "/user-manual/SMART%20POS%20USER%20MANUAL.pdf",
-    previewAlt: "First page preview of the Smart POS user manual PDF",
+    previewAlt: "Smart POS user manual front page cover preview",
+    previewDialogSrc:
+      "/user-manual/SMART%20POS%20USER%20MANUAL.pdf#page=1&view=FitH",
     previewSrc:
-      "/user-manual/SMART%20POS%20USER%20MANUAL.pdf#page=1&view=FitH&toolbar=0&navpanes=0&scrollbar=0",
+      "/user-manual/SMART%20POS%20FRONT%20PAGE.png",
   },
 ];
 

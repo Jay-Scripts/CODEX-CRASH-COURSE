@@ -33,6 +33,7 @@ export type Project = {
   id: string;
   liveDemoUrl: string;
   previewAlt?: string;
+  previewDialogSrc?: string;
   previewSrc?: string;
   summary: string;
   techStack: string[];

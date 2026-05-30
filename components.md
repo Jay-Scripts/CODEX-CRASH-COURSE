@@ -41,6 +41,11 @@
 - Purpose: Display ordered project flowchart previews and a fullscreen inspection overlay for system diagrams without duplicating that interaction logic inside sections.
 - Location: `components/cards/*`
 
+### `ProjectDocumentOverlay`
+
+- Purpose: Displays a fullscreen document preview modal for project assets such as user manuals while keeping the portfolio page in place underneath.
+- Location: `components/cards/project-document-overlay.tsx`
+
 ## Forms
 
 ### `ContactForm`
