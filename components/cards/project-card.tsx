@@ -2,6 +2,7 @@
 
 import {
   ChevronDown,
+  Expand,
   ExternalLink,
   FileText,
   GitBranch,
@@ -58,6 +59,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   const hasPreview = Boolean(project.previewSrc);
   const hasExpandableDocumentPreview = Boolean(project.previewDialogSrc);
   const hasResourceLinks = Boolean(project.resourceLinks?.length);
+  const isUserManualPreview = project.primaryCategory === "user-manuals";
 
   const openDocumentOverlay = (src: string, title: string) => {
     setActiveDocument({ src, title });
@@ -84,18 +86,20 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                     <FileText className="size-3.5 shrink-0 text-primary" />
                     Document preview
                   </span>
-                  <span className="text-xs text-muted-foreground">
-                    {hasResourceLinks
-                      ? "Choose a file below to view it"
-                      : "Tap the preview to view it"}
-                  </span>
+                  {!isUserManualPreview ? (
+                    <span className="text-xs text-muted-foreground">
+                      {hasResourceLinks
+                        ? "Choose a file below to view it"
+                        : "Tap the preview to view it"}
+                    </span>
+                  ) : null}
                 </div>
 
                 <div className="flex w-full justify-center bg-muted/30 px-6 py-6 sm:py-8">
                   {hasExpandableDocumentPreview ? (
                     <button
                       aria-haspopup="dialog"
-                      className="relative aspect-[3/4] w-40 overflow-hidden rounded-xl border border-border/60 bg-background shadow-md ring-1 ring-border/40 transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 sm:w-48"
+                      className="group relative aspect-[3/4] w-40 overflow-hidden rounded-xl border border-border/60 bg-background shadow-md ring-1 ring-border/40 transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 sm:w-48"
                       onClick={() =>
                         openDocumentOverlay(project.previewDialogSrc!, project.title)
                       }
@@ -119,6 +123,14 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                           title={project.previewAlt ?? `${project.title} preview`}
                         />
                       )}
+                      {isUserManualPreview ? (
+                        <span className="absolute inset-0 flex items-center justify-center bg-background/82 text-sm font-medium text-foreground opacity-0 transition-opacity duration-200 hover:opacity-100 focus-visible:opacity-100 group-hover:opacity-100">
+                          <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/90 px-4 py-2 shadow-sm backdrop-blur">
+                            <Expand className="size-4 text-primary" />
+                            View manual
+                          </span>
+                        </span>
+                      ) : null}
                     </button>
                   ) : (
                     <figure className="relative aspect-[3/4] w-40 overflow-hidden rounded-xl border border-border/60 bg-background shadow-md ring-1 ring-border/40 sm:w-48">
