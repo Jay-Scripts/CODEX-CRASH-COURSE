@@ -59,6 +59,12 @@ const MAX_ZOOM_LEVEL = 1.9;
 const ZOOM_STEP = 0.15;
 const MOBILE_LAYOUT_BREAKPOINT = 960;
 
+// ==========================================================================
+// Load PDF.js Runtime
+//
+// Reuse a single browser-loaded PDF.js instance so the overlay can render
+// documents without bundling the library into the main app chunk.
+// ==========================================================================
 const loadPdfJs = async () => {
   if (window.pdfjsLib) {
     return window.pdfjsLib;
@@ -111,6 +117,12 @@ export const ProjectDocumentOverlay = ({
       return undefined;
     }
 
+    // ==========================================================================
+    // Load Active Document
+    //
+    // Reset prior viewer state before loading the next PDF so the overlay never
+    // shows stale page counts or canvas content between previews.
+    // ==========================================================================
     setLoading(true);
     setError(null);
     setPdfDoc(null);
@@ -191,6 +203,12 @@ export const ProjectDocumentOverlay = ({
       return;
     }
 
+    // ==========================================================================
+    // Render Visible Pages
+    //
+    // Fit the current spread to the available viewport, then swap canvases only
+    // for the active pages so zoom and layout changes stay responsive.
+    // ==========================================================================
     const renderCycleId = renderCycleRef.current + 1;
     renderCycleRef.current = renderCycleId;
 
@@ -516,12 +534,12 @@ export const ProjectDocumentOverlay = ({
             >
               <canvas
                 ref={leftCanvasRef}
-                className="h-auto max-w-full rounded-md border border-border/50 bg-white shadow-md"
+                className="h-auto max-w-full rounded-md border border-border/50 bg-card shadow-md"
                 style={{ display: "block" }}
               />
               <canvas
                 ref={rightCanvasRef}
-                className="h-auto max-w-full rounded-md border border-border/50 bg-white shadow-md"
+                className="h-auto max-w-full rounded-md border border-border/50 bg-card shadow-md"
                 style={{
                   display:
                     !isSinglePageLayout && showRightPage ? "block" : "none",

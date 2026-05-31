@@ -25,16 +25,6 @@ const projectCategoryLabels = {
   "user-manuals": "User Manuals",
 } as const;
 
-const projectCategoryColors = {
-  "cloud-hosted":
-    "bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-300",
-  qa: "bg-violet-100 text-violet-800 dark:bg-violet-900/40 dark:text-violet-300",
-  "stand-alone":
-    "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300",
-  "user-manuals":
-    "bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300",
-} as const;
-
 const projectActionLabels = {
   "cloud-hosted": "Live demo",
   qa: "View project",
@@ -93,8 +83,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                 </div>
 
                 {/* Thumbnail */}
-                <div className="flex w-full justify-center bg-[radial-gradient(ellipse_at_top,_hsl(var(--primary)/0.08),_transparent_60%)] px-6 py-6 sm:py-8">
-                  <figure className="relative aspect-[3/4] w-40 overflow-hidden rounded-xl border border-border/60 bg-background shadow-[0_12px_40px_-16px_hsl(var(--foreground)/0.25)] ring-1 ring-border/40 sm:w-48">
+                <div className="flex w-full justify-center bg-muted/30 px-6 py-6 sm:py-8">
+                  <figure className="relative aspect-[3/4] w-40 overflow-hidden rounded-xl border border-border/60 bg-background shadow-md ring-1 ring-border/40 sm:w-48">
                     {project.previewSrc &&
                     isImagePreview(project.previewSrc) ? (
                       <Image
@@ -163,10 +153,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                 {project.title}
               </h3>
               <span
-                className={cn(
-                  "inline-flex shrink-0 items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
-                  projectCategoryColors[project.primaryCategory],
-                )}
+                className="inline-flex shrink-0 items-center rounded-full border border-border/60 bg-secondary px-2.5 py-0.5 text-xs font-medium text-secondary-foreground"
               >
                 {projectCategoryLabels[project.primaryCategory]}
               </span>
