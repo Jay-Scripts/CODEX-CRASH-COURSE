@@ -101,7 +101,10 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                       aria-haspopup="dialog"
                       className="group relative aspect-[3/4] w-40 overflow-hidden rounded-xl border border-border/60 bg-background shadow-md ring-1 ring-border/40 transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 sm:w-48"
                       onClick={() =>
-                        openDocumentOverlay(project.previewDialogSrc!, project.title)
+                        openDocumentOverlay(
+                          project.previewDialogSrc!,
+                          project.title,
+                        )
                       }
                       type="button"
                     >
