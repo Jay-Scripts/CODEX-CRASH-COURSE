@@ -32,6 +32,9 @@ const skillLogoMap: Record<string, SkillLogoMeta> = {
   "Functional Testing": {
     icon: ClipboardCheck,
   },
+  Flowbite: {
+    logo: "https://cdn.simpleicons.org/flowbite/06B6D4",
+  },
   Git: {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
   },
@@ -44,6 +47,9 @@ const skillLogoMap: Record<string, SkillLogoMeta> = {
   "JavaScript ES6": {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
   },
+  Laragon: {
+    logo: "https://cdn.simpleicons.org/laragon/0E83CD",
+  },
   "Lucide React": {
     logo: "https://cdn.simpleicons.org/lucide",
   },
@@ -55,6 +61,15 @@ const skillLogoMap: Record<string, SkillLogoMeta> = {
   },
   "Next.js": {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+  },
+  npm: {
+    logo: "https://cdn.simpleicons.org/npm/CB3837",
+  },
+  "Node.js": {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  },
+  pnpm: {
+    logo: "https://cdn.simpleicons.org/pnpm/F69220",
   },
   PHP: {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
@@ -77,8 +92,14 @@ const skillLogoMap: Record<string, SkillLogoMeta> = {
   UAT: {
     icon: UserCheck,
   },
+  Vercel: {
+    logo: "https://cdn.simpleicons.org/vercel",
+  },
   "VS Code": {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+  },
+  "EAS Build": {
+    logo: "https://cdn.simpleicons.org/expo/000020",
   },
   XAMPP: {
     logo: "https://cdn.simpleicons.org/xampp/FB7A24",

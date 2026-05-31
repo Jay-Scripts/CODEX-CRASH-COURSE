@@ -8,8 +8,8 @@ export type SkillGroup = {
 
 export type ProjectCategory =
   | "stand-alone"
-  | "cloud-hosted"
-  | "qa"
+  | "website"
+  | "mobile"
   | "user-manuals";
 
 export type ProjectFilterValue = "all" | ProjectCategory;

@@ -22,15 +22,15 @@ import { ProjectDocumentOverlay } from "./project-document-overlay";
 import { ProjectFlowchartCarousel } from "./project-flowchart-carousel";
 
 const projectCategoryLabels = {
-  "cloud-hosted": "Cloud Hosted",
-  qa: "QA/Tester",
+  website: "Website",
+  mobile: "Mobile",
   "stand-alone": "Stand Alone",
   "user-manuals": "User Manuals",
 } as const;
 
 const projectActionLabels = {
-  "cloud-hosted": "Live demo",
-  qa: "Open primary report",
+  website: "Live demo",
+  mobile: "Live demo",
   "stand-alone": "Live demo",
   "user-manuals": "View manual",
 } as const;
@@ -51,6 +51,8 @@ const isImagePreview = (previewSrc: string) =>
 export const ProjectCard = ({ project }: ProjectCardProps) => {
   const [isDocumentOverlayOpen, setIsDocumentOverlayOpen] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
+  const [isFlowchartPreviewVisible, setIsFlowchartPreviewVisible] =
+    useState(false);
   const [activeDocument, setActiveDocument] = useState<{
     src: string;
     title: string;
@@ -108,7 +110,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                       }
                       type="button"
                     >
-                      {project.previewSrc && isImagePreview(project.previewSrc) ? (
+                      {project.previewSrc &&
+                      isImagePreview(project.previewSrc) ? (
                         <Image
                           alt={project.previewAlt ?? `${project.title} preview`}
                           className="object-cover object-top"
@@ -123,7 +126,9 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                           aria-label={project.previewAlt}
                           className="h-full w-full bg-background"
                           src={project.previewSrc}
-                          title={project.previewAlt ?? `${project.title} preview`}
+                          title={
+                            project.previewAlt ?? `${project.title} preview`
+                          }
                         />
                       )}
                       {isUserManualPreview ? (
@@ -137,7 +142,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                     </button>
                   ) : (
                     <figure className="relative aspect-[3/4] w-40 overflow-hidden rounded-xl border border-border/60 bg-background shadow-md ring-1 ring-border/40 sm:w-48">
-                      {project.previewSrc && isImagePreview(project.previewSrc) ? (
+                      {project.previewSrc &&
+                      isImagePreview(project.previewSrc) ? (
                         <Image
                           alt={project.previewAlt ?? `${project.title} preview`}
                           className="object-cover object-top"
@@ -152,7 +158,9 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                           aria-label={project.previewAlt}
                           className="h-full w-full bg-background"
                           src={project.previewSrc}
-                          title={project.previewAlt ?? `${project.title} preview`}
+                          title={
+                            project.previewAlt ?? `${project.title} preview`
+                          }
                         />
                       )}
                     </figure>
@@ -236,7 +244,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                   <span className="flex size-6 shrink-0 items-center justify-center rounded-md bg-primary/10">
                     <Link2 className="size-3.5 text-primary" />
                   </span>
-                  QA/Tester files
+                  Project files
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {project.resourceLinks?.map((resource) => (
@@ -309,7 +317,37 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             </div>
 
             {project.flowchartPreviews?.length ? (
-              <ProjectFlowchartCarousel previews={project.flowchartPreviews} />
+              <section className="mb-5 rounded-lg border border-border/60 bg-muted/30 p-4">
+                <Button
+                  aria-expanded={isFlowchartPreviewVisible}
+                  className="w-full justify-between"
+                  onClick={() =>
+                    setIsFlowchartPreviewVisible((value) => !value)
+                  }
+                  type="button"
+                  variant="outline"
+                >
+                  <span className="flex items-center gap-2">
+                    <GitBranch className="size-4 shrink-0" />
+                    {isFlowchartPreviewVisible
+                      ? "Hide system flowchart preview"
+                      : "View system flowchart preview"}
+                  </span>
+                  <ChevronDown
+                    className={cn(
+                      "size-4 shrink-0 transition-transform duration-200",
+                      isFlowchartPreviewVisible && "rotate-180",
+                    )}
+                  />
+                </Button>
+                {isFlowchartPreviewVisible ? (
+                  <div className="mt-4">
+                    <ProjectFlowchartCarousel
+                      previews={project.flowchartPreviews}
+                    />
+                  </div>
+                ) : null}
+              </section>
             ) : null}
 
             <div className="mt-4 space-y-3">

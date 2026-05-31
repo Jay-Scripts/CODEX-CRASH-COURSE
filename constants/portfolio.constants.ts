@@ -135,6 +135,7 @@ export const skillGroups: SkillGroup[] = [
       "React",
       "JavaScript ES6",
       "Tailwind CSS",
+      "Flowbite",
       "shadcn/ui",
       "Lucide React",
       "Bootstrap",
@@ -143,7 +144,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Backend and Database",
     icon: Database,
-    skills: ["Supabase", "PostgreSQL", "PHP", "MySQL"],
+    skills: ["Supabase", "PostgreSQL", "PHP", "MySQL", "Node.js"],
   },
   {
     title: "Testing and QA/Tester",
@@ -156,9 +157,19 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    title: "Tools",
+    title: "Development Tooling",
     icon: Wrench,
-    skills: ["Git", "GitHub", "VS Code", "XAMPP", "MySQL Workbench"],
+    skills: [
+      "Git",
+      "GitHub",
+      "npm",
+      "pnpm",
+      "Vercel",
+      "EAS Build",
+      "XAMPP",
+      "Laragon",
+      "MySQL Workbench",
+    ],
   },
 ];
 
@@ -169,7 +180,7 @@ export const projects: Project[] = [
     summary:
       "Enterprise-style point-of-sale ecosystem with service-specific views, real-time analytics, inventory workflows, and QA testing coverage.",
     primaryCategory: "stand-alone",
-    categories: ["stand-alone"],
+    categories: ["stand-alone", "mobile"],
     techStack: [
       "HTML",
       "Tailwind CSS4",
@@ -212,8 +223,8 @@ export const projects: Project[] = [
     title: "Car Rental Management System",
     summary:
       "Booking and fleet management platform with admin workflows, notifications, reporting, and database-first planning.",
-    primaryCategory: "cloud-hosted",
-    categories: ["cloud-hosted"],
+    primaryCategory: "website",
+    categories: ["website", "mobile"],
     techStack: [
       "HTML",
       "Tailwind CSS4",
@@ -251,64 +262,6 @@ export const projects: Project[] = [
     ],
     githubUrl: "https://github.com/",
     liveDemoUrl: "https://example.com/",
-  },
-  {
-    id: "bloodnetwork-qa-documentation",
-    title: "Bloodnetwork QA/Tester Documentation",
-    summary:
-      "QA/Tester artifact set covering donor, guest, authenticated-user, and responsive validation flows for the Bloodnetwork platform.",
-    primaryCategory: "qa",
-    categories: ["qa"],
-    documentLayout: "single-page",
-    techStack: [
-      "Manual Testing",
-      "Test Case Design",
-      "Responsive Testing",
-      "PDF Reports",
-    ],
-    architecture: [
-      "Donor test coverage",
-      "Non-authenticated user scenarios",
-      "Authenticated-user test cases",
-      "Responsive testing report",
-    ],
-    features: [
-      "Role-based scenario coverage",
-      "Guest and logged-in flow validation",
-      "Device and breakpoint QA reporting",
-      "Structured documentation for review handoff",
-    ],
-    challenges: [
-      "Kept test scenarios organized across different user states without duplicating cases.",
-      "Translated responsive findings into documentation that is easy for reviewers and developers to act on.",
-      "Maintained clear coverage across both functional and layout-focused QA work.",
-    ],
-    githubUrl: "https://github.com/Jay-Scripts",
-    liveDemoUrl:
-      "/qa-files/Bloodnetwork%20Test%20Cases.xlsx%20-%20Responsive%20Testing%20Report.pdf",
-    previewAlt: "Bloodnetwork responsive testing report document preview",
-    previewDialogSrc:
-      "/qa-files/Bloodnetwork%20Test%20Cases.xlsx%20-%20Responsive%20Testing%20Report.pdf#page=1&view=FitH",
-    previewSrc:
-      "/qa-files/Bloodnetwork%20Test%20Cases.xlsx%20-%20Responsive%20Testing%20Report.pdf#page=1&view=FitH",
-    resourceLinks: [
-      {
-        label: "Authenticated Users",
-        href: "/qa-files/Bloodnetwork%20Test%20Cases.xlsx%20-%20Authenticated%20Users.pdf",
-      },
-      {
-        label: "Donor",
-        href: "/qa-files/Bloodnetwork%20Test%20Cases.xlsx%20-%20Donor.pdf",
-      },
-      {
-        label: "Non-authenticated User",
-        href: "/qa-files/Bloodnetwork%20Test%20Cases.xlsx%20-%20Non-authenticated%20user.pdf",
-      },
-      {
-        label: "Responsive Testing Report",
-        href: "/qa-files/Bloodnetwork%20Test%20Cases.xlsx%20-%20Responsive%20Testing%20Report.pdf",
-      },
-    ],
   },
   {
     id: "smart-pos-user-manual",

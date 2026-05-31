@@ -12,8 +12,8 @@ import type {
 const filters: { label: string; value: ProjectFilterValue }[] = [
   { label: "All", value: "all" },
   { label: "Stand Alone", value: "stand-alone" },
-  { label: "Cloud Hosted", value: "cloud-hosted" },
-  { label: "QA/Tester", value: "qa" },
+  { label: "Website", value: "website" },
+  { label: "Mobile", value: "mobile" },
   { label: "User Manuals", value: "user-manuals" },
 ];
 
