@@ -21,11 +21,19 @@ export type FlowchartPreview = {
   src: string;
 };
 
+export type ProjectResourceLink = {
+  href: string;
+  label: string;
+};
+
+export type ProjectDocumentLayout = "auto" | "single-page";
+
 export type Project = {
   architecture: string[];
   categories: ProjectCategory[];
   primaryCategory: ProjectCategory;
   challenges: string[];
+  documentLayout?: ProjectDocumentLayout;
   features: string[];
   flowchartActivities?: string[];
   flowchartPreviews?: FlowchartPreview[];
@@ -35,6 +43,7 @@ export type Project = {
   previewAlt?: string;
   previewDialogSrc?: string;
   previewSrc?: string;
+  resourceLinks?: ProjectResourceLink[];
   summary: string;
   techStack: string[];
   title: string;

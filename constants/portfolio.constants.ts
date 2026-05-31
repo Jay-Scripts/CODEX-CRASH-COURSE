@@ -119,7 +119,7 @@ export const serviceOfferings: ServiceOffering[] = [
       "Design interfaces that feel intuitive, visually consistent, and easy to navigate.",
   },
   {
-    title: "QA",
+    title: "QA/Tester",
     icon: ShieldCheck,
     description:
       "Support quality with testing, validation, and careful attention to user-facing details.",
@@ -146,7 +146,7 @@ export const skillGroups: SkillGroup[] = [
     skills: ["Supabase", "PostgreSQL", "PHP", "MySQL"],
   },
   {
-    title: "Testing and QA",
+    title: "Testing and QA/Tester",
     icon: TestTube2,
     skills: [
       "Functional Testing",
@@ -169,7 +169,7 @@ export const projects: Project[] = [
     summary:
       "Enterprise-style point-of-sale ecosystem with service-specific views, real-time analytics, inventory workflows, and QA testing coverage.",
     primaryCategory: "stand-alone",
-    categories: ["stand-alone", "qa"],
+    categories: ["stand-alone"],
     techStack: [
       "HTML",
       "Tailwind CSS4",
@@ -251,6 +251,64 @@ export const projects: Project[] = [
     ],
     githubUrl: "https://github.com/",
     liveDemoUrl: "https://example.com/",
+  },
+  {
+    id: "bloodnetwork-qa-documentation",
+    title: "Bloodnetwork QA/Tester Documentation",
+    summary:
+      "QA/Tester artifact set covering donor, guest, authenticated-user, and responsive validation flows for the Bloodnetwork platform.",
+    primaryCategory: "qa",
+    categories: ["qa"],
+    documentLayout: "single-page",
+    techStack: [
+      "Manual Testing",
+      "Test Case Design",
+      "Responsive Testing",
+      "PDF Reports",
+    ],
+    architecture: [
+      "Donor test coverage",
+      "Non-authenticated user scenarios",
+      "Authenticated-user test cases",
+      "Responsive testing report",
+    ],
+    features: [
+      "Role-based scenario coverage",
+      "Guest and logged-in flow validation",
+      "Device and breakpoint QA reporting",
+      "Structured documentation for review handoff",
+    ],
+    challenges: [
+      "Kept test scenarios organized across different user states without duplicating cases.",
+      "Translated responsive findings into documentation that is easy for reviewers and developers to act on.",
+      "Maintained clear coverage across both functional and layout-focused QA work.",
+    ],
+    githubUrl: "https://github.com/Jay-Scripts",
+    liveDemoUrl:
+      "/qa-files/Bloodnetwork%20Test%20Cases.xlsx%20-%20Responsive%20Testing%20Report.pdf",
+    previewAlt: "Bloodnetwork responsive testing report document preview",
+    previewDialogSrc:
+      "/qa-files/Bloodnetwork%20Test%20Cases.xlsx%20-%20Responsive%20Testing%20Report.pdf#page=1&view=FitH",
+    previewSrc:
+      "/qa-files/Bloodnetwork%20Test%20Cases.xlsx%20-%20Responsive%20Testing%20Report.pdf#page=1&view=FitH",
+    resourceLinks: [
+      {
+        label: "Authenticated Users",
+        href: "/qa-files/Bloodnetwork%20Test%20Cases.xlsx%20-%20Authenticated%20Users.pdf",
+      },
+      {
+        label: "Donor",
+        href: "/qa-files/Bloodnetwork%20Test%20Cases.xlsx%20-%20Donor.pdf",
+      },
+      {
+        label: "Non-authenticated User",
+        href: "/qa-files/Bloodnetwork%20Test%20Cases.xlsx%20-%20Non-authenticated%20user.pdf",
+      },
+      {
+        label: "Responsive Testing Report",
+        href: "/qa-files/Bloodnetwork%20Test%20Cases.xlsx%20-%20Responsive%20Testing%20Report.pdf",
+      },
+    ],
   },
   {
     id: "smart-pos-user-manual",
@@ -357,7 +415,7 @@ export const education: Education = {
 export const techStats: TechStat[] = [
   { label: "Primary focus", value: "Full-stack", icon: Server },
   { label: "Architecture", value: "Database-first", icon: Database },
-  { label: "Quality", value: "QA-driven", icon: ShieldCheck },
+  { label: "Quality", value: "QA/Tester-driven", icon: ShieldCheck },
   { label: "Versioning", value: "Git workflow", icon: GitBranch },
 ];
 
@@ -376,7 +434,7 @@ export const recentRepositories: RecentRepository[] = [
   {
     name: "qa-test-documentation",
     description: "Functional, integration, and UAT documentation samples.",
-    stack: "Testing, QA, Documentation",
+    stack: "Testing, QA/Tester, Documentation",
   },
 ];
 

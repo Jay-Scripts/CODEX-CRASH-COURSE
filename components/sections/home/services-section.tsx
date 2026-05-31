@@ -4,7 +4,7 @@ import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
 import { SectionHeading } from "@/components/common/section-heading";
 
 /**
- * Displays the core delivery areas offered across development, design, and QA work.
+ * Displays the core delivery areas offered across development, design, and QA/Tester work.
  */
 export const ServicesSection = () => (
   <AnimatedSection
@@ -17,7 +17,7 @@ export const ServicesSection = () => (
           <SectionHeading
             description="The core areas I can contribute to across product builds, interface quality, and testing."
             eyebrow="What I Can Provide"
-            title="Development, responsive UI, product thinking, and QA support"
+            title="Development, responsive UI, product thinking, and QA/Tester support"
           />
           <ul className="grid gap-4 border-t border-border pt-6 sm:grid-cols-2 lg:grid-cols-4">
             {serviceOfferings.map((offering) => {

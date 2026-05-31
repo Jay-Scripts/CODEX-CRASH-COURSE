@@ -1,11 +1,13 @@
+"use client";
+
 import {
-  Expand,
+  ChevronDown,
   ExternalLink,
   FileText,
   GitBranch,
   Layers,
   ListChecks,
-  ChevronDown,
+  Link2,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,14 +22,14 @@ import { ProjectFlowchartCarousel } from "./project-flowchart-carousel";
 
 const projectCategoryLabels = {
   "cloud-hosted": "Cloud Hosted",
-  qa: "QA",
+  qa: "QA/Tester",
   "stand-alone": "Stand Alone",
   "user-manuals": "User Manuals",
 } as const;
 
 const projectActionLabels = {
   "cloud-hosted": "Live demo",
-  qa: "View project",
+  qa: "Open primary report",
   "stand-alone": "Live demo",
   "user-manuals": "View manual",
 } as const;
@@ -42,14 +44,30 @@ const isImagePreview = (previewSrc: string) =>
   );
 
 /**
- * Displays one recruiter-facing project card — fully responsive across mobile, tablet, and desktop.
+ * Displays one recruiter-facing project card with preview, technical highlights,
+ * and project actions across mobile and desktop layouts.
  */
 export const ProjectCard = ({ project }: ProjectCardProps) => {
   const [isDocumentOverlayOpen, setIsDocumentOverlayOpen] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
+  const [activeDocument, setActiveDocument] = useState<{
+    src: string;
+    title: string;
+  } | null>(null);
 
   const hasPreview = Boolean(project.previewSrc);
   const hasExpandableDocumentPreview = Boolean(project.previewDialogSrc);
+  const hasResourceLinks = Boolean(project.resourceLinks?.length);
+
+  const openDocumentOverlay = (src: string, title: string) => {
+    setActiveDocument({ src, title });
+    setIsDocumentOverlayOpen(true);
+  };
+
+  const closeDocumentOverlay = () => {
+    setIsDocumentOverlayOpen(false);
+    setActiveDocument(null);
+  };
 
   return (
     <>
@@ -58,71 +76,88 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         id={project.id}
       >
         <article aria-labelledby={`${project.id}-title`}>
-          {/* ── Preview banner ─────────────────────────────────── */}
           <div className="relative border-b border-border/60 bg-muted/40">
             {hasPreview ? (
               <div className="flex flex-col items-center gap-0">
-                {/* Header bar */}
                 <div className="flex w-full items-center justify-between gap-3 border-b border-border/50 bg-background/60 px-4 py-2.5 backdrop-blur-sm sm:px-5">
                   <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
                     <FileText className="size-3.5 shrink-0 text-primary" />
-                    Manual cover preview
+                    Document preview
                   </span>
-                  {hasExpandableDocumentPreview && (
-                    <Button
+                  <span className="text-xs text-muted-foreground">
+                    {hasResourceLinks
+                      ? "Choose a file below to view it"
+                      : "Tap the preview to view it"}
+                  </span>
+                </div>
+
+                <div className="flex w-full justify-center bg-muted/30 px-6 py-6 sm:py-8">
+                  {hasExpandableDocumentPreview ? (
+                    <button
                       aria-haspopup="dialog"
-                      className="h-8 gap-1.5 px-3 text-xs"
-                      onClick={() => setIsDocumentOverlayOpen(true)}
+                      className="relative aspect-[3/4] w-40 overflow-hidden rounded-xl border border-border/60 bg-background shadow-md ring-1 ring-border/40 transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 sm:w-48"
+                      onClick={() =>
+                        openDocumentOverlay(project.previewDialogSrc!, project.title)
+                      }
                       type="button"
-                      variant="outline"
                     >
-                      <Expand className="size-3.5" />
-                      Expand
-                    </Button>
+                      {project.previewSrc && isImagePreview(project.previewSrc) ? (
+                        <Image
+                          alt={project.previewAlt ?? `${project.title} preview`}
+                          className="object-cover object-top"
+                          fill
+                          priority={project.primaryCategory === "user-manuals"}
+                          sizes="(min-width: 640px) 12rem, 10rem"
+                          src={project.previewSrc}
+                          unoptimized
+                        />
+                      ) : (
+                        <iframe
+                          aria-label={project.previewAlt}
+                          className="h-full w-full bg-background"
+                          src={project.previewSrc}
+                          title={project.previewAlt ?? `${project.title} preview`}
+                        />
+                      )}
+                    </button>
+                  ) : (
+                    <figure className="relative aspect-[3/4] w-40 overflow-hidden rounded-xl border border-border/60 bg-background shadow-md ring-1 ring-border/40 sm:w-48">
+                      {project.previewSrc && isImagePreview(project.previewSrc) ? (
+                        <Image
+                          alt={project.previewAlt ?? `${project.title} preview`}
+                          className="object-cover object-top"
+                          fill
+                          priority={project.primaryCategory === "user-manuals"}
+                          sizes="(min-width: 640px) 12rem, 10rem"
+                          src={project.previewSrc}
+                          unoptimized
+                        />
+                      ) : (
+                        <iframe
+                          aria-label={project.previewAlt}
+                          className="h-full w-full bg-background"
+                          src={project.previewSrc}
+                          title={project.previewAlt ?? `${project.title} preview`}
+                        />
+                      )}
+                    </figure>
                   )}
                 </div>
 
-                {/* Thumbnail */}
-                <div className="flex w-full justify-center bg-muted/30 px-6 py-6 sm:py-8">
-                  <figure className="relative aspect-[3/4] w-40 overflow-hidden rounded-xl border border-border/60 bg-background shadow-md ring-1 ring-border/40 sm:w-48">
-                    {project.previewSrc &&
-                    isImagePreview(project.previewSrc) ? (
-                      <Image
-                        alt={project.previewAlt ?? `${project.title} preview`}
-                        className="object-cover object-top"
-                        fill
-                        priority={project.primaryCategory === "user-manuals"}
-                        sizes="(min-width: 640px) 12rem, 10rem"
-                        src={project.previewSrc}
-                        unoptimized
-                      />
-                    ) : (
-                      <iframe
-                        aria-label={project.previewAlt}
-                        className="h-full w-full bg-background"
-                        src={project.previewSrc}
-                        title={project.previewAlt ?? `${project.title} preview`}
-                      />
-                    )}
-                  </figure>
-                </div>
-
-                {/* Footer bar */}
                 <div className="flex w-full items-center justify-between border-t border-border/50 bg-background/60 px-4 py-2 text-xs text-muted-foreground">
-                  <span>Front page cover</span>
+                  <span>Front page preview</span>
                   <span>PDF available in fullscreen</span>
                 </div>
               </div>
             ) : (
-              /* Skeleton placeholder */
               <div className="flex justify-center p-6 sm:p-8">
                 <div className="w-full max-w-xs rounded-xl border border-border/60 bg-background p-4 shadow-sm">
                   <div className="mb-4 flex items-center justify-between">
                     <div className="h-2 w-20 rounded-full bg-primary/50" />
                     <div className="flex gap-1.5">
-                      {[0, 1, 2].map((i) => (
+                      {[0, 1, 2].map((index) => (
                         <div
-                          key={i}
+                          key={index}
                           className="size-2 rounded-full bg-muted-foreground/30"
                         />
                       ))}
@@ -132,8 +167,11 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                     <div className="h-2.5 rounded-full bg-muted" />
                     <div className="h-2.5 w-4/5 rounded-full bg-muted" />
                     <div className="mt-4 grid grid-cols-3 gap-2">
-                      {[0, 1, 2].map((i) => (
-                        <div key={i} className="h-10 rounded-lg bg-primary/8" />
+                      {[0, 1, 2].map((index) => (
+                        <div
+                          key={index}
+                          className="h-10 rounded-lg bg-primary/8"
+                        />
                       ))}
                     </div>
                   </div>
@@ -142,9 +180,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             )}
           </div>
 
-          {/* ── Card body ───────────────────────────────────────── */}
           <CardContent className="p-4 sm:p-5 lg:p-6">
-            {/* Title row */}
             <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
               <h3
                 className="text-xl font-semibold tracking-tight sm:text-2xl"
@@ -152,39 +188,70 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               >
                 {project.title}
               </h3>
-              <span
-                className="inline-flex shrink-0 items-center rounded-full border border-border/60 bg-secondary px-2.5 py-0.5 text-xs font-medium text-secondary-foreground"
-              >
+              <span className="inline-flex shrink-0 items-center rounded-full border border-border/60 bg-secondary px-2.5 py-0.5 text-xs font-medium text-secondary-foreground">
                 {projectCategoryLabels[project.primaryCategory]}
               </span>
             </div>
 
-            {/* Summary */}
             <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
               {project.summary}
             </p>
 
-            {/* Tech stack */}
             <div className="mb-5 flex flex-wrap gap-1.5">
               {project.techStack.map((tech) => (
                 <Badge
                   key={tech}
-                  variant="outline"
                   className="rounded-full text-xs font-normal"
+                  variant="outline"
                 >
                   {tech}
                 </Badge>
               ))}
             </div>
 
-            {/* Architecture + Features — side by side on sm+, stacked on mobile */}
+            {hasResourceLinks ? (
+              <section
+                aria-labelledby={`${project.id}-resource-links`}
+                className="mb-5 rounded-lg border border-border/60 bg-muted/30 p-4"
+              >
+                <h4
+                  className="mb-3 flex items-center gap-2 text-sm font-semibold"
+                  id={`${project.id}-resource-links`}
+                >
+                  <span className="flex size-6 shrink-0 items-center justify-center rounded-md bg-primary/10">
+                    <Link2 className="size-3.5 text-primary" />
+                  </span>
+                  QA/Tester files
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {project.resourceLinks?.map((resource) => (
+                    <Button
+                      key={resource.href}
+                      className="h-8 gap-1.5 px-3 text-xs"
+                      onClick={() =>
+                        openDocumentOverlay(
+                          `${resource.href}#page=1&view=FitH`,
+                          `${project.title} - ${resource.label}`,
+                        )
+                      }
+                      type="button"
+                      variant="outline"
+                    >
+                      <FileText className="size-3.5 shrink-0" />
+                      {resource.label}
+                    </Button>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
             <div className="mb-5 grid gap-4 sm:grid-cols-2">
               <section aria-labelledby={`${project.id}-architecture`}>
                 <h4
                   className="mb-2.5 flex items-center gap-2 text-sm font-semibold"
                   id={`${project.id}-architecture`}
                 >
-                  <span className="flex size-6 shrink-0 items-center justify-center ">
+                  <span className="flex size-6 shrink-0 items-center justify-center">
                     <Layers className="size-3.5 text-primary" />
                   </span>
                   Architecture highlights
@@ -207,7 +274,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                   className="mb-2.5 flex items-center gap-2 text-sm font-semibold"
                   id={`${project.id}-features`}
                 >
-                  <span className="flex size-6 shrink-0 items-center justify-center ">
+                  <span className="flex size-6 shrink-0 items-center justify-center">
                     <ListChecks className="size-3.5 text-primary" />
                   </span>
                   Features implemented
@@ -226,19 +293,16 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               </section>
             </div>
 
-            {/* Flowchart carousel */}
             {project.flowchartPreviews?.length ? (
               <ProjectFlowchartCarousel previews={project.flowchartPreviews} />
             ) : null}
 
-            {/* Collapsible details (flowchart activities + challenges) — always visible on md+ */}
             <div className="mt-4 space-y-3">
-              {/* Mobile toggle */}
               <button
-                className="flex w-full items-center justify-between rounded-lg border border-border/60 px-4 py-2.5 text-sm font-medium transition-colors hover:bg-muted/60 md:hidden"
-                onClick={() => setDetailsOpen((v) => !v)}
-                type="button"
                 aria-expanded={detailsOpen}
+                className="flex w-full items-center justify-between rounded-lg border border-border/60 px-4 py-2.5 text-sm font-medium transition-colors hover:bg-muted/60 md:hidden"
+                onClick={() => setDetailsOpen((value) => !value)}
+                type="button"
               >
                 More details
                 <ChevronDown
@@ -309,12 +373,11 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               </div>
             </div>
 
-            {/* CTA buttons — stack on mobile, row on sm+ */}
             <div className="mt-6 flex flex-col gap-2.5 sm:flex-row">
               <Button
                 asChild
-                variant="outline"
                 className="h-10 w-full gap-2 sm:w-auto"
+                variant="outline"
               >
                 <Link
                   href={project.githubUrl}
@@ -340,12 +403,13 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         </article>
       </Card>
 
-      {project.previewDialogSrc ? (
+      {activeDocument ? (
         <ProjectDocumentOverlay
+          documentLayout={project.documentLayout}
           isOpen={isDocumentOverlayOpen}
-          onClose={() => setIsDocumentOverlayOpen(false)}
-          src={project.previewDialogSrc}
-          title={project.title}
+          onClose={closeDocumentOverlay}
+          src={activeDocument.src}
+          title={activeDocument.title}
         />
       ) : null}
     </>

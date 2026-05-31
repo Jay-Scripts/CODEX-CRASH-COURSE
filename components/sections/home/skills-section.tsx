@@ -164,7 +164,7 @@ export const SkillsSection = () => (
         <SectionHeading
           description="A structured overview of my technical skills across frontend development, backend integration, quality assurance, and delivery workflows."
           eyebrow="Technical Skills"
-          title="Frontend, backend, QA, and delivery tooling"
+          title="Frontend, backend, QA/Tester, and delivery tooling"
         />
       </RevealItem>
 

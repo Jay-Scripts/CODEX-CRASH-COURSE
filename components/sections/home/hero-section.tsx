@@ -71,7 +71,7 @@ export const HeroSection = () => (
           </span>
           <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/75 px-3 py-1.5 shadow-sm backdrop-blur">
             <ShieldCheck className="size-4 text-primary" />
-            QA-focused delivery mindset
+            QA/Tester-focused delivery mindset
           </span>
         </motion.div>
 

@@ -14,6 +14,7 @@ import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 
 type ProjectDocumentOverlayProps = {
+  documentLayout?: "auto" | "single-page";
   isOpen: boolean;
   onClose: () => void;
   src: string;
@@ -86,6 +87,7 @@ const loadPdfJs = async () => {
  * between single-page mobile layout and two-page desktop spread layout.
  */
 export const ProjectDocumentOverlay = ({
+  documentLayout = "auto",
   isOpen,
   onClose,
   src,
@@ -109,7 +111,8 @@ export const ProjectDocumentOverlay = ({
   const [error, setError] = useState<string | null>(null);
 
   const isSinglePageLayout =
-    viewerSize.width > 0 && viewerSize.width < MOBILE_LAYOUT_BREAKPOINT;
+    documentLayout === "single-page" ||
+    (viewerSize.width > 0 && viewerSize.width < MOBILE_LAYOUT_BREAKPOINT);
   const pageStep = isSinglePageLayout ? 1 : 2;
 
   useEffect(() => {
