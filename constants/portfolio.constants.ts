@@ -94,6 +94,7 @@ export const profile: Profile = {
 };
 
 export const navigationItems: NavigationItem[] = [
+  { label: "Services", href: "#services" },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
