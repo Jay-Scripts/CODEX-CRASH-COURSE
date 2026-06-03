@@ -76,6 +76,63 @@ const heroBlobs: Array<{ className: string; style: CSSProperties }> = [
   },
 ];
 
+const heroSpinnerBoxes = [
+  {
+    className: "left-[4%] top-24 size-16 sm:size-20",
+    delay: "-2s",
+    duration: "18s",
+    innerClassName: "left-2 top-2",
+    innerSizeClassName: "size-8 sm:size-10",
+    rotate: "-10deg",
+    spin: "hero-spin",
+  },
+  {
+    className: "left-[14%] bottom-24 size-24 sm:size-28",
+    delay: "-6s",
+    duration: "28s",
+    innerClassName: "bottom-3 right-3",
+    innerSizeClassName: "size-10 sm:size-12",
+    rotate: "8deg",
+    spin: "hero-spin-reverse",
+  },
+  {
+    className: "left-[46%] top-20 size-14 sm:size-[4.5rem]",
+    delay: "-8s",
+    duration: "20s",
+    innerClassName: "left-1.5 top-1.5",
+    innerSizeClassName: "size-7 sm:size-8",
+    rotate: "16deg",
+    spin: "hero-spin",
+  },
+  {
+    className: "right-[12%] top-28 size-20 sm:size-24",
+    delay: "-4s",
+    duration: "24s",
+    innerClassName: "right-2 top-2",
+    innerSizeClassName: "size-8 sm:size-10",
+    rotate: "-14deg",
+    spin: "hero-spin-reverse",
+  },
+  {
+    className: "right-[4%] bottom-28 size-28 sm:size-36",
+    delay: "-10s",
+    duration: "34s",
+    innerClassName: "bottom-4 left-4",
+    innerSizeClassName: "size-12 sm:size-14",
+    rotate: "10deg",
+    spin: "hero-spin",
+  },
+  {
+    className: "right-[32%] bottom-12 size-[4.5rem] sm:size-24",
+    delay: "-1s",
+    duration: "22s",
+    innerClassName: "right-2 bottom-2",
+    innerSizeClassName: "size-7 sm:size-9",
+    rotate: "-6deg",
+    spin: "hero-spin-reverse",
+  },
+] as const;
+
 const heroStats = [
   { num: "3+", label: "Years exp." },
   { num: "12", label: "Projects" },
@@ -132,6 +189,35 @@ export const HeroSection = () => (
         key={blob.className}
         style={blob.style}
       />
+    ))}
+    {heroSpinnerBoxes.map((box) => (
+      <div
+        className={`pointer-events-none absolute hidden opacity-60 md:block ${box.className}`}
+        key={box.className}
+        style={{ transform: `rotate(${box.rotate})` }}
+      >
+        <div
+          className="relative size-full rounded-[1.35rem] border border-dashed"
+          style={{
+            animation: `${box.spin} ${box.duration} linear infinite`,
+            animationDelay: box.delay,
+            backgroundColor:
+              "color-mix(in oklab, var(--hero-chip-surface) 34%, transparent)",
+            borderColor: "var(--hero-portrait-ring)",
+            boxShadow:
+              "inset 0 0 0 1px color-mix(in oklab, var(--hero-background) 78%, transparent)",
+          }}
+        >
+          <span
+            className={`absolute rounded-[0.9rem] border border-dashed ${box.innerClassName} ${box.innerSizeClassName}`}
+            style={{
+              animation: `${box.spin === "hero-spin" ? "hero-spin-reverse" : "hero-spin"} ${box.duration} linear infinite`,
+              animationDelay: box.delay,
+              borderColor: "color-mix(in oklab, var(--hero-portrait-corner) 70%, transparent)",
+            }}
+          />
+        </div>
+      </div>
     ))}
     <div
       className="pointer-events-none absolute inset-0 opacity-40"
@@ -250,7 +336,7 @@ export const HeroSection = () => (
           <div
             className="absolute -inset-3.5 z-[1] rounded-[22px] border border-dashed"
             style={{
-              animation: "spin 30s linear infinite",
+              animation: "hero-spin 30s linear infinite",
               borderColor: "var(--hero-portrait-ring)",
             }}
           />
@@ -382,6 +468,18 @@ export const HeroSection = () => (
       }}
     />
 
-    <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+    <style>{`
+      @keyframes hero-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes hero-spin-reverse {
+        to {
+          transform: rotate(-360deg);
+        }
+      }
+    `}</style>
   </motion.section>
 );

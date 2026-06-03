@@ -1,4 +1,5 @@
 import { serviceOfferings } from "@/constants/portfolio.constants";
+import { SectionAccentBackdrop } from "@/components/common/section-accent-backdrop";
 import { AnimatedSection } from "@/components/common/animated-section";
 import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
 import { SectionHeading } from "@/components/common/section-heading";
@@ -11,7 +12,8 @@ export const ServicesSection = () => (
     className="px-4 py-12 sm:px-6 sm:py-14 lg:px-8"
     id="services"
   >
-    <RevealGroup className="mx-auto max-w-7xl">
+    <RevealGroup className="relative mx-auto max-w-7xl">
+      <SectionAccentBackdrop variant="center" />
       <RevealItem>
         <section className="rounded-lg border border-border bg-card px-5 py-8 text-card-foreground shadow-sm sm:px-6 sm:py-10 lg:px-8">
           <SectionHeading
@@ -26,7 +28,7 @@ export const ServicesSection = () => (
               return (
                 <li key={offering.title}>
                   <RevealItem>
-                    <article className="flex h-full flex-col items-center px-2 text-center">
+                    <article className="flex h-full flex-col items-center rounded-2xl border border-transparent px-4 py-4 text-center transition-transform duration-300 hover:-translate-y-1 hover:border-border/60 hover:bg-background/60">
                       <Icon className="size-5 text-primary" />
                       <h3 className="mt-3 text-base font-medium text-foreground sm:text-lg">
                         {offering.title}

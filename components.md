@@ -24,9 +24,9 @@
 
 ## Common
 
-### `AnimatedSection`, `RevealGroup`, `RevealItem`, `SectionHeading`, `ScrollProgress`
+### `AnimatedSection`, `RevealGroup`, `RevealItem`, `SectionHeading`, `ScrollProgress`, `SectionAccentBackdrop`
 
-- Purpose: Provide shared motion wrappers, staggered reveal helpers, consistent section headings, shared section grid backgrounds, and the global scroll progress indicator used across the site shell.
+- Purpose: Provide shared motion wrappers, staggered reveal helpers, consistent section headings, shared section grid backgrounds, subtle rotating section accents, and the global scroll progress indicator used across the site shell.
 - Location: `components/common/*`
 
 ## Cards

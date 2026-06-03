@@ -64,6 +64,9 @@
   --hero-ghost-text: oklch(0.42 0.03 286);
   --hero-ghost-text-hover: oklch(0.5 0.13 275);
   --surface-grid-line: oklch(0.623 0.214 259.815 / 0.14);
+  --section-accent-border: oklch(0.623 0.214 259.815 / 0.24);
+  --section-accent-surface: oklch(1 0 0 / 0.38);
+  --section-accent-detail: oklch(0.623 0.214 259.815 / 0.16);
 }
 
 .dark {
@@ -129,6 +132,9 @@
   --hero-ghost-text: oklch(0.68 0.02 286);
   --hero-ghost-text-hover: oklch(0.8 0.12 286);
   --surface-grid-line: oklch(0.623 0.214 259.815 / 0.18);
+  --section-accent-border: oklch(0.623 0.214 259.815 / 0.28);
+  --section-accent-surface: oklch(0.24 0.02 286 / 0.34);
+  --section-accent-detail: oklch(0.83 0.11 286 / 0.16);
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -226,6 +232,29 @@ body {
 .surface-grid > * {
   position: relative;
   z-index: 1;
+}
+
+@keyframes section-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes section-orbit-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes section-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
 }
 
 ::selection {

@@ -1,6 +1,7 @@
 import { GitBranch } from "lucide-react";
 import Link from "next/link";
 import { profile } from "@/constants/portfolio.constants";
+import { SectionAccentBackdrop } from "@/components/common/section-accent-backdrop";
 import { AnimatedSection } from "@/components/common/animated-section";
 import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
 import { SectionHeading } from "@/components/common/section-heading";
@@ -27,7 +28,8 @@ export const GitHubActivitySection = async () => {
 
   return (
     <AnimatedSection className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8" id="github">
-      <RevealGroup className="mx-auto max-w-7xl">
+      <RevealGroup className="relative mx-auto max-w-7xl">
+        <SectionAccentBackdrop variant="left" />
         <RevealItem>
           <SectionHeading
             description="A recruiter-friendly snapshot of repository activity, technical focus, and code organization signals."

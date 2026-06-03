@@ -1,6 +1,7 @@
 import { BriefcaseBusiness, Download, GitBranch, Mail } from "lucide-react";
 import Link from "next/link";
 import { profile } from "@/constants/portfolio.constants";
+import { SectionAccentBackdrop } from "@/components/common/section-accent-backdrop";
 import { AnimatedSection } from "@/components/common/animated-section";
 import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
 import { SectionHeading } from "@/components/common/section-heading";
@@ -34,7 +35,8 @@ export const ContactSection = () => (
     className="bg-muted/30 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
     id="contact"
   >
-    <RevealGroup className="mx-auto max-w-6xl">
+    <RevealGroup className="relative mx-auto max-w-6xl">
+      <SectionAccentBackdrop variant="right" />
       <RevealItem>
         <SectionHeading
           description="Make it easy for recruiters to verify links, download a resume, and start a conversation."

@@ -1,4 +1,5 @@
 import { aboutEntries } from "@/constants/portfolio.constants";
+import { SectionAccentBackdrop } from "@/components/common/section-accent-backdrop";
 import { AnimatedSection } from "@/components/common/animated-section";
 import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
 import { SectionHeading } from "@/components/common/section-heading";
@@ -9,7 +10,8 @@ import { Card, CardContent } from "@/components/ui/card";
  */
 export const AboutSection = () => (
   <AnimatedSection className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8" id="about">
-    <RevealGroup className="mx-auto max-w-5xl">
+    <RevealGroup className="relative mx-auto max-w-5xl">
+      <SectionAccentBackdrop variant="left" />
       <RevealItem>
         <SectionHeading
           description="A clearer view of who I am, how I approach development, and where I want to grow."
