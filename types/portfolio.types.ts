@@ -61,6 +61,8 @@ export type Profile = {
   email: string;
   githubUrl: string;
   linkedinUrl: string;
+  logoAlt: string;
+  logoSrc: string;
   location: string;
   name: string;
   resumeUrl: string;

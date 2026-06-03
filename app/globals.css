@@ -17,6 +17,52 @@
   --border: oklch(0.92 0.004 286.32);
   --input: oklch(0.92 0.004 286.32);
   --ring: oklch(0.623 0.214 259.815);
+  --hero-background: oklch(0.972 0.02 287);
+  --hero-grid-line: oklch(0.623 0.214 259.815 / 0.12);
+  --hero-radial-mask-end: oklch(0.985 0.008 286);
+  --hero-blob-primary: oklch(0.623 0.214 259.815 / 0.2);
+  --hero-blob-secondary: oklch(0.71 0.16 35 / 0.12);
+  --hero-blob-tertiary: oklch(0.8 0.12 190 / 0.1);
+  --hero-blob-quaternary: oklch(0.72 0.18 300 / 0.1);
+  --hero-heading: oklch(0.19 0.03 285);
+  --hero-heading-accent-start: oklch(0.59 0.22 272);
+  --hero-heading-accent-end: oklch(0.72 0.16 286);
+  --hero-role: oklch(0.44 0.05 286);
+  --hero-body: oklch(0.38 0.03 286);
+  --hero-chip-surface: oklch(1 0 0 / 0.58);
+  --hero-chip-border: oklch(0.623 0.214 259.815 / 0.16);
+  --hero-chip-text: oklch(0.4 0.04 286);
+  --hero-portrait-ring: oklch(0.623 0.214 259.815 / 0.22);
+  --hero-portrait-corner: oklch(0.623 0.214 259.815);
+  --hero-portrait-border: oklch(0.623 0.214 259.815 / 0.18);
+  --hero-portrait-start: oklch(0.96 0.04 286);
+  --hero-portrait-middle: oklch(0.93 0.06 280);
+  --hero-portrait-end: oklch(0.9 0.08 270);
+  --hero-floating-surface: oklch(0.99 0.01 286 / 0.84);
+  --hero-floating-border: oklch(0.623 0.214 259.815 / 0.18);
+  --hero-floating-shadow: 0 8px 32px rgb(67 44 125 / 0.14);
+  --hero-floating-label: oklch(0.47 0.03 286);
+  --hero-floating-value: oklch(0.2 0.05 286);
+  --hero-floating-copy: oklch(0.36 0.03 286);
+  --hero-stat-surface: oklch(1 0 0 / 0.52);
+  --hero-stat-border: oklch(0.623 0.214 259.815 / 0.12);
+  --hero-stat-value: oklch(0.38 0.12 280);
+  --hero-stat-label: oklch(0.43 0.03 286);
+  --hero-divider-gradient: linear-gradient(
+    90deg,
+    transparent,
+    oklch(0.623 0.214 259.815 / 0.18),
+    transparent
+  );
+  --hero-cta-shadow: 0 4px 24px oklch(0.623 0.214 259.815 / 0.24);
+  --hero-cta-shadow-hover: 0 6px 32px oklch(0.623 0.214 259.815 / 0.34);
+  --hero-outline-surface: oklch(1 0 0 / 0.55);
+  --hero-outline-surface-hover: oklch(1 0 0 / 0.72);
+  --hero-outline-border: oklch(0.623 0.214 259.815 / 0.14);
+  --hero-outline-border-hover: oklch(0.623 0.214 259.815 / 0.34);
+  --hero-outline-text: oklch(0.27 0.04 286);
+  --hero-ghost-text: oklch(0.42 0.03 286);
+  --hero-ghost-text-hover: oklch(0.5 0.13 275);
 }
 
 .dark {
@@ -35,6 +81,52 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.623 0.214 259.815);
+  --hero-background: oklch(0.18 0.03 285);
+  --hero-grid-line: oklch(0.623 0.214 259.815 / 0.14);
+  --hero-radial-mask-end: oklch(0.18 0.03 285);
+  --hero-blob-primary: oklch(0.623 0.214 259.815 / 0.28);
+  --hero-blob-secondary: oklch(0.72 0.16 35 / 0.14);
+  --hero-blob-tertiary: oklch(0.74 0.1 190 / 0.12);
+  --hero-blob-quaternary: oklch(0.69 0.2 300 / 0.1);
+  --hero-heading: oklch(0.97 0.01 286);
+  --hero-heading-accent-start: oklch(0.72 0.19 276);
+  --hero-heading-accent-end: oklch(0.83 0.12 292);
+  --hero-role: oklch(0.74 0.02 286);
+  --hero-body: oklch(0.68 0.02 286);
+  --hero-chip-surface: oklch(0.28 0.01 286 / 0.56);
+  --hero-chip-border: oklch(1 0 0 / 0.08);
+  --hero-chip-text: oklch(0.74 0.02 286);
+  --hero-portrait-ring: oklch(0.623 0.214 259.815 / 0.25);
+  --hero-portrait-corner: oklch(0.67 0.2 268);
+  --hero-portrait-border: oklch(0.623 0.214 259.815 / 0.2);
+  --hero-portrait-start: oklch(0.25 0.03 285);
+  --hero-portrait-middle: oklch(0.28 0.05 278);
+  --hero-portrait-end: oklch(0.31 0.08 266);
+  --hero-floating-surface: oklch(0.24 0.02 286 / 0.9);
+  --hero-floating-border: oklch(0.623 0.214 259.815 / 0.18);
+  --hero-floating-shadow: 0 8px 32px rgb(0 0 0 / 0.4);
+  --hero-floating-label: oklch(0.5 0.02 286);
+  --hero-floating-value: oklch(0.92 0.04 286);
+  --hero-floating-copy: oklch(0.63 0.03 286);
+  --hero-stat-surface: oklch(0.26 0.01 286 / 0.52);
+  --hero-stat-border: oklch(1 0 0 / 0.08);
+  --hero-stat-value: oklch(0.83 0.11 286);
+  --hero-stat-label: oklch(0.54 0.02 286);
+  --hero-divider-gradient: linear-gradient(
+    90deg,
+    transparent,
+    oklch(0.623 0.214 259.815 / 0.18),
+    transparent
+  );
+  --hero-cta-shadow: 0 4px 24px oklch(0.623 0.214 259.815 / 0.4);
+  --hero-cta-shadow-hover: 0 6px 32px oklch(0.623 0.214 259.815 / 0.55);
+  --hero-outline-surface: oklch(1 0 0 / 0.06);
+  --hero-outline-surface-hover: oklch(1 0 0 / 0.1);
+  --hero-outline-border: oklch(1 0 0 / 0.1);
+  --hero-outline-border-hover: oklch(0.623 0.214 259.815 / 0.5);
+  --hero-outline-text: oklch(0.82 0.02 286);
+  --hero-ghost-text: oklch(0.68 0.02 286);
+  --hero-ghost-text-hover: oklch(0.8 0.12 286);
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -73,6 +165,35 @@ html {
 
 body {
   min-width: 320px;
+}
+
+.hero-primary-button {
+  box-shadow: var(--hero-cta-shadow);
+}
+
+.hero-primary-button:hover {
+  box-shadow: var(--hero-cta-shadow-hover);
+}
+
+.hero-outline-button {
+  background-color: var(--hero-outline-surface);
+  border-color: var(--hero-outline-border);
+  color: var(--hero-outline-text);
+}
+
+.hero-outline-button:hover {
+  background-color: var(--hero-outline-surface-hover);
+  border-color: var(--hero-outline-border-hover);
+  color: var(--hero-outline-text);
+}
+
+.hero-ghost-button {
+  color: var(--hero-ghost-text);
+}
+
+.hero-ghost-button:hover {
+  background-color: transparent;
+  color: var(--hero-ghost-text-hover);
 }
 
 ::selection {

@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, type Variants } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -111,13 +112,20 @@ export const SiteHeader = () => {
       <div className="relative mx-auto max-w-7xl">
         <div className="flex h-16 w-full items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link className="flex items-center gap-3" href="#top">
-            <span className="grid size-9 place-items-center rounded-md bg-primary font-mono text-sm font-semibold text-primary-foreground">
-              CJ
+            <span className="flex size-15 items-center justify-center ">
+              <Image
+                alt={profile.logoAlt}
+                className="h-auto w-full"
+                height={500}
+                priority
+                src={profile.logoSrc}
+                width={500}
+              />
             </span>
             <span className="hidden leading-tight sm:block">
               <span className="block text-sm font-semibold">{profile.name}</span>
               <span className="block text-xs text-muted-foreground">
-                Junior Full-Stack Developer
+                {profile.role}
               </span>
             </span>
           </Link>

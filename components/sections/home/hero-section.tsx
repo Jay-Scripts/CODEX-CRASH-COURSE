@@ -1,15 +1,16 @@
 "use client";
 
 import { ArrowRight, Download, Mail, MapPin, ShieldCheck } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { profile } from "@/constants/portfolio.constants";
 import { Button } from "@/components/ui/button";
 
 const smoothEase = [0.22, 1, 0.36, 1] as const;
 
-const heroContentVariants = {
+const containerVariants = {
   hidden: {},
   visible: {
     transition: {
@@ -19,11 +20,8 @@ const heroContentVariants = {
   },
 };
 
-const heroItemVariants = {
-  hidden: {
-    opacity: 0,
-    y: 24,
-  },
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
@@ -34,97 +32,356 @@ const heroItemVariants = {
   },
 };
 
+const floatingEase = "easeInOut" as const;
+
+const floatVariants: Variants = {
+  animate: {
+    y: [0, -6, 0],
+    transition: {
+      duration: 4,
+      repeat: Infinity,
+      ease: floatingEase,
+    },
+  },
+};
+
+const floatVariantsDelayed: Variants = {
+  animate: {
+    y: [0, -6, 0],
+    transition: {
+      duration: 4,
+      repeat: Infinity,
+      ease: floatingEase,
+      delay: 1.5,
+    },
+  },
+};
+
+const heroBlobs: Array<{ className: string; style: CSSProperties }> = [
+  {
+    className: "right-[8%] top-[-80px] size-[380px]",
+    style: { backgroundColor: "var(--hero-blob-primary)" },
+  },
+  {
+    className: "bottom-[-40px] right-[28%] size-[260px]",
+    style: { backgroundColor: "var(--hero-blob-secondary)" },
+  },
+  {
+    className: "left-[2%] top-[35%] size-[200px]",
+    style: { backgroundColor: "var(--hero-blob-tertiary)" },
+  },
+  {
+    className: "bottom-[10%] left-[30%] size-[160px]",
+    style: { backgroundColor: "var(--hero-blob-quaternary)" },
+  },
+];
+
+const heroStats = [
+  { num: "3+", label: "Years exp." },
+  { num: "12", label: "Projects" },
+  { num: "6", label: "Certs" },
+] as const;
+
+const chipStyle: CSSProperties = {
+  backgroundColor: "var(--hero-chip-surface)",
+  borderColor: "var(--hero-chip-border)",
+  color: "var(--hero-chip-text)",
+};
+
+const floatingCardStyle: CSSProperties = {
+  backgroundColor: "var(--hero-floating-surface)",
+  borderColor: "var(--hero-floating-border)",
+  boxShadow: "var(--hero-floating-shadow)",
+};
+
+const statTileStyle: CSSProperties = {
+  backgroundColor: "var(--hero-stat-surface)",
+  borderColor: "var(--hero-stat-border)",
+};
+
 /**
- * Displays the recruiter-facing hero section with responsive layout, portrait framing, and primary calls to action.
+ * Displays the recruiter-facing hero section with a theme-aware neon visual treatment.
  */
 export const HeroSection = () => (
   <motion.section
     animate="visible"
-    className="relative overflow-hidden border-b border-border bg-background"
+    className="relative overflow-hidden"
     id="top"
     initial="hidden"
-    variants={heroContentVariants}
+    style={{ backgroundColor: "var(--hero-background)" }}
+    variants={containerVariants}
   >
-    <div className="absolute inset-x-0 top-0 -z-10 h-72 bg-gradient-to-b from-primary/10 via-background to-background sm:h-80" />
-    <div className="mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-7xl items-center gap-12 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16 lg:px-8 lg:py-24">
-      <motion.header
-        className="order-2 max-w-3xl text-center lg:order-1 lg:text-left"
-        variants={heroContentVariants}
+    <div
+      className="pointer-events-none absolute inset-0"
+      style={{
+        backgroundImage:
+          "linear-gradient(var(--hero-grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--hero-grid-line) 1px, transparent 1px)",
+        backgroundSize: "48px 48px",
+      }}
+    />
+    <div
+      className="pointer-events-none absolute inset-0"
+      style={{
+        background:
+          "radial-gradient(ellipse 70% 65% at 65% 45%, transparent 30%, var(--hero-radial-mask-end) 80%)",
+      }}
+    />
+    {heroBlobs.map((blob) => (
+      <div
+        className={`pointer-events-none absolute rounded-full blur-[70px] ${blob.className}`}
+        key={blob.className}
+        style={blob.style}
+      />
+    ))}
+    <div
+      className="pointer-events-none absolute inset-0 opacity-40"
+      style={{
+        backgroundImage:
+          'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.04\'/%3E%3C/svg%3E")',
+      }}
+    />
+
+    <div className="relative z-10 mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-6xl items-center gap-12 px-6 py-16 lg:grid-cols-[1fr_360px] lg:gap-16 lg:px-10 lg:py-24">
+      <motion.div
+        className="order-2 max-w-2xl text-center lg:order-1 lg:text-left"
+        variants={containerVariants}
       >
         <motion.h1
-          className="mt-5 text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-7xl"
-          variants={heroItemVariants}
+          className="text-balance text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl"
+          style={{
+            color: "var(--hero-heading)",
+            fontFamily: "'Syne', sans-serif",
+            letterSpacing: "-0.03em",
+            lineHeight: 1,
+          }}
+          variants={itemVariants}
         >
-          {profile.name}
+          {profile.name.split(" ")[0]}{" "}
+          <span
+            style={{
+              background:
+                "linear-gradient(120deg, var(--hero-heading-accent-start), var(--hero-heading-accent-end))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            {profile.name.split(" ").slice(1).join(" ")}
+          </span>
         </motion.h1>
+
         <motion.p
-          className="mt-4 text-lg font-medium text-primary sm:text-2xl"
-          variants={heroItemVariants}
-        ></motion.p>
-        <motion.div
-          className="mt-5 flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground lg:justify-start"
-          variants={heroItemVariants}
+          className="mt-3 text-lg font-light italic sm:text-xl"
+          style={{ color: "var(--hero-role)" }}
+          variants={itemVariants}
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/75 px-3 py-1.5 shadow-sm backdrop-blur">
-            <MapPin className="size-4 text-primary" />
+          Junior Web Developer
+        </motion.p>
+
+        <motion.p
+          className="mt-4 max-w-md text-sm leading-relaxed sm:text-base lg:max-w-lg"
+          style={{ color: "var(--hero-body)" }}
+          variants={itemVariants}
+        >
+          I craft fast, accessible, and pixel-perfect web experiences from
+          interactive UIs to scalable back-end APIs. Clean code, thoughtful UX,
+          shipped on time.
+        </motion.p>
+
+        <motion.div
+          className="mt-5 flex flex-wrap justify-center gap-2 lg:justify-start"
+          variants={itemVariants}
+        >
+          <span
+            className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs backdrop-blur-md"
+            style={chipStyle}
+          >
+            <MapPin className="size-3 text-primary" />
             {profile.location}
           </span>
-          <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/75 px-3 py-1.5 shadow-sm backdrop-blur">
-            <ShieldCheck className="size-4 text-primary" />
-            QA/Tester-focused delivery mindset
+          <span
+            className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs backdrop-blur-md"
+            style={chipStyle}
+          >
+            <ShieldCheck className="size-3 text-primary" />
+            Web Dev focused
           </span>
         </motion.div>
 
         <motion.div
           className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start"
-          variants={heroItemVariants}
+          variants={itemVariants}
         >
-          <Button
-            asChild
-            className="shadow-lg shadow-primary/20 sm:min-w-40"
-            size="lg"
-          >
+          <Button asChild className="hero-primary-button sm:min-w-40" size="lg">
             <Link href="#projects">
               View Projects
-              <ArrowRight />
+              <ArrowRight className="ml-1" />
             </Link>
           </Button>
           <Button
             asChild
-            className="border-border/80 bg-background/80 backdrop-blur sm:min-w-40"
+            className="hero-outline-button sm:min-w-40"
             size="lg"
             variant="outline"
           >
             <Link href={profile.resumeUrl}>
-              <Download />
+              <Download className="mr-1" />
               Download Resume
             </Link>
           </Button>
-          <Button asChild className="sm:min-w-40" size="lg" variant="ghost">
+          <Button
+            asChild
+            className="hero-ghost-button sm:min-w-40"
+            size="lg"
+            variant="ghost"
+          >
             <Link href="#contact">
-              <Mail />
+              <Mail className="mr-1" />
               Contact Me
             </Link>
           </Button>
         </motion.div>
-      </motion.header>
-      <motion.figure
-        className="order-1 mx-auto w-full max-w-[26rem] lg:order-2 lg:max-w-[32rem] lg:justify-self-end"
-        variants={heroItemVariants}
+      </motion.div>
+
+      <motion.div
+        className="order-1 mx-auto flex w-full max-w-[320px] flex-col items-center gap-0 lg:order-2 lg:max-w-[360px] lg:justify-self-end"
+        variants={itemVariants}
       >
-        <div className="relative isolate overflow-hidden rounded-lg border border-border/70 bg-card/60 shadow-lg backdrop-blur-xl">
-          <Image
-            alt={`${profile.name} portrait`}
-            className="mx-auto h-auto w-full max-w-[22rem] object-contain drop-shadow-lg sm:max-w-[26rem]"
-            height={938}
-            priority
-            sizes="(min-width: 1024px) 32rem, (min-width: 640px) 26rem, calc(100vw - 4rem)"
-            src="/jr-pic-transparent.png"
-            unoptimized
-            width={1064}
+        <div className="relative w-[280px]">
+          <div
+            className="absolute -inset-3.5 z-[1] rounded-[22px] border border-dashed"
+            style={{
+              animation: "spin 30s linear infinite",
+              borderColor: "var(--hero-portrait-ring)",
+            }}
           />
+          <div
+            className="absolute -left-2 -top-2 z-[4] h-7 w-7 rounded-tl-sm border-l-2 border-t-2"
+            style={{ borderColor: "var(--hero-portrait-corner)" }}
+          />
+          <div
+            className="absolute -bottom-2 -right-2 z-[4] h-7 w-7 rounded-br-sm border-b-2 border-r-2"
+            style={{ borderColor: "var(--hero-portrait-corner)" }}
+          />
+
+          <div
+            className="relative z-[3] overflow-hidden rounded-[18px] border"
+            style={{
+              aspectRatio: "1 / 1.15",
+              background:
+                "linear-gradient(135deg, var(--hero-portrait-start), var(--hero-portrait-middle), var(--hero-portrait-end))",
+              borderColor: "var(--hero-portrait-border)",
+            }}
+          >
+            <Image
+              alt={`${profile.name} portrait`}
+              className="mx-auto h-auto w-full object-contain drop-shadow-lg"
+              height={938}
+              priority
+              sizes="(min-width: 1024px) 280px, (min-width: 640px) 260px, calc(100vw - 4rem)"
+              src="/jr-pic-transparent.png"
+              unoptimized
+              width={1064}
+            />
+          </div>
+
+          <motion.div
+            animate="animate"
+            className="absolute -left-14 top-10 z-[6] rounded-xl border px-3.5 py-2.5 backdrop-blur-md"
+            style={floatingCardStyle}
+            variants={floatVariants}
+          >
+            <p
+              className="text-[10px] uppercase tracking-wider"
+              style={{ color: "var(--hero-floating-label)" }}
+            >
+              Projects
+            </p>
+            <p
+              className="font-bold"
+              style={{
+                color: "var(--hero-floating-value)",
+                fontFamily: "'Syne', sans-serif",
+                fontSize: 16,
+              }}
+            >
+              12+
+            </p>
+            <p
+              className="text-[11px]"
+              style={{ color: "var(--hero-floating-copy)" }}
+            >
+              shipped live
+            </p>
+          </motion.div>
+
+          <motion.div
+            animate="animate"
+            className="absolute -right-14 bottom-16 z-[6] rounded-xl border px-3.5 py-2.5 backdrop-blur-md"
+            style={floatingCardStyle}
+            variants={floatVariantsDelayed}
+          >
+            <p
+              className="text-[10px] uppercase tracking-wider"
+              style={{ color: "var(--hero-floating-label)" }}
+            >
+              Experience
+            </p>
+            <p
+              className="font-bold"
+              style={{
+                color: "var(--hero-floating-value)",
+                fontFamily: "'Syne', sans-serif",
+                fontSize: 16,
+              }}
+            >
+              3+ yrs
+            </p>
+            <p
+              className="text-[11px]"
+              style={{ color: "var(--hero-floating-copy)" }}
+            >
+              web development
+            </p>
+          </motion.div>
         </div>
-      </motion.figure>
+
+        <div className="mt-7 flex w-full gap-3">
+          {heroStats.map(({ num, label }) => (
+            <div
+              className="flex flex-1 flex-col items-center rounded-xl border py-2.5"
+              key={label}
+              style={statTileStyle}
+            >
+              <span
+                className="font-bold"
+                style={{
+                  color: "var(--hero-stat-value)",
+                  fontFamily: "'Syne', sans-serif",
+                  fontSize: 20,
+                }}
+              >
+                {num}
+              </span>
+              <span
+                className="mt-0.5 text-center text-[11px]"
+                style={{ color: "var(--hero-stat-label)" }}
+              >
+                {label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </motion.div>
     </div>
+
+    <div
+      className="relative z-10 mx-auto max-w-6xl px-6 pb-6 lg:px-10"
+      style={{
+        borderImage: "var(--hero-divider-gradient) 1",
+        borderTop: "1px solid",
+      }}
+    />
+
+    <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
   </motion.section>
 );

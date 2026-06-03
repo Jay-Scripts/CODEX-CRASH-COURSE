@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { profile } from "@/constants/portfolio.constants";
 import { ScrollProgress } from "@/components/common/scroll-progress";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -21,6 +22,10 @@ export const metadata: Metadata = {
   title: {
     default: "Cornelio Jay Scripts | Junior Full-Stack Developer",
     template: "%s | Cornelio Jay Scripts",
+  },
+  icons: {
+    icon: profile.logoSrc,
+    shortcut: profile.logoSrc,
   },
   description:
     "Recruiter-friendly junior full-stack developer portfolio focused on Next.js, React, TypeScript, QA testing, database design, and enterprise-ready delivery.",

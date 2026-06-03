@@ -83,6 +83,8 @@ export const profile: Profile = {
   role: "Junior Full-Stack Developer",
   email: "corneliogatbontonjr21@gmail.com",
   location: "Philippines",
+  logoAlt: "JayScript brand logo",
+  logoSrc: "/Logo/JayScript%20Logo.svg",
   linkedinUrl:
     "https://www.linkedin.com/in/corneliogatbonton/?skipRedirect=true",
   githubUrl: "https://github.com/Jay-Scripts",
