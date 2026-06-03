@@ -8,7 +8,7 @@ import { Separator } from "@/components/ui/separator";
  * Displays the footer stack summary and outbound profile links.
  */
 export const SiteFooter = () => (
-  <footer className="border-t border-border bg-muted/30">
+  <footer className="surface-grid border-t border-border bg-muted/30">
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-8 sm:px-6 lg:px-8">
       <Separator />
       <div className="flex flex-col gap-4 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">

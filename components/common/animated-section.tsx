@@ -12,7 +12,7 @@ const sectionRevealState = {
 };
 
 /**
- * Displays a reusable motion-powered section wrapper with viewport reveal.
+ * Displays a reusable motion-powered section wrapper with viewport reveal and a shared grid background.
  */
 export const AnimatedSection = ({
   children,
@@ -20,7 +20,7 @@ export const AnimatedSection = ({
   ...props
 }: AnimatedSectionProps) => (
   <motion.section
-    className={cn("scroll-mt-24", className)}
+    className={cn("surface-grid scroll-mt-24", className)}
     initial="hidden"
     variants={sectionRevealState}
     viewport={{ once: true, amount: 0.18 }}

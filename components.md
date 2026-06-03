@@ -26,7 +26,7 @@
 
 ### `AnimatedSection`, `RevealGroup`, `RevealItem`, `SectionHeading`, `ScrollProgress`
 
-- Purpose: Provide shared motion wrappers, staggered reveal helpers, consistent section headings, and the global scroll progress indicator used across the site shell.
+- Purpose: Provide shared motion wrappers, staggered reveal helpers, consistent section headings, shared section grid backgrounds, and the global scroll progress indicator used across the site shell.
 - Location: `components/common/*`
 
 ## Cards

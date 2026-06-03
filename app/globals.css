@@ -63,6 +63,7 @@
   --hero-outline-text: oklch(0.27 0.04 286);
   --hero-ghost-text: oklch(0.42 0.03 286);
   --hero-ghost-text-hover: oklch(0.5 0.13 275);
+  --surface-grid-line: oklch(0.623 0.214 259.815 / 0.14);
 }
 
 .dark {
@@ -127,6 +128,7 @@
   --hero-outline-text: oklch(0.82 0.02 286);
   --hero-ghost-text: oklch(0.68 0.02 286);
   --hero-ghost-text-hover: oklch(0.8 0.12 286);
+  --surface-grid-line: oklch(0.623 0.214 259.815 / 0.18);
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -194,6 +196,36 @@ body {
 .hero-ghost-button:hover {
   background-color: transparent;
   color: var(--hero-ghost-text-hover);
+}
+
+.surface-grid {
+  isolation: isolate;
+  position: relative;
+}
+
+.surface-grid::before {
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      var(--surface-grid-line) 0 1px,
+      transparent 1px 48px
+    ),
+    repeating-linear-gradient(
+      to right,
+      var(--surface-grid-line) 0 1px,
+      transparent 1px 48px
+    );
+  background-size: 48px 48px;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.surface-grid > * {
+  position: relative;
+  z-index: 1;
 }
 
 ::selection {
