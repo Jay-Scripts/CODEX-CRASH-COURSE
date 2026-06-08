@@ -412,3 +412,10 @@ export const aboutEntries: AboutEntry[] = [
     ],
   },
 ];
+
+export const aboutHighlights = [
+  "Full-stack growth",
+  "QA mindset",
+  "Responsive UI",
+  "System thinking",
+] as const;

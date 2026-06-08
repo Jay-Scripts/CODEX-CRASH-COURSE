@@ -289,7 +289,21 @@ export const HeroSection = () => (
             style={chipStyle}
           >
             <ShieldCheck className="size-3 text-primary" />
-            Web Dev focused
+            Junior Web Developer
+          </span>
+                    <span
+            className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs backdrop-blur-md"
+            style={chipStyle}
+          >
+            <ShieldCheck className="size-3 text-primary" />
+            Quality Assurance
+          </span>
+                             <span
+            className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs backdrop-blur-md"
+            style={chipStyle}
+          >
+            <ShieldCheck className="size-3 text-primary" />
+            Technical Support
           </span>
         </motion.div>
 

@@ -4,6 +4,7 @@ import {
   ClipboardCheck,
   FileWarning,
   GitBranch,
+  Sparkles,
   TestTube2,
   UserCheck,
 } from "lucide-react";
@@ -18,8 +19,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 type SkillLogoMeta = {
+  darkLogo?: string;
   icon?: LucideIcon;
   logo?: string;
+  logoClassName?: string;
 };
 
 const skillLogoMap: Record<string, SkillLogoMeta> = {
@@ -33,13 +36,14 @@ const skillLogoMap: Record<string, SkillLogoMeta> = {
     icon: ClipboardCheck,
   },
   Flowbite: {
-    logo: "https://cdn.simpleicons.org/flowbite/06B6D4",
+    icon: Sparkles,
   },
   Git: {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
   },
   GitHub: {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+    logoClassName: "dark:brightness-0 dark:invert",
   },
   "Integration Testing": {
     icon: GitBranch,
@@ -52,6 +56,7 @@ const skillLogoMap: Record<string, SkillLogoMeta> = {
   },
   "Lucide React": {
     logo: "https://cdn.simpleicons.org/lucide",
+    logoClassName: "dark:brightness-0 dark:invert",
   },
   "MySQL Workbench": {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
@@ -60,7 +65,8 @@ const skillLogoMap: Record<string, SkillLogoMeta> = {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
   },
   "Next.js": {
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    logo: "https://cdn.simpleicons.org/nextdotjs/000000",
+    darkLogo: "https://cdn.simpleicons.org/nextdotjs/white",
   },
   npm: {
     logo: "https://cdn.simpleicons.org/npm/CB3837",
@@ -88,18 +94,21 @@ const skillLogoMap: Record<string, SkillLogoMeta> = {
   },
   "shadcn/ui": {
     logo: "https://cdn.simpleicons.org/shadcnui",
+    logoClassName: "dark:brightness-0 dark:invert",
   },
   UAT: {
     icon: UserCheck,
   },
   Vercel: {
     logo: "https://cdn.simpleicons.org/vercel",
+    logoClassName: "dark:brightness-0 dark:invert",
   },
   "VS Code": {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
   },
   "EAS Build": {
     logo: "https://cdn.simpleicons.org/expo/000020",
+    logoClassName: "dark:brightness-0 dark:invert",
   },
   XAMPP: {
     logo: "https://cdn.simpleicons.org/xampp/FB7A24",
@@ -147,15 +156,36 @@ const SkillLogoPill = ({
         )}
       >
         {skill.logo ? (
-          <Image
-            alt=""
-            className={cn("size-5 object-contain", compact && "size-4")}
-            height={20}
-            loading="lazy"
-            src={skill.logo}
-            unoptimized
-            width={20}
-          />
+          <>
+            <Image
+              alt=""
+              className={cn(
+                "size-5 object-contain",
+                compact && "size-4",
+                skill.darkLogo && "dark:hidden",
+                skill.logoClassName,
+              )}
+              height={20}
+              loading="lazy"
+              src={skill.logo}
+              unoptimized
+              width={20}
+            />
+            {skill.darkLogo ? (
+              <Image
+                alt=""
+                className={cn(
+                  "hidden size-5 object-contain dark:block",
+                  compact && "size-4",
+                )}
+                height={20}
+                loading="lazy"
+                src={skill.darkLogo}
+                unoptimized
+                width={20}
+              />
+            ) : null}
+          </>
         ) : (
           <Icon className={cn("size-4", compact && "size-3.5")} />
         )}
