@@ -21,14 +21,6 @@ export const ProjectsSection = () => (
         />
       </RevealItem>
       <SectionShowcase glowPosition="right">
-        <RevealItem className="mb-6 flex flex-wrap justify-center gap-2">
-          <span className="rounded-full border border-primary/15 bg-background/80 px-3 py-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            {projects.length} featured builds
-          </span>
-          <span className="rounded-full border border-primary/15 bg-background/80 px-3 py-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            systems + docs + QA
-          </span>
-        </RevealItem>
         <ProjectFilter projects={projects} />
       </SectionShowcase>
     </RevealGroup>

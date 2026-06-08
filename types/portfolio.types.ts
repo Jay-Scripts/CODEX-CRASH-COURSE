@@ -10,7 +10,8 @@ export type ProjectCategory =
   | "stand-alone"
   | "website"
   | "mobile"
-  | "user-manuals";
+  | "user-manuals"
+  | "system-flowcharts";
 
 export type ProjectFilterValue = "all" | ProjectCategory;
 

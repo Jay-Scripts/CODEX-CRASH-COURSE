@@ -1,5 +1,4 @@
 "use client";
-
 import {
   ChevronDown,
   Expand,
@@ -20,12 +19,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ProjectDocumentOverlay } from "./project-document-overlay";
 import { ProjectFlowchartCarousel } from "./project-flowchart-carousel";
+import { ProjectFlowchartOverlay } from "./project-flowchart-overlay";
 
 const projectCategoryLabels = {
   website: "Website",
   mobile: "Mobile",
   "stand-alone": "Stand Alone",
   "user-manuals": "User Manuals",
+  "system-flowcharts": "System Flowchart",
 } as const;
 
 const projectActionLabels = {
@@ -33,6 +34,7 @@ const projectActionLabels = {
   mobile: "Live demo",
   "stand-alone": "Live demo",
   "user-manuals": "View manual",
+  "system-flowcharts": "Open diagram",
 } as const;
 
 type ProjectCardProps = {
@@ -51,6 +53,8 @@ const isImagePreview = (previewSrc: string) =>
 export const ProjectCard = ({ project }: ProjectCardProps) => {
   const [isDocumentOverlayOpen, setIsDocumentOverlayOpen] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
+  const [activeFlowchartIndex, setActiveFlowchartIndex] = useState(0);
+  const [isFlowchartOverlayOpen, setIsFlowchartOverlayOpen] = useState(false);
   const [isFlowchartPreviewVisible, setIsFlowchartPreviewVisible] =
     useState(false);
   const [activeDocument, setActiveDocument] = useState<{
@@ -62,10 +66,23 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   const hasExpandableDocumentPreview = Boolean(project.previewDialogSrc);
   const hasResourceLinks = Boolean(project.resourceLinks?.length);
   const isUserManualPreview = project.primaryCategory === "user-manuals";
+  const isSystemFlowchartProject =
+    project.primaryCategory === "system-flowcharts" &&
+    Boolean(project.flowchartPreviews?.length);
+  const usesExpandedPreviewSurface =
+    isUserManualPreview || isSystemFlowchartProject;
+  const canOpenPreview =
+    hasExpandableDocumentPreview || isSystemFlowchartProject;
+  const activeFlowchartPreview = project.flowchartPreviews?.[activeFlowchartIndex];
 
   const openDocumentOverlay = (src: string, title: string) => {
     setActiveDocument({ src, title });
     setIsDocumentOverlayOpen(true);
+  };
+
+  const openFlowchartOverlay = (index = 0) => {
+    setActiveFlowchartIndex(index);
+    setIsFlowchartOverlayOpen(true);
   };
 
   const closeDocumentOverlay = () => {
@@ -73,51 +90,99 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
     setActiveDocument(null);
   };
 
+  const closeFlowchartOverlay = () => {
+    setIsFlowchartOverlayOpen(false);
+  };
+
+  const showPreviousFlowchart = () => {
+    if (!project.flowchartPreviews?.length) {
+      return;
+    }
+
+    setActiveFlowchartIndex((currentIndex) =>
+      currentIndex === 0
+        ? project.flowchartPreviews!.length - 1
+        : currentIndex - 1,
+    );
+  };
+
+  const showNextFlowchart = () => {
+    if (!project.flowchartPreviews?.length) {
+      return;
+    }
+
+    setActiveFlowchartIndex((currentIndex) =>
+      currentIndex === project.flowchartPreviews!.length - 1
+        ? 0
+        : currentIndex + 1,
+    );
+  };
+
   return (
     <>
       <Card
-        className="group overflow-hidden border border-border/60 bg-card transition-shadow duration-300 hover:shadow-md"
+        className="group overflow-hidden border border-border/50 bg-card transition-all duration-300 hover:border-border/80 hover:shadow-lg hover:shadow-black/20"
         id={project.id}
       >
-        <article aria-labelledby={`${project.id}-title`}>
-          <div className="relative border-b border-border/60 bg-muted/40">
+        <article
+          aria-labelledby={`${project.id}-title`}
+          className="lg:grid lg:grid-cols-[minmax(15rem,18rem)_minmax(0,1fr)]"
+        >
+          {/* ── Preview column ── */}
+          <div className="flex flex-col border-b border-border/40 bg-muted/20 lg:border-b-0 lg:border-r lg:border-border/40">
             {hasPreview ? (
-              <div className="flex flex-col items-center gap-0">
-                <div className="flex w-full items-center justify-between gap-3 border-b border-border/50 bg-background/60 px-4 py-2.5 backdrop-blur-sm sm:px-5">
-                  <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                    <FileText className="size-3.5 shrink-0 text-primary" />
+              <>
+                {/* top bar */}
+                <div className="flex items-center gap-2 border-b border-border/30 px-4 py-2.5">
+                  <span className="flex items-center gap-1.5 text-[11px] tracking-wide text-muted-foreground/60 uppercase">
+                    <FileText className="size-3 shrink-0 text-primary/50" />
                     Document preview
                   </span>
-                  {!isUserManualPreview ? (
-                    <span className="text-xs text-muted-foreground">
-                      {hasResourceLinks
-                        ? "Choose a file below to view it"
-                        : "Tap the preview to view it"}
-                    </span>
-                  ) : null}
                 </div>
 
-                <div className="flex w-full justify-center bg-muted/30 px-6 py-6 sm:py-8">
-                  {hasExpandableDocumentPreview ? (
+                {/* thumbnail */}
+                <div
+                  className={cn(
+                    "flex flex-1 items-stretch justify-stretch px-6 py-8",
+                    usesExpandedPreviewSurface && "px-4 py-4",
+                  )}
+                >
+                  {canOpenPreview ? (
                     <button
                       aria-haspopup="dialog"
-                      className="group relative aspect-[3/4] w-40 overflow-hidden rounded-xl border border-border/60 bg-background shadow-md ring-1 ring-border/40 transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 sm:w-48"
-                      onClick={() =>
+                      className={cn(
+                        "group/thumb relative h-full overflow-hidden rounded-xl border border-border/50 bg-background/80 shadow-md transition-all duration-200 hover:scale-[1.02] hover:border-border/80 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+                        isSystemFlowchartProject
+                          ? "min-h-[20rem] w-full flex-1 lg:min-h-[24rem]"
+                          : usesExpandedPreviewSurface
+                            ? "aspect-[3/4] w-full"
+                            : "aspect-[3/4] w-36 sm:w-40",
+                      )}
+                      onClick={() => {
+                        if (isSystemFlowchartProject) {
+                          openFlowchartOverlay();
+                          return;
+                        }
+
                         openDocumentOverlay(
                           project.previewDialogSrc!,
                           project.title,
-                        )
-                      }
+                        );
+                      }}
                       type="button"
                     >
                       {project.previewSrc &&
                       isImagePreview(project.previewSrc) ? (
                         <Image
                           alt={project.previewAlt ?? `${project.title} preview`}
-                          className="object-cover object-top"
+                          className={cn(
+                            isSystemFlowchartProject
+                              ? "object-contain p-3"
+                              : "object-cover object-top",
+                          )}
                           fill
                           priority={project.primaryCategory === "user-manuals"}
-                          sizes="(min-width: 640px) 12rem, 10rem"
+                          sizes="(min-width: 640px) 10rem, 9rem"
                           src={project.previewSrc}
                           unoptimized
                         />
@@ -131,25 +196,40 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                           }
                         />
                       )}
-                      {isUserManualPreview ? (
-                        <span className="absolute inset-0 flex items-center justify-center bg-background/82 text-sm font-medium text-foreground opacity-0 transition-opacity duration-200 hover:opacity-100 focus-visible:opacity-100 group-hover:opacity-100">
-                          <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/90 px-4 py-2 shadow-sm backdrop-blur">
-                            <Expand className="size-4 text-primary" />
-                            View manual
+                      {isUserManualPreview || isSystemFlowchartProject ? (
+                        <span className="absolute inset-0 flex items-center justify-center bg-background/75 opacity-0 backdrop-blur-[2px] transition-opacity duration-200 group-hover/thumb:opacity-100">
+                          <span className="inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm">
+                            <Expand className="size-3.5 text-primary" />
+                            {isSystemFlowchartProject
+                              ? "View flowchart"
+                              : "View manual"}
                           </span>
                         </span>
                       ) : null}
                     </button>
                   ) : (
-                    <figure className="relative aspect-[3/4] w-40 overflow-hidden rounded-xl border border-border/60 bg-background shadow-md ring-1 ring-border/40 sm:w-48">
+                    <figure
+                      className={cn(
+                        "relative h-full overflow-hidden rounded-xl border border-border/50 bg-background/80 shadow-md",
+                        isSystemFlowchartProject
+                          ? "min-h-[20rem] w-full flex-1 lg:min-h-[24rem]"
+                          : usesExpandedPreviewSurface
+                            ? "aspect-[3/4] w-full"
+                            : "aspect-[3/4] w-36 sm:w-40",
+                      )}
+                    >
                       {project.previewSrc &&
                       isImagePreview(project.previewSrc) ? (
                         <Image
                           alt={project.previewAlt ?? `${project.title} preview`}
-                          className="object-cover object-top"
+                          className={cn(
+                            isSystemFlowchartProject
+                              ? "object-contain p-3"
+                              : "object-cover object-top",
+                          )}
                           fill
                           priority={project.primaryCategory === "user-manuals"}
-                          sizes="(min-width: 640px) 12rem, 10rem"
+                          sizes="(min-width: 640px) 10rem, 9rem"
                           src={project.previewSrc}
                           unoptimized
                         />
@@ -167,33 +247,39 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                   )}
                 </div>
 
-                <div className="flex w-full items-center justify-between border-t border-border/50 bg-background/60 px-4 py-2 text-xs text-muted-foreground">
-                  <span>Front page preview</span>
-                  <span>PDF available in fullscreen</span>
+                {/* bottom bar */}
+                <div className="flex items-center justify-between border-t border-border/30 px-4 py-2 text-[10px] text-muted-foreground/40">
+                  <span>Front page</span>
+                  <span>
+                    {isSystemFlowchartProject
+                      ? "Diagram in fullscreen"
+                      : "PDF in fullscreen"}
+                  </span>
                 </div>
-              </div>
+              </>
             ) : (
-              <div className="flex justify-center p-6 sm:p-8">
-                <div className="w-full max-w-xs rounded-xl border border-border/60 bg-background p-4 shadow-sm">
+              /* skeleton placeholder when no preview */
+              <div className="flex h-full items-center justify-center p-6 sm:p-8">
+                <div className="w-full max-w-[11rem] rounded-xl border border-border/40 bg-background/60 p-4">
                   <div className="mb-4 flex items-center justify-between">
-                    <div className="h-2 w-20 rounded-full bg-primary/50" />
-                    <div className="flex gap-1.5">
-                      {[0, 1, 2].map((index) => (
+                    <div className="h-1.5 w-16 rounded-full bg-primary/30" />
+                    <div className="flex gap-1">
+                      {[0, 1, 2].map((i) => (
                         <div
-                          key={index}
-                          className="size-2 rounded-full bg-muted-foreground/30"
+                          key={i}
+                          className="size-1.5 rounded-full bg-muted-foreground/20"
                         />
                       ))}
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <div className="h-2.5 rounded-full bg-muted" />
-                    <div className="h-2.5 w-4/5 rounded-full bg-muted" />
-                    <div className="mt-4 grid grid-cols-3 gap-2">
-                      {[0, 1, 2].map((index) => (
+                    <div className="h-2 rounded-full bg-muted/60" />
+                    <div className="h-2 w-4/5 rounded-full bg-muted/60" />
+                    <div className="mt-3 grid grid-cols-3 gap-1.5">
+                      {[0, 1, 2].map((i) => (
                         <div
-                          key={index}
-                          className="h-10 rounded-lg bg-primary/8"
+                          key={i}
+                          className="h-8 rounded-lg bg-primary/5"
                         />
                       ))}
                     </div>
@@ -203,28 +289,33 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             )}
           </div>
 
-          <CardContent className="p-4 sm:p-5 lg:p-6">
-            <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
+          {/* ── Content column ── */}
+          <CardContent className="flex flex-col gap-4 p-5 sm:p-6 lg:p-7">
+
+            {/* title + category */}
+            <div className="flex flex-wrap items-start justify-between gap-2">
               <h3
-                className="text-xl font-semibold tracking-tight sm:text-2xl"
+                className="text-lg font-semibold tracking-tight text-foreground sm:text-xl"
                 id={`${project.id}-title`}
               >
                 {project.title}
               </h3>
-              <span className="inline-flex shrink-0 items-center rounded-full border border-border/60 bg-secondary px-2.5 py-0.5 text-xs font-medium text-secondary-foreground">
+              <span className="inline-flex shrink-0 items-center rounded-full border border-primary/20 bg-primary/8 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-primary/70">
                 {projectCategoryLabels[project.primaryCategory]}
               </span>
             </div>
 
-            <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+            {/* summary */}
+            <p className="text-sm leading-relaxed text-muted-foreground/70">
               {project.summary}
             </p>
 
-            <div className="mb-5 flex flex-wrap gap-1.5">
+            {/* tech stack */}
+            <div className="flex flex-wrap gap-1.5">
               {project.techStack.map((tech) => (
                 <Badge
                   key={tech}
-                  className="rounded-full text-xs font-normal"
+                  className="rounded-md border-border/40 bg-muted/30 text-[10.5px] font-normal text-muted-foreground/60 hover:bg-muted/50"
                   variant="outline"
                 >
                   {tech}
@@ -232,25 +323,23 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               ))}
             </div>
 
+            <div className="h-px bg-border/30" />
+
+            {/* resource links */}
             {hasResourceLinks ? (
-              <section
-                aria-labelledby={`${project.id}-resource-links`}
-                className="mb-5 rounded-lg border border-border/60 bg-muted/30 p-4"
-              >
+              <section aria-labelledby={`${project.id}-resource-links`}>
                 <h4
-                  className="mb-3 flex items-center gap-2 text-sm font-semibold"
+                  className="mb-2.5 flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-widest text-muted-foreground/50"
                   id={`${project.id}-resource-links`}
                 >
-                  <span className="flex size-6 shrink-0 items-center justify-center rounded-md bg-primary/10">
-                    <Link2 className="size-3.5 text-primary" />
-                  </span>
+                  <Link2 className="size-3 text-primary/50" />
                   Project files
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {project.resourceLinks?.map((resource) => (
                     <Button
                       key={resource.href}
-                      className="h-8 gap-1.5 px-3 text-xs"
+                      className="h-7 gap-1.5 rounded-lg border-border/40 bg-muted/20 px-3 text-xs text-muted-foreground hover:border-border/60 hover:bg-muted/40 hover:text-foreground"
                       onClick={() =>
                         openDocumentOverlay(
                           `${resource.href}#page=1&view=FitH`,
@@ -260,7 +349,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                       type="button"
                       variant="outline"
                     >
-                      <FileText className="size-3.5 shrink-0" />
+                      <FileText className="size-3 shrink-0" />
                       {resource.label}
                     </Button>
                   ))}
@@ -268,24 +357,20 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               </section>
             ) : null}
 
-            <div className="mb-5 grid gap-4 sm:grid-cols-2">
+            {/* architecture + features */}
+            <div className="grid gap-5 sm:grid-cols-2">
               <section aria-labelledby={`${project.id}-architecture`}>
                 <h4
-                  className="mb-2.5 flex items-center gap-2 text-sm font-semibold"
+                  className="mb-2.5 flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-widest text-muted-foreground/50"
                   id={`${project.id}-architecture`}
                 >
-                  <span className="flex size-6 shrink-0 items-center justify-center">
-                    <Layers className="size-3.5 text-primary" />
-                  </span>
-                  Architecture highlights
+                  <Layers className="size-3 text-primary/50" />
+                  Architecture
                 </h4>
-                <ul className="space-y-1.5 text-sm text-muted-foreground">
+                <ul className="space-y-1.5">
                   {project.architecture.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-start gap-2 break-words"
-                    >
-                      <span className="mt-1.5 size-1 shrink-0 rounded-full bg-primary/50" />
+                    <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground/60">
+                      <span className="mt-[7px] size-1 shrink-0 rounded-full bg-primary/40" />
                       {item}
                     </li>
                   ))}
@@ -294,21 +379,16 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
               <section aria-labelledby={`${project.id}-features`}>
                 <h4
-                  className="mb-2.5 flex items-center gap-2 text-sm font-semibold"
+                  className="mb-2.5 flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-widest text-muted-foreground/50"
                   id={`${project.id}-features`}
                 >
-                  <span className="flex size-6 shrink-0 items-center justify-center">
-                    <ListChecks className="size-3.5 text-primary" />
-                  </span>
-                  Features implemented
+                  <ListChecks className="size-3 text-primary/50" />
+                  Features
                 </h4>
-                <ul className="space-y-1.5 text-sm text-muted-foreground">
+                <ul className="space-y-1.5">
                   {project.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex items-start gap-2 break-words"
-                    >
-                      <span className="mt-1.5 size-1 shrink-0 rounded-full bg-primary/50" />
+                    <li key={feature} className="flex items-start gap-2 text-sm text-muted-foreground/60">
+                      <span className="mt-[7px] size-1 shrink-0 rounded-full bg-primary/40" />
                       {feature}
                     </li>
                   ))}
@@ -316,84 +396,73 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               </section>
             </div>
 
+            {/* flowchart toggle */}
             {project.flowchartPreviews?.length ? (
-              <section className="mb-5 rounded-lg border border-border/60 bg-muted/30 p-4">
-                <Button
-                  aria-expanded={isFlowchartPreviewVisible}
-                  className="w-full justify-between"
-                  onClick={() =>
-                    setIsFlowchartPreviewVisible((value) => !value)
-                  }
-                  type="button"
-                  variant="outline"
-                >
-                  <span className="flex items-center gap-2">
-                    <GitBranch className="size-4 shrink-0" />
-                    {isFlowchartPreviewVisible
-                      ? "Hide system flowchart preview"
-                      : "View system flowchart preview"}
-                  </span>
-                  <ChevronDown
-                    className={cn(
-                      "size-4 shrink-0 transition-transform duration-200",
-                      isFlowchartPreviewVisible && "rotate-180",
-                    )}
-                  />
-                </Button>
-                {isFlowchartPreviewVisible ? (
-                  <div className="mt-4">
-                    <ProjectFlowchartCarousel
-                      previews={project.flowchartPreviews}
+              <>
+                <div className="h-px bg-border/30" />
+                <section>
+                  <button
+                    aria-expanded={isFlowchartPreviewVisible}
+                    className="flex w-full items-center justify-between rounded-lg border border-border/40 bg-muted/20 px-3.5 py-2.5 text-xs font-medium text-muted-foreground transition-colors hover:border-border/60 hover:bg-muted/30 hover:text-foreground"
+                    onClick={() => setIsFlowchartPreviewVisible((v) => !v)}
+                    type="button"
+                  >
+                    <span className="flex items-center gap-2">
+                      <GitBranch className="size-3.5 shrink-0 text-primary/50" />
+                      {isFlowchartPreviewVisible
+                        ? "Hide flowchart preview"
+                        : "View system flowchart"}
+                    </span>
+                    <ChevronDown
+                      className={cn(
+                        "size-3.5 text-muted-foreground/50 transition-transform duration-200",
+                        isFlowchartPreviewVisible && "rotate-180",
+                      )}
                     />
-                  </div>
-                ) : null}
-              </section>
+                  </button>
+                  {isFlowchartPreviewVisible ? (
+                    <div className="mt-3">
+                      <ProjectFlowchartCarousel previews={project.flowchartPreviews} />
+                    </div>
+                  ) : null}
+                </section>
+              </>
             ) : null}
 
-            <div className="mt-4 space-y-3">
+            {/* more details (mobile toggle) */}
+            <div className="space-y-3">
               <button
                 aria-expanded={detailsOpen}
-                className="flex w-full items-center justify-between rounded-lg border border-border/60 px-4 py-2.5 text-sm font-medium transition-colors hover:bg-muted/60 md:hidden"
-                onClick={() => setDetailsOpen((value) => !value)}
+                className="flex w-full items-center justify-between rounded-lg border border-border/40 bg-muted/20 px-3.5 py-2.5 text-xs font-medium text-muted-foreground transition-colors hover:border-border/60 hover:bg-muted/30 hover:text-foreground md:hidden"
+                onClick={() => setDetailsOpen((v) => !v)}
                 type="button"
               >
                 More details
                 <ChevronDown
                   className={cn(
-                    "size-4 text-muted-foreground transition-transform duration-200",
+                    "size-3.5 text-muted-foreground/50 transition-transform duration-200",
                     detailsOpen && "rotate-180",
                   )}
                 />
               </button>
 
-              <div
-                className={cn(
-                  "space-y-3",
-                  "md:block",
-                  detailsOpen ? "block" : "hidden",
-                )}
-              >
+              <div className={cn("space-y-3", "md:block", detailsOpen ? "block" : "hidden")}>
                 {project.flowchartActivities?.length ? (
                   <section
                     aria-labelledby={`${project.id}-flowchart-activities`}
-                    className="rounded-lg border border-border/60 bg-muted/40 p-4"
+                    className="rounded-lg border border-border/40 bg-muted/20 p-4"
                   >
                     <h4
-                      className="mb-2.5 flex items-center gap-2 text-sm font-semibold"
+                      className="mb-2.5 flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-widest text-muted-foreground/50"
                       id={`${project.id}-flowchart-activities`}
                     >
-                      <span className="flex size-6 shrink-0 items-center justify-center rounded-md bg-primary/10">
-                        <GitBranch className="size-3.5 text-primary" />
-                      </span>
-                      System flowchart activities
+                      <GitBranch className="size-3 text-primary/50" />
+                      Flowchart activities
                     </h4>
-                    <ul className="space-y-1.5 text-sm text-muted-foreground">
+                    <ul className="space-y-1.5">
                       {project.flowchartActivities.map((activity) => (
-                        <li
-                          key={activity}
-                          className="flex items-start gap-2 break-words"
-                        >
-                          <span className="mt-1.5 size-1 shrink-0 rounded-full bg-primary/50" />
+                        <li key={activity} className="flex items-start gap-2 text-sm text-muted-foreground/60">
+                          <span className="mt-[7px] size-1 shrink-0 rounded-full bg-primary/40" />
                           {activity}
                         </li>
                       ))}
@@ -403,21 +472,18 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
                 <section
                   aria-labelledby={`${project.id}-challenges`}
-                  className="rounded-lg border border-border/60 bg-muted/40 p-4"
+                  className="rounded-lg border border-border/40 bg-muted/20 p-4"
                 >
                   <h4
-                    className="mb-2 text-sm font-semibold"
+                    className="mb-2.5 text-[10.5px] font-semibold uppercase tracking-widest text-muted-foreground/50"
                     id={`${project.id}-challenges`}
                   >
                     Challenges solved
                   </h4>
-                  <ul className="space-y-1.5 text-sm text-muted-foreground">
+                  <ul className="space-y-1.5">
                     {project.challenges.map((challenge) => (
-                      <li
-                        key={challenge}
-                        className="flex items-start gap-2 break-words"
-                      >
-                        <span className="mt-1.5 size-1 shrink-0 rounded-full bg-primary/50" />
+                      <li key={challenge} className="flex items-start gap-2 text-sm text-muted-foreground/60">
+                        <span className="mt-[7px] size-1 shrink-0 rounded-full bg-primary/40" />
                         {challenge}
                       </li>
                     ))}
@@ -426,28 +492,24 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               </div>
             </div>
 
-            <div className="mt-6 flex flex-col gap-2.5 sm:flex-row">
+            {/* action buttons */}
+            <div className="mt-auto flex flex-col gap-2 pt-1 sm:flex-row">
               <Button
                 asChild
-                className="h-10 w-full gap-2 sm:w-auto"
+                className="h-9 w-full gap-2 rounded-lg border-border/40 bg-muted/20 text-xs font-medium text-muted-foreground hover:border-border/60 hover:bg-muted/40 hover:text-foreground sm:w-auto sm:px-5"
                 variant="outline"
               >
-                <Link
-                  href={project.githubUrl}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <GitBranch className="size-4 shrink-0" />
+                <Link href={project.githubUrl} rel="noopener noreferrer" target="_blank">
+                  <GitBranch className="size-3.5 shrink-0" />
                   GitHub
                 </Link>
               </Button>
-              <Button asChild className="h-10 w-full gap-2 sm:w-auto">
-                <Link
-                  href={project.liveDemoUrl}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <ExternalLink className="size-4 shrink-0" />
+              <Button
+                asChild
+                className="h-9 w-full gap-2 rounded-lg text-xs font-medium sm:w-auto sm:px-5"
+              >
+                <Link href={project.liveDemoUrl} rel="noopener noreferrer" target="_blank">
+                  <ExternalLink className="size-3.5 shrink-0" />
                   {projectActionLabels[project.primaryCategory]}
                 </Link>
               </Button>
@@ -463,6 +525,18 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           onClose={closeDocumentOverlay}
           src={activeDocument.src}
           title={activeDocument.title}
+        />
+      ) : null}
+
+      {project.flowchartPreviews?.length && activeFlowchartPreview ? (
+        <ProjectFlowchartOverlay
+          activePreview={activeFlowchartPreview}
+          currentIndex={activeFlowchartIndex}
+          isOpen={isFlowchartOverlayOpen}
+          onClose={closeFlowchartOverlay}
+          onNext={showNextFlowchart}
+          onPrevious={showPreviousFlowchart}
+          total={project.flowchartPreviews.length}
         />
       ) : null}
     </>

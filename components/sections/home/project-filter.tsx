@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { ProjectCard } from "@/components/cards/project-card";
 import { RevealItem } from "@/components/common/scroll-reveal";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import type {
   Project,
   ProjectFilterValue,
@@ -14,6 +15,7 @@ const filters: { label: string; value: ProjectFilterValue }[] = [
   { label: "Stand Alone", value: "stand-alone" },
   { label: "Website", value: "website" },
   { label: "Mobile", value: "mobile" },
+  { label: "System Flowchart", value: "system-flowcharts" },
   { label: "User Manuals", value: "user-manuals" },
 ];
 
@@ -38,21 +40,29 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
   return (
     <>
       <div className="mb-8 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center">
-        {filters.map((filter) => (
-          <RevealItem key={filter.value}>
-            <Button
-              aria-pressed={activeFilter === filter.value}
-              className="w-full border-primary/15 bg-background/80 backdrop-blur-sm sm:w-auto"
-              onClick={() => setActiveFilter(filter.value)}
-              type="button"
-              variant={activeFilter === filter.value ? "default" : "outline"}
-            >
-              {filter.label}
-            </Button>
-          </RevealItem>
-        ))}
+        {filters.map((filter) => {
+          const isActive = activeFilter === filter.value;
+
+          return (
+            <RevealItem key={filter.value}>
+              <Button
+                aria-pressed={isActive}
+                className={cn(
+                  "w-full border-primary/15 bg-background/80 backdrop-blur-sm sm:w-auto",
+                  isActive &&
+                    "border-primary/30 bg-primary/12 text-foreground hover:bg-primary/18",
+                )}
+                onClick={() => setActiveFilter(filter.value)}
+                type="button"
+                variant="outline"
+              >
+                {filter.label}
+              </Button>
+            </RevealItem>
+          );
+        })}
       </div>
-      <div className="grid gap-6 lg:grid-cols-2" key={activeFilter}>
+      <div className="grid gap-6" key={activeFilter}>
         {visibleProjects.length ? (
           visibleProjects.map((project) => (
             <div key={project.id}>

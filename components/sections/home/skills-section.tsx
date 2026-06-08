@@ -222,10 +222,6 @@ export const SkillsSection = () => (
         />
       </RevealItem>
       <SectionShowcase glowPosition="center">
-        <RevealItem className="mb-6 flex flex-wrap justify-center gap-2">
-   
-        </RevealItem>
-
         <RevealGroup className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {skillGroups.map((group) => {
             const Icon = group.icon;
@@ -240,7 +236,6 @@ export const SkillsSection = () => (
                           <Icon className="size-5" />
                         </span>
                         <div>
-               
                           <h3 className="text-sm font-semibold sm:text-base">
                             {group.title}
                           </h3>

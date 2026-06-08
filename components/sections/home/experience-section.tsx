@@ -21,14 +21,6 @@ export const ExperienceSection = () => (
         />
       </RevealItem>
       <SectionShowcase glowPosition="left">
-        <RevealItem className="mb-6 flex flex-wrap justify-center gap-2">
-          <span className="rounded-full border border-primary/15 bg-background/80 px-3 py-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            {experiences.length} roles
-          </span>
-          <span className="rounded-full border border-primary/15 bg-background/80 px-3 py-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            support + service + systems
-          </span>
-        </RevealItem>
         <RevealGroup className="relative space-y-5 before:absolute before:left-5 before:top-4 before:h-[calc(100%-2rem)] before:w-px before:bg-gradient-to-b before:from-primary/20 before:via-border before:to-primary/20 md:before:left-1/2">
           {experiences.map((experience, index) => {
             const isEven = index % 2 === 0;

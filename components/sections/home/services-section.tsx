@@ -26,17 +26,6 @@ export const ServicesSection = () => (
         className="lg:min-h-[34rem]"
         glowPosition="center"
       >
-        <RevealItem className="mb-6 flex flex-wrap justify-center gap-2">
-          <span className="rounded-full border border-primary/15 bg-background/80 px-3 py-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            4 delivery lanes
-          </span>
-          <span className="rounded-full border border-primary/15 bg-background/80 px-3 py-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            responsive by default
-          </span>
-          <span className="rounded-full border border-primary/15 bg-background/80 px-3 py-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            QA-aware execution
-          </span>
-        </RevealItem>
         <RevealGroup className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {serviceOfferings.map((offering) => {
             const Icon = offering.icon;

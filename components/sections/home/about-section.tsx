@@ -1,4 +1,4 @@
-import { aboutEntries, aboutHighlights, profile } from "@/constants/portfolio.constants";
+import { aboutEntries, profile } from "@/constants/portfolio.constants";
 import { SectionAccentBackdrop } from "@/components/common/section-accent-backdrop";
 import { AnimatedSection } from "@/components/common/animated-section";
 import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
@@ -22,18 +22,6 @@ export const AboutSection = () => (
         />
       </RevealItem>
       <SectionShowcase glowPosition="left">
-        <RevealItem className="mb-6 flex flex-wrap justify-center gap-2">
-          {aboutHighlights.map((highlight) => (
-            <Badge
-              className="rounded-full border-primary/15 bg-background/80 px-3 py-1.5 shadow-sm"
-              key={highlight}
-              variant="outline"
-            >
-              {highlight}
-            </Badge>
-          ))}
-        </RevealItem>
-
         <RevealGroup className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
           <RevealItem>
             <Card className="h-full border-border/70 bg-card/95 shadow-sm shadow-primary/5">
