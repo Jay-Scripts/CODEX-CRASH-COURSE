@@ -15,7 +15,6 @@ import { AnimatedSection } from "@/components/common/animated-section";
 import { SectionAccentBackdrop } from "@/components/common/section-accent-backdrop";
 import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
 import { SectionHeading } from "@/components/common/section-heading";
-import { SectionShowcase } from "@/components/common/section-showcase";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -221,49 +220,47 @@ export const SkillsSection = () => (
           title="Frontend, backend, QA/Tester, and delivery tooling"
         />
       </RevealItem>
-      <SectionShowcase glowPosition="center">
-        <RevealGroup className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {skillGroups.map((group) => {
-            const Icon = group.icon;
+      <RevealGroup className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {skillGroups.map((group) => {
+          const Icon = group.icon;
 
-            return (
-              <RevealItem key={group.title}>
-                <Card className="h-full overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
-                  <CardContent className="p-5 sm:p-6">
-                    <article>
-                      <div className="mb-4 flex items-center gap-3 sm:mb-5">
-                        <span className="grid size-10 place-items-center rounded-2xl border border-primary/15 bg-background/80 text-primary shadow-sm">
-                          <Icon className="size-5" />
-                        </span>
-                        <div>
-                          <h3 className="text-sm font-semibold sm:text-base">
-                            {group.title}
-                          </h3>
-                        </div>
+          return (
+            <RevealItem key={group.title}>
+              <Card className="h-full overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
+                <CardContent className="p-5 sm:p-6">
+                  <article>
+                    <div className="mb-4 flex items-center gap-3 sm:mb-5">
+                      <span className="grid size-10 place-items-center rounded-2xl border border-primary/15 bg-background/80 text-primary shadow-sm">
+                        <Icon className="size-5" />
+                      </span>
+                      <div>
+                        <h3 className="text-sm font-semibold sm:text-base">
+                          {group.title}
+                        </h3>
                       </div>
-                      <div className="flex flex-wrap gap-2">
-                        {group.skills.map((skill) => {
-                          const skillWithLogo = allSkills.find(
-                            (item) => item.name === skill,
-                          );
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {group.skills.map((skill) => {
+                        const skillWithLogo = allSkills.find(
+                          (item) => item.name === skill,
+                        );
 
-                          return skillWithLogo ? (
-                            <SkillLogoPill
-                              compact
-                              key={skill}
-                              skill={skillWithLogo}
-                            />
-                          ) : null;
-                        })}
-                      </div>
-                    </article>
-                  </CardContent>
-                </Card>
-              </RevealItem>
-            );
-          })}
-        </RevealGroup>
-      </SectionShowcase>
+                        return skillWithLogo ? (
+                          <SkillLogoPill
+                            compact
+                            key={skill}
+                            skill={skillWithLogo}
+                          />
+                        ) : null;
+                      })}
+                    </div>
+                  </article>
+                </CardContent>
+              </Card>
+            </RevealItem>
+          );
+        })}
+      </RevealGroup>
     </RevealGroup>
   </AnimatedSection>
 );

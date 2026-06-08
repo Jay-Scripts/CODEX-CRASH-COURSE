@@ -3,7 +3,6 @@ import { SectionAccentBackdrop } from "@/components/common/section-accent-backdr
 import { AnimatedSection } from "@/components/common/animated-section";
 import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
 import { SectionHeading } from "@/components/common/section-heading";
-import { SectionShowcase } from "@/components/common/section-showcase";
 import { ProjectFilter } from "./project-filter";
 
 /**
@@ -20,9 +19,7 @@ export const ProjectsSection = () => (
           title="Full-stack projects with system design and mobile-first depth"
         />
       </RevealItem>
-      <SectionShowcase glowPosition="right">
-        <ProjectFilter projects={projects} />
-      </SectionShowcase>
+      <ProjectFilter projects={projects} />
     </RevealGroup>
   </AnimatedSection>
 );

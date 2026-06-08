@@ -18,7 +18,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ProjectDocumentOverlay } from "./project-document-overlay";
-import { ProjectFlowchartCarousel } from "./project-flowchart-carousel";
 import { ProjectFlowchartOverlay } from "./project-flowchart-overlay";
 
 const projectCategoryLabels = {
@@ -55,8 +54,6 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [activeFlowchartIndex, setActiveFlowchartIndex] = useState(0);
   const [isFlowchartOverlayOpen, setIsFlowchartOverlayOpen] = useState(false);
-  const [isFlowchartPreviewVisible, setIsFlowchartPreviewVisible] =
-    useState(false);
   const [activeDocument, setActiveDocument] = useState<{
     src: string;
     title: string;
@@ -395,39 +392,6 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                 </ul>
               </section>
             </div>
-
-            {/* flowchart toggle */}
-            {project.flowchartPreviews?.length ? (
-              <>
-                <div className="h-px bg-border/30" />
-                <section>
-                  <button
-                    aria-expanded={isFlowchartPreviewVisible}
-                    className="flex w-full items-center justify-between rounded-lg border border-border/40 bg-muted/20 px-3.5 py-2.5 text-xs font-medium text-muted-foreground transition-colors hover:border-border/60 hover:bg-muted/30 hover:text-foreground"
-                    onClick={() => setIsFlowchartPreviewVisible((v) => !v)}
-                    type="button"
-                  >
-                    <span className="flex items-center gap-2">
-                      <GitBranch className="size-3.5 shrink-0 text-primary/50" />
-                      {isFlowchartPreviewVisible
-                        ? "Hide flowchart preview"
-                        : "View system flowchart"}
-                    </span>
-                    <ChevronDown
-                      className={cn(
-                        "size-3.5 text-muted-foreground/50 transition-transform duration-200",
-                        isFlowchartPreviewVisible && "rotate-180",
-                      )}
-                    />
-                  </button>
-                  {isFlowchartPreviewVisible ? (
-                    <div className="mt-3">
-                      <ProjectFlowchartCarousel previews={project.flowchartPreviews} />
-                    </div>
-                  ) : null}
-                </section>
-              </>
-            ) : null}
 
             {/* more details (mobile toggle) */}
             <div className="space-y-3">
