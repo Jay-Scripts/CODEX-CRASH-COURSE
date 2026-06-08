@@ -42,7 +42,7 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
           <RevealItem key={filter.value}>
             <Button
               aria-pressed={activeFilter === filter.value}
-              className="w-full sm:w-auto"
+              className="w-full border-primary/15 bg-background/80 backdrop-blur-sm sm:w-auto"
               onClick={() => setActiveFilter(filter.value)}
               type="button"
               variant={activeFilter === filter.value ? "default" : "outline"}
@@ -61,7 +61,7 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
           ))
         ) : (
           <div>
-            <div className="rounded-lg border border-dashed border-border bg-muted/30 p-8 text-center text-sm text-muted-foreground lg:col-span-2">
+            <div className="rounded-[1.6rem] border border-dashed border-primary/20 bg-background/80 p-8 text-center text-sm text-muted-foreground lg:col-span-2">
               No projects are tagged under this tab yet.
             </div>
           </div>

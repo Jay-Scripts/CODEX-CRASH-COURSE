@@ -65,6 +65,20 @@ export const SiteHeader = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleSectionNavigation = (href: string) => {
+    const section = document.querySelector<HTMLElement>(href);
+
+    if (!section) {
+      return;
+    }
+
+    section.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+    window.history.replaceState(null, "", href);
+  };
+
   useEffect(() => {
     if (!isMobileMenuOpen) {
       return undefined;
@@ -111,7 +125,14 @@ export const SiteHeader = () => {
     <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-xl">
       <div className="relative mx-auto max-w-7xl">
         <div className="flex h-16 w-full items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link className="flex items-center gap-3" href="#top">
+          <Link
+            className="flex items-center gap-3"
+            href="#top"
+            onClick={(event) => {
+              event.preventDefault();
+              handleSectionNavigation("#top");
+            }}
+          >
             <span className="flex size-15 items-center justify-center ">
               <Image
                 alt={profile.logoAlt}
@@ -135,7 +156,15 @@ export const SiteHeader = () => {
           >
             {navigationItems.map((item) => (
               <Button asChild key={item.href} size="sm" variant="ghost">
-                <Link href={item.href}>{item.label}</Link>
+                <Link
+                  href={item.href}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleSectionNavigation(item.href);
+                  }}
+                >
+                  {item.label}
+                </Link>
               </Button>
             ))}
           </nav>
@@ -209,7 +238,14 @@ export const SiteHeader = () => {
                       className="h-11 w-full justify-start rounded-2xl px-4 text-base"
                       variant="ghost"
                     >
-                      <Link href={item.href} onClick={closeMobileMenu}>
+                      <Link
+                        href={item.href}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          handleSectionNavigation(item.href);
+                          closeMobileMenu();
+                        }}
+                      >
                         {item.label}
                       </Link>
                     </Button>

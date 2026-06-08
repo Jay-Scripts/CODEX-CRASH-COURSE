@@ -15,7 +15,13 @@ export const SectionHeading = ({
   title,
 }: SectionHeadingProps) => (
   <header className="mx-auto mb-8 max-w-3xl text-center sm:mb-10 lg:mb-12">
-    <Badge className="mb-3 px-3 py-1 text-xs uppercase tracking-wide" variant="outline">
+    <div className="mb-4 flex justify-center">
+      <span className="h-px w-16 bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+    </div>
+    <Badge
+      className="mb-4 rounded-full border-primary/20 bg-card/75 px-4 py-1.5 text-[0.68rem] font-medium uppercase tracking-[0.24em] shadow-sm backdrop-blur-sm"
+      variant="outline"
+    >
       {eyebrow}
     </Badge>
     <h2 className="text-balance text-2xl font-semibold tracking-tight text-foreground sm:text-3xl lg:text-4xl">

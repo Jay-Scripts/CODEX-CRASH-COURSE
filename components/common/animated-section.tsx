@@ -20,7 +20,7 @@ export const AnimatedSection = ({
   ...props
 }: AnimatedSectionProps) => (
   <motion.section
-    className={cn("surface-grid scroll-mt-24", className)}
+    className={cn("section-surface surface-grid scroll-mt-24 overflow-hidden", className)}
     initial="hidden"
     variants={sectionRevealState}
     viewport={{ once: true, amount: 0.18 }}
