@@ -514,8 +514,42 @@ export const ProjectDocumentOverlay = ({
 
         <div
           ref={scrollRef}
-          className="min-h-0 flex-1 overflow-auto bg-muted/30 p-3 sm:p-5"
+          className="relative min-h-0 flex-1 overflow-auto bg-muted/30 p-3 sm:p-5"
         >
+          {!loading && !error ? (
+            <>
+              <Button
+                aria-label={
+                  isSinglePageLayout ? "Previous page" : "Previous spread"
+                }
+                className="absolute left-3 top-1/2 z-10 size-10 -translate-y-1/2 rounded-full border-border/70 bg-background/90 shadow-lg backdrop-blur sm:left-5"
+                disabled={!canGoPrev}
+                onClick={() =>
+                  setCurrentPage((page) => Math.max(page - pageStep, 1))
+                }
+                size="icon"
+                type="button"
+                variant="outline"
+              >
+                <ChevronLeft className="size-4" />
+              </Button>
+
+              <Button
+                aria-label={isSinglePageLayout ? "Next page" : "Next spread"}
+                className="absolute right-3 top-1/2 z-10 size-10 -translate-y-1/2 rounded-full border-border/70 bg-background/90 shadow-lg backdrop-blur sm:right-5"
+                disabled={!canGoNext}
+                onClick={() =>
+                  setCurrentPage((page) => Math.min(page + pageStep, totalPages))
+                }
+                size="icon"
+                type="button"
+                variant="outline"
+              >
+                <ChevronRight className="size-4" />
+              </Button>
+            </>
+          ) : null}
+
           {loading ? (
             <div className="flex h-full items-center justify-center gap-2 text-sm text-muted-foreground">
               <Loader2 className="size-5 animate-spin" />
@@ -552,23 +586,7 @@ export const ProjectDocumentOverlay = ({
           ) : null}
         </div>
 
-        <div className="flex shrink-0 items-center justify-between border-t border-border/60 bg-background px-4 py-2.5 sm:px-5">
-          <Button
-            aria-label={isSinglePageLayout ? "Previous page" : "Previous spread"}
-            className="h-8 gap-1.5 px-3 text-xs"
-            disabled={!canGoPrev}
-            onClick={() =>
-              setCurrentPage((page) => Math.max(page - pageStep, 1))
-            }
-            type="button"
-            variant="outline"
-          >
-            <ChevronLeft className="size-4" />
-            <span className="hidden sm:inline">
-              {isSinglePageLayout ? "Previous page" : "Previous spread"}
-            </span>
-          </Button>
-
+        <div className="flex shrink-0 items-center justify-center border-t border-border/60 bg-background px-4 py-2.5 sm:px-5">
           <span className="text-xs tabular-nums text-muted-foreground">
             {totalPages > 0
               ? isSinglePageLayout
@@ -576,22 +594,6 @@ export const ProjectDocumentOverlay = ({
                 : `${Math.ceil(currentPage / 2)} / ${Math.ceil(totalPages / 2)} spreads`
               : "-"}
           </span>
-
-          <Button
-            aria-label={isSinglePageLayout ? "Next page" : "Next spread"}
-            className="h-8 gap-1.5 px-3 text-xs"
-            disabled={!canGoNext}
-            onClick={() =>
-              setCurrentPage((page) => Math.min(page + pageStep, totalPages))
-            }
-            type="button"
-            variant="outline"
-          >
-            <span className="hidden sm:inline">
-              {isSinglePageLayout ? "Next page" : "Next spread"}
-            </span>
-            <ChevronRight className="size-4" />
-          </Button>
         </div>
       </div>
     </div>,

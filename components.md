@@ -43,7 +43,7 @@
 
 ### `ProjectDocumentOverlay`
 
-- Purpose: Displays a fullscreen document preview modal for project assets such as user manuals while keeping the portfolio page in place underneath.
+- Purpose: Displays a fullscreen document preview modal for project assets such as user manuals with centered in-view navigation and zoom controls while keeping the portfolio page in place underneath.
 - Location: `components/cards/project-document-overlay.tsx`
 
 ## Forms

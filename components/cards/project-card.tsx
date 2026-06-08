@@ -66,6 +66,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   const isSystemFlowchartProject =
     project.primaryCategory === "system-flowcharts" &&
     Boolean(project.flowchartPreviews?.length);
+  const hidePrimaryActions =
+    project.id === "smart-pos-system-flowchart" || isUserManualPreview;
   const usesExpandedPreviewSurface =
     isUserManualPreview || isSystemFlowchartProject;
   const canOpenPreview =
@@ -457,27 +459,29 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             </div>
 
             {/* action buttons */}
-            <div className="mt-auto flex flex-col gap-2 pt-1 sm:flex-row">
-              <Button
-                asChild
-                className="h-9 w-full gap-2 rounded-lg border-border/40 bg-muted/20 text-xs font-medium text-muted-foreground hover:border-border/60 hover:bg-muted/40 hover:text-foreground sm:w-auto sm:px-5"
-                variant="outline"
-              >
-                <Link href={project.githubUrl} rel="noopener noreferrer" target="_blank">
-                  <GitBranch className="size-3.5 shrink-0" />
-                  GitHub
-                </Link>
-              </Button>
-              <Button
-                asChild
-                className="h-9 w-full gap-2 rounded-lg text-xs font-medium sm:w-auto sm:px-5"
-              >
-                <Link href={project.liveDemoUrl} rel="noopener noreferrer" target="_blank">
-                  <ExternalLink className="size-3.5 shrink-0" />
-                  {projectActionLabels[project.primaryCategory]}
-                </Link>
-              </Button>
-            </div>
+            {!hidePrimaryActions ? (
+              <div className="mt-auto flex flex-col gap-2 pt-1 sm:flex-row">
+                <Button
+                  asChild
+                  className="h-9 w-full gap-2 rounded-lg border-border/40 bg-muted/20 text-xs font-medium text-muted-foreground hover:border-border/60 hover:bg-muted/40 hover:text-foreground sm:w-auto sm:px-5"
+                  variant="outline"
+                >
+                  <Link href={project.githubUrl} rel="noopener noreferrer" target="_blank">
+                    <GitBranch className="size-3.5 shrink-0" />
+                    GitHub
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  className="h-9 w-full gap-2 rounded-lg text-xs font-medium sm:w-auto sm:px-5"
+                >
+                  <Link href={project.liveDemoUrl} rel="noopener noreferrer" target="_blank">
+                    <ExternalLink className="size-3.5 shrink-0" />
+                    {projectActionLabels[project.primaryCategory]}
+                  </Link>
+                </Button>
+              </div>
+            ) : null}
           </CardContent>
         </article>
       </Card>
