@@ -2,7 +2,6 @@ import {
   BriefcaseBusiness,
   Code2,
   Database,
-  GitBranch,
   Headphones,
   Info,
   MonitorSmartphone,
@@ -15,16 +14,13 @@ import {
 } from "lucide-react";
 import type {
   AboutEntry,
-  Education,
   Experience,
   FlowchartPreview,
   NavigationItem,
   Profile,
   Project,
-  RecentRepository,
   ServiceOffering,
   SkillGroup,
-  TechStat,
 } from "@/types/portfolio.types";
 
 const smartPosFlowchartPreviews: FlowchartPreview[] = [
@@ -352,45 +348,6 @@ export const experiences: Experience[] = [
       "Served as part of the customer service team by taking orders, preparing food, and maintaining cleanliness.",
       "Provided attentive customer service while demonstrating product knowledge and responsiveness to customer needs.",
     ],
-  },
-];
-
-export const education: Education = {
-  degree: "Bachelor of Science in Information Technology",
-  specialization:
-    "Full-stack development, QA testing, database design, and system analysis",
-  coursework: [
-    "Client-server architecture",
-    "Database management systems",
-    "Software engineering",
-    "Web application development",
-    "Systems analysis and design",
-  ],
-};
-
-export const techStats: TechStat[] = [
-  { label: "Primary focus", value: "Full-stack", icon: Server },
-  { label: "Architecture", value: "Database-first", icon: Database },
-  { label: "Quality", value: "QA/Tester-driven", icon: ShieldCheck },
-  { label: "Versioning", value: "Git workflow", icon: GitBranch },
-];
-
-export const recentRepositories: RecentRepository[] = [
-  {
-    name: "smart-pos-system",
-    description: "POS, kiosk, analytics, and inventory workflow prototype.",
-    stack: "Next.js, Supabase, PostgreSQL",
-  },
-  {
-    name: "car-rental-management",
-    description:
-      "Booking, admin reporting, vehicle tracking, and notification flows.",
-    stack: "PHP, MySQL, Bootstrap",
-  },
-  {
-    name: "qa-test-documentation",
-    description: "Functional, integration, and UAT documentation samples.",
-    stack: "Testing, QA/Tester, Documentation",
   },
 ];
 

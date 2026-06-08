@@ -75,24 +75,6 @@ export type NavigationItem = {
   label: string;
 };
 
-export type Education = {
-  coursework: string[];
-  degree: string;
-  specialization: string;
-};
-
-export type TechStat = {
-  icon: LucideIcon;
-  label: string;
-  value: string;
-};
-
-export type RecentRepository = {
-  description: string;
-  name: string;
-  stack: string;
-};
-
 export type AboutEntry = {
   description: string[];
   icon: LucideIcon;

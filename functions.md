@@ -19,13 +19,6 @@
 - Purpose: Merges conditional Tailwind class names and resolves utility conflicts.
 - Location: `lib/utils.ts`
 
-## Services
-
-### `getGitHubActivity`
-
-- Purpose: Returns the async GitHub activity payload used by the home page activity section.
-- Location: `lib/github-activity.ts`
-
 ## Validators
 
 ### `sanitizeContactField`

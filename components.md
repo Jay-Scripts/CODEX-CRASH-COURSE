@@ -69,7 +69,7 @@
 
 ## Home Sections
 
-### `HeroSection`, `ServicesSection`, `AboutSection`, `SkillsSection`, `ProjectsSection`, `ExperienceSection`, `EducationSection`, `GitHubActivitySection`, `ContactSection`
+### `HeroSection`, `ServicesSection`, `AboutSection`, `SkillsSection`, `ProjectsSection`, `ExperienceSection`, `ContactSection`
 
 - Purpose: Compose the recruiter-facing home page sections with responsive layouts across mobile and desktop, including a stronger hero introduction.
 - Location: `components/sections/home/*`
