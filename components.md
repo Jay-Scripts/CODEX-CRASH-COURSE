@@ -38,7 +38,7 @@
 
 ### `ProjectFlowchartCarousel`, `ProjectFlowchartOverlay`
 
-- Purpose: Display ordered project flowchart previews and a fullscreen inspection overlay for system diagrams with built-in zoom controls, centered carousel-style navigation, and smoother diagram switching without duplicating that interaction logic inside sections.
+- Purpose: Display ordered project flowchart previews and a fullscreen inspection overlay for system diagrams with built-in zoom controls, open-in-tab access, centered carousel-style navigation, and smoother diagram switching without duplicating that interaction logic inside sections.
 - Location: `components/cards/*`
 
 ### `ProjectDocumentOverlay`

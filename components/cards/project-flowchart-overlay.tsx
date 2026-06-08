@@ -1,6 +1,13 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, Minus, Plus, X } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Expand,
+  X,
+  ZoomIn,
+  ZoomOut,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import type { FlowchartPreview } from "@/types/portfolio.types";
@@ -214,11 +221,8 @@ export const ProjectFlowchartOverlay = ({
                 type="button"
                 variant="outline"
               >
-                <Minus className="size-4" />
+                <ZoomOut className="size-4" />
               </Button>
-              <div className="rounded-md border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium tabular-nums text-muted-foreground backdrop-blur">
-                {Math.round(zoomLevel * 100)}%
-              </div>
               <Button
                 aria-label="Zoom in"
                 className="size-8"
@@ -232,7 +236,36 @@ export const ProjectFlowchartOverlay = ({
                 type="button"
                 variant="outline"
               >
-                <Plus className="size-4" />
+                <ZoomIn className="size-4" />
+              </Button>
+              <Button
+                asChild
+                className="hidden h-8 gap-1.5 px-3 text-xs sm:flex"
+                variant="outline"
+              >
+                <a
+                  href={displayedPreview.src}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <Expand className="size-3.5" />
+                  Open diagram
+                </a>
+              </Button>
+              <Button
+                asChild
+                aria-label="Open diagram in new tab"
+                className="size-8 sm:hidden"
+                size="icon"
+                variant="outline"
+              >
+                <a
+                  href={displayedPreview.src}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <Expand className="size-4" />
+                </a>
               </Button>
               <Button
                 aria-label="Close fullscreen preview"
