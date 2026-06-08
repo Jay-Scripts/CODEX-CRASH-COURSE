@@ -255,22 +255,15 @@ export const HeroSection = () => (
           </span>
         </motion.h1>
 
-        <motion.p
-          className="mt-3 text-lg font-light italic sm:text-xl"
-          style={{ color: "var(--hero-role)" }}
-          variants={itemVariants}
-        >
-          Junior Web Developer
-        </motion.p>
+      
 
         <motion.p
           className="mt-4 max-w-md text-sm leading-relaxed sm:text-base lg:max-w-lg"
           style={{ color: "var(--hero-body)" }}
           variants={itemVariants}
         >
-          I craft fast, accessible, and pixel-perfect web experiences from
-          interactive UIs to scalable back-end APIs. Clean code, thoughtful UX,
-          shipped on time.
+    Junior Web Developer focused on building responsive, user-friendly, and maintainable web applications.
+
         </motion.p>
 
         <motion.div

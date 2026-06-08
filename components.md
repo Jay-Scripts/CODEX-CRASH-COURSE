@@ -9,7 +9,7 @@
 
 ### `SiteFooter`
 
-- Purpose: Renders the footer stack summary and outbound profile links.
+- Purpose: Renders a mobile-first footer with centered phone layout, smoother tablet-to-desktop responsiveness, and outbound profile links including optional Facebook access when present in profile data.
 - Location: `components/layout/site-footer.tsx`
 
 ### `ThemeToggle`

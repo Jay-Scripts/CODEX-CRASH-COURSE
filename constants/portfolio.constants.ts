@@ -76,17 +76,18 @@ const smartPosFlowchartPreviews: FlowchartPreview[] = [
 
 export const profile: Profile = {
   name: "Cornelio A. Gatbonton Jr",
-  role: "Junior Full-Stack Developer",
+  role: "Junior Web Developer",
   email: "corneliogatbontonjr21@gmail.com",
   location: "Philippines",
   logoAlt: "JayScript brand logo",
   logoSrc: "/Logo/JayScript%20Logo.svg",
   linkedinUrl:
     "https://www.linkedin.com/in/corneliogatbonton/?skipRedirect=true",
+  facebookUrl: "https://www.facebook.com/corneliogatbonton/",
   githubUrl: "https://github.com/Jay-Scripts",
   resumeUrl: "/resume.pdf",
   summary:
-    "BSIT developer focused on reliable full-stack systems, QA discipline, database design, and enterprise-ready user experiences.",
+    "Junior Web Developer focused on building reliable, maintainable, and user-friendly applications while continuously improving as a developer.",
 };
 
 export const navigationItems: NavigationItem[] = [

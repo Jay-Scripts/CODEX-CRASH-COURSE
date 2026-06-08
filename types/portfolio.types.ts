@@ -60,6 +60,7 @@ export type Experience = {
 
 export type Profile = {
   email: string;
+  facebookUrl?: string;
   githubUrl: string;
   linkedinUrl: string;
   logoAlt: string;
