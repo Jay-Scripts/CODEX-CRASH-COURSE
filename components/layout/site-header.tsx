@@ -144,9 +144,8 @@ export const SiteHeader = () => {
               />
             </span>
             <span className="hidden leading-tight sm:block">
-              <span className="block text-sm font-semibold">{profile.name}</span>
-              <span className="block text-xs text-muted-foreground">
-                {profile.role}
+              <span className="block text-lg font-semibold">
+                {profile.name}
               </span>
             </span>
           </Link>
@@ -175,7 +174,9 @@ export const SiteHeader = () => {
               aria-controls="mobile-navigation"
               aria-expanded={isMobileMenuOpen}
               aria-label={
-                isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"
+                isMobileMenuOpen
+                  ? "Close navigation menu"
+                  : "Open navigation menu"
               }
               className={cn(
                 "text-muted-foreground transition-colors lg:hidden",

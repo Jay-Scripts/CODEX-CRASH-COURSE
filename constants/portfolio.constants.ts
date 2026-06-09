@@ -329,8 +329,7 @@ export const projects: Project[] = [
     previewAlt: "Smart POS user manual front page cover preview",
     previewDialogSrc:
       "/user-manual/SMART%20POS%20USER%20MANUAL.pdf#page=1&view=FitH",
-    previewSrc:
-      "/user-manual/SMART%20POS%20FRONT%20PAGE.png",
+    previewSrc: "/user-manual/SMART%20POS%20FRONT%20PAGE.png",
   },
 ];
 
@@ -340,6 +339,7 @@ export const experiences: Experience[] = [
     organization: "Little Ark Foundation Inc.",
     period: "Jan 2026 - Present",
     icon: Code2,
+    isTechRelated: true,
     techStack: [
       "Next.js",
       "React",
@@ -360,39 +360,40 @@ export const experiences: Experience[] = [
   {
     role: "Service Crew",
     organization: "Golden Arches Development Corporation - McDonald's",
-    period: "Aug 2023 - Present",
+    period: "Aug 2022 - Jun 2026",
     icon: ShieldCheck,
     highlights: [
-  "Handled customer orders, food preparation, cleanliness, and customer service while supporting daily store operations.",
-  "Performed basic store equipment maintenance and troubleshooting, including monitors, keyboards, mouse devices, HDMI/VGA connections, and cash register/POS-related issues.",
-  "Conducted initial hardware issue checks before escalation to the company IT team, helping reduce unnecessary IT support requests and site visit requests.",
-  "Supported unit cleaning, equipment checking, and basic preventive maintenance to keep store systems and workstations operational.",
+      "Handled customer orders, food preparation, cleanliness, and customer service while supporting daily store operations.",
+      "Performed basic store equipment maintenance and troubleshooting, including monitors, keyboards, mouse devices, HDMI/VGA connections, and cash register/POS-related issues.",
+      "Conducted initial hardware issue checks before escalation to the company IT team, helping reduce unnecessary IT support requests and site visit requests.",
+      "Supported unit cleaning, equipment checking, and basic preventive maintenance to keep store systems and workstations operational.",
     ],
   },
   {
-    role: "IT Support Assistant",
+    role: "IT Support Assistant (Student Assistant)",
     organization: "Global Reciprocal Colleges",
-    period: "Jul 2023 - Dec 2025",
+    period: "Jul 2022 - Jul 2026",
     icon: Headphones,
+    isTechRelated: true,
     highlights: [
-     "Assisted in setting up and maintaining 2 computer laboratories, including workstation preparation, hardware arrangement, and basic system configuration.",
-  "Performed PC hardware maintenance and repairs, including soldering, component replacement, system upgrades, and peripheral troubleshooting.",
-  "Installed and reinstalled operating systems, configured software, printers, and basic lab equipment to support classroom and office operations.",
-  "Provided technical support to faculty, staff, and departments by troubleshooting internet connectivity, printer issues, system access problems, and hardware-related concerns.",
-  "Supported lab maintenance tasks, including cleaning, equipment checking, hardware transfers, and basic preventive maintenance."
-],
+      "Assisted in setting up and maintaining 2 computer laboratories, including workstation preparation, hardware arrangement, and basic system configuration.",
+      "Performed PC hardware maintenance and repairs, including soldering, component replacement, system upgrades, and peripheral troubleshooting.",
+      "Installed and reinstalled operating systems, configured software, printers, and basic lab equipment to support classroom and office operations.",
+      "Provided technical support to faculty, staff, and departments by troubleshooting internet connectivity, printer issues, system access problems, and hardware-related concerns.",
+      "Supported lab maintenance tasks, including cleaning, equipment checking, hardware transfers, and basic preventive maintenance.",
+    ],
   },
   {
     role: "Stock Clerk",
     organization: "Be Connected Management Services - Bench",
-    period: "Jul 2021 - Aug 2022",
+    period: "Jun 2021 - Jul 2022",
     icon: BriefcaseBusiness,
     highlights: [
-  "Managed stockroom organization, inventory checking, and item monitoring to support daily store operations.",
-  "Performed basic store maintenance support, including cable/wiring cleanup, system unit maintenance, and equipment checking.",
-  "Assisted in troubleshooting POS-related hardware issues, including non-working monitors and other output device concerns.",
-  "Helped identify and report defective store fixtures such as LED lights and light transformers for repair or replacement."
-]
+      "Managed stockroom organization, inventory checking, and item monitoring to support daily store operations.",
+      "Performed basic store maintenance support, including cable and wiring cleanup, system unit maintenance, and equipment checking.",
+      "Assisted in troubleshooting POS-related hardware issues, including non-working monitors and other output device concerns.",
+      "Helped identify and report defective store fixtures such as LED lights and light transformers for repair or replacement.",
+    ],
   },
   {
     role: "Bagger",
@@ -400,8 +401,7 @@ export const experiences: Experience[] = [
     period: "Jun 2020 - Nov 2020",
     icon: BriefcaseBusiness,
     highlights: [
-      "Packed customer purchases efficiently and carefully while assisting cashiers during checkout.",
-      "Provided polite and helpful customer assistance, including cart support and grocery carry-out service.",
+      "Packed customer purchases efficiently and assisted customers during checkout and carry-out support.",
     ],
   },
   {
@@ -410,8 +410,7 @@ export const experiences: Experience[] = [
     period: "Sep 2018 - Sep 2019",
     icon: ShieldCheck,
     highlights: [
-      "Served as part of the customer service team by taking orders, preparing food, and maintaining cleanliness.",
-      "Provided attentive customer service while demonstrating product knowledge and responsiveness to customer needs.",
+      "Supported customer service, order taking, food preparation, and store cleanliness in a fast-paced team environment.",
     ],
   },
 ];

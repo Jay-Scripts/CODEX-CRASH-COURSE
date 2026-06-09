@@ -53,6 +53,7 @@ export type Project = {
 export type Experience = {
   highlights: string[];
   icon: LucideIcon;
+  isTechRelated?: boolean;
   organization: string;
   period: string;
   role: string;

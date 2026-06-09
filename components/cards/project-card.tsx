@@ -133,8 +133,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               <>
                 {/* top bar */}
                 <div className="flex items-center gap-2 border-b border-border/30 px-4 py-2.5">
-                  <span className="flex items-center gap-1.5 text-[11px] tracking-wide text-muted-foreground/60 uppercase">
-                    <FileText className="size-3 shrink-0 text-primary/50" />
+                  <span className="flex items-center gap-1.5 text-[11px] uppercase tracking-wide text-muted-foreground">
+                    <FileText className="size-3 shrink-0 text-primary" />
                     Document preview
                   </span>
                 </div>
@@ -247,7 +247,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                 </div>
 
                 {/* bottom bar */}
-                <div className="flex items-center justify-between border-t border-border/30 px-4 py-2 text-[10px] text-muted-foreground/40">
+                <div className="flex items-center justify-between border-t border-border/30 px-4 py-2 text-[10px] text-muted-foreground">
                   <span>Front page</span>
                   <span>
                     {isSystemFlowchartProject
@@ -299,13 +299,13 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               >
                 {project.title}
               </h3>
-              <span className="inline-flex shrink-0 items-center rounded-full border border-primary/20 bg-primary/8 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-primary/70">
+              <span className="inline-flex shrink-0 items-center rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-primary">
                 {projectCategoryLabels[project.primaryCategory]}
               </span>
             </div>
 
             {/* summary */}
-            <p className="text-sm leading-relaxed text-muted-foreground/70">
+            <p className="text-sm leading-relaxed text-muted-foreground">
               {project.summary}
             </p>
 
@@ -314,7 +314,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               {project.techStack.map((tech) => (
                 <Badge
                   key={tech}
-                  className="rounded-md border-border/40 bg-muted/30 text-[10.5px] font-normal text-muted-foreground/60 hover:bg-muted/50"
+                  className="rounded-md border-border/50 bg-muted/50 text-[10.5px] font-normal text-foreground hover:bg-muted/70"
                   variant="outline"
                 >
                   {tech}
@@ -328,17 +328,17 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             {hasResourceLinks ? (
               <section aria-labelledby={`${project.id}-resource-links`}>
                 <h4
-                  className="mb-2.5 flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-widest text-muted-foreground/50"
+                  className="mb-2.5 flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-widest text-foreground"
                   id={`${project.id}-resource-links`}
                 >
-                  <Link2 className="size-3 text-primary/50" />
+                  <Link2 className="size-3 text-primary" />
                   Project files
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {project.resourceLinks?.map((resource) => (
                     <Button
                       key={resource.href}
-                      className="h-7 gap-1.5 rounded-lg border-border/40 bg-muted/20 px-3 text-xs text-muted-foreground hover:border-border/60 hover:bg-muted/40 hover:text-foreground"
+                      className="h-7 gap-1.5 rounded-lg border-border/50 bg-muted/40 px-3 text-xs text-foreground hover:border-border/70 hover:bg-muted/60"
                       onClick={() =>
                         openDocumentOverlay(
                           `${resource.href}#page=1&view=FitH`,
@@ -360,15 +360,15 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             <div className="grid gap-5 sm:grid-cols-2">
               <section aria-labelledby={`${project.id}-architecture`}>
                 <h4
-                  className="mb-2.5 flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-widest text-muted-foreground/50"
+                  className="mb-2.5 flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-widest text-foreground"
                   id={`${project.id}-architecture`}
                 >
-                  <Layers className="size-3 text-primary/50" />
+                  <Layers className="size-3 text-primary" />
                   Architecture
                 </h4>
                 <ul className="space-y-1.5">
                   {project.architecture.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground/60">
+                    <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
                       <span className="mt-[7px] size-1 shrink-0 rounded-full bg-primary/40" />
                       {item}
                     </li>
@@ -378,15 +378,15 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
               <section aria-labelledby={`${project.id}-features`}>
                 <h4
-                  className="mb-2.5 flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-widest text-muted-foreground/50"
+                  className="mb-2.5 flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-widest text-foreground"
                   id={`${project.id}-features`}
                 >
-                  <ListChecks className="size-3 text-primary/50" />
+                  <ListChecks className="size-3 text-primary" />
                   Features
                 </h4>
                 <ul className="space-y-1.5">
                   {project.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 text-sm text-muted-foreground/60">
+                    <li key={feature} className="flex items-start gap-2 text-sm text-muted-foreground">
                       <span className="mt-[7px] size-1 shrink-0 rounded-full bg-primary/40" />
                       {feature}
                     </li>
@@ -399,14 +399,14 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             <div className="space-y-3">
               <button
                 aria-expanded={detailsOpen}
-                className="flex w-full items-center justify-between rounded-lg border border-border/40 bg-muted/20 px-3.5 py-2.5 text-xs font-medium text-muted-foreground transition-colors hover:border-border/60 hover:bg-muted/30 hover:text-foreground md:hidden"
+                className="flex w-full items-center justify-between rounded-lg border border-border/50 bg-muted/40 px-3.5 py-2.5 text-xs font-medium text-foreground transition-colors hover:border-border/70 hover:bg-muted/60 md:hidden"
                 onClick={() => setDetailsOpen((v) => !v)}
                 type="button"
               >
                 More details
                 <ChevronDown
                   className={cn(
-                    "size-3.5 text-muted-foreground/50 transition-transform duration-200",
+                    "size-3.5 text-muted-foreground transition-transform duration-200",
                     detailsOpen && "rotate-180",
                   )}
                 />
@@ -419,15 +419,15 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                     className="rounded-lg border border-border/40 bg-muted/20 p-4"
                   >
                     <h4
-                      className="mb-2.5 flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-widest text-muted-foreground/50"
+                      className="mb-2.5 flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-widest text-foreground"
                       id={`${project.id}-flowchart-activities`}
                     >
-                      <GitBranch className="size-3 text-primary/50" />
+                      <GitBranch className="size-3 text-primary" />
                       Flowchart activities
                     </h4>
                     <ul className="space-y-1.5">
                       {project.flowchartActivities.map((activity) => (
-                        <li key={activity} className="flex items-start gap-2 text-sm text-muted-foreground/60">
+                        <li key={activity} className="flex items-start gap-2 text-sm text-muted-foreground">
                           <span className="mt-[7px] size-1 shrink-0 rounded-full bg-primary/40" />
                           {activity}
                         </li>
@@ -441,14 +441,14 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                   className="rounded-lg border border-border/40 bg-muted/20 p-4"
                 >
                   <h4
-                    className="mb-2.5 text-[10.5px] font-semibold uppercase tracking-widest text-muted-foreground/50"
+                    className="mb-2.5 text-[10.5px] font-semibold uppercase tracking-widest text-foreground"
                     id={`${project.id}-challenges`}
                   >
                     Challenges solved
                   </h4>
                   <ul className="space-y-1.5">
                     {project.challenges.map((challenge) => (
-                      <li key={challenge} className="flex items-start gap-2 text-sm text-muted-foreground/60">
+                      <li key={challenge} className="flex items-start gap-2 text-sm text-muted-foreground">
                         <span className="mt-[7px] size-1 shrink-0 rounded-full bg-primary/40" />
                         {challenge}
                       </li>
@@ -463,7 +463,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               <div className="mt-auto flex flex-col gap-2 pt-1 sm:flex-row">
                 <Button
                   asChild
-                  className="h-9 w-full gap-2 rounded-lg border-border/40 bg-muted/20 text-xs font-medium text-muted-foreground hover:border-border/60 hover:bg-muted/40 hover:text-foreground sm:w-auto sm:px-5"
+                  className="h-9 w-full gap-2 rounded-lg border-border/50 bg-muted/40 text-xs font-medium text-foreground hover:border-border/70 hover:bg-muted/60 sm:w-auto sm:px-5"
                   variant="outline"
                 >
                   <Link href={project.githubUrl} rel="noopener noreferrer" target="_blank">
