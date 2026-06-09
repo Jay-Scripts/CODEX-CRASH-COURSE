@@ -3,6 +3,7 @@
 import {
   ChevronLeft,
   ChevronRight,
+  Download,
   Expand,
   Loader2,
   X,
@@ -14,6 +15,8 @@ import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 
 type ProjectDocumentOverlayProps = {
+  downloadLabel?: string;
+  downloadUrl?: string;
   documentLayout?: "auto" | "single-page";
   isOpen: boolean;
   onClose: () => void;
@@ -87,6 +90,8 @@ const loadPdfJs = async () => {
  * between single-page mobile layout and two-page desktop spread layout.
  */
 export const ProjectDocumentOverlay = ({
+  downloadLabel = "Download PDF",
+  downloadUrl,
   documentLayout = "auto",
   isOpen,
   onClose,
@@ -486,6 +491,18 @@ export const ProjectDocumentOverlay = ({
               </a>
             </Button>
 
+            {downloadUrl ? (
+              <Button
+                asChild
+                className="hidden h-8 gap-1.5 px-3 text-xs sm:flex"
+                variant="default"
+              >
+                <a download href={downloadUrl}>
+                  {downloadLabel}
+                </a>
+              </Button>
+            ) : null}
+
             <Button
               asChild
               aria-label="Open PDF in new tab"
@@ -497,6 +514,20 @@ export const ProjectDocumentOverlay = ({
                 <Expand className="size-4" />
               </a>
             </Button>
+
+            {downloadUrl ? (
+              <Button
+                asChild
+                aria-label={downloadLabel}
+                className="size-8 sm:hidden"
+                size="icon"
+                variant="default"
+              >
+                <a download href={downloadUrl}>
+                  <Download className="size-4" />
+                </a>
+              </Button>
+            ) : null}
 
             <Button
               ref={closeButtonRef}

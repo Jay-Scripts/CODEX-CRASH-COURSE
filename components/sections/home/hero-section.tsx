@@ -1,11 +1,12 @@
 "use client";
 
-import { ArrowRight, Download, Mail, MapPin, ShieldCheck } from "lucide-react";
+import { ArrowRight, FileText, Mail, MapPin, ShieldCheck } from "lucide-react";
 import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
 import { experiences, profile } from "@/constants/portfolio.constants";
+import { ProjectDocumentOverlay } from "@/components/cards/project-document-overlay";
 import { Button } from "@/components/ui/button";
 
 const smoothEase = [0.22, 1, 0.36, 1] as const;
@@ -233,6 +234,7 @@ const statTileStyle: CSSProperties = {
  * Displays the recruiter-facing hero section with a theme-aware neon visual treatment.
  */
 export const HeroSection = () => {
+  const [isResumePreviewOpen, setIsResumePreviewOpen] = useState(false);
   const industryExperience = formatExperienceYears(
     getTimelineSpanMonthCount(experiences),
   );
@@ -402,15 +404,16 @@ export const HeroSection = () => {
               </Link>
             </Button>
             <Button
-              asChild
               className="hero-outline-button sm:min-w-40"
+              onClick={() => setIsResumePreviewOpen(true)}
               size="lg"
+              type="button"
               variant="outline"
             >
-              <Link href={profile.resumeUrl}>
-                <Download className="mr-1" />
-                Download Resume
-              </Link>
+              <>
+                <FileText className="mr-1" />
+                View Resume
+              </>
             </Button>
             <Button
               asChild
@@ -579,6 +582,16 @@ export const HeroSection = () => {
         }
       }
     `}</style>
+
+      <ProjectDocumentOverlay
+        documentLayout="single-page"
+        downloadLabel="Download resume"
+        downloadUrl={profile.resumeUrl}
+        isOpen={isResumePreviewOpen}
+        onClose={() => setIsResumePreviewOpen(false)}
+        src={`${profile.resumeUrl}#page=1&view=FitH`}
+        title={`${profile.name} Resume`}
+      />
     </motion.section>
   );
 };
