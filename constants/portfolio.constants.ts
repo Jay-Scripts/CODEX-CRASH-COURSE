@@ -165,7 +165,6 @@ export const skillGroups: SkillGroup[] = [
       "npm",
       "pnpm",
       "Vercel",
-      "EAS Build",
       "XAMPP",
       "Laragon",
       "MySQL Workbench",
@@ -208,7 +207,7 @@ export const projects: Project[] = [
       "Designed inventory updates around clear transaction states.",
       "Documented UAT findings for operational reliability.",
     ],
-    githubUrl: "https://github.com/",
+    githubUrl: "https://github.com/Jay-Scripts/CAPSTONE-SMART-POS.git",
     liveDemoUrl: "https://example.com/",
   },
   {
@@ -297,7 +296,7 @@ export const projects: Project[] = [
       "Improved admin visibility through reporting and vehicle status views.",
       "Handled booking data with clear validation boundaries.",
     ],
-    githubUrl: "https://github.com/",
+    githubUrl: "https://github.com/Jay-Scripts/CAR-RENTAL-SYSTEM-.git",
     liveDemoUrl: "https://example.com/",
   },
   {
@@ -342,8 +341,10 @@ export const experiences: Experience[] = [
     period: "Aug 2023 - Present",
     icon: ShieldCheck,
     highlights: [
-      "Handled customer orders, prepared meals, maintained dining area cleanliness, and ensured a welcoming environment.",
-      "Delivered friendly, efficient service while using product knowledge to help customers make informed meal choices.",
+  "Handled customer orders, food preparation, cleanliness, and customer service while supporting daily store operations.",
+  "Performed basic store equipment maintenance and troubleshooting, including monitors, keyboards, mouse devices, HDMI/VGA connections, and cash register/POS-related issues.",
+  "Conducted initial hardware issue checks before escalation to the company IT team, helping reduce unnecessary IT support requests and site visit requests.",
+  "Supported unit cleaning, equipment checking, and basic preventive maintenance to keep store systems and workstations operational.",
     ],
   },
   {
@@ -352,10 +353,12 @@ export const experiences: Experience[] = [
     period: "Jul 2023 - Dec 2025",
     icon: Headphones,
     highlights: [
-      "Performed hardware maintenance and repairs, including soldering, component replacement, and peripheral troubleshooting.",
-      "Installed and configured operating systems, software, printers, and laboratory equipment.",
-      "Provided technical support to users by diagnosing and resolving hardware, software, and system issues.",
-    ],
+     "Assisted in setting up and maintaining 2 computer laboratories, including workstation preparation, hardware arrangement, and basic system configuration.",
+  "Performed PC hardware maintenance and repairs, including soldering, component replacement, system upgrades, and peripheral troubleshooting.",
+  "Installed and reinstalled operating systems, configured software, printers, and basic lab equipment to support classroom and office operations.",
+  "Provided technical support to faculty, staff, and departments by troubleshooting internet connectivity, printer issues, system access problems, and hardware-related concerns.",
+  "Supported lab maintenance tasks, including cleaning, equipment checking, hardware transfers, and basic preventive maintenance."
+],
   },
   {
     role: "Stock Clerk",
@@ -363,9 +366,11 @@ export const experiences: Experience[] = [
     period: "Jul 2021 - Aug 2022",
     icon: BriefcaseBusiness,
     highlights: [
-      "Analyzed inventory to identify excess, slow-moving, and obsolete stock for proper disposition.",
-      "Prepared regular inventory reports for upper management and recommended improvements for inventory control.",
-    ],
+  "Managed stockroom organization, inventory checking, and item monitoring to support daily store operations.",
+  "Performed basic store maintenance support, including cable/wiring cleanup, system unit maintenance, and equipment checking.",
+  "Assisted in troubleshooting POS-related hardware issues, including non-working monitors and other output device concerns.",
+  "Helped identify and report defective store fixtures such as LED lights and light transformers for repair or replacement."
+]
   },
   {
     role: "Bagger",
@@ -402,7 +407,7 @@ export const aboutEntries: AboutEntry[] = [
     title: "About my goals",
     icon: Target,
     description: [
-      "My goal is to grow into a dependable full-stack developer who helps teams ship thoughtful, maintainable products.",
+      "My goal is to grow as a well-rounded developer who can build, test, document, and improve real-world systems.",
       "I want to keep improving in UI/UX, responsive frontend work, backend systems, and QA so I can contribute across the full delivery process.",
     ],
   },
