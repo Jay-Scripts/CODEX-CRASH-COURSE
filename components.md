@@ -33,8 +33,13 @@
 
 ### `ProjectCard`, `ExperienceCard`
 
-- Purpose: Render recruiter-facing project and experience content as reusable card patterns with stronger semantic structure.
+- Purpose: Render recruiter-facing project and experience content as reusable card patterns with stronger semantic structure, including experience-side supporting material previews for certificates, photos, reports, and hover-preview videos.
 - Location: `components/cards/*`
+
+### `ExperienceProofGallery`
+
+- Purpose: Handles mobile proof lists, desktop hover proof stacks, and in-app proof modals for internship certificates, screenshots, videos, and spreadsheet previews without sending users to a new tab.
+- Location: `components/cards/experience-proof-gallery.tsx`
 
 ### `ProjectFlowchartCarousel`, `ProjectFlowchartOverlay`
 

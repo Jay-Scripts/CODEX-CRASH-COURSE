@@ -6,6 +6,25 @@ export type SkillGroup = {
   title: string;
 };
 
+export type ExperienceProofItem = {
+  alt: string;
+  href?: string;
+  label: string;
+  spreadsheetPreview?: ExperienceSpreadsheetPreview;
+  src: string;
+  type: "certificate" | "photo" | "document" | "video";
+};
+
+export type ExperienceSpreadsheetSheet = {
+  columns: string[];
+  name: string;
+  rows: string[][];
+};
+
+export type ExperienceSpreadsheetPreview = {
+  sheets: ExperienceSpreadsheetSheet[];
+};
+
 export type ProjectCategory =
   | "stand-alone"
   | "website"
@@ -56,6 +75,7 @@ export type Experience = {
   isTechRelated?: boolean;
   organization: string;
   period: string;
+  proofItems?: ExperienceProofItem[];
   role: string;
   techStack?: string[];
 };
