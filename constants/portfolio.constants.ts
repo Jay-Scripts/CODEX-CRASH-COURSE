@@ -76,9 +76,9 @@ const smartPosFlowchartPreviews: FlowchartPreview[] = [
 
 export const profile: Profile = {
   name: "Cornelio A. Gatbonton Jr",
-  role: "Junior Web Developer",
+  role: "Junior Web Developer | Web Applications | Technical Support",
   email: "corneliogatbontonjr21@gmail.com",
-  location: "Philippines",
+  location: "Manila, Philippines",
   logoAlt: "JayScript brand logo",
   logoSrc: "/Logo/JayScript%20Logo.svg",
   linkedinUrl:
@@ -87,7 +87,7 @@ export const profile: Profile = {
   githubUrl: "https://github.com/Jay-Scripts",
   resumeUrl: "/resume.pdf",
   summary:
-    "Junior Web Developer focused on building reliable, maintainable, and user-friendly applications while continuously improving as a developer.",
+    "Junior Web Developer focused on building responsive, secure, and database-driven web applications using modern web technologies. Experienced in authentication, role-based access control, database design, debugging, and technical documentation through internship and project-based work. Adaptable and continuously improving, with a strong interest in modern development practices and emerging technologies.",
 };
 
 export const navigationItems: NavigationItem[] = [
@@ -177,17 +177,10 @@ export const projects: Project[] = [
     id: "smart-pos",
     title: "Smart POS System",
     summary:
-      "Enterprise-style point-of-sale ecosystem with service-specific views, real-time analytics, inventory workflows, and QA testing coverage.",
+      "Client-server Smart POS system with cashier, kiosk, customer display, barista, and manager modules that streamlines ordering, queue tracking, analytics, and transaction workflows.",
     primaryCategory: "stand-alone",
     categories: ["stand-alone", "mobile"],
-    techStack: [
-      "HTML",
-      "Tailwind CSS4",
-      "MySQL",
-      "Chart.js",
-      "PHP",
-      "Flowbite",
-    ],
+    techStack: ["PHP", "MySQL", "JavaScript", "Tailwind CSS", "Chart.js"],
     architecture: [
       "POS interface",
       "Self-Service Kiosk",
@@ -197,15 +190,15 @@ export const projects: Project[] = [
       "Inventory automation",
     ],
     features: [
-      "Real-time analytics dashboards",
-      "Chart.js business metrics",
-      "Role-based operational screens",
-      "QA testing workflows",
+      "Client-server ordering and queue management across multiple service modules",
+      "Real-time sales analytics dashboards powered by Chart.js",
+      "Database schemas, workflow architecture, and system flowchart planning",
+      "Alpha, beta, and gamma testing with user manual handover support",
     ],
     challenges: [
-      "Connected multiple service views without duplicating business logic.",
-      "Designed inventory updates around clear transaction states.",
-      "Documented UAT findings for operational reliability.",
+      "Connected multiple service modules without duplicating core transaction logic.",
+      "Mapped queue, ordering, reporting, and inventory updates into one maintainable workflow.",
+      "Documented testing findings and operating guidance to support reliable handover.",
     ],
     githubUrl: "https://github.com/Jay-Scripts/CAPSTONE-SMART-POS.git",
     liveDemoUrl: "https://example.com/",
@@ -258,14 +251,13 @@ export const projects: Project[] = [
     id: "car-rental",
     title: "Car Rental Management System",
     summary:
-      "Booking and fleet management platform with admin workflows, notifications, reporting, and database-first planning.",
+      "Centralized booking and rental management system with customer and admin modules for reservations, fleet monitoring, and reporting workflows.",
     primaryCategory: "website",
     categories: ["website", "mobile"],
     techStack: [
-      "HTML",
-      "Tailwind CSS4",
-      "JavaScript ES6",
-      "Node Mailer",
+      "JavaScript",
+      "Tailwind CSS",
+      "Nodemailer",
       "PHP",
       "MySQL",
       "Chart.js",
@@ -280,10 +272,10 @@ export const projects: Project[] = [
       "Database architecture",
     ],
     features: [
-      "Reservation lifecycle management",
-      "Fleet status monitoring",
-      "Admin reports",
-      "Flowcharts and ERD planning",
+      "Customer and admin rental modules for reservation lifecycle management",
+      "Relational database schemas and process flowcharts for structured data handling",
+      "Vehicle inventory, booking status tracking, analytics, and operational reports",
+      "Nodemailer notifications and validation testing for booking readiness",
     ],
     flowchartActivities: [
       "Customer submits a booking request with rental details",
@@ -292,9 +284,9 @@ export const projects: Project[] = [
       "Rental completion triggers report generation and record archiving",
     ],
     challenges: [
-      "Mapped rental workflows into maintainable database relationships.",
-      "Improved admin visibility through reporting and vehicle status views.",
-      "Handled booking data with clear validation boundaries.",
+      "Mapped booking, customer, vehicle, and transaction workflows into maintainable database relationships.",
+      "Improved admin visibility with status tracking, analytics, and operational reporting views.",
+      "Strengthened booking communication and readiness with notifications and validation testing.",
     ],
     githubUrl: "https://github.com/Jay-Scripts/CAR-RENTAL-SYSTEM-.git",
     liveDemoUrl: "https://example.com/",
@@ -347,14 +339,14 @@ export const experiences: Experience[] = [
       "Supabase",
       "PostgreSQL",
       "Tailwind CSS",
+      "Expo React Native",
     ],
     highlights: [
-      "Assisted in developing a Next.js and Supabase web application with authentication, protected routes, and role-based database access using Row Level Security.",
-      "Designed and implemented relational database schemas in Supabase/PostgreSQL, including normalized tables, relationships, and access rules for secure data handling.",
-      "Developed responsive UI improvements using Tailwind CSS, enabling the application to support desktop, tablet, and mobile users instead of being limited to desktop-only access.",
-      "Developed and executed 700+ structured QA test case entries to validate responsiveness, RBAC permissions, security risks, UX issues, design inconsistencies, input validation, and end-to-end system workflows before deployment.",
-      "Documented and reported system bugs through structured QA testing and helped resolve issues that improved workflow reliability, validation behavior, and usability.",
-      "Coordinated with stakeholders to provide progress updates, gather feedback, and implement UX improvements, including mobile usability, detailed input helper messages, auto-focus validation, and a camera-based QR code scanning feature for faster tablet and mobile workflows.",
+      "Developed responsive UI improvements using Tailwind CSS, expanding application accessibility from desktop-only use to desktop, tablet, and mobile workflows.",
+      "Designed and executed 700+ structured QA test case entries to validate responsiveness, RBAC permissions, security-related issues, UX issues, design consistency, input validation, and end-to-end system workflows before deployment.",
+      "Documented, reported, and helped resolve system bugs, improving workflow reliability, validation behavior, and overall usability.",
+      "Coordinated with stakeholders to gather feedback and implement UX improvements, including mobile usability updates, detailed helper messages, auto-focus validation, and camera-based QR code scanning for faster tablet and mobile workflows.",
+      "Developed a donor-facing mobile application for event booking and contribution tracking, improving donor access to blood donation schedules, participation records, and personal donation history.",
     ],
   },
   {
@@ -363,10 +355,9 @@ export const experiences: Experience[] = [
     period: "Aug 2022 - Jun 2026",
     icon: ShieldCheck,
     highlights: [
-      "Handled customer orders, food preparation, cleanliness, and customer service while supporting daily store operations.",
-      "Performed basic store equipment maintenance and troubleshooting, including monitors, keyboards, mouse devices, HDMI/VGA connections, and cash register/POS-related issues.",
-      "Conducted initial hardware issue checks before escalation to the company IT team, helping reduce unnecessary IT support requests and site visit requests.",
-      "Supported unit cleaning, equipment checking, and basic preventive maintenance to keep store systems and workstations operational.",
+      "Processed customer orders, prepared food items, maintained cleanliness, and supported daily store operations in a fast-paced service environment.",
+      "Troubleshot basic store equipment issues involving monitors, keyboards, mouse devices, HDMI/VGA connections, and POS-related hardware concerns before escalation.",
+      "Conducted initial hardware checks and basic preventive maintenance to keep store systems, workstations, and service areas operational.",
     ],
   },
   {
@@ -377,10 +368,9 @@ export const experiences: Experience[] = [
     isTechRelated: true,
     highlights: [
       "Assisted in setting up and maintaining 2 computer laboratories, including workstation preparation, hardware arrangement, and basic system configuration.",
-      "Performed PC hardware maintenance and repairs, including soldering, component replacement, system upgrades, and peripheral troubleshooting.",
-      "Installed and reinstalled operating systems, configured software, printers, and basic lab equipment to support classroom and office operations.",
-      "Provided technical support to faculty, staff, and departments by troubleshooting internet connectivity, printer issues, system access problems, and hardware-related concerns.",
-      "Supported lab maintenance tasks, including cleaning, equipment checking, hardware transfers, and basic preventive maintenance.",
+      "Repaired and maintained PC hardware through soldering, component replacement, system upgrades, and peripheral troubleshooting to support lab operations.",
+      "Installed and configured operating systems, software, printers, and lab equipment to support classroom and office use.",
+      "Resolved technical support requests from faculty, staff, and departments involving internet connectivity, printer issues, system access problems, and hardware concerns.",
     ],
   },
   {
@@ -389,10 +379,8 @@ export const experiences: Experience[] = [
     period: "Jun 2021 - Jul 2022",
     icon: BriefcaseBusiness,
     highlights: [
-      "Managed stockroom organization, inventory checking, and item monitoring to support daily store operations.",
-      "Performed basic store maintenance support, including cable and wiring cleanup, system unit maintenance, and equipment checking.",
-      "Assisted in troubleshooting POS-related hardware issues, including non-working monitors and other output device concerns.",
-      "Helped identify and report defective store fixtures such as LED lights and light transformers for repair or replacement.",
+      "Managed stockroom organization, inventory checking, and item monitoring to support accurate stock handling and daily store operations.",
+      "Performed basic store maintenance and hardware support, including cable cleanup, system unit maintenance, POS-related checks, and defective fixture reporting.",
     ],
   },
   {
