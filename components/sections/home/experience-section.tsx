@@ -14,9 +14,9 @@ export const ExperienceSection = () => (
       <SectionAccentBackdrop variant="left" />
       <RevealItem>
         <SectionHeading
-          description="Professional experience spanning IT support, customer service, inventory control, troubleshooting, and collaborative workplace operations."
+          description="Professional experience spanning junior web development, QA testing, IT support, troubleshooting, and collaborative workplace operations."
           eyebrow="Experience"
-          title="Technical support and professional work experience"
+          title="Development, QA, and professional work experience"
         />
       </RevealItem>
       <RevealGroup className="relative space-y-5 before:absolute before:left-5 before:top-4 before:h-[calc(100%-2rem)] before:w-px before:bg-gradient-to-b before:from-primary/20 before:via-border before:to-primary/20 md:before:left-1/2">

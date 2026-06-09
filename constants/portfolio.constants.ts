@@ -336,6 +336,28 @@ export const projects: Project[] = [
 
 export const experiences: Experience[] = [
   {
+    role: "Junior Web Developer (Intern)",
+    organization: "Little Ark Foundation Inc.",
+    period: "Jan 2026 - Present",
+    icon: Code2,
+    techStack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+      "Tailwind CSS",
+    ],
+    highlights: [
+      "Assisted in developing a Next.js and Supabase web application with authentication, protected routes, and role-based database access using Row Level Security.",
+      "Designed and implemented relational database schemas in Supabase/PostgreSQL, including normalized tables, relationships, and access rules for secure data handling.",
+      "Developed responsive UI improvements using Tailwind CSS, enabling the application to support desktop, tablet, and mobile users instead of being limited to desktop-only access.",
+      "Developed and executed 700+ structured QA test case entries to validate responsiveness, RBAC permissions, security risks, UX issues, design inconsistencies, input validation, and end-to-end system workflows before deployment.",
+      "Documented and reported system bugs through structured QA testing and helped resolve issues that improved workflow reliability, validation behavior, and usability.",
+      "Coordinated with stakeholders to provide progress updates, gather feedback, and implement UX improvements, including mobile usability, detailed input helper messages, auto-focus validation, and a camera-based QR code scanning feature for faster tablet and mobile workflows.",
+    ],
+  },
+  {
     role: "Service Crew",
     organization: "Golden Arches Development Corporation - McDonald's",
     period: "Aug 2023 - Present",

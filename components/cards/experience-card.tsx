@@ -27,6 +27,12 @@ export const ExperienceCard = ({
             <p className="text-sm text-muted-foreground">
               {experience.organization}
             </p>
+            {experience.techStack?.length ? (
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                <span className="font-medium text-foreground">Tech stack:</span>{" "}
+                {experience.techStack.join(", ")}
+              </p>
+            ) : null}
             <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground marker:text-primary">
               {experience.highlights.map((highlight) => (
                 <li key={highlight}>{highlight}</li>

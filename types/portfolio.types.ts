@@ -56,6 +56,7 @@ export type Experience = {
   organization: string;
   period: string;
   role: string;
+  techStack?: string[];
 };
 
 export type Profile = {
