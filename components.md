@@ -29,6 +29,11 @@
 - Purpose: Provide shared motion wrappers, staggered reveal helpers, consistent section headings, shared section grid backgrounds, subtle rotating section accents, and the global scroll progress indicator used across the site shell.
 - Location: `components/common/*`
 
+### `LanyardCard`
+
+- Purpose: Renders the interactive self-contained 3D ID lanyard used in the About section with a stylized dual-face ID design, textured rope, and Rapier physics.
+- Location: `components/common/lanyard-card.tsx`
+
 ## Cards
 
 ### `ProjectCard`, `ExperienceCard`
