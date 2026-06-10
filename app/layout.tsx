@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { profile } from "@/constants/portfolio.constants";
 import { ScrollProgress } from "@/components/common/scroll-progress";
+import { ScrollToTopButton } from "@/components/common/scroll-to-top-button";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { ThemeProvider } from "@/components/providers/theme-provider";
@@ -84,6 +85,7 @@ const RootLayout = ({
           enableSystem
         >
           <ScrollProgress />
+          <ScrollToTopButton />
           <SiteHeader />
           <main className="flex-1">{children}</main>
           <SiteFooter />
