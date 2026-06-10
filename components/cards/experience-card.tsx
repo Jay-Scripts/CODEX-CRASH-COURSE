@@ -16,6 +16,7 @@ export const ExperienceCard = ({
   isEven,
 }: ExperienceCardProps) => {
   const Icon = experience.icon;
+  const cardAlignment = isEven ? "left" : "right";
   const proofItems = experience.proofItems ?? [];
   const hasProofItems = proofItems.length > 0;
   const cardColumnClassName = isEven ? "md:col-start-1" : "md:col-start-3";
@@ -70,6 +71,7 @@ export const ExperienceCard = ({
 
         {hasProofItems ? (
           <ExperienceProofGallery
+            cardAlignment={cardAlignment}
             mode="desktop"
             proofItems={proofItems}
             proofSectionId={proofSectionId}

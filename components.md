@@ -38,7 +38,7 @@
 
 ### `ExperienceProofGallery`
 
-- Purpose: Handles mobile proof lists, desktop hover proof stacks, and in-app proof modals for internship certificates, screenshots, videos, and spreadsheet previews without sending users to a new tab.
+- Purpose: Handles mobile proof lists, responsive desktop hover proof layouts for tighter and wider screens, and in-app proof modals for internship certificates, screenshots, videos, and spreadsheet previews without sending users to a new tab.
 - Location: `components/cards/experience-proof-gallery.tsx`
 
 ### `ProjectFlowchartCarousel`, `ProjectFlowchartOverlay`

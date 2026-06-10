@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 type ExperienceProofGalleryProps = {
+  cardAlignment?: "left" | "right";
   mode: "desktop" | "mobile";
   proofItems: ExperienceProofItem[];
   proofSectionId: string;
@@ -75,7 +76,9 @@ const renderDocumentTile = (
       compact && "gap-1.5 p-2.5",
     )}
   >
-    <DocumentIcon className={cn("text-primary", compact ? "size-7" : "size-10")} />
+    <DocumentIcon
+      className={cn("text-primary", compact ? "size-7" : "size-10")}
+    />
     <span
       className={cn(
         "font-medium uppercase tracking-wide text-muted-foreground",
@@ -113,9 +116,6 @@ const renderProofSurface = (
           preload="metadata"
           src={item.src}
         />
-        <div className="pointer-events-none absolute inset-x-2 bottom-2 rounded-full bg-background/85 px-2 py-1 text-center text-[10px] font-medium uppercase tracking-wide text-foreground backdrop-blur-sm">
-          Video preview
-        </div>
       </div>
     );
   }
@@ -214,6 +214,7 @@ const SpreadsheetPreview = ({
  * Displays hover-preview proof cards and opens an in-app modal for full proof viewing.
  */
 export const ExperienceProofGallery = ({
+  cardAlignment = "left",
   mode,
   proofItems,
   proofSectionId,
@@ -248,6 +249,13 @@ export const ExperienceProofGallery = ({
     "delay-[350ms]",
     "delay-[400ms]",
   ] as const;
+
+  const mediumProofContainerClassName =
+    cardAlignment === "left"
+      ? "left-[calc(100%+2.75rem)]"
+      : "right-[calc(100%+2.75rem)]";
+  const mediumProofMotionClassName =
+    cardAlignment === "left" ? "translate-x-6" : "-translate-x-6";
 
   useEffect(() => {
     if (activeProofIndex === null) {
@@ -335,11 +343,61 @@ export const ExperienceProofGallery = ({
           <div className="sr-only" id={`${proofSectionId}-proof-desktop`}>
             Supporting materials
           </div>
-          <div className="absolute left-[-9rem] top-1/2 flex -translate-y-1/2 flex-col gap-3">
+          <div
+            className={cn(
+              "absolute top-1/2 hidden w-60 -translate-y-1/2 md:block xl:hidden",
+              mediumProofContainerClassName,
+            )}
+          >
+            <div className="grid grid-cols-2 gap-3">
+              {proofItems.map((item, originalIndex) => {
+                const ProofIcon = proofTypeIcons[item.type];
+                const delayClassName =
+                  desktopProofDelayClasses[originalIndex] ??
+                  desktopProofDelayClasses.at(-1);
+
+                return (
+                  <button
+                    className={cn(
+                      "pointer-events-auto w-full rounded-2xl border border-border/60 bg-card/95 p-2 text-left shadow-xl shadow-primary/10 backdrop-blur-sm transition-all duration-300 ease-out",
+                      "opacity-0 scale-90",
+                      mediumProofMotionClassName,
+                      delayClassName,
+                      "md:group-hover/experience:translate-x-0 md:group-hover/experience:opacity-100 md:group-hover/experience:scale-100",
+                    )}
+                    key={item.label}
+                    onClick={() => setActiveProofIndex(originalIndex)}
+                    type="button"
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border/50 bg-background">
+                      {renderProofSurface(item, {
+                        compact: true,
+                        desktopHoverVideo: true,
+                        sizes: "7rem",
+                      })}
+                    </div>
+                    <div className="mt-2 flex items-start justify-between gap-2">
+                      <div className="min-w-0">
+                        <p className="truncate text-[11px] font-semibold text-foreground">
+                          {item.label}
+                        </p>
+                        <p className="mt-1 flex items-center gap-1 text-[10px] text-muted-foreground">
+                          <ProofIcon className="size-3 text-primary" />
+                          {proofTypeLabels[item.type]}
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          <div className="absolute left-[-9rem] top-1/2 hidden -translate-y-1/2 flex-col gap-3 xl:flex">
             {leftProofItems.map(({ item, index: originalIndex }, index) => {
               const ProofIcon = proofTypeIcons[item.type];
               const delayClassName =
-                desktopProofDelayClasses[index] ?? desktopProofDelayClasses.at(-1);
+                desktopProofDelayClasses[index] ??
+                desktopProofDelayClasses.at(-1);
 
               return (
                 <button
@@ -375,7 +433,7 @@ export const ExperienceProofGallery = ({
               );
             })}
           </div>
-          <div className="absolute right-[-9rem] top-1/2 flex -translate-y-1/2 flex-col gap-3">
+          <div className="absolute right-[-9rem] top-1/2 hidden -translate-y-1/2 flex-col gap-3 xl:flex">
             {rightProofItems.map(({ item, index: originalIndex }, index) => {
               const ProofIcon = proofTypeIcons[item.type];
               const delayClassName =
@@ -499,7 +557,8 @@ export const ExperienceProofGallery = ({
                           Preview not available for this document type.
                         </p>
                         <p className="text-sm text-muted-foreground">
-                          This proof item is stored as a file rather than image, video, or spreadsheet excerpt.
+                          This proof item is stored as a file rather than image,
+                          video, or spreadsheet excerpt.
                         </p>
                       </div>
                     </div>
