@@ -811,6 +811,9 @@ export const projects: Project[] = [
     ],
     githubUrl: "https://github.com/Jay-Scripts/CAPSTONE-SMART-POS.git",
     liveDemoUrl: "https://example.com/",
+    previewAlt: "Smart POS system dashboard preview",
+    previewLayout: "landscape",
+    previewSrc: "/project%20preview/smart%20pos.png",
     recognitionPreviewAlt:
       "Recognition certificate for presenting the Smart POS capstone during the CCS Research Colloquium 2026",
     recognitionPreviewNote:
@@ -911,6 +914,9 @@ export const projects: Project[] = [
     ],
     githubUrl: "https://github.com/Jay-Scripts/CAR-RENTAL-SYSTEM-.git",
     liveDemoUrl: "https://example.com/",
+    previewAlt: "Car rental management system dashboard preview",
+    previewLayout: "landscape",
+    previewSrc: "/project%20preview/car%20rental.png",
     systemPreviewAlt:
       "Temporary car rental system preview placeholder while the final walkthrough recording is still in progress",
     systemPreviewNote:

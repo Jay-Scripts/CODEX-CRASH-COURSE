@@ -60,6 +60,8 @@ export type ProjectResourceLink = {
 
 export type ProjectDocumentLayout = "auto" | "single-page";
 
+export type ProjectPreviewLayout = "portrait" | "landscape";
+
 export type Project = {
   architecture: string[];
   categories: ProjectCategory[];
@@ -73,6 +75,7 @@ export type Project = {
   id: string;
   liveDemoUrl: string;
   previewAlt?: string;
+  previewLayout?: ProjectPreviewLayout;
   previewDialogSrc?: string;
   previewSrc?: string;
   projectBadges?: string[];

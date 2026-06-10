@@ -33,7 +33,7 @@
 
 ### `ProjectCard`, `ExperienceCard`
 
-- Purpose: Render recruiter-facing project and experience content as reusable card patterns with stronger semantic structure, including experience-side supporting material previews for certificates, photos, reports, and hover-preview videos.
+- Purpose: Render recruiter-facing project and experience content as reusable card patterns with stronger semantic structure, including flexible portrait or landscape project preview surfaces plus experience-side supporting material previews for certificates, photos, reports, and hover-preview videos.
 - Location: `components/cards/*`
 
 ### `ExperienceProofGallery`

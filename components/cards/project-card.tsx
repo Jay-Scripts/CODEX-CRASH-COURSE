@@ -81,6 +81,23 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   const canOpenPreview =
     hasExpandableDocumentPreview || isSystemFlowchartProject;
   const activeFlowchartPreview = project.flowchartPreviews?.[activeFlowchartIndex];
+  const usesLandscapePreview = project.previewLayout === "landscape";
+  const previewFrameClassName = cn(
+    isSystemFlowchartProject
+      ? "min-h-[20rem] w-full flex-1 lg:min-h-[24rem]"
+      : usesExpandedPreviewSurface
+        ? "aspect-[3/4] w-full"
+        : usesLandscapePreview
+          ? "aspect-video w-full max-w-none"
+          : "aspect-[3/4] w-36 sm:w-40",
+  );
+  const previewImageClassName = cn(
+    isSystemFlowchartProject
+      ? "object-contain p-3"
+      : usesLandscapePreview
+        ? "object-cover object-center"
+        : "object-cover object-top",
+  );
 
   const openDocumentOverlay = (src: string, title: string) => {
     setActiveDocument({ src, title });
@@ -162,7 +179,11 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       >
         <article
           aria-labelledby={`${project.id}-title`}
-          className="lg:grid lg:grid-cols-[minmax(15rem,18rem)_minmax(0,1fr)]"
+          className={cn(
+            "lg:grid lg:grid-cols-[minmax(15rem,18rem)_minmax(0,1fr)]",
+            usesLandscapePreview &&
+              "lg:grid-cols-[minmax(24rem,34rem)_minmax(0,1fr)] xl:grid-cols-[minmax(30rem,42rem)_minmax(0,1fr)]",
+          )}
         >
           {/* ── Preview column ── */}
           <div className="flex flex-col border-b border-border/40 bg-muted/20 lg:border-b-0 lg:border-r lg:border-border/40">
@@ -181,6 +202,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                   className={cn(
                     "flex flex-1 items-stretch justify-stretch px-6 py-8",
                     usesExpandedPreviewSurface && "px-4 py-4",
+                    usesLandscapePreview && "px-3 py-4 sm:px-4 lg:px-4",
                   )}
                 >
                   {canOpenPreview ? (
@@ -188,11 +210,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                       aria-haspopup="dialog"
                       className={cn(
                         "group/thumb relative h-full overflow-hidden rounded-xl border border-border/50 bg-background/80 shadow-md transition-all duration-200 hover:scale-[1.02] hover:border-border/80 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
-                        isSystemFlowchartProject
-                          ? "min-h-[20rem] w-full flex-1 lg:min-h-[24rem]"
-                          : usesExpandedPreviewSurface
-                            ? "aspect-[3/4] w-full"
-                            : "aspect-[3/4] w-36 sm:w-40",
+                        previewFrameClassName,
                       )}
                       onClick={() => {
                         if (isSystemFlowchartProject) {
@@ -211,14 +229,14 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                       isImagePreview(project.previewSrc) ? (
                         <Image
                           alt={project.previewAlt ?? `${project.title} preview`}
-                          className={cn(
-                            isSystemFlowchartProject
-                              ? "object-contain p-3"
-                              : "object-cover object-top",
-                          )}
+                          className={previewImageClassName}
                           fill
                           priority={project.primaryCategory === "user-manuals"}
-                          sizes="(min-width: 640px) 10rem, 9rem"
+                          sizes={
+                            usesLandscapePreview
+                              ? "(min-width: 1280px) 42rem, (min-width: 1024px) 34rem, 100vw"
+                              : "(min-width: 640px) 10rem, 9rem"
+                          }
                           src={project.previewSrc}
                           unoptimized
                         />
@@ -247,25 +265,21 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                     <figure
                       className={cn(
                         "relative h-full overflow-hidden rounded-xl border border-border/50 bg-background/80 shadow-md",
-                        isSystemFlowchartProject
-                          ? "min-h-[20rem] w-full flex-1 lg:min-h-[24rem]"
-                          : usesExpandedPreviewSurface
-                            ? "aspect-[3/4] w-full"
-                            : "aspect-[3/4] w-36 sm:w-40",
+                        previewFrameClassName,
                       )}
                     >
                       {project.previewSrc &&
                       isImagePreview(project.previewSrc) ? (
                         <Image
                           alt={project.previewAlt ?? `${project.title} preview`}
-                          className={cn(
-                            isSystemFlowchartProject
-                              ? "object-contain p-3"
-                              : "object-cover object-top",
-                          )}
+                          className={previewImageClassName}
                           fill
                           priority={project.primaryCategory === "user-manuals"}
-                          sizes="(min-width: 640px) 10rem, 9rem"
+                          sizes={
+                            usesLandscapePreview
+                              ? "(min-width: 1280px) 42rem, (min-width: 1024px) 34rem, 100vw"
+                              : "(min-width: 640px) 10rem, 9rem"
+                          }
                           src={project.previewSrc}
                           unoptimized
                         />
