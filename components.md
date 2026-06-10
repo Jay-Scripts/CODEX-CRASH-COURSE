@@ -56,6 +56,11 @@
 - Purpose: Opens in-page placeholder or real project walkthrough previews for project cards without redirecting users away from the portfolio.
 - Location: `components/cards/project-system-preview-modal.tsx`
 
+### `ProjectRecognitionModal`
+
+- Purpose: Opens in-page project recognition and award proofs for project cards without redirecting users away from the portfolio.
+- Location: `components/cards/project-recognition-modal.tsx`
+
 ## Forms
 
 ### `ContactForm`

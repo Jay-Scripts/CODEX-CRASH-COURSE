@@ -75,6 +75,10 @@ export type Project = {
   previewAlt?: string;
   previewDialogSrc?: string;
   previewSrc?: string;
+  recognitionPreviewAlt?: string;
+  recognitionPreviewNote?: string;
+  recognitionPreviewSrc?: string;
+  recognitionPreviewTitle?: string;
   resourceLinks?: ProjectResourceLink[];
   summary: string;
   systemPreviewAlt?: string;

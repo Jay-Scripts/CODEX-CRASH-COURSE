@@ -669,6 +669,17 @@ export const certificates: Certificate[] = [
     title: "2nd Place - Programming Battle",
     type: "School Certificate",
   },
+  {
+    href: "/experience-proofs/school%20certs/colloq.jpg",
+    imageAlt:
+      "School certificate of recognition for presenting the Smart POS capstone during the CCS Research Colloquium 2026",
+    imageSrc: "/experience-proofs/school%20certs/colloq.jpg",
+    issued: "March 18, 2026",
+    issuer: "Global Reciprocal Colleges / College of Computer Studies",
+    skills: ["Capstone Presentation", "Research Colloquium", "Smart POS"],
+    title: "CCS Research Colloquium 2026 Presenter Recognition",
+    type: "School Certificate",
+  },
 ];
 
 export const profile: Profile = {
@@ -800,6 +811,12 @@ export const projects: Project[] = [
     ],
     githubUrl: "https://github.com/Jay-Scripts/CAPSTONE-SMART-POS.git",
     liveDemoUrl: "https://example.com/",
+    recognitionPreviewAlt:
+      "Recognition certificate for presenting the Smart POS capstone during the CCS Research Colloquium 2026",
+    recognitionPreviewNote:
+      "Recognition proof for presenting the Smart POS capstone project during the CCS Research Colloquium 2026.",
+    recognitionPreviewSrc: "/experience-proofs/school%20certs/colloq.jpg",
+    recognitionPreviewTitle: "CCS Research Colloquium 2026 Recognition",
     systemPreviewAlt:
       "Temporary Smart POS system preview placeholder while the final walkthrough recording is still in progress",
     systemPreviewNote:

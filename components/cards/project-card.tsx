@@ -1,5 +1,6 @@
 "use client";
 import {
+  Award,
   ChevronDown,
   Expand,
   Eye,
@@ -20,6 +21,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ProjectDocumentOverlay } from "./project-document-overlay";
 import { ProjectFlowchartOverlay } from "./project-flowchart-overlay";
+import { ProjectRecognitionModal } from "./project-recognition-modal";
 import { ProjectSystemPreviewModal } from "./project-system-preview-modal";
 
 const projectCategoryLabels = {
@@ -56,6 +58,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [activeFlowchartIndex, setActiveFlowchartIndex] = useState(0);
   const [isFlowchartOverlayOpen, setIsFlowchartOverlayOpen] = useState(false);
+  const [isRecognitionPreviewOpen, setIsRecognitionPreviewOpen] = useState(false);
   const [isSystemPreviewOpen, setIsSystemPreviewOpen] = useState(false);
   const [activeDocument, setActiveDocument] = useState<{
     src: string;
@@ -71,6 +74,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
     Boolean(project.flowchartPreviews?.length);
   const hidePrimaryActions =
     project.id === "smart-pos-system-flowchart" || isUserManualPreview;
+  const hasRecognitionPreview = Boolean(project.recognitionPreviewSrc);
   const hasSystemPreview = Boolean(project.systemPreviewSrc);
   const usesExpandedPreviewSurface =
     isUserManualPreview || isSystemFlowchartProject;
@@ -95,6 +99,14 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
   const closeFlowchartOverlay = () => {
     setIsFlowchartOverlayOpen(false);
+  };
+
+  const openRecognitionPreview = () => {
+    setIsRecognitionPreviewOpen(true);
+  };
+
+  const closeRecognitionPreview = () => {
+    setIsRecognitionPreviewOpen(false);
   };
 
   const openSystemPreview = () => {
@@ -472,7 +484,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
             {/* action buttons */}
             {!hidePrimaryActions ? (
-              <div className="mt-auto flex flex-col gap-2 pt-1 sm:flex-row">
+              <div className="mt-auto flex flex-col gap-2 pt-1 sm:flex-row sm:flex-wrap">
                 <Button
                   asChild
                   className="h-9 w-full gap-2 rounded-lg border-border/50 bg-muted/40 text-xs font-medium text-foreground hover:border-border/70 hover:bg-muted/60 sm:w-auto sm:px-5"
@@ -507,6 +519,17 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                     </Link>
                   </Button>
                 )}
+                {hasRecognitionPreview ? (
+                  <Button
+                    className="h-9 w-full gap-2 rounded-lg border-border/50 bg-muted/40 text-xs font-medium text-foreground hover:border-border/70 hover:bg-muted/60 sm:w-auto sm:px-5"
+                    onClick={openRecognitionPreview}
+                    type="button"
+                    variant="outline"
+                  >
+                    <Award className="size-3.5 shrink-0" />
+                    View recognition
+                  </Button>
+                ) : null}
               </div>
             ) : null}
           </CardContent>
@@ -532,6 +555,14 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           onNext={showNextFlowchart}
           onPrevious={showPreviousFlowchart}
           total={project.flowchartPreviews.length}
+        />
+      ) : null}
+
+      {hasRecognitionPreview ? (
+        <ProjectRecognitionModal
+          isOpen={isRecognitionPreviewOpen}
+          onClose={closeRecognitionPreview}
+          project={project}
         />
       ) : null}
 
