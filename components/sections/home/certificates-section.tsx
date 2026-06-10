@@ -42,7 +42,7 @@ export const CertificatesSection = () => {
               <RevealItem key={`${certificate.title}-${certificate.issued}`}>
                 <button
                   aria-label={`Preview ${certificate.title}`}
-                  className="block h-full w-full text-left"
+                  className="group/certificate block h-full w-full text-left"
                   onClick={() => setActiveCertificate(certificate)}
                   type="button"
                 >
@@ -58,6 +58,12 @@ export const CertificatesSection = () => {
                             src={certificate.imageSrc}
                             unoptimized
                           />
+                          <span className="absolute inset-0 flex items-center justify-center bg-background/75 opacity-0 backdrop-blur-[2px] transition-opacity duration-200 group-hover/certificate:opacity-100">
+                            <span className="inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm">
+                              <Eye className="size-3.5 text-primary" />
+                              View certificate
+                            </span>
+                          </span>
                         </div>
                       ) : (
                         <div className="grid aspect-[16/10] place-items-center border-b border-border/60 bg-muted/30 text-primary">
@@ -108,11 +114,6 @@ export const CertificatesSection = () => {
                             ))}
                           </div>
                         ) : null}
-
-                        <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
-                          Preview certificate
-                          <Eye className="size-4" />
-                        </div>
                       </article>
                     </CardContent>
                   </Card>
