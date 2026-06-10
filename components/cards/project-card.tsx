@@ -2,6 +2,7 @@
 import {
   ChevronDown,
   Expand,
+  Eye,
   ExternalLink,
   FileText,
   GitBranch,
@@ -19,6 +20,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ProjectDocumentOverlay } from "./project-document-overlay";
 import { ProjectFlowchartOverlay } from "./project-flowchart-overlay";
+import { ProjectSystemPreviewModal } from "./project-system-preview-modal";
 
 const projectCategoryLabels = {
   website: "Website",
@@ -54,6 +56,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [activeFlowchartIndex, setActiveFlowchartIndex] = useState(0);
   const [isFlowchartOverlayOpen, setIsFlowchartOverlayOpen] = useState(false);
+  const [isSystemPreviewOpen, setIsSystemPreviewOpen] = useState(false);
   const [activeDocument, setActiveDocument] = useState<{
     src: string;
     title: string;
@@ -68,6 +71,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
     Boolean(project.flowchartPreviews?.length);
   const hidePrimaryActions =
     project.id === "smart-pos-system-flowchart" || isUserManualPreview;
+  const hasSystemPreview = Boolean(project.systemPreviewSrc);
   const usesExpandedPreviewSurface =
     isUserManualPreview || isSystemFlowchartProject;
   const canOpenPreview =
@@ -91,6 +95,14 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
   const closeFlowchartOverlay = () => {
     setIsFlowchartOverlayOpen(false);
+  };
+
+  const openSystemPreview = () => {
+    setIsSystemPreviewOpen(true);
+  };
+
+  const closeSystemPreview = () => {
+    setIsSystemPreviewOpen(false);
   };
 
   const showPreviousFlowchart = () => {
@@ -471,15 +483,30 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                     GitHub
                   </Link>
                 </Button>
-                <Button
-                  asChild
-                  className="h-9 w-full gap-2 rounded-lg text-xs font-medium sm:w-auto sm:px-5"
-                >
-                  <Link href={project.liveDemoUrl} rel="noopener noreferrer" target="_blank">
-                    <ExternalLink className="size-3.5 shrink-0" />
-                    {projectActionLabels[project.primaryCategory]}
-                  </Link>
-                </Button>
+                {hasSystemPreview ? (
+                  <Button
+                    className="h-9 w-full gap-2 rounded-lg text-xs font-medium sm:w-auto sm:px-5"
+                    onClick={openSystemPreview}
+                    type="button"
+                  >
+                    <Eye className="size-3.5 shrink-0" />
+                    View system preview
+                  </Button>
+                ) : (
+                  <Button
+                    asChild
+                    className="h-9 w-full gap-2 rounded-lg text-xs font-medium sm:w-auto sm:px-5"
+                  >
+                    <Link
+                      href={project.liveDemoUrl}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <ExternalLink className="size-3.5 shrink-0" />
+                      {projectActionLabels[project.primaryCategory]}
+                    </Link>
+                  </Button>
+                )}
               </div>
             ) : null}
           </CardContent>
@@ -505,6 +532,14 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           onNext={showNextFlowchart}
           onPrevious={showPreviousFlowchart}
           total={project.flowchartPreviews.length}
+        />
+      ) : null}
+
+      {hasSystemPreview ? (
+        <ProjectSystemPreviewModal
+          isOpen={isSystemPreviewOpen}
+          onClose={closeSystemPreview}
+          project={project}
         />
       ) : null}
     </>

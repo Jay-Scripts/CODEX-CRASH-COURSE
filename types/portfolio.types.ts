@@ -77,6 +77,9 @@ export type Project = {
   previewSrc?: string;
   resourceLinks?: ProjectResourceLink[];
   summary: string;
+  systemPreviewAlt?: string;
+  systemPreviewNote?: string;
+  systemPreviewSrc?: string;
   techStack: string[];
   title: string;
 };

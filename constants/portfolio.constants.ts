@@ -800,6 +800,12 @@ export const projects: Project[] = [
     ],
     githubUrl: "https://github.com/Jay-Scripts/CAPSTONE-SMART-POS.git",
     liveDemoUrl: "https://example.com/",
+    systemPreviewAlt:
+      "Temporary Smart POS system preview placeholder while the final walkthrough recording is still in progress",
+    systemPreviewNote:
+      "Using a temporary placeholder preview for now while the full Smart POS walkthrough recording is still being captured.",
+    systemPreviewSrc:
+      "/experience-proofs/intern/responsiveness%20%26%20UX%20improvements.mp4",
   },
   {
     id: "smart-pos-system-flowchart",
@@ -888,6 +894,12 @@ export const projects: Project[] = [
     ],
     githubUrl: "https://github.com/Jay-Scripts/CAR-RENTAL-SYSTEM-.git",
     liveDemoUrl: "https://example.com/",
+    systemPreviewAlt:
+      "Temporary car rental system preview placeholder while the final walkthrough recording is still in progress",
+    systemPreviewNote:
+      "Using a temporary placeholder preview for now while the full Car Rental walkthrough recording is still being captured.",
+    systemPreviewSrc:
+      "/experience-proofs/intern/responsiveness%20%26%20UX%20improvements.mp4",
   },
   {
     id: "smart-pos-user-manual",
