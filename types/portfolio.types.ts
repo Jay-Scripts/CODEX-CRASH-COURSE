@@ -75,6 +75,7 @@ export type Project = {
   previewAlt?: string;
   previewDialogSrc?: string;
   previewSrc?: string;
+  projectBadges?: string[];
   recognitionPreviewAlt?: string;
   recognitionPreviewNote?: string;
   recognitionPreviewSrc?: string;

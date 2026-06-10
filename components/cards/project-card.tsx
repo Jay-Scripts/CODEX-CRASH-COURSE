@@ -341,6 +341,20 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               </span>
             </div>
 
+            {project.projectBadges?.length ? (
+              <div className="flex flex-wrap gap-1.5">
+                {project.projectBadges.map((badge) => (
+                  <Badge
+                    className="rounded-md border-primary/20 bg-primary/10 text-[10.5px] font-medium text-primary"
+                    key={badge}
+                    variant="outline"
+                  >
+                    {badge}
+                  </Badge>
+                ))}
+              </div>
+            ) : null}
+
             {/* summary */}
             <p className="text-sm leading-relaxed text-muted-foreground">
               {project.summary}

@@ -788,7 +788,7 @@ export const projects: Project[] = [
     summary:
       "Client-server Smart POS system with cashier, kiosk, customer display, barista, and manager modules that streamlines ordering, queue tracking, analytics, and transaction workflows.",
     primaryCategory: "stand-alone",
-    categories: ["stand-alone", "mobile"],
+    categories: ["stand-alone"],
     techStack: ["PHP", "MySQL", "JavaScript", "Tailwind CSS", "Chart.js"],
     architecture: [
       "POS interface",
@@ -874,7 +874,7 @@ export const projects: Project[] = [
     summary:
       "Centralized booking and rental management system with customer and admin modules for reservations, fleet monitoring, and reporting workflows.",
     primaryCategory: "website",
-    categories: ["website", "mobile"],
+    categories: ["website"],
     techStack: [
       "JavaScript",
       "Tailwind CSS",
@@ -917,6 +917,47 @@ export const projects: Project[] = [
       "Using a temporary placeholder preview for now while the full Car Rental walkthrough recording is still being captured.",
     systemPreviewSrc:
       "/experience-proofs/intern/responsiveness%20%26%20UX%20improvements.mp4",
+  },
+  {
+    id: "bnn-donor-mobile-app",
+    title: "BNN Donor Mobile App",
+    summary:
+      "Internship-built donor-facing mobile application that helps users book blood donation events, review participation activity, and track their personal donation history through a mobile-first experience.",
+    primaryCategory: "mobile",
+    categories: ["mobile"],
+    techStack: [
+      "Expo React Native",
+      "React",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+    ],
+    architecture: [
+      "Mobile donor authentication flow",
+      "Event booking interface",
+      "Donation participation records",
+      "Personal donation history",
+      "Supabase-backed data syncing",
+    ],
+    features: [
+      "Donor-focused event booking from a mobile interface",
+      "Access to participation records and personal donation history",
+      "Improved mobile usability during internship delivery and testing",
+      "Built to support responsive, recruiter-visible product thinking in a real internship environment",
+    ],
+    challenges: [
+      "Translated a donor workflow into a cleaner mobile-first experience during ongoing internship development.",
+      "Balanced usability, responsiveness, and data clarity for users checking schedules, records, and history on smaller screens.",
+      "Worked inside a real stakeholder feedback loop while improving mobile behavior and overall donor access.",
+    ],
+    githubUrl: "https://github.com/Jay-Scripts",
+    liveDemoUrl: "https://example.com/",
+    projectBadges: ["Intern", "Little Ark Foundation"],
+    systemPreviewAlt:
+      "BNN Donor mobile app preview from internship work at Little Ark Foundation",
+    systemPreviewNote:
+      "This preview shows the donor-facing mobile app work completed during the Little Ark Foundation internship, including mobile workflow improvements and donor access features.",
+    systemPreviewSrc: "/experience-proofs/intern/mobile.mp4",
   },
   {
     id: "smart-pos-user-manual",
