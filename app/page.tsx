@@ -1,4 +1,5 @@
 import { AboutSection } from "@/components/sections/home/about-section";
+import { CertificatesSection } from "@/components/sections/home/certificates-section";
 import { ContactSection } from "@/components/sections/home/contact-section";
 import { ExperienceSection } from "@/components/sections/home/experience-section";
 import { HeroSection } from "@/components/sections/home/hero-section";
@@ -18,6 +19,7 @@ const Home = () => {
       <SkillsSection />
       <ProjectsSection />
       <ExperienceSection />
+      <CertificatesSection />
       <ContactSection />
     </>
   );

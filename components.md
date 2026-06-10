@@ -74,9 +74,9 @@
 
 ## Home Sections
 
-### `HeroSection`, `ServicesSection`, `AboutSection`, `SkillsSection`, `ProjectsSection`, `ExperienceSection`, `ContactSection`
+### `HeroSection`, `ServicesSection`, `AboutSection`, `SkillsSection`, `ProjectsSection`, `ExperienceSection`, `CertificatesSection`, `CertificatePreviewModal`, `ContactSection`
 
-- Purpose: Compose the recruiter-facing home page sections with responsive layouts across mobile and desktop, including a stronger hero introduction.
+- Purpose: Compose the recruiter-facing home page sections with responsive layouts across mobile and desktop, including a stronger hero introduction and a dedicated certificates area with in-page preview modals for training and credential highlights.
 - Location: `components/sections/home/*`
 
 ### `ProjectFilter`

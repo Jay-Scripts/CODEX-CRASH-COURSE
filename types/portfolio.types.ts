@@ -25,6 +25,18 @@ export type ExperienceSpreadsheetPreview = {
   sheets: ExperienceSpreadsheetSheet[];
 };
 
+export type Certificate = {
+  credentialId?: string;
+  href?: string;
+  imageAlt?: string;
+  imageSrc?: string;
+  issued: string;
+  issuer: string;
+  skills?: string[];
+  title: string;
+  type: string;
+};
+
 export type ProjectCategory =
   | "stand-alone"
   | "website"

@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import type {
   AboutEntry,
+  Certificate,
   Experience,
   ExperienceProofItem,
   ExperienceSpreadsheetPreview,
@@ -551,6 +552,125 @@ const grcProofItems: ExperienceProofItem[] = [
   },
 ];
 
+export const certificates: Certificate[] = [
+  {
+    credentialId: "UC-4dfd695d-6fd5-4a7f-b6e2-8a1ee8660bfa",
+    href: "/experience-proofs/tech%20certs/css.jpg",
+    imageAlt: "Udemy certificate for Learn CSS - For Beginners",
+    imageSrc: "/experience-proofs/tech%20certs/css.jpg",
+    issued: "April 5, 2026",
+    issuer: "Udemy · YouAccel Training",
+    skills: ["CSS", "Frontend"],
+    title: "Learn CSS - For Beginners",
+    type: "Technical Certificate",
+  },
+  {
+    credentialId: "UC-3756d583-c6cf-4eb9-b850-c3a336c028ee",
+    href: "/experience-proofs/tech%20certs/react.jpg",
+    imageAlt:
+      "Udemy certificate for Learn React by Building the Simplest App from Scratch",
+    imageSrc: "/experience-proofs/tech%20certs/react.jpg",
+    issued: "April 5, 2026",
+    issuer: "Udemy · Pierre Henry",
+    skills: ["React", "JavaScript", "Frontend"],
+    title: "Learn React by Building the Simplest App from Scratch",
+    type: "Technical Certificate",
+  },
+  {
+    credentialId: "UC-b3b7f6f8-d39c-4b40-b9cf-8c6d222f0f22",
+    href: "/experience-proofs/tech%20certs/php,%20js,%20bootstrap.jpg",
+    imageAlt:
+      "Udemy certificate for JavaScript, Bootstrap, and PHP certification for beginners",
+    imageSrc: "/experience-proofs/tech%20certs/php,%20js,%20bootstrap.jpg",
+    issued: "April 5, 2026",
+    issuer: "Udemy · YouAccel Training",
+    skills: ["JavaScript", "Bootstrap", "PHP"],
+    title: "JavaScript, Bootstrap, & PHP - Certification for Beginners",
+    type: "Technical Certificate",
+  },
+  {
+    href: "/experience-proofs/seminars%20certs/41.png",
+    imageAlt:
+      "Certificate of participation for the From Student to Professional seminar",
+    imageSrc: "/experience-proofs/seminars%20certs/41.png",
+    issued: "February 21, 2026",
+    issuer: "Global Reciprocal Colleges / College of Computer Studies",
+    skills: ["Career Readiness", "Professional Development"],
+    title:
+      "From Student to Professional: How to Get Hired, Add Value, and Not Get Lost in Your First Year of Work",
+    type: "Seminar Certificate",
+  },
+  {
+    href: "/experience-proofs/seminars%20certs/63.png",
+    imageAlt:
+      "Certificate of participation for the AI Leveling seminar about the future of IT careers",
+    imageSrc: "/experience-proofs/seminars%20certs/63.png",
+    issued: "February 21, 2026",
+    issuer: "Global Reciprocal Colleges / College of Computer Studies",
+    skills: ["AI", "Career Growth", "IT Trends"],
+    title: "AI Leveling: How AI is Shaping the Future of IT Careers",
+    type: "Seminar Certificate",
+  },
+  {
+    href: "/experience-proofs/seminars%20certs/36.png",
+    imageAlt:
+      "Certificate of appreciation for the Breaking into Tech seminar about AWS fundamentals and technical interviews",
+    imageSrc: "/experience-proofs/seminars%20certs/36.png",
+    issued: "February 28, 2026",
+    issuer: "Global Reciprocal Colleges / College of Computer Studies",
+    skills: ["AWS Fundamentals", "Technical Interviews", "Career Preparation"],
+    title: "Breaking into Tech: AWS Fundamentals & Acing Technical Interviews",
+    type: "Seminar Certificate",
+  },
+  {
+    href: "/experience-proofs/seminars%20certs/28.png",
+    imageAlt:
+      "Certificate of appreciation for the What Minecraft Taught Me About Data Architecture seminar",
+    imageSrc: "/experience-proofs/seminars%20certs/28.png",
+    issued: "February 28, 2026",
+    issuer: "Global Reciprocal Colleges / College of Computer Studies",
+    skills: ["Data Architecture", "Systems Thinking", "Creative Problem Solving"],
+    title: "What Minecraft Taught Me About Data Architecture",
+    type: "Seminar Certificate",
+  },
+  {
+    href: "/experience-proofs/school%20certs/CamScanner%206-10-26%2017.26(1)_1.jpeg",
+    imageAlt:
+      "School certificate of participation for OJT Conference 2026 Breakthrough: Unleashing Your Potential 2026",
+    imageSrc:
+      "/experience-proofs/school%20certs/CamScanner%206-10-26%2017.26(1)_1.jpeg",
+    issued: "March 4, 2026",
+    issuer: "Global Reciprocal Colleges",
+    skills: ["OJT Conference", "Professional Growth", "Career Preparation"],
+    title: "Breakthrough: Unleashing Your Potential 2026",
+    type: "School Certificate",
+  },
+  {
+    href: "/experience-proofs/school%20certs/CamScanner%206-10-26%2017.27(1)_1.jpeg",
+    imageAlt:
+      "School certificate of recognition for champion in the 30-second CCS promotional video contest",
+    imageSrc:
+      "/experience-proofs/school%20certs/CamScanner%206-10-26%2017.27(1)_1.jpeg",
+    issued: "June 9, 2023",
+    issuer: "Global Reciprocal Colleges / College of Computer Studies",
+    skills: ["Video Contest", "Creative Communication", "School Recognition"],
+    title: "Champion - 30-second CCS Promotional Video Contest",
+    type: "School Certificate",
+  },
+  {
+    href: "/experience-proofs/school%20certs/CamScanner%206-10-26%2017.27_1.jpeg",
+    imageAlt:
+      "School certificate of recognition for second place in programming battle during college week",
+    imageSrc:
+      "/experience-proofs/school%20certs/CamScanner%206-10-26%2017.27_1.jpeg",
+    issued: "June 9, 2023",
+    issuer: "Global Reciprocal Colleges / College of Computer Studies",
+    skills: ["Programming Battle", "Team Competition", "School Recognition"],
+    title: "2nd Place - Programming Battle",
+    type: "School Certificate",
+  },
+];
+
 export const profile: Profile = {
   name: "Cornelio A. Gatbonton Jr",
   role: "Junior Web Developer | Web Applications | Technical Support",
@@ -573,6 +693,7 @@ export const navigationItems: NavigationItem[] = [
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
+  { label: "Certificates", href: "#certificates" },
   { label: "Contact", href: "#contact" },
 ];
 

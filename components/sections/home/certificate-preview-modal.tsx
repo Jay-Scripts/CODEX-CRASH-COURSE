@@ -1,0 +1,152 @@
+"use client";
+
+import { X } from "lucide-react";
+import Image from "next/image";
+import { useEffect } from "react";
+import { createPortal } from "react-dom";
+import type { Certificate } from "@/types/portfolio.types";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+
+type CertificatePreviewModalProps = {
+  certificate: Certificate | null;
+  onClose: () => void;
+};
+
+/**
+ * Displays a fullscreen in-page certificate preview without leaving the portfolio.
+ */
+export const CertificatePreviewModal = ({
+  certificate,
+  onClose,
+}: CertificatePreviewModalProps) => {
+  useEffect(() => {
+    if (!certificate) {
+      return undefined;
+    }
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [certificate, onClose]);
+
+  if (!certificate || typeof document === "undefined") {
+    return null;
+  }
+
+  return createPortal(
+    <div className="fixed inset-0 z-[80] flex items-end sm:items-center sm:justify-center sm:p-4 md:p-6">
+      <button
+        aria-label="Close certificate preview"
+        className="absolute inset-0 bg-background/85 backdrop-blur-xl"
+        onClick={onClose}
+        tabIndex={-1}
+        type="button"
+      />
+
+      <div
+        aria-label={`${certificate.title} preview`}
+        aria-modal="true"
+        className="relative flex h-[92dvh] w-full flex-col overflow-hidden rounded-t-2xl border border-border/60 bg-background shadow-2xl sm:h-[calc(100dvh-2rem)] sm:max-w-6xl sm:rounded-2xl"
+        role="dialog"
+      >
+        <div className="flex items-start justify-between gap-3 border-b border-border/60 px-4 py-3 sm:px-5">
+          <div className="min-w-0">
+            <p className="truncate text-sm font-semibold text-foreground sm:text-base">
+              {certificate.title}
+            </p>
+            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+              <span>{certificate.issuer}</span>
+              <span className="hidden sm:inline">/</span>
+              <span>{certificate.issued}</span>
+            </div>
+          </div>
+          <Button
+            aria-label="Close preview"
+            className="size-8"
+            onClick={onClose}
+            size="icon"
+            type="button"
+            variant="outline"
+          >
+            <X className="size-4" />
+          </Button>
+        </div>
+
+        <div className="min-h-0 flex-1 overflow-auto bg-muted/30 p-3 sm:p-5">
+          <div className="mx-auto flex max-w-5xl flex-col gap-4">
+            <div className="rounded-2xl border border-border/60 bg-background p-3 shadow-xl sm:p-4">
+              {certificate.imageSrc ? (
+                <Image
+                  alt={certificate.imageAlt ?? certificate.title}
+                  className="h-auto w-full rounded-xl object-contain"
+                  height={1200}
+                  src={certificate.imageSrc}
+                  unoptimized
+                  width={1600}
+                />
+              ) : (
+                <div className="flex min-h-80 items-center justify-center rounded-xl border border-dashed border-border/60 bg-muted/30 px-6 text-center text-sm text-muted-foreground">
+                  No certificate image has been added for this entry yet.
+                </div>
+              )}
+            </div>
+
+            <div className="rounded-2xl border border-border/60 bg-background p-4 shadow-sm sm:p-5">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <p className="text-sm text-primary">{certificate.issued}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {certificate.issuer}
+                  </p>
+                </div>
+                <Badge
+                  className="border-primary/20 bg-primary/10 text-primary"
+                  variant="outline"
+                >
+                  {certificate.type}
+                </Badge>
+              </div>
+
+              {certificate.credentialId ? (
+                <p className="mt-4 text-sm text-muted-foreground">
+                  <span className="font-medium text-foreground">
+                    Credential ID:
+                  </span>{" "}
+                  {certificate.credentialId}
+                </p>
+              ) : null}
+
+              {certificate.skills?.length ? (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {certificate.skills.map((skill) => (
+                    <Badge
+                      className="border-border bg-background text-muted-foreground"
+                      key={skill}
+                      variant="outline"
+                    >
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>,
+    document.body,
+  );
+};

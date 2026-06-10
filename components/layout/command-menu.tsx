@@ -3,7 +3,12 @@
 import { Search, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { navigationItems, profile, projects } from "@/constants/portfolio.constants";
+import {
+  certificates,
+  navigationItems,
+  profile,
+  projects,
+} from "@/constants/portfolio.constants";
 import { useCommandShortcut } from "@/hooks/use-command-shortcut";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -20,6 +25,11 @@ const commandItems = [
     label: project.title,
     href: `#${project.id}`,
     group: "Projects",
+  })),
+  ...certificates.map((certificate) => ({
+    label: certificate.title,
+    href: "#certificates",
+    group: "Certificates",
   })),
   {
     label: "Download Resume",
