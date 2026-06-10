@@ -8,6 +8,7 @@ import {
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import type { FlowchartPreview } from "@/types/portfolio.types";
@@ -160,7 +161,7 @@ export const ProjectFlowchartOverlay = ({
     return () => observer.disconnect();
   }, [isOpen, zoomLevel]);
 
-  if (!isOpen || typeof document === "undefined") {
+  if (typeof document === "undefined") {
     return null;
   }
 
@@ -179,21 +180,36 @@ export const ProjectFlowchartOverlay = ({
       : undefined;
 
   return createPortal(
-    <div className="fixed inset-0 z-[70]">
-      <button
-        aria-label="Close fullscreen flowchart preview"
-        className="absolute inset-0 bg-background/80 backdrop-blur-xl"
-        onClick={onClose}
-        type="button"
-      />
-
-      <div className="relative flex h-full w-full items-center justify-center p-0 sm:p-4 md:p-6 lg:p-8">
-        <div
-          aria-label={`${activePreview.label} flowchart fullscreen preview`}
-          aria-modal="true"
-          className="relative flex h-dvh w-screen flex-col overflow-hidden bg-background/95 shadow-2xl sm:h-[calc(100dvh-2rem)] sm:w-full sm:max-w-5xl sm:rounded-lg sm:border sm:border-border/70 md:max-w-6xl lg:max-w-7xl"
-          role="dialog"
+    <AnimatePresence>
+      {isOpen ? (
+        <motion.div
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-[70]"
+          exit={{ opacity: 0 }}
+          initial={{ opacity: 0 }}
         >
+          <motion.button
+            animate={{ opacity: 1 }}
+            aria-label="Close fullscreen flowchart preview"
+            className="absolute inset-0 bg-background/80 backdrop-blur-xl"
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+            onClick={onClose}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            type="button"
+          />
+
+          <div className="relative flex h-full w-full items-center justify-center p-0 sm:p-4 md:p-6 lg:p-8">
+            <motion.div
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              aria-label={`${activePreview.label} flowchart fullscreen preview`}
+              aria-modal="true"
+              className="relative flex h-dvh w-screen flex-col overflow-hidden bg-background/95 shadow-2xl sm:h-[calc(100dvh-2rem)] sm:w-full sm:max-w-5xl sm:rounded-lg sm:border sm:border-border/70 md:max-w-6xl lg:max-w-7xl"
+              exit={{ opacity: 0, scale: 0.98, y: 24 }}
+              initial={{ opacity: 0, scale: 0.98, y: 24 }}
+              role="dialog"
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            >
           <div className="sticky top-0 z-10 flex flex-col gap-3 border-b border-border/70 bg-background/95 px-3 py-3 backdrop-blur sm:px-5 md:flex-row md:items-start md:justify-between md:px-6">
             <div>
               <p className="text-base font-semibold sm:text-lg">
@@ -336,9 +352,11 @@ export const ProjectFlowchartOverlay = ({
               {currentIndex + 1} / {total} diagrams
             </span>
           </div>
-        </div>
-      </div>
-    </div>,
+            </motion.div>
+          </div>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>,
     document.body,
   );
 };

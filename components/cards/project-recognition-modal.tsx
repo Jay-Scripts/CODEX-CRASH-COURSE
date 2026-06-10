@@ -1,6 +1,7 @@
 "use client";
 
 import { Award, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
@@ -51,30 +52,41 @@ export const ProjectRecognitionModal = ({
     };
   }, [isOpen, onClose]);
 
-  if (
-    !isOpen ||
-    !project.recognitionPreviewSrc ||
-    typeof document === "undefined"
-  ) {
+  if (!project.recognitionPreviewSrc || typeof document === "undefined") {
     return null;
   }
 
   return createPortal(
-    <div className="fixed inset-0 z-[80] flex items-end sm:items-center sm:justify-center sm:p-4 md:p-6">
-      <button
-        aria-label="Close recognition preview"
-        className="absolute inset-0 bg-background/85 backdrop-blur-xl"
-        onClick={onClose}
-        tabIndex={-1}
-        type="button"
-      />
+    <AnimatePresence>
+      {isOpen ? (
+        <motion.div
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-[80] flex items-end sm:items-center sm:justify-center sm:p-4 md:p-6"
+          exit={{ opacity: 0 }}
+          initial={{ opacity: 0 }}
+        >
+          <motion.button
+            animate={{ opacity: 1 }}
+            aria-label="Close recognition preview"
+            className="absolute inset-0 bg-background/85 backdrop-blur-xl"
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+            onClick={onClose}
+            tabIndex={-1}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            type="button"
+          />
 
-      <div
-        aria-label={`${project.title} recognition preview`}
-        aria-modal="true"
-        className="relative flex h-[92dvh] w-full flex-col overflow-hidden rounded-t-2xl border border-border/60 bg-background shadow-2xl sm:h-[calc(100dvh-2rem)] sm:max-w-6xl sm:rounded-2xl"
-        role="dialog"
-      >
+          <motion.div
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            aria-label={`${project.title} recognition preview`}
+            aria-modal="true"
+            className="relative flex h-[92dvh] w-full flex-col overflow-hidden rounded-t-2xl border border-border/60 bg-background shadow-2xl sm:h-[calc(100dvh-2rem)] sm:max-w-6xl sm:rounded-2xl"
+            exit={{ opacity: 0, scale: 0.98, y: 24 }}
+            initial={{ opacity: 0, scale: 0.98, y: 24 }}
+            role="dialog"
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          >
         <div className="flex items-start justify-between gap-3 border-b border-border/60 px-4 py-3 sm:px-5">
           <div className="min-w-0">
             <p className="truncate text-sm font-semibold text-foreground sm:text-base">
@@ -136,8 +148,10 @@ export const ProjectRecognitionModal = ({
             </div>
           </div>
         </div>
-      </div>
-    </div>,
+          </motion.div>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>,
     document.body,
   );
 };

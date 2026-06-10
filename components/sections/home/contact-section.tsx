@@ -36,23 +36,15 @@ export const ContactSection = () => (
       <SectionAccentBackdrop variant="right" />
       <RevealItem>
         <SectionHeading
-          description="Make it easy for recruiters to verify links, download a resume, and start a conversation."
+          description="I’m currently open to Junior Web Developer opportunities. Recruiters and teams can use this section to verify my links, download my resume, and start a conversation."
           eyebrow="Contact"
-          title="Ready for junior full-stack interviews"
+          title="Let’s Connect"
         />
       </RevealItem>
       <RevealGroup className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
         <RevealItem>
           <Card className="overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5">
             <CardContent className="space-y-5 p-5 sm:p-6">
-              <div className="rounded-[1.4rem] border border-primary/15 bg-background/80 p-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  Best for
-                </p>
-                <p className="mt-2 text-lg font-semibold text-foreground">
-                  Recruiter outreach, portfolio review, and entry-level full-stack opportunities.
-                </p>
-              </div>
               <ul className="space-y-4">
                 {contactLinks.map((item) => {
                   const Icon = item.icon;
@@ -71,7 +63,9 @@ export const ContactSection = () => (
                               ? "noopener noreferrer"
                               : undefined
                           }
-                          target={item.href.startsWith("http") ? "_blank" : undefined}
+                          target={
+                            item.href.startsWith("http") ? "_blank" : undefined
+                          }
                         >
                           <span className="flex min-w-0 items-center gap-3">
                             <Icon className="size-4 text-primary" />

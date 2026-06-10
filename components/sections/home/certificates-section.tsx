@@ -20,6 +20,8 @@ export const CertificatesSection = () => {
   const [activeCertificate, setActiveCertificate] = useState<Certificate | null>(
     null,
   );
+  const [closingCertificate, setClosingCertificate] =
+    useState<Certificate | null>(null);
 
   return (
     <AnimatedSection
@@ -43,7 +45,10 @@ export const CertificatesSection = () => {
                 <button
                   aria-label={`Preview ${certificate.title}`}
                   className="group/certificate block h-full w-full text-left"
-                  onClick={() => setActiveCertificate(certificate)}
+                  onClick={() => {
+                    setClosingCertificate(null);
+                    setActiveCertificate(certificate);
+                  }}
                   type="button"
                 >
                   <Card className="h-full overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
@@ -155,8 +160,13 @@ export const CertificatesSection = () => {
       </RevealGroup>
 
       <CertificatePreviewModal
-        certificate={activeCertificate}
-        onClose={() => setActiveCertificate(null)}
+        certificate={activeCertificate ?? closingCertificate}
+        isOpen={Boolean(activeCertificate)}
+        onClose={() => {
+          setClosingCertificate(activeCertificate);
+          setActiveCertificate(null);
+        }}
+        onExited={() => setClosingCertificate(null)}
       />
     </AnimatedSection>
   );

@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Project } from "@/types/portfolio.types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -94,7 +94,6 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
   const closeDocumentOverlay = () => {
     setIsDocumentOverlayOpen(false);
-    setActiveDocument(null);
   };
 
   const closeFlowchartOverlay = () => {
@@ -140,6 +139,20 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         : currentIndex + 1,
     );
   };
+
+  useEffect(() => {
+    if (isDocumentOverlayOpen || !activeDocument) {
+      return undefined;
+    }
+
+    const clearDocumentTimer = window.setTimeout(() => {
+      setActiveDocument(null);
+    }, 220);
+
+    return () => {
+      window.clearTimeout(clearDocumentTimer);
+    };
+  }, [activeDocument, isDocumentOverlayOpen]);
 
   return (
     <>

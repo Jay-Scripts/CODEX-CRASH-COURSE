@@ -10,6 +10,7 @@ import {
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
@@ -388,12 +389,20 @@ export const ProjectDocumentOverlay = ({
 
   useEffect(() => {
     if (!isOpen) {
-      setPdfDoc(null);
-      setViewerSize({ height: 0, width: 0 });
-      setCurrentPage(1);
-      setZoomLevel(1);
-      void cancelActiveRenderTasks();
+      const resetOverlayTimer = window.setTimeout(() => {
+        setPdfDoc(null);
+        setViewerSize({ height: 0, width: 0 });
+        setCurrentPage(1);
+        setZoomLevel(1);
+        void cancelActiveRenderTasks();
+      }, 220);
+
+      return () => {
+        window.clearTimeout(resetOverlayTimer);
+      };
     }
+
+    return undefined;
   }, [cancelActiveRenderTasks, isOpen]);
 
   useEffect(
@@ -403,7 +412,7 @@ export const ProjectDocumentOverlay = ({
     [cancelActiveRenderTasks],
   );
 
-  if (!isOpen || typeof document === "undefined") {
+  if (typeof document === "undefined") {
     return null;
   }
 
@@ -412,22 +421,37 @@ export const ProjectDocumentOverlay = ({
   const showRightPage = currentPage + 1 <= totalPages;
 
   return createPortal(
-    <div className="fixed inset-0 z-[70] flex items-end sm:items-center sm:justify-center sm:p-4 md:p-6 lg:p-8">
-      <button
-        aria-label="Close document preview"
-        className="absolute inset-0 bg-background/85 backdrop-blur-xl"
-        onClick={onClose}
-        tabIndex={-1}
-        type="button"
-      />
+    <AnimatePresence>
+      {isOpen ? (
+        <motion.div
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-[70] flex items-end sm:items-center sm:justify-center sm:p-4 md:p-6 lg:p-8"
+          exit={{ opacity: 0 }}
+          initial={{ opacity: 0 }}
+        >
+          <motion.button
+            animate={{ opacity: 1 }}
+            aria-label="Close document preview"
+            className="absolute inset-0 bg-background/85 backdrop-blur-xl"
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+            onClick={onClose}
+            tabIndex={-1}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            type="button"
+          />
 
-      <div
-        ref={dialogRef}
-        aria-label={`${title} fullscreen preview`}
-        aria-modal="true"
-        className="relative flex h-[92dvh] w-full flex-col overflow-hidden rounded-t-2xl bg-background shadow-2xl sm:h-[calc(100dvh-2rem)] sm:max-w-5xl sm:rounded-xl sm:border sm:border-border/60 md:max-w-6xl lg:max-w-7xl"
-        role="dialog"
-      >
+          <motion.div
+            ref={dialogRef}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            aria-label={`${title} fullscreen preview`}
+            aria-modal="true"
+            className="relative flex h-[92dvh] w-full flex-col overflow-hidden rounded-t-2xl bg-background shadow-2xl sm:h-[calc(100dvh-2rem)] sm:max-w-5xl sm:rounded-xl sm:border sm:border-border/60 md:max-w-6xl lg:max-w-7xl"
+            exit={{ opacity: 0, scale: 0.98, y: 24 }}
+            initial={{ opacity: 0, scale: 0.98, y: 24 }}
+            role="dialog"
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          >
         <div className="flex shrink-0 items-center justify-between gap-3 border-b border-border/60 bg-background px-4 py-3 sm:px-5">
           <div
             aria-hidden="true"
@@ -626,8 +650,10 @@ export const ProjectDocumentOverlay = ({
               : "-"}
           </span>
         </div>
-      </div>
-    </div>,
+          </motion.div>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>,
     document.body,
   );
 };

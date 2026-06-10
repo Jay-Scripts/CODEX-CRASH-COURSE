@@ -8,6 +8,7 @@ import {
   Video,
   X,
 } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
@@ -220,9 +221,13 @@ export const ExperienceProofGallery = ({
   proofSectionId,
 }: ExperienceProofGalleryProps) => {
   const [activeProofIndex, setActiveProofIndex] = useState<number | null>(null);
+  const [closingProof, setClosingProof] = useState<ExperienceProofItem | null>(
+    null,
+  );
 
   const activeProof =
     activeProofIndex !== null ? proofItems[activeProofIndex] : null;
+  const displayedProof = activeProof ?? closingProof;
 
   const leftProofItems = useMemo(
     () =>
@@ -258,7 +263,7 @@ export const ExperienceProofGallery = ({
     cardAlignment === "left" ? "translate-x-6" : "-translate-x-6";
 
   useEffect(() => {
-    if (activeProofIndex === null) {
+    if (!activeProof) {
       return undefined;
     }
 
@@ -277,7 +282,17 @@ export const ExperienceProofGallery = ({
       document.body.style.overflow = originalOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [activeProofIndex]);
+  }, [activeProof]);
+
+  const openProofPreview = (index: number) => {
+    setClosingProof(null);
+    setActiveProofIndex(index);
+  };
+
+  const closeProofPreview = () => {
+    setClosingProof(activeProof);
+    setActiveProofIndex(null);
+  };
 
   return (
     <>
@@ -313,7 +328,7 @@ export const ExperienceProofGallery = ({
                 <button
                   className="flex items-center gap-3 rounded-xl border border-border/50 bg-muted/20 p-3 text-left transition-colors hover:border-border/70 hover:bg-muted/30"
                   key={item.label}
-                  onClick={() => setActiveProofIndex(index)}
+                  onClick={() => openProofPreview(index)}
                   type="button"
                 >
                   <div className="relative aspect-[4/3] w-24 overflow-hidden rounded-lg border border-border/50 bg-background">
@@ -366,7 +381,7 @@ export const ExperienceProofGallery = ({
                       "md:group-hover/experience:translate-x-0 md:group-hover/experience:opacity-100 md:group-hover/experience:scale-100",
                     )}
                     key={item.label}
-                    onClick={() => setActiveProofIndex(originalIndex)}
+                    onClick={() => openProofPreview(originalIndex)}
                     type="button"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border/50 bg-background">
@@ -408,7 +423,7 @@ export const ExperienceProofGallery = ({
                     "md:group-hover/experience:translate-x-0 md:group-hover/experience:opacity-100 md:group-hover/experience:scale-100",
                   )}
                   key={item.label}
-                  onClick={() => setActiveProofIndex(originalIndex)}
+                  onClick={() => openProofPreview(originalIndex)}
                   type="button"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border/50 bg-background">
@@ -449,7 +464,7 @@ export const ExperienceProofGallery = ({
                     "md:group-hover/experience:translate-x-0 md:group-hover/experience:opacity-100 md:group-hover/experience:scale-100",
                   )}
                   key={item.label}
-                  onClick={() => setActiveProofIndex(originalIndex)}
+                  onClick={() => openProofPreview(originalIndex)}
                   type="button"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border/50 bg-background">
@@ -477,95 +492,112 @@ export const ExperienceProofGallery = ({
         </div>
       ) : null}
 
-      {activeProof && typeof document !== "undefined"
+      {displayedProof && typeof document !== "undefined"
         ? createPortal(
-            <div className="fixed inset-0 z-[80] flex items-end sm:items-center sm:justify-center sm:p-4 md:p-6">
-              <button
-                aria-label="Close proof preview"
-                className="absolute inset-0 bg-background/85 backdrop-blur-xl"
-                onClick={() => setActiveProofIndex(null)}
-                tabIndex={-1}
-                type="button"
-              />
-
-              <div
-                aria-label={`${activeProof.label} preview`}
-                aria-modal="true"
-                className="relative flex h-[92dvh] w-full flex-col overflow-hidden rounded-t-2xl border border-border/60 bg-background shadow-2xl sm:h-[calc(100dvh-2rem)] sm:max-w-5xl sm:rounded-2xl"
-                role="dialog"
-              >
-                <div className="flex items-start justify-between gap-3 border-b border-border/60 px-4 py-3 sm:px-5">
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold text-foreground sm:text-base">
-                      {activeProof.label}
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      {proofTypeLabels[activeProof.type]}
-                    </p>
-                  </div>
-                  <Button
-                    aria-label="Close preview"
-                    className="size-8"
-                    onClick={() => setActiveProofIndex(null)}
-                    size="icon"
+            <AnimatePresence onExitComplete={() => setClosingProof(null)}>
+              {activeProof ? (
+                <motion.div
+                  animate={{ opacity: 1 }}
+                  className="fixed inset-0 z-[80] flex items-end sm:items-center sm:justify-center sm:p-4 md:p-6"
+                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0 }}
+                >
+                  <motion.button
+                    animate={{ opacity: 1 }}
+                    aria-label="Close proof preview"
+                    className="absolute inset-0 bg-background/85 backdrop-blur-xl"
+                    exit={{ opacity: 0 }}
+                    initial={{ opacity: 0 }}
+                    onClick={closeProofPreview}
+                    tabIndex={-1}
+                    transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                     type="button"
-                    variant="outline"
-                  >
-                    <X className="size-4" />
-                  </Button>
-                </div>
+                  />
 
-                <div className="min-h-0 flex-1 overflow-auto bg-muted/30 p-3 sm:p-5">
-                  {activeProof.spreadsheetPreview ? (
-                    <SpreadsheetPreview
-                      sheets={activeProof.spreadsheetPreview.sheets}
-                    />
-                  ) : isVideoProof(activeProof.src) ? (
-                    <div className="flex h-full min-h-[24rem] items-center justify-center">
-                      <video
-                        autoPlay
-                        className="max-h-full w-full rounded-2xl border border-border/60 bg-black object-contain shadow-xl"
-                        controls
-                        loop
-                        muted
-                        playsInline
-                        preload="metadata"
-                        src={activeProof.src}
-                      />
+                  <motion.div
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    aria-label={`${displayedProof.label} preview`}
+                    aria-modal="true"
+                    className="relative flex h-[92dvh] w-full flex-col overflow-hidden rounded-t-2xl border border-border/60 bg-background shadow-2xl sm:h-[calc(100dvh-2rem)] sm:max-w-5xl sm:rounded-2xl"
+                    exit={{ opacity: 0, scale: 0.98, y: 24 }}
+                    initial={{ opacity: 0, scale: 0.98, y: 24 }}
+                    role="dialog"
+                    transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <div className="flex items-start justify-between gap-3 border-b border-border/60 px-4 py-3 sm:px-5">
+                      <div className="min-w-0">
+                        <p className="truncate text-sm font-semibold text-foreground sm:text-base">
+                          {displayedProof.label}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {proofTypeLabels[displayedProof.type]}
+                        </p>
+                      </div>
+                      <Button
+                        aria-label="Close preview"
+                        className="size-8"
+                        onClick={closeProofPreview}
+                        size="icon"
+                        type="button"
+                        variant="outline"
+                      >
+                        <X className="size-4" />
+                      </Button>
                     </div>
-                  ) : isImageProof(activeProof.src) ? (
-                    <div className="flex h-full min-h-[24rem] items-center justify-center">
-                      <div className="relative h-full min-h-[24rem] w-full overflow-hidden rounded-2xl border border-border/60 bg-background shadow-xl">
-                        <Image
-                          alt={activeProof.alt}
-                          className="object-contain"
-                          fill
-                          sizes="100vw"
-                          src={activeProof.src}
-                          unoptimized
+
+                    <div className="min-h-0 flex-1 overflow-auto bg-muted/30 p-3 sm:p-5">
+                      {displayedProof.spreadsheetPreview ? (
+                        <SpreadsheetPreview
+                          sheets={displayedProof.spreadsheetPreview.sheets}
                         />
-                      </div>
+                      ) : isVideoProof(displayedProof.src) ? (
+                        <div className="flex h-full min-h-[24rem] items-center justify-center">
+                          <video
+                            autoPlay
+                            className="max-h-full w-full rounded-2xl border border-border/60 bg-black object-contain shadow-xl"
+                            controls
+                            loop
+                            muted
+                            playsInline
+                            preload="metadata"
+                            src={displayedProof.src}
+                          />
+                        </div>
+                      ) : isImageProof(displayedProof.src) ? (
+                        <div className="flex h-full min-h-[24rem] items-center justify-center">
+                          <div className="relative h-full min-h-[24rem] w-full overflow-hidden rounded-2xl border border-border/60 bg-background shadow-xl">
+                            <Image
+                              alt={displayedProof.alt}
+                              className="object-contain"
+                              fill
+                              sizes="100vw"
+                              src={displayedProof.src}
+                              unoptimized
+                            />
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex h-full min-h-[24rem] items-center justify-center">
+                          <div className="flex max-w-md flex-col items-center gap-3 rounded-2xl border border-border/60 bg-background p-8 text-center shadow-xl">
+                            {renderDocumentTile(
+                              getDocumentProofIcon(displayedProof.src),
+                              getDocumentExtension(displayedProof.src),
+                            )}
+                            <p className="text-sm font-medium text-foreground">
+                              Preview not available for this document type.
+                            </p>
+                            <p className="text-sm text-muted-foreground">
+                              This proof item is stored as a file rather than
+                              image, video, or spreadsheet excerpt.
+                            </p>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  ) : (
-                    <div className="flex h-full min-h-[24rem] items-center justify-center">
-                      <div className="flex max-w-md flex-col items-center gap-3 rounded-2xl border border-border/60 bg-background p-8 text-center shadow-xl">
-                        {renderDocumentTile(
-                          getDocumentProofIcon(activeProof.src),
-                          getDocumentExtension(activeProof.src),
-                        )}
-                        <p className="text-sm font-medium text-foreground">
-                          Preview not available for this document type.
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          This proof item is stored as a file rather than image,
-                          video, or spreadsheet excerpt.
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>,
+                  </motion.div>
+                </motion.div>
+              ) : null}
+            </AnimatePresence>,
             document.body,
           )
         : null}
