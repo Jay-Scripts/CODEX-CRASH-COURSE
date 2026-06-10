@@ -406,6 +406,151 @@ const internshipProofItems: ExperienceProofItem[] = [
   },
 ];
 
+const mcdoProofItems: ExperienceProofItem[] = [
+  {
+    alt: "Employment proof scan page one for McDonald's service crew experience",
+    href: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.24_1.jpeg",
+    label: "Employment proof page 1",
+    src: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.24_1.jpeg",
+    type: "certificate",
+  },
+  {
+    alt: "Employment proof scan page two for McDonald's service crew experience",
+    href: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.25_1.jpeg",
+    label: "Employment proof page 2",
+    src: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.25_1.jpeg",
+    type: "certificate",
+  },
+  {
+    alt: "Employment proof scan page three for McDonald's service crew experience",
+    href: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.26_1.jpeg",
+    label: "Employment proof page 3",
+    src: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.26_1.jpeg",
+    type: "certificate",
+  },
+  {
+    alt: "Chicken station expert recognition photo from McDonald's service crew experience",
+    href: "/experience-proofs/mcdo/chx%20expert1.jpg",
+    label: "Chicken expert",
+    src: "/experience-proofs/mcdo/chx%20expert1.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Chicken station proof photo from McDonald's service crew experience",
+    href: "/experience-proofs/mcdo/chix%202.jpg",
+    label: "Chicken station",
+    src: "/experience-proofs/mcdo/chix%202.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Sunshine service recognition photo from McDonald's service crew experience",
+    href: "/experience-proofs/mcdo/serv%20sunshine.jpg",
+    label: "Service sunshine",
+    src: "/experience-proofs/mcdo/serv%20sunshine.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Standout McDonald's recognition photo from service crew experience",
+    href: "/experience-proofs/mcdo/standout%20mcdo.jpg",
+    label: "Standout McDo",
+    src: "/experience-proofs/mcdo/standout%20mcdo.jpg",
+    type: "photo",
+  },
+];
+
+const benchProofItems: ExperienceProofItem[] = [
+  {
+    alt: "Certificate of employment proof for Bench stock clerk experience",
+    href: "/experience-proofs/intern/bench/coe%20bench.jpg",
+    label: "Employment certificate",
+    src: "/experience-proofs/intern/bench/coe%20bench.jpg",
+    type: "certificate",
+  },
+];
+
+const jollibeeProofItems: ExperienceProofItem[] = [
+  {
+    alt: "Certificate of employment proof for Jollibee service crew experience",
+    href: "/experience-proofs/intern/jb/coe%20jb.jpg",
+    label: "Employment certificate",
+    src: "/experience-proofs/intern/jb/coe%20jb.jpg",
+    type: "certificate",
+  },
+];
+
+const grcProofItems: ExperienceProofItem[] = [
+  {
+    alt: "Computer laboratory one setup proof from Global Reciprocal Colleges IT department work",
+    href: "/experience-proofs/grc%20it%20dept/lab%201%20setting%20up.jpg",
+    label: "Lab 1 setup",
+    src: "/experience-proofs/grc%20it%20dept/lab%201%20setting%20up.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Computer laboratory one setup continuation proof from Global Reciprocal Colleges IT department work",
+    href: "/experience-proofs/grc%20it%20dept/lab%201%20setup.jpg",
+    label: "Lab 1 setup 2",
+    src: "/experience-proofs/grc%20it%20dept/lab%201%20setup.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Computer laboratory one setup detail proof from Global Reciprocal Colleges IT department work",
+    href: "/experience-proofs/grc%20it%20dept/lab%201%20setup%202.jpg",
+    label: "Lab 1 setup 3",
+    src: "/experience-proofs/grc%20it%20dept/lab%201%20setup%202.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Computer laboratory one maintenance proof from Global Reciprocal Colleges IT department work",
+    href: "/experience-proofs/grc%20it%20dept/lab%201%20maintenance%202.jpg",
+    label: "Lab 1 maintenance",
+    src: "/experience-proofs/grc%20it%20dept/lab%201%20maintenance%202.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Computer laboratory two maintenance proof from Global Reciprocal Colleges IT department work",
+    href: "/experience-proofs/grc%20it%20dept/lab%202%20maintenance%202.jpg",
+    label: "Lab 2 maintenance",
+    src: "/experience-proofs/grc%20it%20dept/lab%202%20maintenance%202.jpg",
+    type: "photo",
+  },
+  {
+    alt: "PC maintenance proof from Global Reciprocal Colleges IT department work",
+    href: "/experience-proofs/grc%20it%20dept/pc%20maintenace.jpg",
+    label: "PC maintenance",
+    src: "/experience-proofs/grc%20it%20dept/pc%20maintenace.jpg",
+    type: "photo",
+  },
+  {
+    alt: "PC cleanup proof from Global Reciprocal Colleges IT department work",
+    href: "/experience-proofs/grc%20it%20dept/pc%20cleanup.jpg",
+    label: "PC cleanup",
+    src: "/experience-proofs/grc%20it%20dept/pc%20cleanup.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Educational technology maintenance proof from Global Reciprocal Colleges IT department work",
+    href: "/experience-proofs/grc%20it%20dept/ed%20tech%20maintenance.jpg",
+    label: "Ed tech maintenance",
+    src: "/experience-proofs/grc%20it%20dept/ed%20tech%20maintenance.jpg",
+    type: "photo",
+  },
+  {
+    alt: "New faculty LAN cable installation proof from Global Reciprocal Colleges IT department work",
+    href: "/experience-proofs/grc%20it%20dept/new%20lan%20cable%20faculty.jpg",
+    label: "LAN cable setup",
+    src: "/experience-proofs/grc%20it%20dept/new%20lan%20cable%20faculty.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Library maintenance proof from Global Reciprocal Colleges IT department work",
+    href: "/experience-proofs/grc%20it%20dept/library%20maintetance.jpg",
+    label: "Library maintenance",
+    src: "/experience-proofs/grc%20it%20dept/library%20maintetance.jpg",
+    type: "photo",
+  },
+];
+
 export const profile: Profile = {
   name: "Cornelio A. Gatbonton Jr",
   role: "Junior Web Developer | Web Applications | Technical Support",
@@ -687,6 +832,7 @@ export const experiences: Experience[] = [
     organization: "Golden Arches Development Corporation - McDonald's",
     period: "Aug 2022 - Jun 2026",
     icon: ShieldCheck,
+    proofItems: mcdoProofItems,
     highlights: [
       "Processed customer orders, prepared food items, maintained cleanliness, and supported daily store operations in a fast-paced service environment.",
       "Troubleshot basic store equipment issues involving monitors, keyboards, mouse devices, HDMI/VGA connections, and POS-related hardware concerns before escalation.",
@@ -699,6 +845,7 @@ export const experiences: Experience[] = [
     period: "Jul 2022 - Jul 2026",
     icon: Headphones,
     isTechRelated: true,
+    proofItems: grcProofItems,
     highlights: [
       "Assisted in setting up and maintaining 2 computer laboratories, including workstation preparation, hardware arrangement, and basic system configuration.",
       "Repaired and maintained PC hardware through soldering, component replacement, system upgrades, and peripheral troubleshooting to support lab operations.",
@@ -711,6 +858,7 @@ export const experiences: Experience[] = [
     organization: "Be Connected Management Services - Bench",
     period: "Jun 2021 - Jul 2022",
     icon: BriefcaseBusiness,
+    proofItems: benchProofItems,
     highlights: [
       "Managed stockroom organization, inventory checking, and item monitoring to support accurate stock handling and daily store operations.",
       "Performed basic store maintenance and hardware support, including cable cleanup, system unit maintenance, POS-related checks, and defective fixture reporting.",
@@ -730,6 +878,7 @@ export const experiences: Experience[] = [
     organization: "Jollibee Food Corporation - Jollibee",
     period: "Sep 2018 - Sep 2019",
     icon: ShieldCheck,
+    proofItems: jollibeeProofItems,
     highlights: [
       "Supported customer service, order taking, food preparation, and store cleanliness in a fast-paced team environment.",
     ],
