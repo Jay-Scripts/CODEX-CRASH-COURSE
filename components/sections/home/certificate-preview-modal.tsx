@@ -109,14 +109,16 @@ export const CertificatePreviewModal = ({
               <div className="mx-auto flex max-w-5xl flex-col gap-4">
                 <div className="rounded-2xl border border-border/60 bg-background p-3 shadow-xl sm:p-4">
                   {certificate.imageSrc ? (
-                    <Image
-                      alt={certificate.imageAlt ?? certificate.title}
-                      className="h-auto w-full rounded-xl object-contain"
-                      height={1200}
-                      src={certificate.imageSrc}
-                      unoptimized
-                      width={1600}
-                    />
+                    <div className="flex justify-center">
+                      <Image
+                        alt={certificate.imageAlt ?? certificate.title}
+                        className="h-auto max-h-[65dvh] w-auto max-w-full rounded-xl object-contain"
+                        height={1200}
+                        src={certificate.imageSrc}
+                        unoptimized
+                        width={1600}
+                      />
+                    </div>
                   ) : (
                     <div className="flex min-h-80 items-center justify-center rounded-xl border border-dashed border-border/60 bg-muted/30 px-6 text-center text-sm text-muted-foreground">
                       No certificate image has been added for this entry yet.

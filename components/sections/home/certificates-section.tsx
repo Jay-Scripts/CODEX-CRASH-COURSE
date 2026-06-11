@@ -54,15 +54,17 @@ export const CertificatesSection = () => {
                   <Card className="h-full overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
                     <CardContent className="flex h-full flex-col p-0">
                       {certificate.imageSrc ? (
-                        <div className="relative aspect-[16/10] overflow-hidden border-b border-border/60 bg-muted/30">
-                          <Image
-                            alt={certificate.imageAlt ?? certificate.title}
-                            className="object-cover"
-                            fill
-                            sizes="(min-width: 1280px) 24rem, (min-width: 768px) 50vw, 100vw"
-                            src={certificate.imageSrc}
-                            unoptimized
-                          />
+                        <div className="relative aspect-[4/3] overflow-hidden border-b border-border/60 bg-muted/30 p-3">
+                          <div className="relative h-full w-full">
+                            <Image
+                              alt={certificate.imageAlt ?? certificate.title}
+                              className="rounded-lg object-contain"
+                              fill
+                              sizes="(min-width: 1280px) 24rem, (min-width: 768px) 50vw, 100vw"
+                              src={certificate.imageSrc}
+                              unoptimized
+                            />
+                          </div>
                           <span className="absolute inset-0 flex items-center justify-center bg-background/75 opacity-0 backdrop-blur-[2px] transition-opacity duration-200 group-hover/certificate:opacity-100">
                             <span className="inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm">
                               <Eye className="size-3.5 text-primary" />
@@ -71,7 +73,7 @@ export const CertificatesSection = () => {
                           </span>
                         </div>
                       ) : (
-                        <div className="grid aspect-[16/10] place-items-center border-b border-border/60 bg-muted/30 text-primary">
+                        <div className="grid aspect-[4/3] place-items-center border-b border-border/60 bg-muted/30 text-primary">
                           <FileBadge2 className="size-10" />
                         </div>
                       )}

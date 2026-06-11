@@ -409,23 +409,23 @@ const internshipProofItems: ExperienceProofItem[] = [
 
 const mcdoProofItems: ExperienceProofItem[] = [
   {
-    alt: "Employment proof scan page one for McDonald's service crew experience",
+    alt: "McDonald's certificate of appreciation for standout performer for June 2025",
     href: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.24_1.jpeg",
-    label: "Employment proof page 1",
+    label: "Standout performer certificate",
     src: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.24_1.jpeg",
     type: "certificate",
   },
   {
-    alt: "Employment proof scan page two for McDonald's service crew experience",
+    alt: "McDonald's certificate of appreciation for station champion service sunshine for September 2023",
     href: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.25_1.jpeg",
-    label: "Employment proof page 2",
+    label: "Service sunshine certificate",
     src: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.25_1.jpeg",
     type: "certificate",
   },
   {
-    alt: "Employment proof scan page three for McDonald's service crew experience",
+    alt: "McDonald's certificate of appreciation for station champion chicken McDo master for June 2025",
     href: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.26_1.jpeg",
-    label: "Employment proof page 3",
+    label: "Chicken McDo master certificate",
     src: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.26_1.jpeg",
     type: "certificate",
   },
@@ -679,6 +679,39 @@ export const certificates: Certificate[] = [
     skills: ["Capstone Presentation", "Research Colloquium", "Smart POS"],
     title: "CCS Research Colloquium 2026 Presenter Recognition",
     type: "School Certificate",
+  },
+  {
+    href: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.25_1.jpeg",
+    imageAlt:
+      "McDonald's certificate of appreciation for being recognized as station champion service sunshine for September 2023",
+    imageSrc: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.25_1.jpeg",
+    issued: "September 2023",
+    issuer: "Golden Arches Development Corporation - McDonald's",
+    skills: ["Customer Service", "Guest Experience", "Service Excellence"],
+    title: "Station Champion - Service Sunshine",
+    type: "Work Recognition Certificate",
+  },
+  {
+    href: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.24_1.jpeg",
+    imageAlt:
+      "McDonald's certificate of appreciation for being the standout performer for June 2025",
+    imageSrc: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.24_1.jpeg",
+    issued: "June 2025",
+    issuer: "Golden Arches Development Corporation - McDonald's",
+    skills: ["Customer Service", "Team Performance", "Service Operations"],
+    title: "Standout Performer",
+    type: "Work Recognition Certificate",
+  },
+  {
+    href: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.26_1.jpeg",
+    imageAlt:
+      "McDonald's certificate of appreciation for being recognized as station champion chicken McDo master for June 2025",
+    imageSrc: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.26_1.jpeg",
+    issued: "June 2025",
+    issuer: "Golden Arches Development Corporation - McDonald's",
+    skills: ["Food Preparation", "Kitchen Operations", "Station Mastery"],
+    title: "Station Champion - Chicken McDo Master",
+    type: "Work Recognition Certificate",
   },
 ];
 
