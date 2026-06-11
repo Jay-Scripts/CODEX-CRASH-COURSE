@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Portfolio
 
-## Getting Started
+This is my personal portfolio built with Next.js, React, TypeScript, Tailwind CSS, and Framer Motion.
 
-Install dependencies with `pnpm`:
+I made this project to show my work, experience, certificates, and the kind of skills I can bring as a junior web developer. I also use it to present some of my technical documentation work like system flowcharts and user manuals, not just UI screens.
+
+## What's in the site
+
+- Hero section with my intro, quick stats, and resume preview
+- Services section for frontend, backend, documentation, UI/UX, and QA support
+- About section
+- Skills section
+- Projects section with filters
+- Experience section with proof images, videos, documents, and spreadsheet previews
+- Certificates section with in-page preview
+- Contact section
+
+## A few things I added
+
+- Light mode is the default theme
+- Users can still switch to dark mode
+- Certificate count in the hero section syncs from the actual certificates data
+- Resume, certificates, project files, and proofs open in overlays so visitors do not have to leave the page
+- `Ctrl/Cmd + K` opens the command menu
+
+## Tech stack
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Framer Motion
+- next-themes
+- lucide-react
+
+There are also some installed packages for 3D-related work like `three`, `@react-three/fiber`, `@react-three/drei`, `@react-three/rapier`, and `meshline`.
+
+## Main content file
+
+Most of the portfolio content is coming from:
+
+```text
+constants/portfolio.constants.ts
+```
+
+That includes:
+
+- profile info
+- services
+- skills
+- projects
+- experiences
+- certificates
+- about content
+- navigation links
+
+So if I want to update the portfolio fast, that is usually the first file to edit.
+
+## Project structure
+
+```text
+app/
+components/
+  cards/
+  common/
+  forms/
+  layout/
+  providers/
+  sections/home/
+  ui/
+constants/
+public/
+```
+
+## Run locally
+
+Install dependencies:
 
 ```bash
 pnpm install
 ```
 
-Then run the development server:
+Start the dev server:
 
 ```bash
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm dev
+pnpm build
+pnpm start
+pnpm lint
+```
 
-## Learn More
+## Notes
 
-To learn more about Next.js, take a look at the following resources:
+- Most images, PDFs, videos, certificates, and proof files are inside `public/`
+- Reusable UI is inside `components/ui`, `components/common`, `components/cards`, and `components/forms`
+- Page sections are inside `components/sections/home`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project can be deployed on Vercel or any platform that supports Next.js.
