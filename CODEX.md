@@ -45,6 +45,7 @@ Pages only compose sections. Sections use components. Components use hooks/utils
   "framer-motion": "^12.38.0",
   "lucide-react": "^1.14.0",
   "next-themes": "^0.4.6",
+  "@emailjs/browser": "^4.4.1",
   "@react-three/fiber": "^9.6.1",
   "@react-three/drei": "^10.7.7",
   "@react-three/rapier": "^2.2.0",

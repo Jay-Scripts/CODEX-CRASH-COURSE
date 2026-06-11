@@ -65,7 +65,7 @@
 
 ### `ContactForm`
 
-- Purpose: Validates, sanitizes, and renders the reusable recruiter contact form with shared shadcn form controls.
+- Purpose: Validates, sanitizes, and renders the reusable recruiter contact form with shared shadcn form controls and EmailJS submission.
 - Location: `components/forms/contact-form.tsx`
 
 ## Providers

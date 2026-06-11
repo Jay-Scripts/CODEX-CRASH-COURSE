@@ -103,6 +103,8 @@ pnpm lint
 - Most images, PDFs, videos, certificates, and proof files are inside `public/`
 - Reusable UI is inside `components/ui`, `components/common`, `components/cards`, and `components/forms`
 - Page sections are inside `components/sections/home`
+- The contact form uses EmailJS, so set `NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`, and `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` in your env file
+- The EmailJS template should use the keys `from_name`, `reply_to`, `message`, and `to_name`
 
 ## Deployment
 
