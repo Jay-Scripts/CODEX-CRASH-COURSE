@@ -8,7 +8,7 @@ I made this project to show my work, experience, certificates, and the kind of s
 
 - Hero section with my intro, quick stats, and resume preview
 - Services section for frontend, backend, documentation, UI/UX, and QA support
-- About section
+- About section with GitHub activity cards
 - Skills section
 - Projects section with filters
 - Experience section with proof images, videos, documents, and spreadsheet previews
@@ -20,6 +20,7 @@ I made this project to show my work, experience, certificates, and the kind of s
 - Light mode is the default theme
 - Users can still switch to dark mode
 - Certificate count in the hero section syncs from the actual certificates data
+- GitHub activity is shown inside the About section
 - Resume, certificates, project files, and proofs open in overlays so visitors do not have to leave the page
 - `Ctrl/Cmd + K` opens the command menu
 
