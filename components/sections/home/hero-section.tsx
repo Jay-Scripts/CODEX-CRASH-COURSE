@@ -5,7 +5,11 @@ import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, type CSSProperties } from "react";
-import { experiences, profile } from "@/constants/portfolio.constants";
+import {
+  certificates,
+  experiences,
+  profile,
+} from "@/constants/portfolio.constants";
 import { ProjectDocumentOverlay } from "@/components/cards/project-document-overlay";
 import { Button } from "@/components/ui/button";
 
@@ -246,7 +250,7 @@ export const HeroSection = () => {
   const heroStats = [
     { num: techRelatedExperience, label: "Tech-related exp." },
     { num: "12", label: "Projects" },
-    { num: "6", label: "Certs" },
+    { num: String(certificates.length), label: "Certs" },
   ] as const;
 
   return (

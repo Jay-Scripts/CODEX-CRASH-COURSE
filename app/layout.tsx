@@ -80,9 +80,9 @@ const RootLayout = ({
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground antialiased">
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           disableTransitionOnChange
-          enableSystem
+          enableSystem={false}
         >
           <ScrollProgress />
           <ScrollToTopButton />
