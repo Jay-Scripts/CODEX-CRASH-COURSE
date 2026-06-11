@@ -2,6 +2,7 @@ import {
   BriefcaseBusiness,
   Code2,
   Database,
+  FileText,
   Headphones,
   Info,
   MonitorSmartphone,
@@ -743,16 +744,22 @@ export const navigationItems: NavigationItem[] = [
 
 export const serviceOfferings: ServiceOffering[] = [
   {
-    title: "Full-stack Development",
-    icon: Server,
-    description:
-      "Build complete web applications from interface to backend logic and data flow.",
-  },
-  {
-    title: "Responsive Design",
+    title: "Frontend Development",
     icon: MonitorSmartphone,
     description:
-      "Create layouts that stay clear, usable, and polished across mobile and desktop screens.",
+      "Build responsive, user-friendly interfaces with clean layouts, accessible interactions, and modern frontend tools.",
+  },
+  {
+    title: "Backend Development",
+    icon: Server,
+    description:
+      "Handle backend logic, database connections, validation, and system data flow to support reliable web applications.",
+  },
+  {
+    title: "Technical Documentation",
+    icon: FileText,
+    description:
+      "Prepare system documentation, build system flowcharts, and create user manuals for clearer handoff and onboarding.",
   },
   {
     title: "UI/UX",

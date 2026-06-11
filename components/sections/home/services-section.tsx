@@ -16,12 +16,12 @@ export const ServicesSection = () => (
       <SectionAccentBackdrop variant="center" />
       <RevealItem>
         <SectionHeading
-          description="The core areas I can contribute to across product builds, interface quality, and testing."
+          description="The core areas I can contribute to across product builds, technical documentation, interface quality, and testing."
           eyebrow="What I Can Provide"
-          title="Development, responsive UI, product thinking, and QA/Tester support"
+          title="Development, documentation, responsive UI, product thinking, and QA/Tester support"
         />
       </RevealItem>
-      <RevealGroup className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <RevealGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {serviceOfferings.map((offering) => {
           const Icon = offering.icon;
 
