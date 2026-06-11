@@ -3,6 +3,7 @@ import { AnimatedSection } from "@/components/common/animated-section";
 import { SectionAccentBackdrop } from "@/components/common/section-accent-backdrop";
 import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
 import { SectionHeading } from "@/components/common/section-heading";
+import { GitHubActivityCard } from "@/components/cards/github-activity-card";
 import { ExperienceCard } from "@/components/cards/experience-card";
 
 /**
@@ -21,6 +22,10 @@ export const ExperienceSection = () => (
           eyebrow="Experience"
           title="Development, QA, and professional work experience"
         />
+      </RevealItem>
+
+      <RevealItem>
+        <GitHubActivityCard />
       </RevealItem>
 
       <RevealGroup className="relative space-y-5 before:absolute before:left-5 before:top-4 before:h-[calc(100%-2rem)] before:w-px before:bg-gradient-to-b before:from-primary/20 before:via-border before:to-primary/20 md:before:left-1/2">
