@@ -68,7 +68,7 @@ export const ProjectRecognitionModal = ({
           <motion.button
             animate={{ opacity: 1 }}
             aria-label="Close recognition preview"
-            className="absolute inset-0 bg-background/85 backdrop-blur-xl"
+            className="absolute inset-0 cursor-pointer bg-background/85 backdrop-blur-xl"
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
             onClick={onClose}
@@ -100,7 +100,7 @@ export const ProjectRecognitionModal = ({
           </div>
           <Button
             aria-label="Close preview"
-            className="size-8"
+            className="size-8 cursor-pointer"
             onClick={onClose}
             size="icon"
             type="button"

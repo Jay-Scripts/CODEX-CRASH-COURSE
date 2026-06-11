@@ -43,7 +43,7 @@ export const CertificatesSection = () => {
               <RevealItem key={`${certificate.title}-${certificate.issued}`}>
                 <button
                   aria-label={`Preview ${certificate.title}`}
-                  className="group/certificate block h-full w-full text-left "
+                  className="group/certificate block h-full w-full cursor-pointer text-left "
                   onClick={() => {
                     setClosingCertificate(null);
                     setActiveCertificate(certificate);

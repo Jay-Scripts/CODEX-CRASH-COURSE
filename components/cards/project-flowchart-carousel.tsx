@@ -104,7 +104,7 @@ export const ProjectFlowchartCarousel = ({
                 onKeyDown={(e) => handleTabKeyDown(e, index)}
                 type="button"
                 className={cn(
-                  "shrink-0 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60",
+                  "shrink-0 cursor-pointer rounded-md border px-3 py-1.5 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60",
                   activeIndex === index
                     ? "border-primary/40 bg-primary text-primary-foreground"
                     : "border-border/60 bg-background text-muted-foreground hover:bg-muted hover:text-foreground",
@@ -192,7 +192,7 @@ export const ProjectFlowchartCarousel = ({
                   onClick={() => setActiveIndex(index)}
                   type="button"
                   className={cn(
-                    "rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60",
+                    "cursor-pointer rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60",
                     activeIndex === index
                       ? "h-2 w-4 bg-primary"
                       : "size-2 bg-muted-foreground/30 hover:bg-muted-foreground/60",

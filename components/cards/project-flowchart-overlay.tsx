@@ -191,7 +191,7 @@ export const ProjectFlowchartOverlay = ({
           <motion.button
             animate={{ opacity: 1 }}
             aria-label="Close fullscreen flowchart preview"
-            className="absolute inset-0 bg-background/80 backdrop-blur-xl"
+            className="absolute inset-0 cursor-pointer bg-background/80 backdrop-blur-xl"
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
             onClick={onClose}
@@ -285,7 +285,7 @@ export const ProjectFlowchartOverlay = ({
               </Button>
               <Button
                 aria-label="Close fullscreen preview"
-                className="sm:self-start"
+                className="cursor-pointer sm:self-start"
                 onClick={onClose}
                 size="icon"
                 type="button"

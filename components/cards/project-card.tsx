@@ -209,7 +209,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                     <button
                       aria-haspopup="dialog"
                       className={cn(
-                        "group/thumb relative h-full overflow-hidden rounded-xl border border-border/50 bg-background/80 shadow-md transition-all duration-200 hover:scale-[1.02] hover:border-border/80 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+                        "group/thumb relative h-full cursor-pointer overflow-hidden rounded-xl border border-border/50 bg-background/80 shadow-md transition-all duration-200 hover:scale-[1.02] hover:border-border/80 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
                         previewFrameClassName,
                       )}
                       onClick={() => {
@@ -464,7 +464,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             <div className="space-y-3">
               <button
                 aria-expanded={detailsOpen}
-                className="flex w-full items-center justify-between rounded-lg border border-border/50 bg-muted/40 px-3.5 py-2.5 text-xs font-medium text-foreground transition-colors hover:border-border/70 hover:bg-muted/60 md:hidden"
+                className="flex w-full cursor-pointer items-center justify-between rounded-lg border border-border/50 bg-muted/40 px-3.5 py-2.5 text-xs font-medium text-foreground transition-colors hover:border-border/70 hover:bg-muted/60 md:hidden"
                 onClick={() => setDetailsOpen((v) => !v)}
                 type="button"
               >
