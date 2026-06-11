@@ -630,7 +630,11 @@ export const certificates: Certificate[] = [
     imageSrc: "/experience-proofs/seminars%20certs/28.png",
     issued: "February 28, 2026",
     issuer: "Global Reciprocal Colleges / College of Computer Studies",
-    skills: ["Data Architecture", "Systems Thinking", "Creative Problem Solving"],
+    skills: [
+      "Data Architecture",
+      "Systems Thinking",
+      "Creative Problem Solving",
+    ],
     title: "What Minecraft Taught Me About Data Architecture",
     type: "Seminar Certificate",
   },
@@ -729,7 +733,7 @@ export const profile: Profile = {
   githubUrl: "https://github.com/Jay-Scripts",
   resumeUrl: "/resume.pdf",
   summary:
-    "Junior Web Developer focused on building responsive, secure, and database-driven web applications using modern web technologies. Experienced in authentication, role-based access control, database design, debugging, and technical documentation through internship and project-based work. Adaptable and continuously improving, with a strong interest in modern development practices and emerging technologies.",
+    "Junior Web Developer, focused on building responsive, secure, and database-driven web applications. Experienced in frontend development, authentication systems, role-based access control, database design, QA testing, debugging, and technical documentation through internship and project-based work. Committed to creating reliable, maintainable, and user-focused systems.",
 };
 
 export const navigationItems: NavigationItem[] = [
@@ -1126,10 +1130,7 @@ export const aboutEntries: AboutEntry[] = [
   {
     title: "Personal details",
     icon: Info,
-    description: [
-      profile.summary,
-      "Built to show enterprise-ready delivery traits: quality, clarity, system thinking, and maintainable execution.",
-    ],
+    description: [profile.summary],
   },
   {
     title: "About my goals",
