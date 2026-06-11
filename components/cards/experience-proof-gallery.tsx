@@ -151,7 +151,7 @@ const SpreadsheetPreview = ({
         {sheets.map((sheet, index) => (
           <button
             className={cn(
-              "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
+              "cursor-pointer rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
               index === activeSheetIndex
                 ? "border-primary/30 bg-primary/10 text-primary"
                 : "border-border/60 bg-background text-muted-foreground hover:border-border hover:bg-muted/40 hover:text-foreground",
@@ -326,7 +326,7 @@ export const ExperienceProofGallery = ({
 
               return (
                 <button
-                  className="flex items-center gap-3 rounded-xl border border-border/50 bg-muted/20 p-3 text-left transition-colors hover:border-border/70 hover:bg-muted/30"
+                  className="flex cursor-pointer items-center gap-3 rounded-xl border border-border/50 bg-muted/20 p-3 text-left transition-colors hover:border-border/70 hover:bg-muted/30"
                   key={item.label}
                   onClick={() => openProofPreview(index)}
                   type="button"
@@ -372,12 +372,12 @@ export const ExperienceProofGallery = ({
                   desktopProofDelayClasses.at(-1);
 
                 return (
-                  <button
-                    className={cn(
-                      "pointer-events-auto w-full rounded-2xl border border-border/60 bg-card/95 p-2 text-left shadow-xl shadow-primary/10 backdrop-blur-sm transition-all duration-300 ease-out",
-                      "opacity-0 scale-90",
-                      mediumProofMotionClassName,
-                      delayClassName,
+                <button
+                  className={cn(
+                    "pointer-events-auto w-full cursor-pointer rounded-2xl border border-border/60 bg-card/95 p-2 text-left shadow-xl shadow-primary/10 backdrop-blur-sm transition-all duration-300 ease-out",
+                    "opacity-0 scale-90",
+                    mediumProofMotionClassName,
+                    delayClassName,
                       "md:group-hover/experience:translate-x-0 md:group-hover/experience:opacity-100 md:group-hover/experience:scale-100",
                     )}
                     key={item.label}
@@ -417,7 +417,7 @@ export const ExperienceProofGallery = ({
               return (
                 <button
                   className={cn(
-                    "pointer-events-auto w-32 rounded-2xl border border-border/60 bg-card/95 p-2 text-left shadow-xl shadow-primary/10 backdrop-blur-sm transition-all duration-300 ease-out",
+                    "pointer-events-auto w-32 cursor-pointer rounded-2xl border border-border/60 bg-card/95 p-2 text-left shadow-xl shadow-primary/10 backdrop-blur-sm transition-all duration-300 ease-out",
                     "opacity-0 scale-90 -translate-x-8",
                     delayClassName,
                     "md:group-hover/experience:translate-x-0 md:group-hover/experience:opacity-100 md:group-hover/experience:scale-100",
@@ -458,7 +458,7 @@ export const ExperienceProofGallery = ({
               return (
                 <button
                   className={cn(
-                    "pointer-events-auto w-32 rounded-2xl border border-border/60 bg-card/95 p-2 text-left shadow-xl shadow-primary/10 backdrop-blur-sm transition-all duration-300 ease-out",
+                    "pointer-events-auto w-32 cursor-pointer rounded-2xl border border-border/60 bg-card/95 p-2 text-left shadow-xl shadow-primary/10 backdrop-blur-sm transition-all duration-300 ease-out",
                     "opacity-0 scale-90 translate-x-8",
                     delayClassName,
                     "md:group-hover/experience:translate-x-0 md:group-hover/experience:opacity-100 md:group-hover/experience:scale-100",
@@ -505,7 +505,7 @@ export const ExperienceProofGallery = ({
                   <motion.button
                     animate={{ opacity: 1 }}
                     aria-label="Close proof preview"
-                    className="absolute inset-0 bg-background/85 backdrop-blur-xl"
+                    className="absolute inset-0 cursor-pointer bg-background/85 backdrop-blur-xl"
                     exit={{ opacity: 0 }}
                     initial={{ opacity: 0 }}
                     onClick={closeProofPreview}
@@ -535,7 +535,7 @@ export const ExperienceProofGallery = ({
                       </div>
                       <Button
                         aria-label="Close preview"
-                        className="size-8"
+                        className="size-8 cursor-pointer"
                         onClick={closeProofPreview}
                         size="icon"
                         type="button"

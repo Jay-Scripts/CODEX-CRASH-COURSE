@@ -11,10 +11,7 @@ type ExperienceCardProps = {
 /**
  * Displays one experience timeline entry with recruiter-relevant highlights.
  */
-export const ExperienceCard = ({
-  experience,
-  isEven,
-}: ExperienceCardProps) => {
+export const ExperienceCard = ({ experience, isEven }: ExperienceCardProps) => {
   const Icon = experience.icon;
   const cardAlignment = isEven ? "left" : "right";
   const proofItems = experience.proofItems ?? [];
@@ -28,17 +25,14 @@ export const ExperienceCard = ({
     <article
       className={cn(
         "relative grid gap-4 pl-14 md:grid-cols-[1fr_3rem_1fr] md:items-start md:gap-5 md:pl-0",
-        hasProofItems &&
-          (proofItems.length > 4 ? "md:py-24" : "md:py-16"),
+        hasProofItems && (proofItems.length > 4 ? "md:py-24" : "md:py-16"),
       )}
     >
-      <div
-        className={cn(
-          cardColumnClassName,
-          hasProofItems && "group/experience relative",
-        )}
-      >
-        <Card className="overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
+      <div className={cn(cardColumnClassName, "group/experience relative")}>
+        <Card className="relative overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
+          <div className="pointer-events-none absolute right-4 top-4 z-10 hidden rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[8px] font-semibold uppercase tracking-[0.22em] text-primary md:inline-flex">
+            Hover to see more info
+          </div>
           <CardContent className="p-5 sm:p-6">
             <p className="text-sm text-primary">{experience.period}</p>
             <h3 className="mt-2 text-lg font-semibold sm:text-xl">

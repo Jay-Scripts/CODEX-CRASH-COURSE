@@ -16,7 +16,7 @@ export const ThemeToggle = () => {
     return (
       <Button
         aria-label="Theme loading"
-        className="text-muted-foreground"
+        className="text-muted-foreground hovercursor-pointer"
         size="icon"
         type="button"
         variant="ghost"
@@ -32,7 +32,7 @@ export const ThemeToggle = () => {
   return (
     <Button
       aria-label={`Switch to ${nextTheme} mode`}
-      className="text-muted-foreground"
+      className="text-muted-foreground hover:cursor-pointer"
       onClick={() => setTheme(nextTheme)}
       size="icon"
       type="button"

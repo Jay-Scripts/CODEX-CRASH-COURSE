@@ -1,15 +1,11 @@
 "use client";
 
 import { ArrowRight, FileText, Mail, MapPin, ShieldCheck } from "lucide-react";
-import { motion, type Variants } from "framer-motion";
+import { animate, motion, type Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, type CSSProperties } from "react";
-import {
-  certificates,
-  experiences,
-  profile,
-} from "@/constants/portfolio.constants";
+import { useEffect, useState, type CSSProperties } from "react";
+import { experiences, profile } from "@/constants/portfolio.constants";
 import { ProjectDocumentOverlay } from "@/components/cards/project-document-overlay";
 import { Button } from "@/components/ui/button";
 
@@ -203,20 +199,6 @@ const getTimelineSpanMonthCount = (
   );
 };
 
-const formatExperienceYears = (monthCount: number) => {
-  if (monthCount < 1) {
-    return "<1 yr";
-  }
-
-  const roundedYears = Math.ceil(monthCount / 12);
-
-  if (roundedYears === 1) {
-    return "1 yr";
-  }
-
-  return `${roundedYears} yrs`;
-};
-
 const chipStyle: CSSProperties = {
   backgroundColor: "var(--hero-chip-surface)",
   borderColor: "var(--hero-chip-border)",
@@ -234,23 +216,75 @@ const statTileStyle: CSSProperties = {
   borderColor: "var(--hero-stat-border)",
 };
 
+type AnimatedCounterProps = {
+  className?: string;
+  duration?: number;
+  prefix?: string;
+  style?: CSSProperties;
+  suffix?: string;
+  value: number;
+};
+
+const AnimatedCounter = ({
+  className,
+  duration = 1.2,
+  prefix = "",
+  style,
+  suffix = "",
+  value,
+}: AnimatedCounterProps) => {
+  const [displayValue, setDisplayValue] = useState(`${prefix}0${suffix}`);
+
+  useEffect(() => {
+    const controls = animate(0, value, {
+      duration,
+      ease: smoothEase,
+      onUpdate: (latestValue) => {
+        setDisplayValue(`${prefix}${Math.round(latestValue)}${suffix}`);
+      },
+    });
+
+    return () => {
+      controls.stop();
+    };
+  }, [duration, prefix, suffix, value]);
+
+  return (
+    <span className={className} style={style}>
+      {displayValue}
+    </span>
+  );
+};
+
 /**
  * Displays the recruiter-facing hero section with a theme-aware neon visual treatment.
  */
 export const HeroSection = () => {
   const [isResumePreviewOpen, setIsResumePreviewOpen] = useState(false);
-  const industryExperience = formatExperienceYears(
-    getTimelineSpanMonthCount(experiences),
+  const industryExperienceMonths = getTimelineSpanMonthCount(experiences);
+  const techRelatedExperienceMonths = getTimelineSpanMonthCount(
+    experiences.filter((experience) => experience.isTechRelated),
   );
-  const techRelatedExperience = formatExperienceYears(
-    getTimelineSpanMonthCount(
-      experiences.filter((experience) => experience.isTechRelated),
-    ),
+  const industryExperienceYears = Math.max(
+    1,
+    Math.ceil(industryExperienceMonths / 12),
   );
+  const techRelatedExperienceYears = Math.max(
+    1,
+    Math.ceil(techRelatedExperienceMonths / 12),
+  );
+  const industryExperienceSuffix =
+    industryExperienceYears === 1 ? " yr" : " yrs";
+  const techRelatedExperienceSuffix =
+    techRelatedExperienceYears === 1 ? " yr" : " yrs";
   const heroStats = [
-    { num: techRelatedExperience, label: "Tech-related exp." },
-    { num: "12", label: "Projects" },
-    { num: String(certificates.length), label: "Certs" },
+    {
+      label: "Tech-related exp.",
+      suffix: techRelatedExperienceSuffix,
+      value: techRelatedExperienceYears,
+    },
+    { label: "Projects", suffix: "", value: 12 },
+    { label: "Certs", suffix: "", value: 6 },
   ] as const;
 
   return (
@@ -495,7 +529,7 @@ export const HeroSection = () => {
                   fontSize: 16,
                 }}
               >
-                12+
+                <AnimatedCounter suffix="+" value={12} />
               </p>
               <p
                 className="text-[9px]"
@@ -525,7 +559,10 @@ export const HeroSection = () => {
                   fontSize: 16,
                 }}
               >
-                {industryExperience}
+                <AnimatedCounter
+                  suffix={industryExperienceSuffix}
+                  value={industryExperienceYears}
+                />
               </p>
               <p
                 className="text-[9px]"
@@ -537,25 +574,27 @@ export const HeroSection = () => {
           </div>
 
           <div className="mt-7 flex w-full gap-3">
-            {heroStats.map(({ num, label }) => (
+            {heroStats.map(({ label, suffix, value }) => (
               <div
                 className="flex flex-1 flex-col items-center rounded-xl border py-2.5"
                 key={label}
                 style={statTileStyle}
               >
-                <span
+                <AnimatedCounter
                   className="font-bold"
                   style={{
                     color: "var(--hero-stat-value)",
                     fontFamily: "'Syne', sans-serif",
                     fontSize: 20,
                   }}
-                >
-                  {num}
-                </span>
+                  suffix={suffix}
+                  value={value}
+                />
                 <span
                   className="mt-0.5 text-center text-[11px]"
-                  style={{ color: "var(--hero-stat-label)" }}
+                  style={{
+                    color: "var(--hero-stat-label)",
+                  }}
                 >
                   {label}
                 </span>

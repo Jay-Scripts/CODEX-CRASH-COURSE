@@ -17,9 +17,8 @@ import { CertificatePreviewModal } from "./certificate-preview-modal";
  * Displays portfolio certificates and opens them in an in-page preview modal.
  */
 export const CertificatesSection = () => {
-  const [activeCertificate, setActiveCertificate] = useState<Certificate | null>(
-    null,
-  );
+  const [activeCertificate, setActiveCertificate] =
+    useState<Certificate | null>(null);
   const [closingCertificate, setClosingCertificate] =
     useState<Certificate | null>(null);
 
@@ -44,7 +43,7 @@ export const CertificatesSection = () => {
               <RevealItem key={`${certificate.title}-${certificate.issued}`}>
                 <button
                   aria-label={`Preview ${certificate.title}`}
-                  className="group/certificate block h-full w-full text-left"
+                  className="group/certificate block h-full w-full text-left "
                   onClick={() => {
                     setClosingCertificate(null);
                     setActiveCertificate(certificate);
@@ -130,7 +129,7 @@ export const CertificatesSection = () => {
           </RevealGroup>
         ) : (
           <RevealItem>
-            <Card className="overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5">
+            <Card className=" overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5">
               <CardContent className="p-6 sm:p-8">
                 <section className="flex flex-col items-start gap-4 rounded-2xl border border-dashed border-primary/25 bg-muted/20 p-6 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-start gap-4">
