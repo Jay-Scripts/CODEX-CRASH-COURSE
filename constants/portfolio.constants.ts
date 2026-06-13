@@ -23,6 +23,7 @@ import type {
   NavigationItem,
   Profile,
   Project,
+  ProjectPreviewCategory,
   ProjectPreviewImage,
   ServiceOffering,
   SkillGroup,
@@ -82,6 +83,7 @@ const smartPosFlowchartPreviews: FlowchartPreview[] = [
 const createProjectPreviewImages = (
   title: string,
   folder: string,
+  category: string,
   fileNames: string[],
 ): ProjectPreviewImage[] =>
   fileNames.map((fileName) => {
@@ -89,14 +91,24 @@ const createProjectPreviewImages = (
 
     return {
       alt: `${title} preview: ${label}`,
+      category,
       label,
       src: `/project%20preview/${encodeURIComponent(folder)}/${encodeURIComponent(fileName)}`,
     };
   });
 
+const smartPosPreviewCategories: ProjectPreviewCategory[] = [
+  { id: "modules", label: "Modules" },
+  { id: "kiosk", label: "Kiosk" },
+  { id: "pos", label: "POS" },
+  { id: "bvs", label: "BVS" },
+  { id: "cvs", label: "CVS" },
+];
+
 const smartPosPreviewImages = createProjectPreviewImages(
   "Smart POS System",
   "SMART POS MODULES",
+  "modules",
   [
     "M 1.1 Overview.png",
     "M 1.2 Reg staff.png",
@@ -116,6 +128,15 @@ const smartPosPreviewImages = createProjectPreviewImages(
     "M 1.16.png",
     "M 1.17.png",
     "M 1.18.png",
+  ],
+).concat(
+  createProjectPreviewImages("Smart POS System", "SMART POS MODULES", "kiosk", [
+    "KIOSK 1.1.png",
+    "KIOSK 1.2.png",
+    "KIOKS 1.3.png",
+    "KIOSK 1.4.png",
+  ]),
+  createProjectPreviewImages("Smart POS System", "SMART POS MODULES", "pos", [
     "POS 1.1.png",
     "POS 1.2.png",
     "POS 1.3.png",
@@ -126,21 +147,28 @@ const smartPosPreviewImages = createProjectPreviewImages(
     "POS 1.8.png",
     "pos 1.9.png",
     "pos 1.10.png",
-    "KIOSK 1.1.png",
-    "KIOSK 1.2.png",
-    "KIOKS 1.3.png",
-    "KIOSK 1.4.png",
+  ]),
+  createProjectPreviewImages("Smart POS System", "SMART POS MODULES", "bvs", [
     "BVS 1.1.png",
     "BVS 1.2.png",
+  ]),
+  createProjectPreviewImages("Smart POS System", "SMART POS MODULES", "cvs", [
     "CVS CUST. VIEW.png",
     "CVS STAFF VIEW.png",
     "CUST RATING.png",
-  ],
+  ]),
 );
+
+const carRentalPreviewCategories: ProjectPreviewCategory[] = [
+  { id: "customer", label: "Customer" },
+  { id: "admin", label: "Admin" },
+  { id: "rental-agent", label: "Rental Agent" },
+];
 
 const carRentalPreviewImages = createProjectPreviewImages(
   "Car Rental Management System",
   "CAR RENTAL MODULES",
+  "customer",
   [
     "CR LANDING PAGE.png",
     "CREATE ACCOUNT.png",
@@ -153,6 +181,13 @@ const carRentalPreviewImages = createProjectPreviewImages(
     "user 1.6.png",
     "user 1.7.png",
     "user 1.8.png",
+  ],
+).concat(
+  createProjectPreviewImages(
+    "Car Rental Management System",
+    "CAR RENTAL MODULES",
+    "admin",
+    [
     "admin 1.1.png",
     "admin 1.2.png",
     "admin 1.3.png",
@@ -164,6 +199,13 @@ const carRentalPreviewImages = createProjectPreviewImages(
     "admin 1.9.png",
     "admin 1.10.png",
     "admin 1.11.png",
+    ],
+  ),
+  createProjectPreviewImages(
+    "Car Rental Management System",
+    "CAR RENTAL MODULES",
+    "rental-agent",
+    [
     "agent 1.1.png",
     "agent 1.2.png",
     "agent 1.3.png",
@@ -174,7 +216,8 @@ const carRentalPreviewImages = createProjectPreviewImages(
     "CR ABOUT.png",
     "CR CONTACTS.png",
     "CR PRIVACY POLICY.png",
-  ],
+    ],
+  ),
 );
 
 const qaSheetTrackerPreview: ExperienceSpreadsheetPreview = {
@@ -958,6 +1001,7 @@ export const projects: Project[] = [
     previewLayout: "landscape",
     previewSrc: "/project%20preview/smart%20pos.png",
     previewImages: smartPosPreviewImages,
+    previewCategories: smartPosPreviewCategories,
     recognitionPreviewAlt:
       "Recognition certificate for presenting the Smart POS capstone during the CCS Research Colloquium 2026",
     recognitionPreviewNote:
@@ -1062,6 +1106,7 @@ export const projects: Project[] = [
     previewLayout: "landscape",
     previewSrc: "/project%20preview/car%20rental.png",
     previewImages: carRentalPreviewImages,
+    previewCategories: carRentalPreviewCategories,
     systemPreviewAlt:
       "Temporary car rental system preview placeholder while the final walkthrough recording is still in progress",
     systemPreviewNote:

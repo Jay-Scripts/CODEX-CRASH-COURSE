@@ -64,8 +64,14 @@ export type ProjectPreviewLayout = "portrait" | "landscape";
 
 export type ProjectPreviewImage = {
   alt: string;
+  category: string;
   label: string;
   src: string;
+};
+
+export type ProjectPreviewCategory = {
+  id: string;
+  label: string;
 };
 
 export type Project = {
@@ -85,6 +91,7 @@ export type Project = {
   previewDialogSrc?: string;
   previewSrc?: string;
   previewImages?: ProjectPreviewImage[];
+  previewCategories?: ProjectPreviewCategory[];
   projectBadges?: string[];
   recognitionPreviewAlt?: string;
   recognitionPreviewNote?: string;

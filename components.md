@@ -53,7 +53,7 @@
 
 ### `ProjectPreviewGalleryModal`
 
-- Purpose: Displays a fullscreen image gallery modal for project screenshot previews with keyboard navigation and direct image opening without leaving the portfolio.
+- Purpose: Displays a fullscreen image gallery modal for project screenshot previews with categorized tabs, keyboard navigation, and direct image opening without leaving the portfolio.
 - Location: `components/cards/project-preview-gallery-modal.tsx`
 
 ### `ProjectSystemPreviewModal`

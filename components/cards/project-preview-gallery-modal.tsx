@@ -3,16 +3,23 @@
 import { ChevronLeft, ChevronRight, Expand, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useCallback, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
-import type { Project } from "@/types/portfolio.types";
+import type { Project, ProjectPreviewCategory } from "@/types/portfolio.types";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type ProjectPreviewGalleryModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  project: Pick<Project, "previewImages" | "title">;
+  project: Pick<Project, "previewCategories" | "previewImages" | "title">;
 };
+
+const formatPreviewCategoryLabel = (categoryId: string) =>
+  categoryId
+    .split("-")
+    .map((part) => `${part.charAt(0).toUpperCase()}${part.slice(1)}`)
+    .join(" ");
 
 /**
  * Displays a fullscreen image gallery for project preview screenshots.
@@ -23,29 +30,57 @@ export const ProjectPreviewGalleryModal = ({
   project,
 }: ProjectPreviewGalleryModalProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activeCategoryId, setActiveCategoryId] = useState("");
 
   const previewImages = project.previewImages ?? [];
-  const activePreview = previewImages[activeIndex];
+  const previewCategories = useMemo<ProjectPreviewCategory[]>(() => {
+    if (project.previewCategories?.length) {
+      return project.previewCategories;
+    }
+
+    return [...new Set(previewImages.map((image) => image.category))].map(
+      (category) => ({
+        id: category,
+        label: formatPreviewCategoryLabel(category),
+      }),
+    );
+  }, [previewImages, project.previewCategories]);
+
+  const selectedCategoryId =
+    activeCategoryId || previewCategories[0]?.id || "";
+  const activeCategory = previewCategories.find(
+    (category) => category.id === selectedCategoryId,
+  );
+  const activeCategoryImages = useMemo(
+    () =>
+      previewImages.filter(
+        (image) => image.category === selectedCategoryId,
+      ),
+    [previewImages, selectedCategoryId],
+  );
+  const activePreview = activeCategoryImages[activeIndex];
 
   const showPrevious = useCallback(() => {
-    if (!previewImages.length) {
+    if (!activeCategoryImages.length) {
       return;
     }
 
     setActiveIndex((currentIndex) =>
-      currentIndex === 0 ? previewImages.length - 1 : currentIndex - 1,
+      currentIndex === 0
+        ? activeCategoryImages.length - 1
+        : currentIndex - 1,
     );
-  }, [previewImages.length]);
+  }, [activeCategoryImages.length]);
 
   const showNext = useCallback(() => {
-    if (!previewImages.length) {
+    if (!activeCategoryImages.length) {
       return;
     }
 
     setActiveIndex((currentIndex) =>
-      currentIndex === previewImages.length - 1 ? 0 : currentIndex + 1,
+      currentIndex === activeCategoryImages.length - 1 ? 0 : currentIndex + 1,
     );
-  }, [previewImages.length]);
+  }, [activeCategoryImages.length]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -79,26 +114,40 @@ export const ProjectPreviewGalleryModal = ({
   }, [isOpen, onClose, showNext, showPrevious]);
 
   useEffect(() => {
+    if (!isOpen || !previewCategories.length) {
+      return;
+    }
+
+    setActiveCategoryId((currentCategoryId) => {
+      const hasCurrentCategory = previewCategories.some(
+        (category) => category.id === currentCategoryId,
+      );
+
+      return hasCurrentCategory ? currentCategoryId : previewCategories[0].id;
+    });
+  }, [isOpen, previewCategories]);
+
+  useEffect(() => {
     if (!isOpen) {
       return;
     }
 
     setActiveIndex(0);
-  }, [isOpen, previewImages.length]);
+  }, [activeCategoryId, isOpen]);
 
   useEffect(() => {
-    if (activeIndex < previewImages.length) {
+    if (activeIndex < activeCategoryImages.length) {
       return;
     }
 
     setActiveIndex(0);
-  }, [activeIndex, previewImages.length]);
+  }, [activeIndex, activeCategoryImages.length]);
 
-  if (!previewImages.length || typeof document === "undefined") {
+  if (!previewImages.length || !previewCategories.length || typeof document === "undefined") {
     return null;
   }
 
-  const currentPreview = activePreview ?? previewImages[0];
+  const currentPreview = activePreview ?? activeCategoryImages[0];
 
   return createPortal(
     <AnimatePresence>
@@ -137,9 +186,9 @@ export const ProjectPreviewGalleryModal = ({
                   {project.title}
                 </p>
                 <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-                  <span>{currentPreview.label}</span>
+                  <span>{activeCategory?.label}</span>
                   <span className="hidden sm:inline">/</span>
-                  <span>{activeIndex + 1} of {previewImages.length}</span>
+                  <span>{currentPreview.label}</span>
                 </div>
               </div>
 
@@ -188,13 +237,52 @@ export const ProjectPreviewGalleryModal = ({
               </div>
             </div>
 
+            <div className="border-b border-border/60 bg-muted/20 px-4 py-3 sm:px-5">
+              <div
+                aria-label="Preview categories"
+                className="flex gap-2 overflow-x-auto pb-0.5"
+                role="tablist"
+              >
+                {previewCategories.map((category) => {
+                  const isActive = selectedCategoryId === category.id;
+                  const categoryCount = previewImages.filter(
+                    (image) => image.category === category.id,
+                  ).length;
+
+                  return (
+                    <button
+                      key={category.id}
+                      aria-selected={isActive}
+                      className={cn(
+                        "shrink-0 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60",
+                        isActive
+                          ? "border-primary/30 bg-primary text-primary-foreground"
+                          : "border-border/60 bg-background text-muted-foreground hover:bg-muted hover:text-foreground",
+                      )}
+                      onClick={() => {
+                        setActiveCategoryId(category.id);
+                        setActiveIndex(0);
+                      }}
+                      role="tab"
+                      type="button"
+                    >
+                      {category.label}
+                      <span className="ml-1.5 text-[10px] opacity-80">
+                        {categoryCount}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             <div className="min-h-0 flex-1 overflow-auto bg-muted/30 p-3 sm:p-5">
               <div className="mx-auto flex max-w-5xl flex-col gap-4">
                 <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-background shadow-xl">
                   <Button
                     aria-label="Previous preview image"
                     className="absolute left-3 top-1/2 z-10 size-10 -translate-y-1/2 rounded-full border-border/70 bg-background/90 shadow-lg backdrop-blur sm:left-5 md:left-6"
-                    disabled={previewImages.length <= 1}
+                    disabled={activeCategoryImages.length <= 1}
                     onClick={showPrevious}
                     size="icon"
                     type="button"
@@ -206,7 +294,7 @@ export const ProjectPreviewGalleryModal = ({
                   <Button
                     aria-label="Next preview image"
                     className="absolute right-3 top-1/2 z-10 size-10 -translate-y-1/2 rounded-full border-border/70 bg-background/90 shadow-lg backdrop-blur sm:right-5 md:right-6"
-                    disabled={previewImages.length <= 1}
+                    disabled={activeCategoryImages.length <= 1}
                     onClick={showNext}
                     size="icon"
                     type="button"
@@ -221,7 +309,7 @@ export const ProjectPreviewGalleryModal = ({
                       alt={currentPreview.alt}
                       className="object-contain p-3 sm:p-4"
                       fill
-                      priority={activeIndex === 0}
+                      priority={activeIndex === 0 && selectedCategoryId === previewCategories[0]?.id}
                       sizes="(min-width: 1280px) 64rem, (min-width: 1024px) 56rem, 100vw"
                       src={currentPreview.src}
                       unoptimized
@@ -235,7 +323,7 @@ export const ProjectPreviewGalleryModal = ({
                       {currentPreview.label}
                     </p>
                     <p className="mt-2 text-sm leading-7 text-muted-foreground">
-                      Project screenshot preview for {project.title}.
+                      {activeCategory?.label} preview for {project.title}.
                     </p>
                   </div>
 
@@ -245,7 +333,7 @@ export const ProjectPreviewGalleryModal = ({
 
             <div className="flex shrink-0 items-center justify-center border-t border-border/60 bg-background px-4 py-2.5 sm:px-5">
               <span className="text-xs tabular-nums text-muted-foreground">
-                {activeIndex + 1} / {previewImages.length} images
+                {activeIndex + 1} / {activeCategoryImages.length} images
               </span>
             </div>
           </motion.div>
