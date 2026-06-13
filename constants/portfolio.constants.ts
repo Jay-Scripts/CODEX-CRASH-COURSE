@@ -23,6 +23,7 @@ import type {
   NavigationItem,
   Profile,
   Project,
+  ProjectPreviewImage,
   ServiceOffering,
   SkillGroup,
 } from "@/types/portfolio.types";
@@ -77,6 +78,104 @@ const smartPosFlowchartPreviews: FlowchartPreview[] = [
     alt: "Smart POS system flowchart preview for database module",
   },
 ];
+
+const createProjectPreviewImages = (
+  title: string,
+  folder: string,
+  fileNames: string[],
+): ProjectPreviewImage[] =>
+  fileNames.map((fileName) => {
+    const label = fileName.slice(0, fileName.lastIndexOf("."));
+
+    return {
+      alt: `${title} preview: ${label}`,
+      label,
+      src: `/project%20preview/${encodeURIComponent(folder)}/${encodeURIComponent(fileName)}`,
+    };
+  });
+
+const smartPosPreviewImages = createProjectPreviewImages(
+  "Smart POS System",
+  "SMART POS MODULES",
+  [
+    "M 1.1 Overview.png",
+    "M 1.2 Reg staff.png",
+    "M 1.3 Modify Position.png",
+    "M 1.4 Modiy Staff Position.png",
+    "M 1.5 Staff log hist.png",
+    "M 1.6 Add Product.png",
+    "M 1.7 Adjust Product Price.png",
+    "M 1.8 Sold Prod Analytics.png",
+    "M 1.9 Sales Report.png",
+    "M 1.10 Refund.png",
+    "M 1.11 Waste.png",
+    "M 1.12 Stock Reports.png",
+    "M 1.13 Stock Control.png",
+    "M 1.14 Stock Alerts.png",
+    "M 1.15 Stock logs Hist.png",
+    "M 1.16.png",
+    "M 1.17.png",
+    "M 1.18.png",
+    "POS 1.1.png",
+    "POS 1.2.png",
+    "POS 1.3.png",
+    "POS 1.4.png",
+    "POS 1.5.png",
+    "POS 1.6.png",
+    "POS 1.7.png",
+    "POS 1.8.png",
+    "pos 1.9.png",
+    "pos 1.10.png",
+    "KIOSK 1.1.png",
+    "KIOSK 1.2.png",
+    "KIOKS 1.3.png",
+    "KIOSK 1.4.png",
+    "BVS 1.1.png",
+    "BVS 1.2.png",
+    "CVS CUST. VIEW.png",
+    "CVS STAFF VIEW.png",
+    "CUST RATING.png",
+  ],
+);
+
+const carRentalPreviewImages = createProjectPreviewImages(
+  "Car Rental Management System",
+  "CAR RENTAL MODULES",
+  [
+    "CR LANDING PAGE.png",
+    "CREATE ACCOUNT.png",
+    "LOG IN.png",
+    "user 1.1.png",
+    "user 1.2.png",
+    "user 1.3.png",
+    "user 1.4.png",
+    "user 1.5.png",
+    "user 1.6.png",
+    "user 1.7.png",
+    "user 1.8.png",
+    "admin 1.1.png",
+    "admin 1.2.png",
+    "admin 1.3.png",
+    "admin 1.4.png",
+    "admin 1.5.png",
+    "admin 1.6.png",
+    "admin 1.7.png",
+    "admin 1.8.png",
+    "admin 1.9.png",
+    "admin 1.10.png",
+    "admin 1.11.png",
+    "agent 1.1.png",
+    "agent 1.2.png",
+    "agent 1.3.png",
+    "agent 1.4.png",
+    "agent 1.5.png",
+    "agent 1.6.png",
+    "agent 1.7.png",
+    "CR ABOUT.png",
+    "CR CONTACTS.png",
+    "CR PRIVACY POLICY.png",
+  ],
+);
 
 const qaSheetTrackerPreview: ExperienceSpreadsheetPreview = {
   sheets: [
@@ -858,6 +957,7 @@ export const projects: Project[] = [
     previewAlt: "Smart POS system dashboard preview",
     previewLayout: "landscape",
     previewSrc: "/project%20preview/smart%20pos.png",
+    previewImages: smartPosPreviewImages,
     recognitionPreviewAlt:
       "Recognition certificate for presenting the Smart POS capstone during the CCS Research Colloquium 2026",
     recognitionPreviewNote:
@@ -961,6 +1061,7 @@ export const projects: Project[] = [
     previewAlt: "Car rental management system dashboard preview",
     previewLayout: "landscape",
     previewSrc: "/project%20preview/car%20rental.png",
+    previewImages: carRentalPreviewImages,
     systemPreviewAlt:
       "Temporary car rental system preview placeholder while the final walkthrough recording is still in progress",
     systemPreviewNote:

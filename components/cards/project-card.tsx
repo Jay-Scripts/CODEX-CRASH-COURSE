@@ -22,6 +22,7 @@ import { cn } from "@/lib/utils";
 import { ProjectDocumentOverlay } from "./project-document-overlay";
 import { ProjectFlowchartOverlay } from "./project-flowchart-overlay";
 import { ProjectRecognitionModal } from "./project-recognition-modal";
+import { ProjectPreviewGalleryModal } from "./project-preview-gallery-modal";
 import { ProjectSystemPreviewModal } from "./project-system-preview-modal";
 
 const projectCategoryLabels = {
@@ -69,6 +70,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   const hasPreview = Boolean(project.previewSrc);
   const hasExpandableDocumentPreview = Boolean(project.previewDialogSrc);
   const hasResourceLinks = Boolean(project.resourceLinks?.length);
+  const hasPreviewGallery = Boolean(project.previewImages?.length);
   const isUserManualPreview = project.primaryCategory === "user-manuals";
   const isSystemFlowchartProject =
     project.primaryCategory === "system-flowcharts" &&
@@ -77,13 +79,24 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
     project.id === "smart-pos-system-flowchart" || isUserManualPreview;
   const hasRecognitionPreview = Boolean(project.recognitionPreviewSrc);
   const hasSystemPreview = Boolean(project.systemPreviewSrc);
+  const previewOverlayLabel = isSystemFlowchartProject
+    ? "View flowchart"
+    : hasPreviewGallery
+      ? "View previews"
+      : "View manual";
+  const previewTriggerLabel = isSystemFlowchartProject
+    ? `${project.title} flowchart preview`
+    : hasPreviewGallery
+      ? `${project.title} preview images`
+      : `${project.title} manual preview`;
   const usesExpandedPreviewSurface =
     isUserManualPreview || isSystemFlowchartProject;
   const canOpenPreview =
-    hasExpandableDocumentPreview || isSystemFlowchartProject;
+    hasExpandableDocumentPreview || isSystemFlowchartProject || hasPreviewGallery;
   const activeFlowchartPreview =
     project.flowchartPreviews?.[activeFlowchartIndex];
   const usesLandscapePreview = project.previewLayout === "landscape";
+  const [isPreviewGalleryOpen, setIsPreviewGalleryOpen] = useState(false);
   const previewFrameClassName = cn(
     isSystemFlowchartProject
       ? "min-h-[20rem] w-full flex-1 lg:min-h-[24rem]"
@@ -111,12 +124,20 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
     setIsFlowchartOverlayOpen(true);
   };
 
+  const openPreviewGallery = () => {
+    setIsPreviewGalleryOpen(true);
+  };
+
   const closeDocumentOverlay = () => {
     setIsDocumentOverlayOpen(false);
   };
 
   const closeFlowchartOverlay = () => {
     setIsFlowchartOverlayOpen(false);
+  };
+
+  const closePreviewGallery = () => {
+    setIsPreviewGalleryOpen(false);
   };
 
   const openRecognitionPreview = () => {
@@ -210,6 +231,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                   {canOpenPreview ? (
                     <button
                       aria-haspopup="dialog"
+                      aria-label={previewTriggerLabel}
                       className={cn(
                         "group/thumb relative h-full cursor-pointer overflow-hidden rounded-xl border border-border/50 bg-background/80 shadow-md transition-all duration-200 hover:scale-[1.02] hover:border-border/80 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
                         previewFrameClassName,
@@ -217,6 +239,11 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                       onClick={() => {
                         if (isSystemFlowchartProject) {
                           openFlowchartOverlay();
+                          return;
+                        }
+
+                        if (hasPreviewGallery) {
+                          openPreviewGallery();
                           return;
                         }
 
@@ -256,9 +283,14 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                         <span className="absolute inset-0 flex items-center justify-center bg-background/75 opacity-0 backdrop-blur-[2px] transition-opacity duration-200 group-hover/thumb:opacity-100">
                           <span className="inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm">
                             <Expand className="size-3.5 text-primary" />
-                            {isSystemFlowchartProject
-                              ? "View flowchart"
-                              : "View manual"}
+                            {previewOverlayLabel}
+                          </span>
+                        </span>
+                      ) : hasPreviewGallery ? (
+                        <span className="absolute inset-0 flex items-center justify-center bg-background/75 opacity-0 backdrop-blur-[2px] transition-opacity duration-200 group-hover/thumb:opacity-100">
+                          <span className="inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm">
+                            <Expand className="size-3.5 text-primary" />
+                            {previewOverlayLabel}
                           </span>
                         </span>
                       ) : null}
@@ -618,6 +650,14 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         <ProjectRecognitionModal
           isOpen={isRecognitionPreviewOpen}
           onClose={closeRecognitionPreview}
+          project={project}
+        />
+      ) : null}
+
+      {hasPreviewGallery ? (
+        <ProjectPreviewGalleryModal
+          isOpen={isPreviewGalleryOpen}
+          onClose={closePreviewGallery}
           project={project}
         />
       ) : null}

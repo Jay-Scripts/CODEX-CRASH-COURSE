@@ -62,6 +62,12 @@ export type ProjectDocumentLayout = "auto" | "single-page";
 
 export type ProjectPreviewLayout = "portrait" | "landscape";
 
+export type ProjectPreviewImage = {
+  alt: string;
+  label: string;
+  src: string;
+};
+
 export type Project = {
   architecture: string[];
   categories: ProjectCategory[];
@@ -78,6 +84,7 @@ export type Project = {
   previewLayout?: ProjectPreviewLayout;
   previewDialogSrc?: string;
   previewSrc?: string;
+  previewImages?: ProjectPreviewImage[];
   projectBadges?: string[];
   recognitionPreviewAlt?: string;
   recognitionPreviewNote?: string;

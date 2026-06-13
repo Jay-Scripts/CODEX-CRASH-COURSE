@@ -51,6 +51,11 @@
 - Purpose: Displays a fullscreen document preview modal for project assets and resume PDFs with centered in-view navigation, zoom controls, and optional direct download access while keeping the portfolio page in place underneath.
 - Location: `components/cards/project-document-overlay.tsx`
 
+### `ProjectPreviewGalleryModal`
+
+- Purpose: Displays a fullscreen image gallery modal for project screenshot previews with keyboard navigation and direct image opening without leaving the portfolio.
+- Location: `components/cards/project-preview-gallery-modal.tsx`
+
 ### `ProjectSystemPreviewModal`
 
 - Purpose: Opens in-page placeholder or real project walkthrough previews for project cards without redirecting users away from the portfolio.
