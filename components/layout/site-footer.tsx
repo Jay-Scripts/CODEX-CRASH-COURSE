@@ -1,10 +1,6 @@
 import type { ReactElement } from "react";
 import Link from "next/link";
-import {
-  BriefcaseBusiness,
-  GitBranch,
-  Mail,
-} from "lucide-react";
+import { BriefcaseBusiness, GitBranch, Mail } from "lucide-react";
 import { profile } from "@/constants/portfolio.constants";
 
 const footerTechStack = [
@@ -82,7 +78,7 @@ export const SiteFooter = () => {
             >
               {profile.name}
             </p>
-         
+
             <p className="mt-3 max-w-md text-xs leading-relaxed text-muted-foreground sm:max-w-lg md:max-w-md lg:max-w-xl">
               {profile.summary}
             </p>
@@ -96,20 +92,18 @@ export const SiteFooter = () => {
               Links
             </p>
             <div className="grid gap-2 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2 md:grid-cols-1 lg:grid-cols-2">
-              {footerAccountLinks.map(
-                ({ href, icon, isExternal, label }) => (
-                  <Link
-                    key={label}
-                    className="flex items-center justify-center gap-2 text-xs text-muted-foreground transition-colors hover:text-foreground sm:justify-start"
-                    href={href!}
-                    rel={isExternal ? "noopener noreferrer" : undefined}
-                    target={isExternal ? "_blank" : undefined}
-                  >
-                    {icon}
-                    {label}
-                  </Link>
-                ),
-              )}
+              {footerAccountLinks.map(({ href, icon, isExternal, label }) => (
+                <Link
+                  key={label}
+                  className="flex items-center justify-center gap-2 text-xs text-muted-foreground transition-colors hover:text-foreground sm:justify-start"
+                  href={href!}
+                  rel={isExternal ? "noopener noreferrer" : undefined}
+                  target={isExternal ? "_blank" : undefined}
+                >
+                  {icon}
+                  {label}
+                </Link>
+              ))}
             </div>
           </nav>
         </div>

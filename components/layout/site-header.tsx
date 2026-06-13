@@ -123,7 +123,7 @@ export const SiteHeader = () => {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-xl">
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative ">
         <div className="flex h-16 w-full items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
             className="flex items-center gap-3"
@@ -149,66 +149,66 @@ export const SiteHeader = () => {
               </span>
             </span>
           </Link>
-          <nav
-            aria-label="Primary navigation"
-            className="hidden items-center gap-1 lg:flex"
-          >
-            {navigationItems.map((item) => (
-              <Button asChild key={item.href} size="sm" variant="ghost">
-                <Link
-                  href={item.href}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    handleSectionNavigation(item.href);
-                  }}
-                >
-                  {item.label}
-                </Link>
+          <nav aria-label="Primary navigation" className="flex">
+            <div className="hidden items-center gap-1 lg:flex">
+              {" "}
+              {navigationItems.map((item) => (
+                <Button asChild key={item.href} size="sm" variant="ghost">
+                  <Link
+                    href={item.href}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      handleSectionNavigation(item.href);
+                    }}
+                  >
+                    {item.label}
+                  </Link>
+                </Button>
+              ))}
+            </div>
+            <div className="flex  items-center gap-2">
+              <CommandMenu />
+              <ThemeToggle />
+              <Button
+                aria-controls="mobile-navigation"
+                aria-expanded={isMobileMenuOpen}
+                aria-label={
+                  isMobileMenuOpen
+                    ? "Close navigation menu"
+                    : "Open navigation menu"
+                }
+                className={cn(
+                  "text-muted-foreground transition-colors lg:hidden",
+                  isMobileMenuOpen && "bg-accent text-foreground",
+                )}
+                onClick={() => setIsMobileMenuOpen((current) => !current)}
+                size="icon"
+                type="button"
+                variant="ghost"
+              >
+                <span className="relative block h-4 w-5">
+                  <span
+                    className={cn(
+                      "absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition-all duration-300 ease-out",
+                      isMobileMenuOpen && "top-1.5 rotate-45",
+                    )}
+                  />
+                  <span
+                    className={cn(
+                      "absolute left-0 top-1.5 h-0.5 w-5 rounded-full bg-current transition-all duration-200 ease-out",
+                      isMobileMenuOpen && "opacity-0",
+                    )}
+                  />
+                  <span
+                    className={cn(
+                      "absolute left-0 top-3 h-0.5 w-5 rounded-full bg-current transition-all duration-300 ease-out",
+                      isMobileMenuOpen && "top-1.5 -rotate-45",
+                    )}
+                  />
+                </span>
               </Button>
-            ))}
+            </div>
           </nav>
-          <div className="flex items-center gap-2">
-            <CommandMenu />
-            <ThemeToggle />
-            <Button
-              aria-controls="mobile-navigation"
-              aria-expanded={isMobileMenuOpen}
-              aria-label={
-                isMobileMenuOpen
-                  ? "Close navigation menu"
-                  : "Open navigation menu"
-              }
-              className={cn(
-                "text-muted-foreground transition-colors lg:hidden",
-                isMobileMenuOpen && "bg-accent text-foreground",
-              )}
-              onClick={() => setIsMobileMenuOpen((current) => !current)}
-              size="icon"
-              type="button"
-              variant="ghost"
-            >
-              <span className="relative block h-4 w-5">
-                <span
-                  className={cn(
-                    "absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition-all duration-300 ease-out",
-                    isMobileMenuOpen && "top-1.5 rotate-45",
-                  )}
-                />
-                <span
-                  className={cn(
-                    "absolute left-0 top-1.5 h-0.5 w-5 rounded-full bg-current transition-all duration-200 ease-out",
-                    isMobileMenuOpen && "opacity-0",
-                  )}
-                />
-                <span
-                  className={cn(
-                    "absolute left-0 top-3 h-0.5 w-5 rounded-full bg-current transition-all duration-300 ease-out",
-                    isMobileMenuOpen && "top-1.5 -rotate-45",
-                  )}
-                />
-              </span>
-            </Button>
-          </div>
         </div>
         <AnimatePresence initial={false}>
           {isMobileMenuOpen ? (

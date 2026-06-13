@@ -58,7 +58,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [activeFlowchartIndex, setActiveFlowchartIndex] = useState(0);
   const [isFlowchartOverlayOpen, setIsFlowchartOverlayOpen] = useState(false);
-  const [isRecognitionPreviewOpen, setIsRecognitionPreviewOpen] = useState(false);
+  const [isRecognitionPreviewOpen, setIsRecognitionPreviewOpen] =
+    useState(false);
   const [isSystemPreviewOpen, setIsSystemPreviewOpen] = useState(false);
   const [activeDocument, setActiveDocument] = useState<{
     src: string;
@@ -80,7 +81,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
     isUserManualPreview || isSystemFlowchartProject;
   const canOpenPreview =
     hasExpandableDocumentPreview || isSystemFlowchartProject;
-  const activeFlowchartPreview = project.flowchartPreviews?.[activeFlowchartIndex];
+  const activeFlowchartPreview =
+    project.flowchartPreviews?.[activeFlowchartIndex];
   const usesLandscapePreview = project.previewLayout === "landscape";
   const previewFrameClassName = cn(
     isSystemFlowchartProject
@@ -193,7 +195,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                 <div className="flex items-center gap-2 border-b border-border/30 px-4 py-2.5">
                   <span className="flex items-center gap-1.5 text-[11px] uppercase tracking-wide text-muted-foreground">
                     <FileText className="size-3 shrink-0 text-primary" />
-                    Document preview
+                    Project preview
                   </span>
                 </div>
 
@@ -298,13 +300,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                 </div>
 
                 {/* bottom bar */}
-                <div className="flex items-center justify-between border-t border-border/30 px-4 py-2 text-[10px] text-muted-foreground">
-                  <span>Front page</span>
-                  <span>
-                    {isSystemFlowchartProject
-                      ? "Diagram in fullscreen"
-                      : "PDF in fullscreen"}
-                  </span>
+                <div className="flex justify-center items-center border-t border-border/30 px-4 py-2 text-[10px] text-muted-foreground">
+                  <span>Click to See Previews</span>
                 </div>
               </>
             ) : (
@@ -327,10 +324,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                     <div className="h-2 w-4/5 rounded-full bg-muted/60" />
                     <div className="mt-3 grid grid-cols-3 gap-1.5">
                       {[0, 1, 2].map((i) => (
-                        <div
-                          key={i}
-                          className="h-8 rounded-lg bg-primary/5"
-                        />
+                        <div key={i} className="h-8 rounded-lg bg-primary/5" />
                       ))}
                     </div>
                   </div>
@@ -341,7 +335,6 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
           {/* ── Content column ── */}
           <CardContent className="flex flex-col gap-4 p-5 sm:p-6 lg:p-7">
-
             {/* title + category */}
             <div className="flex flex-wrap items-start justify-between gap-2">
               <h3
@@ -433,7 +426,10 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                 </h4>
                 <ul className="space-y-1.5">
                   {project.architecture.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <li
+                      key={item}
+                      className="flex items-start gap-2 text-sm text-muted-foreground"
+                    >
                       <span className="mt-[7px] size-1 shrink-0 rounded-full bg-primary/40" />
                       {item}
                     </li>
@@ -451,7 +447,10 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                 </h4>
                 <ul className="space-y-1.5">
                   {project.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <li
+                      key={feature}
+                      className="flex items-start gap-2 text-sm text-muted-foreground"
+                    >
                       <span className="mt-[7px] size-1 shrink-0 rounded-full bg-primary/40" />
                       {feature}
                     </li>
@@ -477,7 +476,13 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                 />
               </button>
 
-              <div className={cn("space-y-3", "md:block", detailsOpen ? "block" : "hidden")}>
+              <div
+                className={cn(
+                  "space-y-3",
+                  "md:block",
+                  detailsOpen ? "block" : "hidden",
+                )}
+              >
                 {project.flowchartActivities?.length ? (
                   <section
                     aria-labelledby={`${project.id}-flowchart-activities`}
@@ -492,7 +497,10 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                     </h4>
                     <ul className="space-y-1.5">
                       {project.flowchartActivities.map((activity) => (
-                        <li key={activity} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <li
+                          key={activity}
+                          className="flex items-start gap-2 text-sm text-muted-foreground"
+                        >
                           <span className="mt-[7px] size-1 shrink-0 rounded-full bg-primary/40" />
                           {activity}
                         </li>
@@ -513,7 +521,10 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                   </h4>
                   <ul className="space-y-1.5">
                     {project.challenges.map((challenge) => (
-                      <li key={challenge} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <li
+                        key={challenge}
+                        className="flex items-start gap-2 text-sm text-muted-foreground"
+                      >
                         <span className="mt-[7px] size-1 shrink-0 rounded-full bg-primary/40" />
                         {challenge}
                       </li>
@@ -531,7 +542,11 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                   className="h-9 w-full gap-2 rounded-lg border-border/50 bg-muted/40 text-xs font-medium text-foreground hover:border-border/70 hover:bg-muted/60 sm:w-auto sm:px-5"
                   variant="outline"
                 >
-                  <Link href={project.githubUrl} rel="noopener noreferrer" target="_blank">
+                  <Link
+                    href={project.githubUrl}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
                     <GitBranch className="size-3.5 shrink-0" />
                     GitHub
                   </Link>
