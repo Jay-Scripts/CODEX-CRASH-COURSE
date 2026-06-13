@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronLeft, ChevronRight, Expand, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, type PanInfo } from "framer-motion";
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
@@ -81,6 +81,28 @@ export const ProjectPreviewGalleryModal = ({
       currentIndex === activeCategoryImages.length - 1 ? 0 : currentIndex + 1,
     );
   }, [activeCategoryImages.length]);
+
+  const handleImageDragEnd = useCallback(
+    (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+      const dragThreshold = 60;
+      const swipeVelocityThreshold = 500;
+
+      if (
+        Math.abs(info.offset.x) < dragThreshold &&
+        Math.abs(info.velocity.x) < swipeVelocityThreshold
+      ) {
+        return;
+      }
+
+      if (info.offset.x < 0) {
+        showNext();
+        return;
+      }
+
+      showPrevious();
+    },
+    [showNext, showPrevious],
+  );
 
   useEffect(() => {
     if (!isOpen) {
@@ -278,7 +300,17 @@ export const ProjectPreviewGalleryModal = ({
 
             <div className="min-h-0 flex-1 overflow-auto bg-muted/30 p-3 sm:p-5">
               <div className="mx-auto flex max-w-5xl flex-col gap-4">
-                <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-background shadow-xl">
+                <motion.div
+                  animate={{ x: 0, opacity: 1 }}
+                  className="relative overflow-hidden rounded-2xl border border-border/60 bg-background shadow-xl"
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.08}
+                  onDragEnd={handleImageDragEnd}
+                  role="group"
+                  style={{ touchAction: "pan-y" }}
+                  whileTap={{ cursor: "grabbing" }}
+                >
                   <Button
                     aria-label="Previous preview image"
                     className="absolute left-3 top-1/2 z-10 size-10 -translate-y-1/2 rounded-full border-border/70 bg-background/90 shadow-lg backdrop-blur sm:left-5 md:left-6"
@@ -303,19 +335,20 @@ export const ProjectPreviewGalleryModal = ({
                     <ChevronRight className="size-4" />
                   </Button>
 
-                  <div className="relative h-[min(70dvh,42rem)] w-full">
+                  <div className="relative h-[min(70dvh,42rem)] w-full cursor-grab select-none active:cursor-grabbing">
                     <Image
                       key={currentPreview.src}
                       alt={currentPreview.alt}
                       className="object-contain p-3 sm:p-4"
                       fill
+                      draggable={false}
                       priority={activeIndex === 0 && selectedCategoryId === previewCategories[0]?.id}
                       sizes="(min-width: 1280px) 64rem, (min-width: 1024px) 56rem, 100vw"
                       src={currentPreview.src}
                       unoptimized
                     />
                   </div>
-                </div>
+                </motion.div>
 
                 <div className="flex items-center justify-between gap-3 rounded-2xl border border-border/60 bg-background p-4 shadow-sm sm:p-5">
                   <div className="min-w-0">

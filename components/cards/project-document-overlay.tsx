@@ -10,7 +10,7 @@ import {
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, type PanInfo } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
@@ -120,6 +120,7 @@ export const ProjectDocumentOverlay = ({
     documentLayout === "single-page" ||
     (viewerSize.width > 0 && viewerSize.width < MOBILE_LAYOUT_BREAKPOINT);
   const pageStep = isSinglePageLayout ? 1 : 2;
+  const canSwipePages = zoomLevel <= 1;
 
   useEffect(() => {
     if (!isOpen) {
@@ -206,6 +207,32 @@ export const ProjectDocumentOverlay = ({
       settleRenderTask(rightTask),
     ]);
   }, [settleRenderTask]);
+
+  const handlePageDragEnd = (
+    _event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo,
+  ) => {
+    if (!canSwipePages) {
+      return;
+    }
+
+    const dragThreshold = 60;
+    const swipeVelocityThreshold = 500;
+
+    if (
+      Math.abs(info.offset.x) < dragThreshold &&
+      Math.abs(info.velocity.x) < swipeVelocityThreshold
+    ) {
+      return;
+    }
+
+    if (info.offset.x < 0) {
+      setCurrentPage((page) => Math.min(page + pageStep, totalPages));
+      return;
+    }
+
+    setCurrentPage((page) => Math.max(page - pageStep, 1));
+  };
 
   const renderPages = useCallback(async () => {
     if (!pdfDoc || viewerSize.width === 0 || viewerSize.height === 0) {
@@ -619,10 +646,16 @@ export const ProjectDocumentOverlay = ({
           ) : null}
 
           {!loading && !error ? (
-            <div
+            <motion.div
               className={`mx-auto flex min-h-full w-full items-start justify-center ${
                 isSinglePageLayout ? "" : "gap-3"
               }`}
+              drag={canSwipePages ? "x" : false}
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.08}
+              onDragEnd={handlePageDragEnd}
+              style={{ touchAction: "pan-y" }}
+              whileTap={{ cursor: "grabbing" }}
             >
               <canvas
                 ref={leftCanvasRef}
@@ -637,7 +670,7 @@ export const ProjectDocumentOverlay = ({
                     !isSinglePageLayout && showRightPage ? "block" : "none",
                 }}
               />
-            </div>
+            </motion.div>
           ) : null}
         </div>
 

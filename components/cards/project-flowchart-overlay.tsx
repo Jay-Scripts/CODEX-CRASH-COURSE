@@ -8,7 +8,7 @@ import {
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, type PanInfo } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import type { FlowchartPreview } from "@/types/portfolio.types";
@@ -52,6 +52,7 @@ export const ProjectFlowchartOverlay = ({
   const [displayedPreview, setDisplayedPreview] = useState(activePreview);
   const [isPreviewVisible, setIsPreviewVisible] = useState(true);
   const [transitionDirection, setTransitionDirection] = useState<"next" | "previous">("next");
+  const canSwipePreview = zoomLevel <= 1;
 
   useEffect(() => {
     if (!isOpen) {
@@ -176,8 +177,31 @@ export const ProjectFlowchartOverlay = ({
           maxHeight: "none",
           maxWidth: "none",
           width: `${baseImageSize.width * zoomLevel}px`,
-        }
+      }
       : undefined;
+
+  const handleImageDragEnd = (_event: unknown, info: PanInfo) => {
+    if (!canSwipePreview) {
+      return;
+    }
+
+    const dragThreshold = 60;
+    const swipeVelocityThreshold = 500;
+
+    if (
+      Math.abs(info.offset.x) < dragThreshold &&
+      Math.abs(info.velocity.x) < swipeVelocityThreshold
+    ) {
+      return;
+    }
+
+    if (info.offset.x < 0) {
+      onNext();
+      return;
+    }
+
+    onPrevious();
+  };
 
   return createPortal(
     <AnimatePresence>
@@ -325,7 +349,15 @@ export const ProjectFlowchartOverlay = ({
             </Button>
 
             <div className="flex min-h-full min-w-full items-center justify-center">
-              <figure className="inline-flex max-w-full rounded-lg border border-border/70 bg-background/95 p-3 shadow-sm sm:p-4">
+              <motion.figure
+                className="inline-flex max-w-full rounded-lg border border-border/70 bg-background/95 p-3 shadow-sm sm:p-4"
+                drag={canSwipePreview ? "x" : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.08}
+                onDragEnd={handleImageDragEnd}
+                style={{ touchAction: "pan-y" }}
+                whileTap={{ cursor: "grabbing" }}
+              >
                 {/* SVG assets keep their native scaling and remain easier to inspect in a scrollable overlay with a plain image element. */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -343,7 +375,7 @@ export const ProjectFlowchartOverlay = ({
                   src={displayedPreview.src}
                   style={scaledImageStyle}
                 />
-              </figure>
+              </motion.figure>
             </div>
           </div>
 
