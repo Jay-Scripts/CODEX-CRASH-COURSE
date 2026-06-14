@@ -220,6 +220,24 @@ const carRentalPreviewImages = createProjectPreviewImages(
   ),
 );
 
+const bnnPreviewCategories: ProjectPreviewCategory[] = [
+  { id: "screens", label: "Screens" },
+];
+
+const bnnPreviewImages = createProjectPreviewImages(
+  "BNN Donor Mobile App",
+  "BNN MOBILE APP",
+  "screens",
+  [
+    "BNN  (1).jpg",
+    "BNN  (2).jpg",
+    "BNN  (3).jpg",
+    "BNN  (4).jpg",
+    "BNN  (5).jpg",
+    "BNN  (6).jpg",
+  ],
+);
+
 const qaSheetTrackerPreview: ExperienceSpreadsheetPreview = {
   sheets: [
     {
@@ -1009,11 +1027,10 @@ export const projects: Project[] = [
     recognitionPreviewSrc: "/experience-proofs/school%20certs/colloq.jpg",
     recognitionPreviewTitle: "CCS Research Colloquium 2026 Recognition",
     systemPreviewAlt:
-      "Temporary Smart POS system preview placeholder while the final walkthrough recording is still in progress",
+      "Smart POS system preview walkthrough video",
     systemPreviewNote:
-      "Using a temporary placeholder preview for now while the full Smart POS walkthrough recording is still being captured.",
-    systemPreviewSrc:
-      "/experience-proofs/intern/responsiveness%20%26%20UX%20improvements.mp4",
+      "System walkthrough video for the Smart POS project.",
+    systemPreviewSrc: "/project%20preview/Videos/SMART%20POS%20Video.mp4",
   },
   {
     id: "smart-pos-system-flowchart",
@@ -1108,11 +1125,10 @@ export const projects: Project[] = [
     previewImages: carRentalPreviewImages,
     previewCategories: carRentalPreviewCategories,
     systemPreviewAlt:
-      "Temporary car rental system preview placeholder while the final walkthrough recording is still in progress",
+      "Car rental system preview walkthrough video",
     systemPreviewNote:
-      "Using a temporary placeholder preview for now while the full Car Rental walkthrough recording is still being captured.",
-    systemPreviewSrc:
-      "/experience-proofs/intern/responsiveness%20%26%20UX%20improvements.mp4",
+      "System walkthrough video for the Car Rental Management System.",
+    systemPreviewSrc: "/project%20preview/Videos/Car%20Rental%20Video.mp4",
   },
   {
     id: "bnn-donor-mobile-app",
@@ -1149,11 +1165,17 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Jay-Scripts",
     liveDemoUrl: "https://example.com/",
     projectBadges: ["Intern", "Little Ark Foundation"],
+    previewAlt: "BNN Donor mobile app preview page 1",
+    previewLayout: "portrait",
+    previewSurface: "expanded",
+    previewSrc: bnnPreviewImages[0].src,
+    previewImages: bnnPreviewImages,
+    previewCategories: bnnPreviewCategories,
     systemPreviewAlt:
-      "BNN Donor mobile app preview from internship work at Little Ark Foundation",
+      "BNN Donor mobile app preview walkthrough video",
     systemPreviewNote:
-      "This preview shows the donor-facing mobile app work completed during the Little Ark Foundation internship, including mobile workflow improvements and donor access features.",
-    systemPreviewSrc: "/experience-proofs/intern/mobile.mp4",
+      "System walkthrough video for the BNN Donor mobile app.",
+    systemPreviewSrc: "/project%20preview/Videos/BNN%20mobile%20app%20video.mp4",
   },
   {
     id: "smart-pos-user-manual",

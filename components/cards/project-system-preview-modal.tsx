@@ -96,7 +96,7 @@ export const ProjectSystemPreviewModal = ({
                 <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
                   <span>System preview</span>
                   <span className="hidden sm:inline">/</span>
-                  <span>In-page placeholder demo</span>
+                  <span>Video walkthrough</span>
                 </div>
               </div>
               <Button
@@ -141,11 +141,11 @@ export const ProjectSystemPreviewModal = ({
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
                       <p className="text-sm font-medium text-foreground">
-                        Temporary system preview
+                        System preview walkthrough
                       </p>
                       <p className="mt-2 text-sm leading-7 text-muted-foreground">
                         {project.systemPreviewNote ??
-                          "This preview is a temporary walkthrough placeholder while the full project recording is still being prepared."}
+                          "This preview is a walkthrough video for the project."}
                       </p>
                     </div>
                     <Badge

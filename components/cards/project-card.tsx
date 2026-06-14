@@ -89,13 +89,15 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
     : hasPreviewGallery
       ? `${project.title} preview images`
       : `${project.title} manual preview`;
-  const usesExpandedPreviewSurface =
-    isUserManualPreview || isSystemFlowchartProject;
   const canOpenPreview =
     hasExpandableDocumentPreview || isSystemFlowchartProject || hasPreviewGallery;
   const activeFlowchartPreview =
     project.flowchartPreviews?.[activeFlowchartIndex];
   const usesLandscapePreview = project.previewLayout === "landscape";
+  const usesExpandedPreviewSurface =
+    project.previewSurface === "expanded" ||
+    isUserManualPreview ||
+    isSystemFlowchartProject;
   const [isPreviewGalleryOpen, setIsPreviewGalleryOpen] = useState(false);
   const previewFrameClassName = cn(
     isSystemFlowchartProject
