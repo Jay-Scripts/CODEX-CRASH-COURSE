@@ -283,8 +283,8 @@ export const HeroSection = () => {
       suffix: techRelatedExperienceSuffix,
       value: techRelatedExperienceYears,
     },
-    { label: "Projects", suffix: "", value: 12 },
-    { label: "Certs", suffix: "", value: 6 },
+    { label: "Systems Built", suffix: "", value: 5 },
+    { label: "Certs", suffix: "", value: 14 },
   ] as const;
 
   return (
@@ -389,8 +389,8 @@ export const HeroSection = () => {
             style={{ color: "var(--hero-body)" }}
             variants={itemVariants}
           >
-            Junior Web Developer focused on building responsive, user-friendly,
-            and maintainable web applications.
+            Junior Web Developer focused on building responsive, user-friendly
+            systems and scalable web applications with modern technologies.
           </motion.p>
 
           <motion.div
@@ -509,12 +509,12 @@ export const HeroSection = () => {
               />
             </div>
 
-          <motion.div
-            animate="animate"
-            className="absolute -right-14 bottom-16 z-[6] rounded-xl border px-3.5 py-2.5 backdrop-blur-md"
-            style={floatingCardStyle}
-            variants={floatVariants}
-          >
+            {/* <motion.div
+              animate="animate"
+              className="absolute -right-14 bottom-16 z-[6] rounded-xl border px-3.5 py-2.5 backdrop-blur-md"
+              style={floatingCardStyle}
+              variants={floatVariants}
+            >
               <p
                 className="text-[10px] uppercase tracking-wider"
                 style={{ color: "var(--hero-floating-label)" }}
@@ -529,22 +529,22 @@ export const HeroSection = () => {
                   fontSize: 16,
                 }}
               >
-                <AnimatedCounter suffix="+" value={12} />
+                <AnimatedCounter suffix="+" value={5} />
               </p>
               <p
                 className="text-[9px]"
                 style={{ color: "var(--hero-floating-copy)" }}
               >
-                shipped live
+                Shipped live
               </p>
-            </motion.div>
+            </motion.div> */}
 
-          <motion.div
-            animate="animate"
-            className="absolute -left-14 top-10 z-[6] rounded-xl border px-3.5 py-2.5 backdrop-blur-md"
-            style={floatingCardStyle}
-            variants={floatVariantsDelayed}
-          >
+            <motion.div
+              animate="animate"
+              className="absolute -left-14 top-10 z-[6] rounded-xl border px-3.5 py-2.5 backdrop-blur-md"
+              style={floatingCardStyle}
+              variants={floatVariantsDelayed}
+            >
               <p
                 className="text-[10px] uppercase tracking-wider"
                 style={{ color: "var(--hero-floating-label)" }}

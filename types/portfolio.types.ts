@@ -130,7 +130,7 @@ export type Profile = {
   name: string;
   resumeUrl: string;
   role: string;
-  summary: string;
+  summary: string[];
 };
 
 export type NavigationItem = {

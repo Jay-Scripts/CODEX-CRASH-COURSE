@@ -913,11 +913,11 @@ export const profile: Profile = {
   facebookUrl: "https://www.facebook.com/corneliogatbonton/",
   githubUrl: "https://github.com/Jay-Scripts",
   resumeUrl: "/resume.pdf",
-  summary: `Junior Web Developer focused on building responsive web systems that work across mobile, tablet, and desktop. Experienced in developing user-centered applications with authentication, role-based access, and database-driven workflows through internship and project-based work.", 
-
-"I have built and contributed to systems such as POS, rental management, and mobile applications, with a focus on usability, clean UI, and practical real-world workflows.", 
-
-"Committed to improving system reliability and user experience while continuing to grow in modern web development.`,
+  summary: [
+    "Junior Web Developer focused on building responsive, user-friendly web systems designed for seamless use across mobile, tablet, and desktop environments.",
+    "Experienced in developing business-oriented applications with authentication, role-based access, and database-driven workflows gained through internship and project-based work.",
+    "Developed systems such as POS, rental management, and mobile applications, focusing on improving usability, workflow efficiency, and overall user experience in real-world scenarios.",
+  ],
 };
 
 export const navigationItems: NavigationItem[] = [
@@ -1334,14 +1334,17 @@ export const aboutEntries: AboutEntry[] = [
   {
     title: "Personal details",
     icon: Info,
-    description: [profile.summary],
+    description: profile.summary,
   },
   {
     title: "About my goals",
     icon: Target,
     description: [
-      "My goal is to grow as a well-rounded developer who can build, test, document, and improve real-world systems.",
-      "I want to keep improving in UI/UX, responsive frontend work, backend systems, and QA so I can contribute across the full delivery process.",
+      "My goal is to become a Full-Stack Developer with a strong focus on backend development, system design, and performance optimization to build more scalable and efficient applications.",
+
+      "I want to improve my skills in backend architecture, system design, and performance optimization while building reliable, production-ready web applications.",
+
+      "I aim to build scalable, user-friendly systems and contribute to real production environments where I can help improve and maintain meaningful software products.",
     ],
   },
 ];
