@@ -23,7 +23,7 @@ export const AnimatedSection = ({
     className={cn("surface-grid scroll-mt-24 overflow-hidden", className)}
     initial="hidden"
     variants={sectionRevealState}
-    viewport={{ once: true, amount: 0.18 }}
+    viewport={{ once: true, amount: 0.05 }}
     whileInView="visible"
     {...props}
   >
