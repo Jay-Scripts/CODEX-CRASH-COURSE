@@ -284,8 +284,8 @@ export const ProjectPreviewGalleryModal = ({
               </div>
             </div>
 
-            <div className="relative min-h-0 flex-1 overflow-auto bg-muted/30 p-3 sm:p-5">
-              <div className="mx-auto flex max-w-5xl flex-col gap-4">
+            <div className="relative min-h-0 flex-1 overflow-auto bg-muted/30 p-2 sm:p-4">
+              <div className="mx-auto flex max-w-5xl flex-col gap-3">
                 <Button
                   aria-label="Previous preview image"
                   className="absolute left-3 top-1/2 z-10 size-10 -translate-y-1/2 rounded-full border-border/70 bg-background/90 shadow-lg backdrop-blur sm:left-5 md:left-6"
@@ -321,11 +321,11 @@ export const ProjectPreviewGalleryModal = ({
                   style={{ touchAction: "pan-y" }}
                   whileTap={{ cursor: "grabbing" }}
                 >
-                  <div className="relative h-[min(70dvh,42rem)] w-full cursor-grab select-none active:cursor-grabbing">
+                  <div className="relative h-[min(76dvh,48rem)] w-full cursor-grab select-none active:cursor-grabbing">
                     <Image
                       key={currentPreview.src}
                       alt={currentPreview.alt}
-                      className="object-contain p-3 sm:p-4"
+                      className="object-contain p-2 sm:p-3"
                       fill
                       draggable={false}
                       priority={activeIndex === 0 && selectedCategoryId === previewCategories[0]?.id}

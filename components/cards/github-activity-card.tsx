@@ -5,10 +5,6 @@ import {
   CalendarDays,
   Code2,
   ExternalLink,
-  Eye,
-  Flame,
-  GitCommitHorizontal,
-  Star,
 } from "lucide-react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
@@ -36,59 +32,13 @@ const getStreakUrl = (theme: string) =>
 const getViewsUrl = () =>
   `https://komarev.com/ghpvc/?username=${githubUsername}&label=Profile%20views&color=2563eb&style=flat`;
 
-const statCards = [
-  {
-    icon: GitCommitHorizontal,
-    label: "Total commits",
-    meta: "across public repos",
-    valueKey: "commits" as const,
-  },
-  {
-    icon: Flame,
-    label: "Current streak",
-    meta: "days active",
-    valueKey: "streak" as const,
-  },
-  {
-    icon: Star,
-    label: "Total stars",
-    meta: "on public repos",
-    valueKey: "stars" as const,
-  },
-  {
-    icon: Eye,
-    label: "Profile views",
-    meta: "all-time",
-    valueKey: "views" as const,
-  },
-];
-
-type GitHubActivityCardProps = {
-  commits?: string;
-  stars?: string;
-  streak?: string;
-  views?: string;
-};
-
 /**
  * Displays GitHub activity widgets using the same card language as the rest of the portfolio.
  */
-export const GitHubActivityCard = ({
-  commits = "–",
-  stars = "–",
-  streak = "–",
-  views = "–",
-}: GitHubActivityCardProps) => {
+export const GitHubActivityCard = () => {
   const mounted = useMounted();
   const { resolvedTheme } = useTheme();
   const widgetTheme = getWidgetTheme(resolvedTheme);
-
-  const statValues = {
-    commits,
-    stars,
-    streak,
-    views,
-  };
 
   return (
     <Card className="overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5">

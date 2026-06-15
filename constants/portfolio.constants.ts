@@ -188,17 +188,17 @@ const carRentalPreviewImages = createProjectPreviewImages(
     "CAR RENTAL MODULES",
     "admin",
     [
-    "admin 1.1.png",
-    "admin 1.2.png",
-    "admin 1.3.png",
-    "admin 1.4.png",
-    "admin 1.5.png",
-    "admin 1.6.png",
-    "admin 1.7.png",
-    "admin 1.8.png",
-    "admin 1.9.png",
-    "admin 1.10.png",
-    "admin 1.11.png",
+      "admin 1.1.png",
+      "admin 1.2.png",
+      "admin 1.3.png",
+      "admin 1.4.png",
+      "admin 1.5.png",
+      "admin 1.6.png",
+      "admin 1.7.png",
+      "admin 1.8.png",
+      "admin 1.9.png",
+      "admin 1.10.png",
+      "admin 1.11.png",
     ],
   ),
   createProjectPreviewImages(
@@ -206,16 +206,16 @@ const carRentalPreviewImages = createProjectPreviewImages(
     "CAR RENTAL MODULES",
     "rental-agent",
     [
-    "agent 1.1.png",
-    "agent 1.2.png",
-    "agent 1.3.png",
-    "agent 1.4.png",
-    "agent 1.5.png",
-    "agent 1.6.png",
-    "agent 1.7.png",
-    "CR ABOUT.png",
-    "CR CONTACTS.png",
-    "CR PRIVACY POLICY.png",
+      "agent 1.1.png",
+      "agent 1.2.png",
+      "agent 1.3.png",
+      "agent 1.4.png",
+      "agent 1.5.png",
+      "agent 1.6.png",
+      "agent 1.7.png",
+      "CR ABOUT.png",
+      "CR CONTACTS.png",
+      "CR PRIVACY POLICY.png",
     ],
   ),
 );
@@ -235,6 +235,27 @@ const bnnPreviewImages = createProjectPreviewImages(
     "BNN  (4).jpg",
     "BNN  (5).jpg",
     "BNN  (6).jpg",
+  ],
+);
+
+const pinoyHealthBuddyPreviewCategories: ProjectPreviewCategory[] = [
+  { id: "screens", label: "Screens" },
+];
+
+const pinoyHealthBuddyPreviewImages = createProjectPreviewImages(
+  "Pinoy Health Buddy",
+  "PINOY HEALTH BUDDY",
+  "screens",
+  [
+    "PHB 1 (1).png",
+    "PHB 1 (3).png",
+    "PHB 1 (4).png",
+    "PHB 1 (5).png",
+    "PHB 1 (6).png",
+    "PHB 1 (7).png",
+    "PHB 1 (8).png",
+    "PHB 1 (9).png",
+    "PHB 1 (10).png",
   ],
 );
 
@@ -1026,10 +1047,8 @@ export const projects: Project[] = [
       "Recognition proof for presenting the Smart POS capstone project during the CCS Research Colloquium 2026.",
     recognitionPreviewSrc: "/experience-proofs/school%20certs/colloq.jpg",
     recognitionPreviewTitle: "CCS Research Colloquium 2026 Recognition",
-    systemPreviewAlt:
-      "Smart POS system preview walkthrough video",
-    systemPreviewNote:
-      "System walkthrough video for the Smart POS project.",
+    systemPreviewAlt: "Smart POS system preview walkthrough video",
+    systemPreviewNote: "System walkthrough video for the Smart POS project.",
     systemPreviewSrc: "/project%20preview/Videos/SMART%20POS%20Video.mp4",
   },
   {
@@ -1045,26 +1064,9 @@ export const projects: Project[] = [
       "Workflow Documentation",
       "Module Architecture",
     ],
-    architecture: [
-      "Cashier POS workflow",
-      "Self-service kiosk flow",
-      "Customer view status updates",
-      "Barista preparation routing",
-      "Manager and CRM module links",
-      "Database synchronization path",
-    ],
-    features: [
-      "Module-by-module system diagrams",
-      "Cross-screen operational flow mapping",
-      "Database relationship visibility",
-      "Documentation for planning and QA review",
-    ],
-    flowchartActivities: [
-      "Customer order entry from cashier POS or self-service kiosk",
-      "Automatic ticket routing to the barista preparation screen",
-      "Live order status updates reflected on the customer view display",
-      "Completed sales posting to inventory and analytics records",
-    ],
+    architecture: [],
+    features: [],
+
     flowchartPreviews: smartPosFlowchartPreviews,
     previewAlt: "Smart POS system flowchart preview for the options module",
     previewSrc: "/sysflow-svg/SYSTEM FLOW SMART POS-Options Module.drawio.svg",
@@ -1102,16 +1104,10 @@ export const projects: Project[] = [
     ],
     features: [
       "Customer and admin rental modules for reservation lifecycle management",
-      "Relational database schemas and process flowcharts for structured data handling",
       "Vehicle inventory, booking status tracking, analytics, and operational reports",
       "Nodemailer notifications and validation testing for booking readiness",
     ],
-    flowchartActivities: [
-      "Customer submits a booking request with rental details",
-      "Admin reviews vehicle availability and approves the reservation",
-      "System updates fleet status for pickup, return, or maintenance",
-      "Rental completion triggers report generation and record archiving",
-    ],
+
     challenges: [
       "Mapped booking, customer, vehicle, and transaction workflows into maintainable database relationships.",
       "Improved admin visibility with status tracking, analytics, and operational reporting views.",
@@ -1124,11 +1120,55 @@ export const projects: Project[] = [
     previewSrc: "/project%20preview/car%20rental.png",
     previewImages: carRentalPreviewImages,
     previewCategories: carRentalPreviewCategories,
-    systemPreviewAlt:
-      "Car rental system preview walkthrough video",
+    systemPreviewAlt: "Car rental system preview walkthrough video",
     systemPreviewNote:
       "System walkthrough video for the Car Rental Management System.",
     systemPreviewSrc: "/project%20preview/Videos/Car%20Rental%20Video.mp4",
+  },
+  {
+    id: "pinoy-health-buddy",
+    title: "Pinoy Health Buddy",
+    summary:
+      "Responsive school hackathon web app built during Web Systems that provides AI chat-based meal and workout suggestions for a selected location, plus badges, rewards, and task tracking.",
+    primaryCategory: "website",
+    categories: ["website"],
+    techStack: [
+      "Web Systems",
+      "AI Chat",
+      "Responsive Design",
+      "Task Tracker",
+      "Gamification",
+    ],
+    architecture: [
+      "AI chat box for meal suggestions",
+      "Workout suggestions by selected location",
+      "Badge and reward system",
+      "Task tracker",
+      "Mobile-first responsive layout",
+    ],
+    features: [
+      "Chat-based meal and workout recommendations",
+      "Location-aware suggestions for healthier planning",
+      "Task tracking with progress visibility",
+      "Badges and rewards for user motivation",
+    ],
+    challenges: [
+      "Kept the experience responsive from mobile screens up to desktop web layouts.",
+      "Balanced the AI chat, rewards, and task-tracking features into one clear workflow.",
+      "Built the project as a school hackathon and Web Systems subject submission.",
+    ],
+    githubUrl: "https://github.com/Jay-Scripts",
+    liveDemoUrl: "/project%20preview/PINOY%20HEALTH%20BUDDY/PHB%201%20(1).png",
+    projectBadges: ["School Hackathon", "School Project"],
+    previewAlt: "Pinoy Health Buddy web app preview",
+    previewLayout: "landscape",
+    previewSrc: "/project%20preview/PINOY%20HEALTH%20BUDDY/PHB%201%20(1).png",
+    previewImages: pinoyHealthBuddyPreviewImages,
+    previewCategories: pinoyHealthBuddyPreviewCategories,
+    systemPreviewAlt: "Pinoy Health Buddy web app preview walkthrough video",
+    systemPreviewNote:
+      "System walkthrough video for the Pinoy Health Buddy web app.",
+    systemPreviewSrc: "/project%20preview/Videos/PHB%20web.mp4",
   },
   {
     id: "bnn-donor-mobile-app",
@@ -1171,11 +1211,10 @@ export const projects: Project[] = [
     previewSrc: bnnPreviewImages[0].src,
     previewImages: bnnPreviewImages,
     previewCategories: bnnPreviewCategories,
-    systemPreviewAlt:
-      "BNN Donor mobile app preview walkthrough video",
-    systemPreviewNote:
-      "System walkthrough video for the BNN Donor mobile app.",
-    systemPreviewSrc: "/project%20preview/Videos/BNN%20mobile%20app%20video.mp4",
+    systemPreviewAlt: "BNN Donor mobile app preview walkthrough video",
+    systemPreviewNote: "System walkthrough video for the BNN Donor mobile app.",
+    systemPreviewSrc:
+      "/project%20preview/Videos/BNN%20mobile%20app%20video.mp4",
   },
   {
     id: "smart-pos-user-manual",
@@ -1185,18 +1224,8 @@ export const projects: Project[] = [
     primaryCategory: "user-manuals",
     categories: ["user-manuals"],
     techStack: ["PDF Documentation", "Process Mapping", "User Guidance"],
-    architecture: [
-      "Introduction and system overview",
-      "User navigation instructions",
-      "Operational workflow walkthroughs",
-      "Reference material for daily usage",
-    ],
-    features: [
-      "Step-by-step usage guidance",
-      "Operator-facing workflow instructions",
-      "Clear task sequencing for common actions",
-      "Documentation support for onboarding",
-    ],
+    architecture: [],
+    features: [],
     challenges: [
       "Organized technical workflows into instructions that are easy for end users to follow.",
       "Balanced clarity and completeness so the manual stays useful during actual operations.",
