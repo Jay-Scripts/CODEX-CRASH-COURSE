@@ -21,6 +21,53 @@ const geistMono = Geist_Mono({
 const seoDescription =
   "Junior Web Developer in Manila building responsive web applications with Next.js, React, TypeScript, Supabase, PostgreSQL, QA testing, and technical support.";
 
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profile.name,
+    jobTitle: profile.role,
+    description: seoDescription,
+    email: profile.email,
+    url: "https://cornelio-portfolio.vercel.app/",
+    image: "https://cornelio-portfolio.vercel.app/jr-pic-transparent.png",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Manila",
+      addressCountry: "PH",
+    },
+    sameAs: [profile.githubUrl, profile.linkedinUrl, profile.facebookUrl],
+    alumniOf: "Global Reciprocal Colleges",
+    knowsAbout: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+      "Quality Assurance",
+      "Responsive Web Development",
+      "Technical Support",
+      "UI/UX",
+      "PHP",
+      "MySQL",
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Cornelio A. Gatbonton Jr Portfolio",
+    url: "https://cornelio-portfolio.vercel.app/",
+    description: seoDescription,
+    publisher: {
+      "@type": "Person",
+      name: profile.name,
+    },
+  },
+];
+
+const safeJsonLd = (value: unknown) =>
+  JSON.stringify(value).replace(/</g, "\\u003c");
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://cornelio-portfolio.vercel.app/"),
   applicationName: "Cornelio A. Gatbonton Jr Portfolio",
@@ -43,6 +90,11 @@ export const metadata: Metadata = {
     "Next.js Portfolio",
     "React Portfolio",
     "TypeScript Developer",
+    "UI/UX Developer",
+    "Frontend Developer",
+    "Backend Developer",
+    "Node.js Developer",
+    "PHP Developer",
     "Software Tester",
     "Tech Support",
     "PostgreSQL Developer",
@@ -101,6 +153,10 @@ const RootLayout = ({
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground antialiased">
+        <script
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(structuredData) }}
+          type="application/ld+json"
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
