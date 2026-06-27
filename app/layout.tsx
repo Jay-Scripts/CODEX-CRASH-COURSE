@@ -18,38 +18,61 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const seoDescription =
+  "Junior Web Developer in Manila building responsive web applications with Next.js, React, TypeScript, Supabase, PostgreSQL, QA testing, and technical support.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://portfolio.example.com"),
+  metadataBase: new URL("https://cornelio-portfolio.vercel.app/"),
+  applicationName: "Cornelio A. Gatbonton Jr Portfolio",
   title: {
-    default: "Cornelio Jay Scripts | Junior Full-Stack Developer",
-    template: "%s | Cornelio Jay Scripts",
+    default: `${profile.name} | ${profile.role}`,
+    template: "%s | Cornelio A. Gatbonton Jr",
   },
   icons: {
     icon: profile.logoSrc,
     shortcut: profile.logoSrc,
   },
-  description:
-    "Recruiter-friendly junior full-stack developer portfolio focused on Next.js, React, TypeScript, QA testing, database design, and enterprise-ready delivery.",
+  description: seoDescription,
   keywords: [
-    "Junior Full-Stack Developer",
+    "Cornelio A. Gatbonton Jr",
+    "Junior Web Developer Manila",
+    "Junior Web Developer Philippines",
+    "Web Applications",
     "Next.js Developer",
     "React Developer",
-    "TypeScript",
-    "QA Testing",
-    "Supabase",
-    "PostgreSQL",
-    "Accenture",
+    "Next.js Portfolio",
+    "React Portfolio",
+    "TypeScript Developer",
+    "Software Tester",
+    "Tech Support",
+    "PostgreSQL Developer",
+    "QA Tester",
+    "Technical Support Engineer",
+    "Responsive Web Development",
+    "SMART POS",
+    "POS System",
+    "Inventory System",
   ],
-  authors: [{ name: "Cornelio Jay Scripts" }],
-  creator: "Cornelio Jay Scripts",
+  authors: [{ name: "Cornelio A. Gatbonton Jr" }],
+  creator: "Cornelio A. Gatbonton Jr",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Cornelio Jay Scripts | Junior Full-Stack Developer",
-    description:
-      "Modern enterprise portfolio for junior full-stack developer roles.",
+    title: `${profile.name} | ${profile.role}`,
+    description: seoDescription,
     type: "website",
     locale: "en_US",
-    url: "https://portfolio.example.com",
-    siteName: "Cornelio Jay Scripts Portfolio",
+    url: "https://cornelio-portfolio.vercel.app/",
+    siteName: "Cornelio A. Gatbonton Jr Portfolio",
+    images: [
+      {
+        url: "/jr-pic-transparent.png",
+        alt: `${profile.name} portrait`,
+        width: 1064,
+        height: 938,
+      },
+    ],
   },
   robots: {
     index: true,
@@ -57,9 +80,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cornelio Jay Scripts | Junior Full-Stack Developer",
-    description:
-      "Modern enterprise portfolio for junior full-stack developer roles.",
+    title: `${profile.name} | ${profile.role}`,
+    description: seoDescription,
+    images: ["/jr-pic-transparent.png"],
   },
 };
 
