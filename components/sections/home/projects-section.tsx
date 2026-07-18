@@ -9,7 +9,10 @@ import { ProjectFilter } from "./project-filter";
  * Displays the featured projects section with interactive category filtering.
  */
 export const ProjectsSection = () => (
-  <AnimatedSection className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8" id="projects">
+  <AnimatedSection
+    className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+    id="projects"
+  >
     <RevealGroup className="relative mx-auto max-w-7xl">
       <SectionAccentBackdrop variant="right" />
       <RevealItem>

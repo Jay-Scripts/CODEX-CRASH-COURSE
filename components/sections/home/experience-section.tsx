@@ -24,10 +24,6 @@ export const ExperienceSection = () => (
         />
       </RevealItem>
 
-      <RevealItem>
-        <GitHubActivityCard />
-      </RevealItem>
-
       <RevealGroup className="relative space-y-5 before:absolute before:left-5 before:top-4 before:h-[calc(100%-2rem)] before:w-px before:bg-gradient-to-b before:from-primary/20 before:via-border before:to-primary/20 md:before:left-1/2">
         {experiences.map((experience, index) => {
           const isEven = index % 2 === 0;

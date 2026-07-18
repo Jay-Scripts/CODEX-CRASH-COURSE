@@ -38,9 +38,10 @@ export type Certificate = {
 };
 
 export type ProjectCategory =
-  | "stand-alone"
+  | "pos"
+  | "booking-&-reservation"
   | "website"
-  | "mobile"
+  | "android"
   | "user-manuals"
   | "system-flowcharts";
 

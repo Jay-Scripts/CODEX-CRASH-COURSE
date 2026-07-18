@@ -1015,8 +1015,8 @@ export const projects: Project[] = [
     title: "Smart POS System",
     summary:
       "Client-server Smart POS system with cashier, kiosk, customer display, barista, and manager modules that streamlines ordering, queue tracking, analytics, and transaction workflows.",
-    primaryCategory: "stand-alone",
-    categories: ["stand-alone"],
+    primaryCategory: "pos",
+    categories: ["pos"],
     techStack: ["PHP", "MySQL", "JavaScript", "Tailwind CSS", "Chart.js"],
     architecture: [
       "POS interface",
@@ -1090,8 +1090,8 @@ export const projects: Project[] = [
     title: "Car Rental Management System",
     summary:
       "Centralized booking and rental management system with customer and admin modules for reservations, fleet monitoring, and reporting workflows.",
-    primaryCategory: "website",
-    categories: ["website"],
+    primaryCategory: "booking-&-reservation",
+    categories: ["booking-&-reservation"],
     techStack: [
       "JavaScript",
       "Tailwind CSS",
@@ -1182,8 +1182,8 @@ export const projects: Project[] = [
     title: "BNN Donor Mobile App",
     summary:
       "Internship-built donor-facing mobile application that helps users book blood donation events, review participation activity, and track their personal donation history through a mobile-first experience.",
-    primaryCategory: "mobile",
-    categories: ["mobile"],
+    primaryCategory: "android",
+    categories: ["android"],
     techStack: [
       "Expo React Native",
       "React",
@@ -1251,7 +1251,7 @@ export const experiences: Experience[] = [
   {
     role: "Junior Web Developer (Intern)",
     organization: "Little Ark Foundation Inc.",
-    period: "Jan 2026 - Jun 2026",
+    period: "Jan 2026 - Present",
     icon: Code2,
     isTechRelated: true,
     proofItems: internshipProofItems,

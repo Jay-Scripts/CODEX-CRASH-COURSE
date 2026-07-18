@@ -5,16 +5,14 @@ import { ProjectCard } from "@/components/cards/project-card";
 import { RevealItem } from "@/components/common/scroll-reveal";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import type {
-  Project,
-  ProjectFilterValue,
-} from "@/types/portfolio.types";
+import type { Project, ProjectFilterValue } from "@/types/portfolio.types";
 
 const filters: { label: string; value: ProjectFilterValue }[] = [
   { label: "All", value: "all" },
-  { label: "Stand Alone", value: "stand-alone" },
+  { label: "POS", value: "pos" },
+  { label: "Booking & Reservation", value: "booking-&-reservation" },
   { label: "Website", value: "website" },
-  { label: "Mobile", value: "mobile" },
+  { label: "Android APP", value: "android" },
   { label: "System Flowchart", value: "system-flowcharts" },
   { label: "User Manuals", value: "user-manuals" },
 ];
@@ -34,7 +32,9 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
       return projects;
     }
 
-    return projects.filter((project) => project.categories.includes(activeFilter));
+    return projects.filter((project) =>
+      project.categories.includes(activeFilter),
+    );
   }, [activeFilter, projects]);
 
   return (
