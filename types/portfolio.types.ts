@@ -42,6 +42,9 @@ export type ProjectCategory =
   | "booking-&-reservation"
   | "ai-chat-bot"
   | "android"
+  | "website"
+  | "mobile"
+  | "stand-alone"
   | "user-manuals"
   | "system-flowcharts";
 

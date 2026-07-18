@@ -14,7 +14,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import type { Project } from "@/types/portfolio.types";
+import type { Project, ProjectCategory } from "@/types/portfolio.types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -25,21 +25,29 @@ import { ProjectRecognitionModal } from "./project-recognition-modal";
 import { ProjectPreviewGalleryModal } from "./project-preview-gallery-modal";
 import { ProjectSystemPreviewModal } from "./project-system-preview-modal";
 
-const projectCategoryLabels = {
+const projectCategoryLabels: Record<ProjectCategory, string> = {
+  pos: "POS",
+  "booking-&-reservation": "Booking & Reservation",
+  "ai-chat-bot": "AI Chatbot",
   website: "Website",
+  android: "Android",
   mobile: "Mobile",
   "stand-alone": "Stand Alone",
   "user-manuals": "User Manuals",
   "system-flowcharts": "System Flowchart",
-} as const;
+};
 
-const projectActionLabels = {
+const projectActionLabels: Record<ProjectCategory, string> = {
+  pos: "Live demo",
+  "booking-&-reservation": "Live demo",
+  "ai-chat-bot": "Live demo",
   website: "Live demo",
+  android: "Live demo",
   mobile: "Live demo",
   "stand-alone": "Live demo",
   "user-manuals": "View manual",
   "system-flowcharts": "Open diagram",
-} as const;
+};
 
 type ProjectCardProps = {
   project: Project;
@@ -90,7 +98,9 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       ? `${project.title} preview images`
       : `${project.title} manual preview`;
   const canOpenPreview =
-    hasExpandableDocumentPreview || isSystemFlowchartProject || hasPreviewGallery;
+    hasExpandableDocumentPreview ||
+    isSystemFlowchartProject ||
+    hasPreviewGallery;
   const activeFlowchartPreview =
     project.flowchartPreviews?.[activeFlowchartIndex];
   const usesLandscapePreview = project.previewLayout === "landscape";
