@@ -1,6 +1,8 @@
 "use client";
 
 import {
+  ChevronLeft,
+  ChevronRight,
   FileBadge2,
   FileSpreadsheet,
   FileText,
@@ -273,6 +275,15 @@ export const ExperienceProofGallery = ({
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setActiveProofIndex(null);
+        return;
+      }
+
+      if (event.key === "ArrowLeft") {
+        showPreviousProof();
+      }
+
+      if (event.key === "ArrowRight") {
+        showNextProof();
       }
     };
 
@@ -287,6 +298,36 @@ export const ExperienceProofGallery = ({
   const openProofPreview = (index: number) => {
     setClosingProof(null);
     setActiveProofIndex(index);
+  };
+
+  const showPreviousProof = () => {
+    if (activeProofIndex === null || !proofItems.length) {
+      return;
+    }
+
+    setClosingProof(null);
+    setActiveProofIndex((currentIndex) => {
+      if (currentIndex === null) {
+        return 0;
+      }
+
+      return currentIndex === 0 ? proofItems.length - 1 : currentIndex - 1;
+    });
+  };
+
+  const showNextProof = () => {
+    if (activeProofIndex === null || !proofItems.length) {
+      return;
+    }
+
+    setClosingProof(null);
+    setActiveProofIndex((currentIndex) => {
+      if (currentIndex === null) {
+        return 0;
+      }
+
+      return currentIndex === proofItems.length - 1 ? 0 : currentIndex + 1;
+    });
   };
 
   const closeProofPreview = () => {
@@ -545,7 +586,31 @@ export const ExperienceProofGallery = ({
                       </Button>
                     </div>
 
-                    <div className="min-h-0 flex-1 overflow-auto bg-muted/30 p-3 sm:p-5">
+                    <div className="relative min-h-0 flex-1 overflow-auto bg-muted/30 p-3 sm:p-5">
+                      <Button
+                        aria-label="Previous proof"
+                        className="absolute left-3 top-1/2 z-10 size-10 -translate-y-1/2 rounded-full border-border/70 bg-background/90 shadow-lg backdrop-blur sm:left-5"
+                        disabled={proofItems.length <= 1}
+                        onClick={showPreviousProof}
+                        size="icon"
+                        type="button"
+                        variant="outline"
+                      >
+                        <ChevronLeft className="size-4" />
+                      </Button>
+
+                      <Button
+                        aria-label="Next proof"
+                        className="absolute right-3 top-1/2 z-10 size-10 -translate-y-1/2 rounded-full border-border/70 bg-background/90 shadow-lg backdrop-blur sm:right-5"
+                        disabled={proofItems.length <= 1}
+                        onClick={showNextProof}
+                        size="icon"
+                        type="button"
+                        variant="outline"
+                      >
+                        <ChevronRight className="size-4" />
+                      </Button>
+
                       {displayedProof.spreadsheetPreview ? (
                         <SpreadsheetPreview
                           sheets={displayedProof.spreadsheetPreview.sheets}
