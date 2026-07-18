@@ -103,6 +103,7 @@ const smartPosPreviewCategories: ProjectPreviewCategory[] = [
   { id: "pos", label: "POS" },
   { id: "bvs", label: "BVS" },
   { id: "cvs", label: "CVS" },
+  { id: "rating", label: "Rating" },
 ];
 
 const smartPosPreviewImages = createProjectPreviewImages(
@@ -155,8 +156,13 @@ const smartPosPreviewImages = createProjectPreviewImages(
   createProjectPreviewImages("Smart POS System", "SMART POS MODULES", "cvs", [
     "CVS CUST. VIEW.png",
     "CVS STAFF VIEW.png",
-    "CUST RATING.png",
   ]),
+  createProjectPreviewImages(
+    "Smart POS System",
+    "SMART POS MODULES",
+    "rating",
+    ["CUST RATING.png"],
+  ),
 );
 
 const carRentalPreviewCategories: ProjectPreviewCategory[] = [
