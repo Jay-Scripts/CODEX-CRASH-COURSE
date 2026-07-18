@@ -413,12 +413,12 @@ export const ExperienceProofGallery = ({
                   desktopProofDelayClasses.at(-1);
 
                 return (
-                <button
-                  className={cn(
-                    "pointer-events-auto w-full cursor-pointer rounded-2xl border border-border/60 bg-card/95 p-2 text-left shadow-xl shadow-primary/10 backdrop-blur-sm transition-all duration-300 ease-out",
-                    "opacity-0 scale-90",
-                    mediumProofMotionClassName,
-                    delayClassName,
+                  <button
+                    className={cn(
+                      "pointer-events-auto w-full cursor-pointer rounded-2xl border border-border/60 bg-card/95 p-2 text-left shadow-xl shadow-primary/10 backdrop-blur-sm transition-all duration-300 ease-out",
+                      "opacity-0 scale-90",
+                      mediumProofMotionClassName,
+                      delayClassName,
                       "md:group-hover/experience:translate-x-0 md:group-hover/experience:opacity-100 md:group-hover/experience:scale-100",
                     )}
                     key={item.label}
