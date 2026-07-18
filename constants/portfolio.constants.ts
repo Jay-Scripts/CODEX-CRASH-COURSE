@@ -1142,8 +1142,8 @@ export const projects: Project[] = [
     title: "Pinoy Health Buddy",
     summary:
       "Responsive school hackathon web app built during Web Systems that provides AI chat-based meal and workout suggestions for a selected location, plus badges, rewards, and task tracking.",
-    primaryCategory: "website",
-    categories: ["website"],
+    primaryCategory: "ai-chat-bot",
+    categories: ["ai-chat-bot"],
     techStack: [
       "Web Systems",
       "AI Chat",

@@ -11,7 +11,7 @@ const filters: { label: string; value: ProjectFilterValue }[] = [
   { label: "All", value: "all" },
   { label: "POS", value: "pos" },
   { label: "Booking & Reservation", value: "booking-&-reservation" },
-  { label: "Website", value: "website" },
+  { label: "AI Chatbot", value: "ai-chat-bot" },
   { label: "Android APP", value: "android" },
   { label: "System Flowchart", value: "system-flowcharts" },
   { label: "User Manuals", value: "user-manuals" },

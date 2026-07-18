@@ -40,7 +40,7 @@ export type Certificate = {
 export type ProjectCategory =
   | "pos"
   | "booking-&-reservation"
-  | "website"
+  | "ai-chat-bot"
   | "android"
   | "user-manuals"
   | "system-flowcharts";
