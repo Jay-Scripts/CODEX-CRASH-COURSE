@@ -1257,7 +1257,7 @@ export const experiences: Experience[] = [
   {
     role: "Junior Web Developer (Intern)",
     organization: "Little Ark Foundation Inc.",
-    period: "Jan 2026 - Present",
+    period: "Jan 2026 - July 2026",
     icon: Code2,
     isTechRelated: true,
     proofItems: internshipProofItems,
