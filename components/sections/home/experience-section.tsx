@@ -18,9 +18,9 @@ export const ExperienceSection = () => (
       <SectionAccentBackdrop variant="left" />
       <RevealItem>
         <SectionHeading
-          description="Professional experience spanning junior web development, QA testing, IT support, troubleshooting, and collaborative workplace operations."
+          description="A timeline of my internship, technical projects, and professional experience that strengthened my technical, problem-solving, teamwork, and customer service skills."
           eyebrow="Experience"
-          title="Development, QA, and professional work experience"
+          title="Professional & Technical Experience"
         />
       </RevealItem>
 

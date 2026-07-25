@@ -921,8 +921,7 @@ export const profile: Profile = {
   resumeUrl: "/resume.pdf",
   summary: [
     "Junior Web Developer focused on building responsive, user-friendly web systems designed for seamless use across mobile, tablet, and desktop environments.",
-    "Experienced in developing business-oriented applications with authentication, role-based access, and database-driven workflows gained through internship and project-based work.",
-    "Developed systems such as POS, rental management, and mobile applications, focusing on improving usability, workflow efficiency, and overall user experience in real-world scenarios.",
+    "Experienced in developing business-oriented applications with authentication, role-based access, and database driven workflows gained through internship and project-based work.",
   ],
 };
 
@@ -1346,11 +1345,9 @@ export const aboutEntries: AboutEntry[] = [
     title: "About my goals",
     icon: Target,
     description: [
-      "My goal is to become a Full-Stack Developer with a strong focus on backend development, system design, and performance optimization to build more scalable and efficient applications.",
+      "My goal is to become a Full-Stack Developer specializing in scalable backend systems and high-performance web applications.",
 
-      "I want to improve my skills in backend architecture, system design, and performance optimization while building reliable, production-ready web applications.",
-
-      "I aim to build scalable, user-friendly systems and contribute to real production environments where I can help improve and maintain meaningful software products.",
+      "I’m passionate about building secure, reliable software while continuously improving my skills in system design and backend architecture.",
     ],
   },
 ];

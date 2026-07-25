@@ -31,9 +31,9 @@ export const CertificatesSection = () => {
         <SectionAccentBackdrop variant="center" />
         <RevealItem>
           <SectionHeading
-            description="Certifications, training records, and formal learning credentials that support my development and technical growth."
+            description="A collection of technical certifications, seminar credentials, and professional achievement awards that reflect my continuous learning and professional growth."
             eyebrow="Certificates"
-            title="Professional certificates and training milestones"
+            title="Certifications & Achievements"
           />
         </RevealItem>
 

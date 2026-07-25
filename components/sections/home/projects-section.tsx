@@ -17,9 +17,9 @@ export const ProjectsSection = () => (
       <SectionAccentBackdrop variant="right" />
       <RevealItem>
         <SectionHeading
-          description="A selection of projects showcasing my ability to design, build, test, document, and deliver practical full-stack systems."
+          description="A selection of projects showcasing my skills in system analysis, design, development, testing, technical documentation, and deployment."
           eyebrow="Featured Projects"
-          title="Full-stack projects with system design and mobile-first depth"
+          title="Complete Software Solutions"
         />
       </RevealItem>
       <ProjectFilter projects={projects} />
