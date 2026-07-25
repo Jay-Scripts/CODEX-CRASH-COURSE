@@ -16,9 +16,9 @@ export const ServicesSection = () => (
       <SectionAccentBackdrop variant="center" />
       <RevealItem>
         <SectionHeading
-          description="The core areas I can contribute to across product builds, technical documentation, interface quality, and testing."
+          description="I contribute across the software development lifecycle, from building responsive applications and backend systems to testing, technical documentation, and user experience improvements."
           eyebrow="What I Can Provide"
-          title="Development, documentation, responsive UI, product thinking, and QA/Tester support"
+          title="Skills & Areas of Contributiont"
         />
       </RevealItem>
       <RevealGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
