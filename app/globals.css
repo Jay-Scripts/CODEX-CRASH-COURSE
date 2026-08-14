@@ -5,6 +5,7 @@
   --motion-duration-fast: 160ms;
   --motion-duration-base: 280ms;
   --motion-duration-slow: 520ms;
+  --motion-duration-theme: 320ms;
   --motion-ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
   --motion-ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
   --background: oklch(0.99 0.003 247.858);
@@ -218,6 +219,16 @@ button {
     color var(--motion-duration-base) var(--motion-ease-standard);
 }
 
+::view-transition-old(root) {
+  animation: theme-fade-out var(--motion-duration-theme) var(--motion-ease-standard) both;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  animation: theme-fade-in var(--motion-duration-theme) var(--motion-ease-standard) both;
+  mix-blend-mode: normal;
+}
+
 .glass-panel {
   background:
     linear-gradient(135deg, var(--glass-highlight), transparent 38%),
@@ -404,6 +415,26 @@ button {
   }
 }
 
+@keyframes theme-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes theme-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 ::selection {
   background: color-mix(in oklab, var(--primary) 30%, transparent);
   color: var(--foreground);
@@ -473,6 +504,11 @@ button {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.01ms !important;
   }
 
   .glass-interactive,

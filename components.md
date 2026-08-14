@@ -14,7 +14,7 @@
 
 ### `ThemeToggle`
 
-- Purpose: Switches between light and dark theme modes.
+- Purpose: Switches between light and dark modes with a smooth compositor-level fade and an accessible reduced-motion fallback.
 - Location: `components/layout/theme-toggle.tsx`
 
 ### `CommandMenu`
