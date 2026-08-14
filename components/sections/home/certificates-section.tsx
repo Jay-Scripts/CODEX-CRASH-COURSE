@@ -1,24 +1,32 @@
 "use client";
 
+import { AnimatePresence } from "framer-motion";
 import { Award, Eye, FileBadge2 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import { certificates } from "@/constants/portfolio.constants";
-import type { Certificate } from "@/types/portfolio.types";
 import { AnimatedSection } from "@/components/common/animated-section";
 import { SectionAccentBackdrop } from "@/components/common/section-accent-backdrop";
 import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
 import { SectionHeading } from "@/components/common/section-heading";
+import { CertificatePreviewModal } from "@/components/sections/home/certificate-preview-modal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { certificates } from "@/constants/portfolio.constants";
 import { cn } from "@/lib/utils";
-import { CertificatePreviewModal } from "./certificate-preview-modal";
+import type { Certificate } from "@/types/portfolio.types";
+import {
+  filteredItemExitState,
+  filteredItemInitialState,
+  filteredItemVisibleState,
+  responsiveLayoutTransition,
+} from "@/utils/animations.utils";
 
 const certificateFilters = [
   "all",
   ...new Set(certificates.map((certificate) => certificate.type)),
 ] as const;
+
 type CertificateFilterValue = (typeof certificateFilters)[number];
 
 /**
@@ -81,7 +89,10 @@ export const CertificatesSection = () => {
                 );
               })}
             </nav>
-            <p className="mb-4 text-center text-sm text-muted-foreground">
+            <p
+              aria-live="polite"
+              className="mb-4 text-center text-sm text-muted-foreground"
+            >
               Showing {visibleCertificates.length}{" "}
               {activeFilter === "all"
                 ? "certificates"
@@ -89,98 +100,107 @@ export const CertificatesSection = () => {
               .
             </p>
             <RevealGroup
-              animate="visible"
               className="grid gap-4 md:grid-cols-2 xl:grid-cols-3"
-              initial="visible"
-              key={activeFilter}
+              layout
             >
-              {visibleCertificates.map((certificate) => (
-                <RevealItem key={`${certificate.title}-${certificate.issued}`}>
-                <button
-                  aria-label={`Preview ${certificate.title}`}
-                  className="group/certificate block h-full w-full cursor-pointer text-left "
-                  onClick={() => {
-                    setClosingCertificate(null);
-                    setActiveCertificate(certificate);
-                  }}
-                  type="button"
-                >
-                  <Card className="glass-interactive h-full overflow-hidden">
-                    <CardContent className="flex h-full flex-col p-0">
-                      {certificate.imageSrc ? (
-                        <div className="relative aspect-[4/3] overflow-hidden border-b border-border/60 bg-muted/20 p-3 backdrop-blur-sm">
-                          <div className="relative h-full w-full">
-                            <Image
-                              alt={certificate.imageAlt ?? certificate.title}
-                              className="rounded-lg object-contain"
-                              fill
-                              sizes="(min-width: 1280px) 24rem, (min-width: 768px) 50vw, 100vw"
-                              src={certificate.imageSrc}
-                              unoptimized
-                            />
-                          </div>
-                          <span className="absolute inset-0 flex items-center justify-center bg-background/75 opacity-0 backdrop-blur-[2px] transition-opacity duration-200 group-hover/certificate:opacity-100">
-                            <span className="inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm">
-                              <Eye className="size-3.5 text-primary" />
-                              View certificate
-                            </span>
-                          </span>
-                        </div>
-                      ) : (
-                        <div className="grid aspect-[4/3] place-items-center border-b border-border/60 bg-muted/30 text-primary">
-                          <FileBadge2 className="size-10" />
-                        </div>
-                      )}
+              <AnimatePresence initial={false} mode="sync">
+                {visibleCertificates.map((certificate) => (
+                  <RevealItem
+                    animate={filteredItemVisibleState}
+                    exit={filteredItemExitState}
+                    initial={filteredItemInitialState}
+                    key={`${certificate.title}-${certificate.issued}`}
+                    layout="position"
+                    transition={responsiveLayoutTransition}
+                  >
+                    <button
+                      aria-label={`Preview ${certificate.title}`}
+                      className="group/certificate block h-full w-full cursor-pointer text-left"
+                      onClick={() => {
+                        setClosingCertificate(null);
+                        setActiveCertificate(certificate);
+                      }}
+                      type="button"
+                    >
+                      <Card className="glass-interactive h-full overflow-hidden">
+                        <CardContent className="flex h-full flex-col p-0">
+                          {certificate.imageSrc ? (
+                            <div className="relative aspect-[4/3] overflow-hidden border-b border-border/60 bg-muted/20 p-3 backdrop-blur-sm">
+                              <div className="relative h-full w-full">
+                                <Image
+                                  alt={
+                                    certificate.imageAlt ?? certificate.title
+                                  }
+                                  className="rounded-lg object-contain"
+                                  fill
+                                  sizes="(min-width: 1280px) 24rem, (min-width: 768px) 50vw, 100vw"
+                                  src={certificate.imageSrc}
+                                  unoptimized
+                                />
+                              </div>
+                              <span className="absolute inset-0 flex items-center justify-center bg-background/75 opacity-0 backdrop-blur-[2px] transition-opacity duration-200 group-hover/certificate:opacity-100">
+                                <span className="inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm">
+                                  <Eye className="size-3.5 text-primary" />
+                                  View certificate
+                                </span>
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="grid aspect-[4/3] place-items-center border-b border-border/60 bg-muted/30 text-primary">
+                              <FileBadge2 className="size-10" />
+                            </div>
+                          )}
 
-                      <article className="flex h-full flex-col p-5 sm:p-6">
-                        <div className="flex items-start justify-between gap-3">
-                          <div>
-                            <p className="text-sm text-primary">
-                              {certificate.issued}
-                            </p>
-                            <h3 className="mt-2 text-lg font-semibold text-foreground sm:text-xl">
-                              {certificate.title}
-                            </h3>
-                            <p className="mt-1 text-sm text-muted-foreground">
-                              {certificate.issuer}
-                            </p>
-                          </div>
-                          <Badge
-                            className="border-primary/20 bg-primary/10 text-primary"
-                            variant="outline"
-                          >
-                            {certificate.type}
-                          </Badge>
-                        </div>
-
-                        {certificate.credentialId ? (
-                          <p className="mt-4 text-sm text-muted-foreground">
-                            <span className="font-medium text-foreground">
-                              Credential ID:
-                            </span>{" "}
-                            {certificate.credentialId}
-                          </p>
-                        ) : null}
-
-                        {certificate.skills?.length ? (
-                          <div className="mt-4 flex flex-wrap gap-2">
-                            {certificate.skills.map((skill) => (
+                          <article className="flex h-full flex-col p-5 sm:p-6">
+                            <div className="flex items-start justify-between gap-3">
+                              <div>
+                                <p className="text-sm text-primary">
+                                  {certificate.issued}
+                                </p>
+                                <h3 className="mt-2 text-lg font-semibold text-foreground sm:text-xl">
+                                  {certificate.title}
+                                </h3>
+                                <p className="mt-1 text-sm text-muted-foreground">
+                                  {certificate.issuer}
+                                </p>
+                              </div>
                               <Badge
-                                className="glass-chip text-muted-foreground"
-                                key={skill}
+                                className="border-primary/20 bg-primary/10 text-primary"
                                 variant="outline"
                               >
-                                {skill}
+                                {certificate.type}
                               </Badge>
-                            ))}
-                          </div>
-                        ) : null}
-                      </article>
-                    </CardContent>
-                  </Card>
-                </button>
-                </RevealItem>
-              ))}
+                            </div>
+
+                            {certificate.credentialId ? (
+                              <p className="mt-4 text-sm text-muted-foreground">
+                                <span className="font-medium text-foreground">
+                                  Credential ID:
+                                </span>{" "}
+                                {certificate.credentialId}
+                              </p>
+                            ) : null}
+
+                            {certificate.skills?.length ? (
+                              <div className="mt-4 flex flex-wrap gap-2">
+                                {certificate.skills.map((skill) => (
+                                  <Badge
+                                    className="glass-chip text-muted-foreground"
+                                    key={skill}
+                                    variant="outline"
+                                  >
+                                    {skill}
+                                  </Badge>
+                                ))}
+                              </div>
+                            ) : null}
+                          </article>
+                        </CardContent>
+                      </Card>
+                    </button>
+                  </RevealItem>
+                ))}
+              </AnimatePresence>
             </RevealGroup>
           </>
         ) : (

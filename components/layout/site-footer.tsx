@@ -65,8 +65,8 @@ export const SiteFooter = () => {
   );
 
   return (
-    <footer className="border-t border-border bg-muted/30">
-      <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
+    <footer className="site-chrome border-t border-border bg-muted/30">
+      <div className="mx-auto w-full max-w-7xl px-4 py-10 transition-[padding] duration-500 ease-out sm:px-6 sm:py-12 lg:px-8">
         <div className="grid gap-8 sm:gap-10 md:grid-cols-[minmax(0,1.3fr)_minmax(0,0.9fr)] md:items-start lg:gap-14">
           <section
             aria-labelledby="footer-identity"

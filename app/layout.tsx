@@ -5,6 +5,7 @@ import { ScrollProgress } from "@/components/common/scroll-progress";
 import { ScrollToTopButton } from "@/components/common/scroll-to-top-button";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { MotionProvider } from "@/components/providers/motion-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import "./globals.css";
 
@@ -149,24 +150,25 @@ const RootLayout = ({
       lang="en"
       suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col bg-background font-sans text-foreground antialiased">
+      <body className="flex min-h-full flex-col overflow-x-clip bg-background font-sans text-foreground antialiased">
         <script
           type="application/ld+json"
         >
           {JSON.stringify(structuredData)}
         </script>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          disableTransitionOnChange
-          enableSystem={false}
-        >
-          <ScrollProgress />
-          <ScrollToTopButton />
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
-        </ThemeProvider>
+        <MotionProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem={false}
+          >
+            <ScrollProgress />
+            <ScrollToTopButton />
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+            <SiteFooter />
+          </ThemeProvider>
+        </MotionProvider>
       </body>
     </html>
   );

@@ -1,11 +1,18 @@
 "use client";
 
+import { AnimatePresence } from "framer-motion";
 import { useMemo, useState } from "react";
 import { ProjectCard } from "@/components/cards/project-card";
-import { RevealItem } from "@/components/common/scroll-reveal";
+import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { Project, ProjectFilterValue } from "@/types/portfolio.types";
+import {
+  filteredItemExitState,
+  filteredItemInitialState,
+  filteredItemVisibleState,
+  responsiveLayoutTransition,
+} from "@/utils/animations.utils";
 
 const filters: { label: string; value: ProjectFilterValue }[] = [
   { label: "All", value: "all" },
@@ -62,21 +69,37 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
           );
         })}
       </div>
-      <div className="grid gap-6" key={activeFilter}>
-        {visibleProjects.length ? (
-          visibleProjects.map((project) => (
-            <div key={project.id}>
-              <ProjectCard project={project} />
-            </div>
-          ))
-        ) : (
-          <div>
-          <div className="glass-inset rounded-2xl p-8 text-center text-sm text-muted-foreground lg:col-span-2">
-              No projects are tagged under this tab yet.
-            </div>
-          </div>
-        )}
-      </div>
+      <RevealGroup className="grid gap-6" layout>
+        <AnimatePresence initial={false} mode="sync">
+          {visibleProjects.length ? (
+            visibleProjects.map((project) => (
+              <RevealItem
+                animate={filteredItemVisibleState}
+                exit={filteredItemExitState}
+                initial={filteredItemInitialState}
+                key={project.id}
+                layout="position"
+                transition={responsiveLayoutTransition}
+              >
+                <ProjectCard project={project} />
+              </RevealItem>
+            ))
+          ) : (
+            <RevealItem
+              animate={filteredItemVisibleState}
+              exit={filteredItemExitState}
+              initial={filteredItemInitialState}
+              key="empty-project-filter"
+              layout
+              transition={responsiveLayoutTransition}
+            >
+              <div className="glass-inset rounded-2xl p-8 text-center text-sm text-muted-foreground lg:col-span-2">
+                No projects are tagged under this tab yet.
+              </div>
+            </RevealItem>
+          )}
+        </AnimatePresence>
+      </RevealGroup>
     </>
   );
 };

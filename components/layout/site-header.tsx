@@ -7,10 +7,10 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { profile, navigationItems } from "@/constants/portfolio.constants";
 import { cn } from "@/lib/utils";
+import { smoothMotionEase } from "@/utils/animations.utils";
 import { CommandMenu } from "./command-menu";
 import { ThemeToggle } from "./theme-toggle";
 
-const smoothEase = [0.22, 1, 0.36, 1] as const;
 const crispEase = [0.4, 0, 0.2, 1] as const;
 
 const mobileMenuVariants: Variants = {
@@ -32,7 +32,7 @@ const mobileMenuVariants: Variants = {
     height: "auto",
     transition: {
       duration: 0.28,
-      ease: smoothEase,
+      ease: smoothMotionEase,
       when: "beforeChildren",
       staggerChildren: 0.05,
       delayChildren: 0.04,
@@ -50,7 +50,7 @@ const mobileItemVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.24,
-      ease: smoothEase,
+      ease: smoothMotionEase,
     },
   },
 };
@@ -122,9 +122,9 @@ export const SiteHeader = () => {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-xl">
+    <header className="site-chrome sticky top-0 z-50 border-b border-border bg-background/92 backdrop-blur-md">
       <div className="relative ">
-        <div className="flex h-16 w-full items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 w-full items-center justify-between px-4 transition-[padding] duration-500 ease-out sm:px-6 lg:px-8">
           <Link
             className="flex items-center gap-3"
             href="#top"

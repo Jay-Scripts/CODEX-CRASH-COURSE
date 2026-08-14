@@ -19,6 +19,11 @@
 - Purpose: Merges conditional Tailwind class names and resolves utility conflicts.
 - Location: `lib/utils.ts`
 
+### Motion utilities
+
+- Purpose: Provide shared easing, transition settings, and explicit filtered-item states for reliable site-wide motion and responsive layout reflow.
+- Location: `utils/animations.utils.ts`
+
 ## Validators
 
 ### `sanitizeContactField`

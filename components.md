@@ -85,6 +85,11 @@
 - Purpose: Wraps `next-themes` for class-based theme handling.
 - Location: `components/providers/theme-provider.tsx`
 
+### `MotionProvider`
+
+- Purpose: Applies consistent Framer Motion timing and honors each visitor's reduced-motion preference across the site.
+- Location: `components/providers/motion-provider.tsx`
+
 ## UI Primitives
 
 ### `Button`, `Badge`, `Card`, `Input`, `Textarea`, `Label`, `Skeleton`, `Separator`

@@ -3,8 +3,7 @@
 import { motion, type Variants } from "framer-motion";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
-
-const smoothEase = [0.22, 1, 0.36, 1] as const;
+import { smoothMotionEase } from "@/utils/animations.utils";
 
 const staggerGroupVariants: Variants = {
   hidden: {},
@@ -19,16 +18,14 @@ const staggerGroupVariants: Variants = {
 const revealItemVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 24,
-    filter: "blur(10px)",
+    y: 18,
   },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: {
-      duration: 0.55,
-      ease: smoothEase,
+      duration: 0.48,
+      ease: smoothMotionEase,
     },
   },
 };
@@ -44,7 +41,14 @@ export const RevealGroup = ({
   variants = staggerGroupVariants,
   ...props
 }: RevealGroupProps) => (
-  <motion.div className={cn(className)} variants={variants} {...props}>
+  <motion.div
+    className={cn(
+      "motion-safe:transition-[gap] motion-safe:duration-500",
+      className,
+    )}
+    variants={variants}
+    {...props}
+  >
     {children}
   </motion.div>
 );

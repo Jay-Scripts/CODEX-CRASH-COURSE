@@ -8,8 +8,7 @@ import { useEffect, useState, type CSSProperties } from "react";
 import { experiences, profile } from "@/constants/portfolio.constants";
 import { ProjectDocumentOverlay } from "@/components/cards/project-document-overlay";
 import { Button } from "@/components/ui/button";
-
-const smoothEase = [0.22, 1, 0.36, 1] as const;
+import { smoothMotionEase } from "@/utils/animations.utils";
 
 const containerVariants = {
   hidden: {},
@@ -28,23 +27,12 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: smoothEase,
+      ease: smoothMotionEase,
     },
   },
 };
 
 const floatingEase = "easeInOut" as const;
-
-const floatVariants: Variants = {
-  animate: {
-    y: [0, -6, 0],
-    transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: floatingEase,
-    },
-  },
-};
 
 const floatVariantsDelayed: Variants = {
   animate: {
@@ -219,7 +207,7 @@ const AnimatedCounter = ({
   useEffect(() => {
     const controls = animate(0, value, {
       duration,
-      ease: smoothEase,
+      ease: smoothMotionEase,
       onUpdate: (latestValue) => {
         setDisplayValue(`${prefix}${Math.round(latestValue)}${suffix}`);
       },
@@ -329,7 +317,7 @@ export const HeroSection = () => {
         }}
       />
 
-      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-6xl items-center gap-12 px-6 py-16 lg:grid-cols-[1fr_360px] lg:gap-16 lg:px-10 lg:py-24">
+      <div className="relative z-10 mx-auto grid min-h-[calc(100svh-4rem)] w-full max-w-6xl items-center gap-8 px-4 py-12 transition-[gap,padding] duration-500 ease-out sm:gap-10 sm:px-6 sm:py-16 lg:grid-cols-[1fr_360px] lg:gap-16 lg:px-10 lg:py-24">
         <motion.div
           className="order-2 max-w-2xl text-center lg:order-1 lg:text-left"
           variants={containerVariants}
@@ -444,7 +432,7 @@ export const HeroSection = () => {
           className="order-1 mx-auto flex w-full max-w-[320px] flex-col items-center gap-0 lg:order-2 lg:max-w-[360px] lg:justify-self-end"
           variants={itemVariants}
         >
-          <div className="relative w-[280px]">
+          <div className="relative w-[min(72vw,280px)]">
             <div
               className="absolute -inset-3.5 z-[1] rounded-[22px] border border-dashed"
               style={{
@@ -514,7 +502,7 @@ export const HeroSection = () => {
 
             <motion.div
               animate="animate"
-              className="absolute -left-14 top-10 z-[6] rounded-xl border px-3.5 py-2.5 backdrop-blur-md"
+              className="absolute -left-4 top-10 z-[6] rounded-xl border px-3.5 py-2.5 backdrop-blur-md sm:-left-14"
               style={floatingCardStyle}
               variants={floatVariantsDelayed}
             >

@@ -21,12 +21,12 @@ export const AnimatedSection = ({
 }: AnimatedSectionProps) => (
   <motion.section
     className={cn(
-      "fluid-section surface-grid scroll-mt-24 overflow-hidden",
+      "fluid-section surface-grid scroll-mt-24 overflow-hidden motion-safe:transition-[padding] motion-safe:duration-500",
       className,
     )}
     initial="hidden"
     variants={sectionRevealState}
-    viewport={{ once: true, amount: 0.05 }}
+    viewport={{ once: true, amount: 0.08, margin: "0px 0px -6% 0px" }}
     whileInView="visible"
     {...props}
   >
