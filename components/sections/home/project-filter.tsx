@@ -71,7 +71,7 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
           ))
         ) : (
           <div>
-            <div className="rounded-[1.6rem] border border-dashed border-primary/20 bg-background/80 p-8 text-center text-sm text-muted-foreground lg:col-span-2">
+          <div className="rounded-lg border border-dashed border-primary/20 bg-background/80 p-8 text-center text-sm text-muted-foreground lg:col-span-2">
               No projects are tagged under this tab yet.
             </div>
           </div>

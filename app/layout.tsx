@@ -65,9 +65,6 @@ const structuredData = [
   },
 ];
 
-const safeJsonLd = (value: unknown) =>
-  JSON.stringify(value).replace(/</g, "\\u003c");
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://cornelio-portfolio.vercel.app/"),
   applicationName: "Cornelio A. Gatbonton Jr Portfolio",
@@ -154,9 +151,10 @@ const RootLayout = ({
     >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground antialiased">
         <script
-          dangerouslySetInnerHTML={{ __html: safeJsonLd(structuredData) }}
           type="application/ld+json"
-        />
+        >
+          {JSON.stringify(structuredData)}
+        </script>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

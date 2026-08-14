@@ -36,6 +36,11 @@
 - Purpose: Render recruiter-facing project and experience content as reusable card patterns with stronger semantic structure, including flexible portrait or landscape project preview surfaces plus experience-side supporting material previews for certificates, photos, reports, and hover-preview videos.
 - Location: `components/cards/*`
 
+### `GitHubActivityCard`
+
+- Purpose: Displays a recruiter-facing GitHub activity summary and contribution preview inside the experience section.
+- Location: `components/cards/github-activity-card.tsx`
+
 ### `ExperienceProofGallery`
 
 - Purpose: Handles mobile proof lists, responsive desktop hover proof layouts for tighter and wider screens, and in-app proof modals for internship certificates, screenshots, videos, and spreadsheet previews without sending users to a new tab.

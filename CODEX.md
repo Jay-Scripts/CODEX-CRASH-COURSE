@@ -38,12 +38,14 @@ Pages only compose sections. Sections use components. Components use hooks/utils
 
 ```json
 {
-  "next": "16.2.6",
-  "react": "19.2.6",
-  "typescript": "^5",
-  "tailwindcss": "^4",
-  "framer-motion": "^12.38.0",
-  "lucide-react": "^1.14.0",
+  "next": "^16.2.9",
+  "react": "19.2.7",
+  "react-dom": "19.2.7",
+  "typescript": "^6.0.3",
+  "tailwindcss": "^4.3.1",
+  "@tailwindcss/postcss": "^4.3.1",
+  "framer-motion": "^12.42.0",
+  "lucide-react": "^1.21.0",
   "next-themes": "^0.4.6",
   "@emailjs/browser": "^4.4.1",
   "@react-three/fiber": "^9.6.1",
@@ -52,10 +54,15 @@ Pages only compose sections. Sections use components. Components use hooks/utils
   "three": "^0.184.0",
   "meshline": "^3.3.1",
   "shadcn/ui": "components/ui/ (copied in)",
-  "@radix-ui/react-slot": "^1.2.4",
+  "@radix-ui/react-slot": "^1.3.0",
   "class-variance-authority": "^0.7.1",
   "clsx": "^2.1.1",
-  "tailwind-merge": "^3.5.0"
+  "tailwind-merge": "^3.6.0",
+  "@types/node": "^26.0.1",
+  "@types/react": "^19.2.17",
+  "@types/react-dom": "^19.2.3",
+  "eslint": "^9.39.4",
+  "eslint-config-next": "16.2.9"
 }
 ```
 

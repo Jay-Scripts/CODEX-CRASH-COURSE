@@ -58,25 +58,6 @@ const floatVariantsDelayed: Variants = {
   },
 };
 
-const heroBlobs: Array<{ className: string; style: CSSProperties }> = [
-  {
-    className: "right-[8%] top-[-80px] size-[380px]",
-    style: { backgroundColor: "var(--hero-blob-primary)" },
-  },
-  {
-    className: "bottom-[-40px] right-[28%] size-[260px]",
-    style: { backgroundColor: "var(--hero-blob-secondary)" },
-  },
-  {
-    className: "left-[2%] top-[35%] size-[200px]",
-    style: { backgroundColor: "var(--hero-blob-tertiary)" },
-  },
-  {
-    className: "bottom-[10%] left-[30%] size-[160px]",
-    style: { backgroundColor: "var(--hero-blob-quaternary)" },
-  },
-];
-
 const heroSpinnerBoxes = [
   {
     className: "left-[4%] top-24 size-16 sm:size-20",
@@ -311,13 +292,6 @@ export const HeroSection = () => {
             "radial-gradient(ellipse 70% 65% at 65% 45%, transparent 30%, var(--hero-radial-mask-end) 80%)",
         }}
       />
-      {heroBlobs.map((blob) => (
-        <div
-          className={`pointer-events-none absolute rounded-full blur-[70px] ${blob.className}`}
-          key={blob.className}
-          style={blob.style}
-        />
-      ))}
       {heroSpinnerBoxes.map((box) => (
         <div
           className={`pointer-events-none absolute hidden opacity-60 md:block ${box.className}`}
