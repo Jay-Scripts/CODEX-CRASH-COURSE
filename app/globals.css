@@ -457,26 +457,6 @@ button {
   );
 }
 
-.skills-carousel-track {
-  animation: skills-carousel 34s linear infinite;
-  will-change: transform;
-  width: max-content;
-}
-
-.skills-carousel-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes skills-carousel {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
   .section-glass-lens {
     animation: glass-drift 18s ease-in-out infinite;
@@ -526,9 +506,4 @@ button {
     -webkit-mask-image: none;
   }
 
-  .skills-carousel-track {
-    animation: none;
-    flex-wrap: wrap;
-    width: 100%;
-  }
 }
