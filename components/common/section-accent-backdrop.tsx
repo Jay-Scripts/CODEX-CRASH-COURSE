@@ -24,7 +24,7 @@ const accentLayouts: Record<
 };
 
 /**
- * Displays restrained fluid-glass lenses behind section content.
+ * Displays viewport-wide fluid-glass lenses behind section content.
  */
 export const SectionAccentBackdrop = ({
   className,
@@ -33,7 +33,7 @@ export const SectionAccentBackdrop = ({
   <div
     aria-hidden="true"
     className={cn(
-      "pointer-events-none absolute inset-0 overflow-hidden opacity-70",
+      "pointer-events-none absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 overflow-hidden opacity-70",
       className,
     )}
   >

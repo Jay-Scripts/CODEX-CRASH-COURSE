@@ -26,7 +26,7 @@
 
 ### `AnimatedSection`, `RevealGroup`, `RevealItem`, `SectionHeading`, `ScrollProgress`, `ScrollToTopButton`, `SectionAccentBackdrop`
 
-- Purpose: Provide shared motion wrappers, staggered reveal helpers, consistent section headings, fluid section surfaces, restrained refractive glass lenses, the global scroll progress indicator, and a floating back-to-top button used across the site shell.
+- Purpose: Provide shared motion wrappers, staggered reveal helpers, consistent section headings, fluid section surfaces, viewport-wide refractive glass lenses, the global scroll progress indicator, and a floating back-to-top button used across the site shell.
 - Location: `components/common/*`
 
 ## Cards
