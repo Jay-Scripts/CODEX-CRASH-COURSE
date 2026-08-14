@@ -909,7 +909,7 @@ export const certificates: Certificate[] = [
 
 export const profile: Profile = {
   name: "Cornelio A. Gatbonton Jr",
-  role: "Junior Web Developer | Web Applications | Technical Support",
+  role: "Full Stack Developer | Web Applications | Technical Support",
   email: "corneliogatbontonjr21@gmail.com",
   location: "Manila, Philippines",
   logoAlt: "JayScript brand logo",
@@ -920,7 +920,7 @@ export const profile: Profile = {
   githubUrl: "https://github.com/Jay-Scripts",
   resumeUrl: "/resume.pdf",
   summary: [
-    "Junior Web Developer focused on building responsive, user-friendly web systems designed for seamless use across mobile, tablet, and desktop environments.",
+    "Full Stack Developer focused on building responsive, user-friendly web systems designed for seamless use across mobile, tablet, and desktop environments.",
     "Experienced in developing business-oriented applications with authentication, role-based access, and database driven workflows gained through internship and project-based work.",
   ],
 };
@@ -1254,7 +1254,7 @@ export const projects: Project[] = [
 
 export const experiences: Experience[] = [
   {
-    role: "Junior Web Developer (Intern)",
+    role: "Full Stack Developer (Intern)",
     organization: "Little Ark Foundation Inc.",
     period: "Jan 2026 - July 2026",
     icon: Code2,
@@ -1345,7 +1345,7 @@ export const aboutEntries: AboutEntry[] = [
     title: "About my goals",
     icon: Target,
     description: [
-      "My goal is to become a Full-Stack Developer specializing in scalable backend systems and high-performance web applications.",
+      "My goal is to grow as a Full Stack Developer specializing in scalable backend systems and high-performance web applications.",
 
       "I’m passionate about building secure, reliable software while continuously improving my skills in system design and backend architecture.",
     ],
@@ -1353,7 +1353,7 @@ export const aboutEntries: AboutEntry[] = [
 ];
 
 export const aboutHighlights = [
-  "Full-stack growth",
+  "Full Stack growth",
   "QA mindset",
   "Responsive UI",
   "System thinking",

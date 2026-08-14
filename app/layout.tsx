@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 const seoDescription =
-  "Junior Web Developer in Manila building responsive web applications with Next.js, React, TypeScript, Supabase, PostgreSQL, QA testing, and technical support.";
+  "Full Stack Developer in Manila building responsive web applications with Next.js, React, TypeScript, Supabase, PostgreSQL, QA testing, and technical support.";
 
 const structuredData = [
   {
@@ -79,8 +79,8 @@ export const metadata: Metadata = {
   description: seoDescription,
   keywords: [
     "Cornelio A. Gatbonton Jr",
-    "Junior Web Developer Manila",
-    "Junior Web Developer Philippines",
+    "Full Stack Developer Manila",
+    "Full Stack Developer Philippines",
     "Web Applications",
     "Next.js Developer",
     "React Developer",

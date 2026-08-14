@@ -2,7 +2,7 @@
 
 This is my personal portfolio built with Next.js, React, TypeScript, Tailwind CSS, and Framer Motion.
 
-I made this project to show my work, experience, certificates, and the kind of skills I can bring as a junior web developer. I also use it to present some of my technical documentation work like system flowcharts and user manuals, not just UI screens.
+I made this project to show my work, experience, certificates, and the kind of skills I can bring as a Full Stack Developer. I also use it to present some of my technical documentation work like system flowcharts and user manuals, not just UI screens.
 
 ## What's in the site
 

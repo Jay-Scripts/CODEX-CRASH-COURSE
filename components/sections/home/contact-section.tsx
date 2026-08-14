@@ -36,7 +36,7 @@ export const ContactSection = () => (
       <SectionAccentBackdrop variant="right" />
       <RevealItem>
         <SectionHeading
-          description="I’m currently open to Junior Web Developer opportunities. Recruiters and teams can use this section to verify my links, download my resume, and start a conversation."
+          description="I’m currently open to Full Stack Developer opportunities. Recruiters and teams can use this section to verify my links, download my resume, and start a conversation."
           eyebrow="Contact"
           title="Let’s Connect"
         />

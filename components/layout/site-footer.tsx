@@ -80,7 +80,7 @@ export const SiteFooter = () => {
             </p>
 
             <p className="mt-3 max-w-md text-xs leading-relaxed text-muted-foreground">
-              Junior Web Developer focused on building responsive, user-friendly
+              Full Stack Developer focused on building responsive, user-friendly
               systems and scalable web applications with modern technologies.
             </p>
           </section>

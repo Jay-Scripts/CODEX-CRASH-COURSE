@@ -362,7 +362,7 @@ export const HeroSection = () => {
             style={{ color: "var(--hero-body)" }}
             variants={itemVariants}
           >
-            Junior Web Developer focused on building responsive, user-friendly
+            Full Stack Developer focused on building responsive, user-friendly
             systems and scalable web applications with modern technologies.
           </motion.p>
 
@@ -382,7 +382,7 @@ export const HeroSection = () => {
               style={chipStyle}
             >
               <ShieldCheck className="size-3 text-primary" />
-              Junior Web Developer
+              Full Stack Developer
             </span>
             <span
               className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs backdrop-blur-md"
