@@ -10,17 +10,33 @@ import { SectionAccentBackdrop } from "@/components/common/section-accent-backdr
 import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
 import { SectionHeading } from "@/components/common/section-heading";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import { CertificatePreviewModal } from "./certificate-preview-modal";
+
+const certificateFilters = [
+  "all",
+  ...new Set(certificates.map((certificate) => certificate.type)),
+] as const;
+type CertificateFilterValue = (typeof certificateFilters)[number];
 
 /**
  * Displays portfolio certificates and opens them in an in-page preview modal.
  */
 export const CertificatesSection = () => {
+  const [activeFilter, setActiveFilter] =
+    useState<CertificateFilterValue>("all");
   const [activeCertificate, setActiveCertificate] =
     useState<Certificate | null>(null);
   const [closingCertificate, setClosingCertificate] =
     useState<Certificate | null>(null);
+  const visibleCertificates =
+    activeFilter === "all"
+      ? certificates
+      : certificates.filter(
+          (certificate) => certificate.type === activeFilter,
+        );
 
   return (
     <AnimatedSection
@@ -38,9 +54,48 @@ export const CertificatesSection = () => {
         </RevealItem>
 
         {certificates.length > 0 ? (
-          <RevealGroup className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {certificates.map((certificate) => (
-              <RevealItem key={`${certificate.title}-${certificate.issued}`}>
+          <>
+            <nav
+              aria-label="Certificate categories"
+              className="mb-8 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center"
+            >
+              {certificateFilters.map((filter) => {
+                const isActive = activeFilter === filter;
+                const label = filter === "all" ? "All" : filter;
+
+                return (
+                  <Button
+                    aria-pressed={isActive}
+                    className={cn(
+                      "w-full border-primary/15 bg-background/80 backdrop-blur-sm sm:w-auto",
+                      isActive &&
+                        "border-primary/30 bg-primary/12 text-foreground hover:bg-primary/18",
+                    )}
+                    key={filter}
+                    onClick={() => setActiveFilter(filter)}
+                    type="button"
+                    variant="outline"
+                  >
+                    {label}
+                  </Button>
+                );
+              })}
+            </nav>
+            <p className="mb-4 text-center text-sm text-muted-foreground">
+              Showing {visibleCertificates.length}{" "}
+              {activeFilter === "all"
+                ? "certificates"
+                : activeFilter.toLowerCase()}
+              .
+            </p>
+            <RevealGroup
+              animate="visible"
+              className="grid gap-4 md:grid-cols-2 xl:grid-cols-3"
+              initial="visible"
+              key={activeFilter}
+            >
+              {visibleCertificates.map((certificate) => (
+                <RevealItem key={`${certificate.title}-${certificate.issued}`}>
                 <button
                   aria-label={`Preview ${certificate.title}`}
                   className="group/certificate block h-full w-full cursor-pointer text-left "
@@ -124,9 +179,10 @@ export const CertificatesSection = () => {
                     </CardContent>
                   </Card>
                 </button>
-              </RevealItem>
-            ))}
-          </RevealGroup>
+                </RevealItem>
+              ))}
+            </RevealGroup>
+          </>
         ) : (
           <RevealItem>
             <Card className=" overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5">

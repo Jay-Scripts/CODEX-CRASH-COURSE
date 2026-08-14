@@ -264,7 +264,6 @@ export const HeroSection = () => {
       suffix: techRelatedExperienceSuffix,
       value: techRelatedExperienceYears,
     },
-    { label: "Systems Built", suffix: "", value: 5 },
     { label: "Certs", suffix: "", value: 14 },
   ] as const;
 
