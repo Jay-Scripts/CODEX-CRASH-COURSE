@@ -33,6 +33,17 @@ const skillLogoMap: Record<string, SkillLogoMeta> = {
   "Bug Documentation": {
     icon: FileWarning,
   },
+  "Claude Code": {
+    logo: "https://cdn.simpleicons.org/claudecode/D97757",
+  },
+  Codex: {
+    logo: "/codex.svg",
+    logoClassName: "dark:brightness-0 dark:invert",
+  },
+  Cursor: {
+    logo: "https://cdn.simpleicons.org/cursor/000000",
+    logoClassName: "dark:brightness-0 dark:invert",
+  },
   "Functional Testing": {
     icon: ClipboardCheck,
   },

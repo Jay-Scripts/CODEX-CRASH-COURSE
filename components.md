@@ -53,7 +53,7 @@
 
 ### `ProjectDocumentOverlay`
 
-- Purpose: Displays a fullscreen document preview modal for project assets and resume PDFs with centered in-view navigation, zoom controls, and optional direct download access while keeping the portfolio page in place underneath.
+- Purpose: Displays a fullscreen document preview modal for project assets and resume PDFs with centered in-view navigation, zoom controls, non-transforming swipe gestures that keep first-open canvas rendering correctly oriented, and optional direct download access while keeping the portfolio page in place underneath.
 - Location: `components/cards/project-document-overlay.tsx`
 
 ### `ProjectPreviewGalleryModal`
@@ -101,7 +101,7 @@
 
 ### `HeroSection`, `ServicesSection`, `AboutSection`, `SkillsSection`, `ProjectsSection`, `ExperienceSection`, `CertificatesSection`, `CertificatePreviewModal`, `ContactSection`
 
-- Purpose: Compose the recruiter-facing home page sections with responsive layouts across mobile and desktop, including a stronger hero introduction, GitHub activity inside the About section, and a dedicated certificates area with in-page preview modals for training and credential highlights.
+- Purpose: Compose the recruiter-facing home page sections with responsive layouts across mobile and desktop, including a stronger hero introduction, GitHub activity inside the About section, AI-assisted development tools in the Skills section, and a dedicated certificates area with in-page preview modals for training and credential highlights.
 - Location: `components/sections/home/*`
 
 ### `ProjectFilter`

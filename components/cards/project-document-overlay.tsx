@@ -208,7 +208,7 @@ export const ProjectDocumentOverlay = ({
     ]);
   }, [settleRenderTask]);
 
-  const handlePageDragEnd = (
+  const handlePagePanEnd = (
     _event: MouseEvent | TouchEvent | PointerEvent,
     info: PanInfo,
   ) => {
@@ -650,12 +650,8 @@ export const ProjectDocumentOverlay = ({
               className={`mx-auto flex min-h-full w-full items-start justify-center ${
                 isSinglePageLayout ? "" : "gap-3"
               }`}
-              drag={canSwipePages ? "x" : false}
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.08}
-              onDragEnd={handlePageDragEnd}
+              onPanEnd={canSwipePages ? handlePagePanEnd : undefined}
               style={{ touchAction: "pan-y" }}
-              whileTap={{ cursor: "grabbing" }}
             >
               <canvas
                 ref={leftCanvasRef}

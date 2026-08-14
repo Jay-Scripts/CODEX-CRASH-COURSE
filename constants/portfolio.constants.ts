@@ -1010,6 +1010,9 @@ export const skillGroups: SkillGroup[] = [
       "XAMPP",
       "Laragon",
       "MySQL Workbench",
+      "Codex",
+      "Claude Code",
+      "Cursor",
     ],
   },
 ];
