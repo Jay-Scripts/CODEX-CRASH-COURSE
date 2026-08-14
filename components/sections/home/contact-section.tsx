@@ -43,7 +43,7 @@ export const ContactSection = () => (
       </RevealItem>
       <RevealGroup className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
         <RevealItem>
-          <Card className="overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5">
+          <Card className="overflow-hidden">
             <CardContent className="space-y-5 p-5 sm:p-6">
               <ul className="space-y-4">
                 {contactLinks.map((item) => {
@@ -53,7 +53,7 @@ export const ContactSection = () => (
                     <li key={item.label}>
                       <Button
                         asChild
-                        className="h-auto w-full justify-between border-primary/15 bg-background/85 px-4 py-3.5 text-sm transition-all duration-300 hover:border-primary/25 hover:bg-background"
+                        className="glass-inset h-auto w-full justify-between px-4 py-3.5 text-sm transition-colors hover:border-primary/25"
                         variant="outline"
                       >
                         <Link
@@ -88,7 +88,7 @@ export const ContactSection = () => (
           </Card>
         </RevealItem>
         <RevealItem>
-          <Card className="border-border/70 bg-card/95 shadow-sm shadow-primary/5">
+          <Card>
             <CardContent className="p-5 sm:p-6">
               <ContactForm />
             </CardContent>

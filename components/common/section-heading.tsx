@@ -19,7 +19,7 @@ export const SectionHeading = ({
       <span className="h-px w-16 bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
     </div>
     <Badge
-      className="mb-4 rounded-full border-primary/20 bg-card/75 px-4 py-1.5 text-[0.68rem] font-medium uppercase tracking-[0.24em] shadow-sm backdrop-blur-sm"
+      className="glass-chip mb-4 rounded-full px-4 py-1.5 text-[0.68rem] font-medium uppercase tracking-[0.24em]"
       variant="outline"
     >
       {eyebrow}

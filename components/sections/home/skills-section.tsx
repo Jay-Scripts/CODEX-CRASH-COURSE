@@ -143,7 +143,7 @@ const SkillLogoPill = ({
     <Badge
       aria-hidden={isDuplicate || undefined}
       className={cn(
-        "max-w-full shrink-0 gap-2 border-border bg-background px-3 py-2 text-sm font-medium text-foreground shadow-sm",
+        "glass-chip max-w-full shrink-0 gap-2 px-3 py-2 text-sm font-medium text-foreground",
         compact &&
           "px-2.5 py-1.5 text-xs text-muted-foreground shadow-none sm:max-w-none",
         className,
@@ -152,7 +152,7 @@ const SkillLogoPill = ({
     >
       <span
         className={cn(
-          "grid size-8 shrink-0 place-items-center rounded-md bg-card text-primary shadow-inner ring-1 ring-border",
+          "glass-inset grid size-8 shrink-0 place-items-center rounded-lg text-primary",
           compact && "size-7",
         )}
       >
@@ -226,11 +226,11 @@ export const SkillsSection = () => (
 
           return (
             <RevealItem key={group.title}>
-              <Card className="h-full overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
+              <Card className="glass-interactive h-full overflow-hidden">
                 <CardContent className="p-5 sm:p-6">
                   <article>
                     <div className="mb-4 flex items-center gap-3 sm:mb-5">
-                      <span className="grid size-10 place-items-center rounded-2xl border border-primary/15 bg-background/80 text-primary shadow-sm">
+                      <span className="glass-inset grid size-10 place-items-center rounded-xl text-primary">
                         <Icon className="size-5" />
                       </span>
                       <div>

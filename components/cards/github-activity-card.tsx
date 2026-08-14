@@ -41,7 +41,7 @@ export const GitHubActivityCard = () => {
   const widgetTheme = getWidgetTheme(resolvedTheme);
 
   return (
-    <Card className="overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5">
+    <Card className="overflow-hidden">
       <CardContent className="p-5 sm:p-6">
         <div className="space-y-4">
           <div className="flex flex-wrap items-start justify-between gap-3">
@@ -121,7 +121,7 @@ export const GitHubActivityCard = () => {
             )}
           </WidgetFrame>
 
-          <div className="flex flex-col gap-3 rounded-2xl border border-border/60 bg-background px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="glass-inset flex flex-col gap-3 rounded-2xl px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-sm font-semibold text-foreground">
                 {githubUsername}
@@ -171,7 +171,7 @@ const WidgetFrame = ({
   icon: ReactNode;
   label: string;
 }) => (
-  <section className="overflow-hidden rounded-2xl border border-border/60 bg-muted/10 p-3.5">
+  <section className="glass-inset overflow-hidden rounded-2xl p-3.5">
     <p className="mb-2.5 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
       {icon}
       {label}

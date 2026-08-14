@@ -48,7 +48,7 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
               <Button
                 aria-pressed={isActive}
                 className={cn(
-                  "w-full border-primary/15 bg-background/80 backdrop-blur-sm sm:w-auto",
+                  "glass-chip w-full border-primary/15 sm:w-auto",
                   isActive &&
                     "border-primary/30 bg-primary/12 text-foreground hover:bg-primary/18",
                 )}
@@ -71,7 +71,7 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
           ))
         ) : (
           <div>
-          <div className="rounded-lg border border-dashed border-primary/20 bg-background/80 p-8 text-center text-sm text-muted-foreground lg:col-span-2">
+          <div className="glass-inset rounded-2xl p-8 text-center text-sm text-muted-foreground lg:col-span-2">
               No projects are tagged under this tab yet.
             </div>
           </div>

@@ -166,7 +166,7 @@ const SpreadsheetPreview = ({
           </button>
         ))}
       </div>
-      <div className="rounded-2xl border border-border/60 bg-background">
+      <div className="glass-inset rounded-2xl">
         <div className="border-b border-border/60 px-4 py-3">
           <p className="text-sm font-semibold text-foreground">
             {activeSheet.name}
@@ -367,7 +367,7 @@ export const ExperienceProofGallery = ({
 
               return (
                 <button
-                  className="flex cursor-pointer items-center gap-3 rounded-xl border border-border/50 bg-muted/20 p-3 text-left transition-colors hover:border-border/70 hover:bg-muted/30"
+                  className="glass-inset flex cursor-pointer items-center gap-3 rounded-xl p-3 text-left transition-colors hover:border-primary/20"
                   key={item.label}
                   onClick={() => openProofPreview(index)}
                   type="button"
@@ -415,7 +415,7 @@ export const ExperienceProofGallery = ({
                 return (
                   <button
                     className={cn(
-                      "pointer-events-auto w-full cursor-pointer rounded-2xl border border-border/60 bg-card/95 p-2 text-left shadow-xl shadow-primary/10 backdrop-blur-sm transition-all duration-300 ease-out",
+                      "glass-panel pointer-events-auto w-full cursor-pointer rounded-2xl p-2 text-left transition-all duration-300 ease-out",
                       "opacity-0 scale-90",
                       mediumProofMotionClassName,
                       delayClassName,
@@ -458,7 +458,7 @@ export const ExperienceProofGallery = ({
               return (
                 <button
                   className={cn(
-                    "pointer-events-auto w-32 cursor-pointer rounded-2xl border border-border/60 bg-card/95 p-2 text-left shadow-xl shadow-primary/10 backdrop-blur-sm transition-all duration-300 ease-out",
+                    "glass-panel pointer-events-auto w-32 cursor-pointer rounded-2xl p-2 text-left transition-all duration-300 ease-out",
                     "opacity-0 scale-90 -translate-x-8",
                     delayClassName,
                     "md:group-hover/experience:translate-x-0 md:group-hover/experience:opacity-100 md:group-hover/experience:scale-100",
@@ -499,7 +499,7 @@ export const ExperienceProofGallery = ({
               return (
                 <button
                   className={cn(
-                    "pointer-events-auto w-32 cursor-pointer rounded-2xl border border-border/60 bg-card/95 p-2 text-left shadow-xl shadow-primary/10 backdrop-blur-sm transition-all duration-300 ease-out",
+                    "glass-panel pointer-events-auto w-32 cursor-pointer rounded-2xl p-2 text-left transition-all duration-300 ease-out",
                     "opacity-0 scale-90 translate-x-8",
                     delayClassName,
                     "md:group-hover/experience:translate-x-0 md:group-hover/experience:opacity-100 md:group-hover/experience:scale-100",

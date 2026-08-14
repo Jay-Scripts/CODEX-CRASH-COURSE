@@ -9,6 +9,13 @@
 - [ ] Read `CODEX.md` (this file)
 - [ ] Read `functions.md` — check before adding any function, hook, util, or validator
 - [ ] Read `components.md` — check before adding any component
+- [ ] Invoke `$frontend-design` before adjusting UI or creating or modifying a React component
+
+## Required Skills
+
+- Use `$frontend-design` for every user-interface adjustment and every new or modified React component.
+- Follow the skill through implementation, accessibility review, responsive checks, and browser-based visual verification.
+- Skip `$frontend-design` only for backend-only work or non-visual code changes that do not affect a component's rendered interface.
 
 After every task, update the relevant file:
 

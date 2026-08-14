@@ -67,7 +67,7 @@ export const CertificatesSection = () => {
                   <Button
                     aria-pressed={isActive}
                     className={cn(
-                      "w-full border-primary/15 bg-background/80 backdrop-blur-sm sm:w-auto",
+                      "glass-chip w-full border-primary/15 sm:w-auto",
                       isActive &&
                         "border-primary/30 bg-primary/12 text-foreground hover:bg-primary/18",
                     )}
@@ -105,10 +105,10 @@ export const CertificatesSection = () => {
                   }}
                   type="button"
                 >
-                  <Card className="h-full overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
+                  <Card className="glass-interactive h-full overflow-hidden">
                     <CardContent className="flex h-full flex-col p-0">
                       {certificate.imageSrc ? (
-                        <div className="relative aspect-[4/3] overflow-hidden border-b border-border/60 bg-muted/30 p-3">
+                        <div className="relative aspect-[4/3] overflow-hidden border-b border-border/60 bg-muted/20 p-3 backdrop-blur-sm">
                           <div className="relative h-full w-full">
                             <Image
                               alt={certificate.imageAlt ?? certificate.title}
@@ -166,7 +166,7 @@ export const CertificatesSection = () => {
                           <div className="mt-4 flex flex-wrap gap-2">
                             {certificate.skills.map((skill) => (
                               <Badge
-                                className="border-border bg-background text-muted-foreground"
+                                className="glass-chip text-muted-foreground"
                                 key={skill}
                                 variant="outline"
                               >
@@ -185,11 +185,11 @@ export const CertificatesSection = () => {
           </>
         ) : (
           <RevealItem>
-            <Card className=" overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5">
+            <Card className="overflow-hidden">
               <CardContent className="p-6 sm:p-8">
-                <section className="flex flex-col items-start gap-4 rounded-2xl border border-dashed border-primary/25 bg-muted/20 p-6 sm:flex-row sm:items-center sm:justify-between">
+                <section className="glass-inset flex flex-col items-start gap-4 rounded-2xl p-6 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-start gap-4">
-                    <span className="grid size-12 shrink-0 place-items-center rounded-2xl border border-primary/15 bg-background text-primary shadow-sm">
+                    <span className="glass-chip grid size-12 shrink-0 place-items-center rounded-xl text-primary">
                       <Award className="size-5" />
                     </span>
                     <div>

@@ -60,9 +60,19 @@
   --hero-ghost-text: oklch(0.42 0.03 286);
   --hero-ghost-text-hover: oklch(0.5 0.13 275);
   --surface-grid-line: oklch(0.623 0.214 259.815 / 0.14);
-  --section-accent-border: oklch(0.623 0.214 259.815 / 0.24);
-  --section-accent-surface: oklch(1 0 0 / 0.38);
-  --section-accent-detail: oklch(0.623 0.214 259.815 / 0.16);
+  --ambient-glow-primary: oklch(0.68 0.13 275 / 0.14);
+  --ambient-glow-secondary: oklch(0.76 0.08 225 / 0.1);
+  --glass-surface: oklch(1 0 0 / 0.68);
+  --glass-surface-strong: oklch(1 0 0 / 0.84);
+  --glass-inset: oklch(0.99 0.006 286 / 0.56);
+  --glass-border: oklch(0.52 0.05 270 / 0.18);
+  --glass-border-hover: oklch(0.623 0.214 259.815 / 0.3);
+  --glass-highlight: oklch(1 0 0 / 0.82);
+  --glass-shadow: 0 24px 64px -42px rgb(48 40 78 / 0.34), inset 0 1px 0 var(--glass-highlight);
+  --glass-shadow-hover: 0 28px 72px -40px rgb(48 40 78 / 0.42), inset 0 1px 0 var(--glass-highlight);
+  --section-surface: oklch(0.985 0.008 275 / 0.56);
+  --section-divider: oklch(0.623 0.214 259.815 / 0.1);
+  --section-lens: oklch(0.72 0.12 278 / 0.1);
 }
 
 .dark {
@@ -124,9 +134,19 @@
   --hero-ghost-text: oklch(0.68 0.02 286);
   --hero-ghost-text-hover: oklch(0.8 0.12 286);
   --surface-grid-line: oklch(0.623 0.214 259.815 / 0.18);
-  --section-accent-border: oklch(0.623 0.214 259.815 / 0.28);
-  --section-accent-surface: oklch(0.24 0.02 286 / 0.34);
-  --section-accent-detail: oklch(0.83 0.11 286 / 0.16);
+  --ambient-glow-primary: oklch(0.6 0.16 270 / 0.12);
+  --ambient-glow-secondary: oklch(0.62 0.09 225 / 0.07);
+  --glass-surface: oklch(0.21 0.014 285 / 0.72);
+  --glass-surface-strong: oklch(0.24 0.016 285 / 0.86);
+  --glass-inset: oklch(0.18 0.012 285 / 0.68);
+  --glass-border: oklch(0.88 0.03 280 / 0.12);
+  --glass-border-hover: oklch(0.68 0.18 268 / 0.32);
+  --glass-highlight: oklch(1 0 0 / 0.09);
+  --glass-shadow: 0 26px 70px -42px rgb(0 0 0 / 0.72), inset 0 1px 0 var(--glass-highlight);
+  --glass-shadow-hover: 0 30px 78px -40px rgb(0 0 0 / 0.82), inset 0 1px 0 var(--glass-highlight);
+  --section-surface: oklch(0.18 0.018 285 / 0.58);
+  --section-divider: oklch(0.72 0.12 275 / 0.08);
+  --section-lens: oklch(0.64 0.16 272 / 0.09);
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -164,7 +184,106 @@ html {
 }
 
 body {
+  background-color: var(--background);
+  background-image:
+    radial-gradient(circle at 12% 8%, var(--ambient-glow-primary), transparent 30rem),
+    radial-gradient(circle at 88% 42%, var(--ambient-glow-secondary), transparent 34rem);
+  background-attachment: fixed;
+  color: var(--foreground);
   min-width: 320px;
+}
+
+.glass-panel {
+  background:
+    linear-gradient(135deg, var(--glass-highlight), transparent 38%),
+    var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(20px) saturate(135%);
+  backdrop-filter: blur(20px) saturate(135%);
+}
+
+.glass-inset {
+  background: var(--glass-inset);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+  -webkit-backdrop-filter: blur(12px) saturate(125%);
+  backdrop-filter: blur(12px) saturate(125%);
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.glass-chip {
+  background: var(--glass-surface-strong);
+  border-color: var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+  -webkit-backdrop-filter: blur(12px) saturate(125%);
+  backdrop-filter: blur(12px) saturate(125%);
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.glass-chip[aria-pressed="true"] {
+  background: color-mix(in oklab, var(--glass-surface-strong) 80%, var(--primary) 20%);
+  border-color: var(--glass-border-hover);
+}
+
+@media (hover: hover) {
+  button.glass-chip:hover,
+  .glass-inset:is(a, button):hover {
+    background: color-mix(in oklab, var(--glass-surface-strong) 88%, var(--primary) 12%);
+    border-color: var(--glass-border-hover);
+  }
+}
+
+.glass-interactive {
+  transition:
+    border-color 240ms ease,
+    box-shadow 240ms ease,
+    transform 240ms ease;
+}
+
+@media (hover: hover) {
+  .glass-interactive:hover {
+    border-color: var(--glass-border-hover);
+    box-shadow: var(--glass-shadow-hover);
+    transform: translateY(-3px);
+  }
+}
+
+.fluid-section {
+  background:
+    linear-gradient(180deg, transparent, var(--section-surface) 14%, var(--section-surface) 86%, transparent),
+    radial-gradient(ellipse at 50% 0%, var(--ambient-glow-primary), transparent 46%);
+  border-top: 1px solid var(--section-divider);
+}
+
+.section-glass-lens {
+  animation: glass-drift 18s ease-in-out infinite;
+  background:
+    linear-gradient(145deg, var(--glass-highlight), transparent 48%),
+    var(--section-lens);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  backdrop-filter: blur(18px) saturate(135%);
+}
+
+.section-glass-lens--delayed {
+  animation-delay: -9s;
+}
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .glass-panel,
+  .glass-chip {
+    background: var(--card);
+  }
+
+  .glass-inset {
+    background: var(--muted);
+  }
 }
 
 .hero-primary-button {
@@ -213,11 +332,14 @@ body {
       var(--surface-grid-line) 0 1px,
       transparent 1px 48px
     );
-  background-size: 48px 48px;
+  background-size: 64px 64px;
   content: "";
   inset: 0;
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+  opacity: 0.42;
   pointer-events: none;
   position: absolute;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
   z-index: 0;
 }
 
@@ -226,26 +348,14 @@ body {
   z-index: 1;
 }
 
-@keyframes section-orbit {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes section-orbit-reverse {
-  to {
-    transform: rotate(-360deg);
-  }
-}
-
-@keyframes section-drift {
+@keyframes glass-drift {
   0%,
   100% {
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0) scale(1);
   }
 
   50% {
-    transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0) scale(1.035);
   }
 }
 
@@ -291,6 +401,16 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .glass-interactive,
+  .section-glass-lens {
+    animation: none;
+    transition: none;
+  }
+
+  .glass-interactive:hover {
+    transform: none;
+  }
+
   .skills-carousel-mask {
     mask-image: none;
     -webkit-mask-image: none;

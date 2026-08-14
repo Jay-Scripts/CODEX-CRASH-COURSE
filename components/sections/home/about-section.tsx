@@ -31,13 +31,13 @@ export const AboutSection = () => {
 
                 return (
                   <section
-                    className="relative overflow-hidden rounded-2xl border border-border/70 bg-card/95 p-5 shadow-sm shadow-primary/5"
+                    className="glass-panel glass-interactive relative overflow-hidden rounded-2xl p-5"
                     key={item.title}
                   >
                     <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
                     <div className="flex items-center gap-3">
-                      <span className="grid size-9 place-items-center rounded-xl border border-primary/15 bg-background text-primary">
+                      <span className="glass-inset grid size-9 place-items-center rounded-xl text-primary">
                         <Icon className="size-4" />
                       </span>
                       <h4 className="text-sm font-semibold text-foreground">

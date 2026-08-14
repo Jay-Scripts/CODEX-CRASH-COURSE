@@ -209,7 +209,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <>
       <Card
-        className="group overflow-hidden border border-border/50 bg-card transition-all duration-300 hover:border-border/80 hover:shadow-lg hover:shadow-black/20"
+        className="glass-interactive group overflow-hidden"
         id={project.id}
       >
         <article
@@ -530,7 +530,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                 {project.flowchartActivities?.length ? (
                   <section
                     aria-labelledby={`${project.id}-flowchart-activities`}
-                    className="rounded-lg border border-border/40 bg-muted/20 p-4"
+                    className="glass-inset rounded-xl p-4"
                   >
                     <h4
                       className="mb-2.5 flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-widest text-foreground"
@@ -555,7 +555,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
                 <section
                   aria-labelledby={`${project.id}-challenges`}
-                  className="rounded-lg border border-border/40 bg-muted/20 p-4"
+                  className="glass-inset rounded-xl p-4"
                 >
                   <h4
                     className="mb-2.5 text-[10.5px] font-semibold uppercase tracking-widest text-foreground"

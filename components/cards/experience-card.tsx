@@ -29,7 +29,7 @@ export const ExperienceCard = ({ experience, isEven }: ExperienceCardProps) => {
       )}
     >
       <div className={cn(cardColumnClassName, "group/experience relative")}>
-        <Card className="relative overflow-hidden border-border/70 bg-card/95 shadow-sm shadow-primary/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
+        <Card className="glass-interactive relative overflow-hidden">
           <div className="pointer-events-none absolute right-4 top-4 z-10 hidden rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[8px] font-semibold uppercase tracking-[0.22em] text-primary md:inline-flex">
             Hover to see more info
           </div>
@@ -72,7 +72,7 @@ export const ExperienceCard = ({ experience, isEven }: ExperienceCardProps) => {
           />
         ) : null}
       </div>
-      <div className="absolute left-0 top-5 grid size-10 place-items-center rounded-full border border-primary/20 bg-background text-primary shadow-sm shadow-primary/10 md:static md:col-start-2 md:size-12">
+      <div className="glass-chip absolute left-0 top-5 grid size-10 place-items-center rounded-full text-primary md:static md:col-start-2 md:size-12">
         <Icon className="size-4 md:size-5" />
       </div>
     </article>

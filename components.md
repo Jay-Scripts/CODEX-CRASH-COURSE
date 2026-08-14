@@ -26,7 +26,7 @@
 
 ### `AnimatedSection`, `RevealGroup`, `RevealItem`, `SectionHeading`, `ScrollProgress`, `ScrollToTopButton`, `SectionAccentBackdrop`
 
-- Purpose: Provide shared motion wrappers, staggered reveal helpers, consistent section headings, shared section grid backgrounds, subtle rotating section accents, the global scroll progress indicator, and a floating back-to-top button used across the site shell.
+- Purpose: Provide shared motion wrappers, staggered reveal helpers, consistent section headings, fluid section surfaces, restrained refractive glass lenses, the global scroll progress indicator, and a floating back-to-top button used across the site shell.
 - Location: `components/common/*`
 
 ## Cards
@@ -89,7 +89,7 @@
 
 ### `Button`, `Badge`, `Card`, `Input`, `Textarea`, `Label`, `Skeleton`, `Separator`
 
-- Purpose: Shared shadcn-style primitives used throughout the app for actions, surfaces, typography, and form controls.
+- Purpose: Shared shadcn-style primitives used throughout the app for actions, typography, fluid-glass card surfaces, and translucent form controls that remain legible in light and dark themes.
 - Location: `components/ui/*`
 
 ## Home Sections
