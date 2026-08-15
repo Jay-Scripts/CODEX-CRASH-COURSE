@@ -16,16 +16,15 @@ export const SkillsSection = () => (
 
       <RevealItem>
         <SectionHeading
-          description="A structured overview of my technical skills across frontend development, backend integration, quality assurance, and delivery workflows."
+          description="A structured overview of my technical skills across software development, technical troubleshooting, user support, testing, quality assurance, and delivery workflows."
           eyebrow="Technical Skills"
-          title="Frontend, backend, QA/Tester, and delivery tooling"
+          title="Development, technical support, testing, and QA"
         />
       </RevealItem>
 
       <RevealItem>
         <div className="overflow-hidden rounded-2xl border border-border/60 bg-transparent">
           {skillGroups.map((group, groupIndex) => {
-            const Icon = group.icon;
             const movesRight = groupIndex % 2 !== 0;
 
             return (
@@ -36,16 +35,13 @@ export const SkillsSection = () => (
                 )}
                 key={group.title}
               >
-                <div className="mb-3 flex items-center gap-2.5">
-                  <span className="glass-inset grid size-7 shrink-0 place-items-center rounded-lg text-primary">
-                    <Icon aria-hidden="true" className="size-3.5" />
-                  </span>
-                  <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                <div className="mb-3 flex items-center justify-center">
+                  <h3 className="text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                     {group.title}
                   </h3>
                   <div
                     aria-hidden="true"
-                    className="flex min-w-0 flex-1 items-center gap-1 overflow-hidden"
+                    className="hidden"
                   >
                     <span className="h-px flex-1 bg-border/60" />
                     <span className="text-[10px] text-muted-foreground/50">

@@ -986,6 +986,20 @@ export const skillGroups: SkillGroup[] = [
     skills: ["Supabase", "PostgreSQL", "PHP", "MySQL", "Node.js"],
   },
   {
+    title: "Technical Support & Troubleshooting",
+    icon: Headphones,
+    skills: [
+      "Issue Diagnosis",
+      "Software Troubleshooting",
+      "Windows Support",
+      "Basic Network Troubleshooting",
+      "Hardware & Peripheral Setup",
+      "Software Installation & Configuration",
+      "User Support",
+      "Incident Documentation",
+    ],
+  },
+  {
     title: "Testing and QA/Tester",
     icon: TestTube2,
     skills: [

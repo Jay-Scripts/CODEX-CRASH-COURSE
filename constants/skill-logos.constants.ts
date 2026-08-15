@@ -1,9 +1,17 @@
 import {
   ClipboardCheck,
+  FileText,
   FileWarning,
   GitBranch,
+  HardDrive,
+  Headphones,
+  MonitorCog,
+  Network,
+  PackageCheck,
+  ScanSearch,
   Sparkles,
   UserCheck,
+  Wrench,
   type LucideIcon,
 } from "lucide-react";
 
@@ -16,6 +24,7 @@ export type SkillLogoMeta = {
 
 /** Maps portfolio skill names to their visual logo or fallback icon. */
 export const skillLogoMap: Record<string, SkillLogoMeta> = {
+  "Basic Network Troubleshooting": { icon: Network },
   Bootstrap: {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
   },
@@ -43,6 +52,9 @@ export const skillLogoMap: Record<string, SkillLogoMeta> = {
     logoClassName: "dark:brightness-0 dark:invert",
   },
   "Integration Testing": { icon: GitBranch },
+  "Hardware & Peripheral Setup": { icon: HardDrive },
+  "Incident Documentation": { icon: FileText },
+  "Issue Diagnosis": { icon: ScanSearch },
   "JavaScript ES6": {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
   },
@@ -75,6 +87,8 @@ export const skillLogoMap: Record<string, SkillLogoMeta> = {
   React: {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
   },
+  "Software Installation & Configuration": { icon: PackageCheck },
+  "Software Troubleshooting": { icon: Wrench },
   "shadcn/ui": {
     logo: "https://cdn.simpleicons.org/shadcnui",
     logoClassName: "dark:brightness-0 dark:invert",
@@ -84,6 +98,7 @@ export const skillLogoMap: Record<string, SkillLogoMeta> = {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
   },
   UAT: { icon: UserCheck },
+  "User Support": { icon: Headphones },
   Vercel: {
     logo: "https://cdn.simpleicons.org/vercel",
     logoClassName: "dark:brightness-0 dark:invert",
@@ -92,4 +107,5 @@ export const skillLogoMap: Record<string, SkillLogoMeta> = {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
   },
   XAMPP: { logo: "https://cdn.simpleicons.org/xampp/FB7A24" },
+  "Windows Support": { icon: MonitorCog },
 };
