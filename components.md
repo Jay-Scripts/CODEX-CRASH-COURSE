@@ -101,7 +101,7 @@
 
 ### `HeroSection`, `ServicesSection`, `AboutSection`, `SkillsSection`, `SkillsCarouselRow`, `ProjectsSection`, `ExperienceSection`, `CertificatesSection`, `CertificatePreviewModal`, `ContactSection`
 
-- Purpose: Compose the recruiter-facing home page sections with responsive layouts across mobile and desktop, including a stronger hero introduction, GitHub activity inside the About section, and accessible full-width skill carousels with a transparent container, smooth deterministic motion, pointer dragging, eased pause states, and reduced-motion support.
+- Purpose: Compose recruiter-facing home page sections with responsive layouts across mobile and desktop, including generalized positioning for software development, technical support, software testing, and QA opportunities; GitHub activity inside the About section; and accessible full-width skill carousels with smooth deterministic motion, pointer dragging, eased pause states, and reduced-motion support.
 - Location: `components/sections/home/*`
 
 ### `ProjectFilter`

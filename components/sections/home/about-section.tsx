@@ -17,9 +17,9 @@ export const AboutSection = () => {
 
         <RevealItem>
           <SectionHeading
-            description="A clearer view of who I am, how I approach development, and where I want to grow."
+            description="A clearer view of who I am, how I approach technology work, and the roles where I can contribute and grow."
             eyebrow="About"
-            title="Personal details and long-term goals"
+            title="Adaptable across development, support, testing, and QA"
           />
         </RevealItem>
 

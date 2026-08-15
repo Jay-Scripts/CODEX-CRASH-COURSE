@@ -350,8 +350,10 @@ export const HeroSection = () => {
             style={{ color: "var(--hero-body)" }}
             variants={itemVariants}
           >
-            Full Stack Developer focused on building responsive, user-friendly
-            systems and scalable web applications with modern technologies.
+            IT professional open to software development, technical support,
+            software testing, and quality assurance roles. I bring hands-on
+            experience building, troubleshooting, documenting, and validating
+            user-friendly systems.
           </motion.p>
 
           <motion.div
@@ -370,7 +372,14 @@ export const HeroSection = () => {
               style={chipStyle}
             >
               <ShieldCheck className="size-3 text-primary" />
-              Full Stack Developer
+              Software Development
+            </span>
+            <span
+              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs backdrop-blur-md"
+              style={chipStyle}
+            >
+              <ShieldCheck className="size-3 text-primary" />
+              Software Testing
             </span>
             <span
               className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs backdrop-blur-md"

@@ -5,9 +5,6 @@ import {
   FileText,
   Headphones,
   Info,
-  MonitorSmartphone,
-  Palette,
-  Server,
   ShieldCheck,
   Target,
   TestTube2,
@@ -909,7 +906,7 @@ export const certificates: Certificate[] = [
 
 export const profile: Profile = {
   name: "Cornelio A. Gatbonton Jr",
-  role: "Full Stack Developer | Web Applications | Technical Support",
+  role: "IT Professional | Development, Support, Testing & QA",
   email: "corneliogatbontonjr21@gmail.com",
   location: "Manila, Philippines",
   logoAlt: "JayScript brand logo",
@@ -920,8 +917,8 @@ export const profile: Profile = {
   githubUrl: "https://github.com/Jay-Scripts",
   resumeUrl: "/resume.pdf",
   summary: [
-    "Full Stack Developer focused on building responsive, user-friendly web systems designed for seamless use across mobile, tablet, and desktop environments.",
-    "Experienced in developing business-oriented applications with authentication, role-based access, and database driven workflows gained through internship and project-based work.",
+    "Adaptable IT professional with hands-on experience in software development, technical support, software testing, and quality assurance through internship, academic, and project-based work.",
+    "I combine troubleshooting, clear documentation, attention to detail, and user-focused thinking to help teams build, validate, and support reliable digital systems.",
   ],
 };
 
@@ -937,34 +934,34 @@ export const navigationItems: NavigationItem[] = [
 
 export const serviceOfferings: ServiceOffering[] = [
   {
-    title: "Frontend Development",
-    icon: MonitorSmartphone,
+    title: "Software Development",
+    icon: Code2,
     description:
-      "Build responsive, user-friendly interfaces with clean layouts, accessible interactions, and modern frontend tools.",
+      "Build responsive, user-friendly applications and business workflows using modern frontend, backend, and database technologies.",
   },
   {
-    title: "Backend Development",
-    icon: Server,
+    title: "Technical Support",
+    icon: Headphones,
     description:
-      "Handle backend logic, database connections, validation, and system data flow to support reliable web applications.",
+      "Troubleshoot user and system issues, explain solutions clearly, and help keep day-to-day technology reliable and accessible.",
   },
   {
-    title: "Technical Documentation",
-    icon: FileText,
+    title: "Software Testing",
+    icon: TestTube2,
     description:
-      "Prepare system documentation, build system flowcharts, and create user manuals for clearer handoff and onboarding.",
+      "Test features, user flows, edge cases, and responsive behavior to identify defects before they affect users.",
   },
   {
-    title: "UI/UX",
-    icon: Palette,
-    description:
-      "Design interfaces that feel intuitive, visually consistent, and easy to navigate.",
-  },
-  {
-    title: "QA/Tester",
+    title: "Quality Assurance",
     icon: ShieldCheck,
     description:
-      "Support quality with testing, validation, and careful attention to user-facing details.",
+      "Support consistent quality through careful validation, defect reporting, regression checks, and attention to requirements.",
+  },
+  {
+    title: "Documentation & Handoff",
+    icon: FileText,
+    description:
+      "Create clear system documentation, flowcharts, user guides, and handoff materials that help teams and users succeed.",
   },
 ];
 
@@ -1348,16 +1345,16 @@ export const aboutEntries: AboutEntry[] = [
     title: "About my goals",
     icon: Target,
     description: [
-      "My goal is to grow as a Full Stack Developer specializing in scalable backend systems and high-performance web applications.",
+      "My goal is to grow in a technology role where I can contribute through software development, technical support, software testing, or quality assurance.",
 
-      "I’m passionate about building secure, reliable software while continuously improving my skills in system design and backend architecture.",
+      "I’m motivated by solving problems, helping users, improving software quality, and continuously strengthening both my technical and communication skills.",
     ],
   },
 ];
 
 export const aboutHighlights = [
-  "Full Stack growth",
-  "QA mindset",
-  "Responsive UI",
-  "System thinking",
+  "Software development",
+  "Technical support",
+  "Software testing",
+  "Quality assurance",
 ] as const;

@@ -5,7 +5,7 @@ import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
 import { SectionHeading } from "@/components/common/section-heading";
 
 /**
- * Displays the core delivery areas offered across development, design, and QA/Tester work.
+ * Displays the core contribution areas offered across development, support, testing, and QA work.
  */
 export const ServicesSection = () => (
   <AnimatedSection
@@ -16,9 +16,9 @@ export const ServicesSection = () => (
       <SectionAccentBackdrop variant="center" />
       <RevealItem>
         <SectionHeading
-          description="I contribute across the software development lifecycle, from building responsive applications and backend systems to testing, technical documentation, and user experience improvements."
+          description="I can contribute across the software lifecycle by building reliable applications, resolving technical issues, testing user flows, strengthening quality, and documenting systems clearly."
           eyebrow="What I Can Provide"
-          title="Skills & Areas of Contributiont"
+          title="Skills & Areas of Contribution"
         />
       </RevealItem>
       <RevealGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
