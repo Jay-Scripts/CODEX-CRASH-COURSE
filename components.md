@@ -101,7 +101,7 @@
 
 ### `HeroSection`, `ServicesSection`, `AboutSection`, `SkillsSection`, `SkillsCarouselRow`, `ProjectsSection`, `ExperienceSection`, `CertificatesSection`, `CertificatePreviewModal`, `ContactSection`
 
-- Purpose: Compose recruiter-facing home page sections with responsive layouts across mobile and desktop, including load-aware floating app-development and technical-support experience metrics with an elliptic slide-in reveal in the hero; generalized positioning for software development, technical support, software testing, and QA opportunities; a dedicated technical support and troubleshooting skills carousel with centered icon-free category headings; GitHub activity inside the About section; and accessible full-width skill carousels with smooth deterministic motion, pointer dragging, eased pause states, and reduced-motion support.
+- Purpose: Compose recruiter-facing home page sections with responsive layouts across mobile and desktop, including a staggered bottom-elliptic reveal for the “What I Can Provide” service cards; load-aware floating app-development and technical-support experience metrics with an elliptic slide-in reveal in the hero; generalized positioning for software development, technical support, software testing, and QA opportunities; a dedicated technical support and troubleshooting skills carousel with centered icon-free category headings; GitHub activity inside the About section; and accessible full-width skill carousels with smooth deterministic motion, pointer dragging, eased pause states, and reduced-motion support.
 - Location: `components/sections/home/*`
 
 ### `ProjectFilter`
