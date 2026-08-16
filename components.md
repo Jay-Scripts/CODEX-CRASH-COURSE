@@ -4,7 +4,7 @@
 
 ### `SiteHeader`
 
-- Purpose: Renders the sticky site navigation with desktop links, a mobile menu, command search, and theme controls.
+- Purpose: Renders the sticky site navigation with staggered top-slide entrance motion across the logo, links, command search, theme toggle, and mobile menu control.
 - Location: `components/layout/site-header.tsx`
 
 ### `SiteFooter`

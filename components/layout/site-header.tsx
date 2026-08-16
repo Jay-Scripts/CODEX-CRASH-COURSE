@@ -55,6 +55,28 @@ const mobileItemVariants: Variants = {
   },
 };
 
+const navbarItemVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: -24,
+    rotateX: 22,
+    transformOrigin: "50% 0%",
+    transformPerspective: 800,
+  },
+  visible: (index: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transformOrigin: "50% 50%",
+    transformPerspective: 800,
+    transition: {
+      duration: 0.55,
+      delay: index * 0.2,
+      ease: smoothMotionEase,
+    },
+  }),
+};
+
 /**
  * Displays the sticky site header with responsive navigation, search, and theme controls.
  */
@@ -124,91 +146,117 @@ export const SiteHeader = () => {
   return (
     <header className="site-chrome sticky top-0 z-50 border-b border-border bg-background/92 backdrop-blur-md">
       <div className="relative ">
-        <div className="flex h-16 w-full items-center justify-between px-4 transition-[padding] duration-500 ease-out sm:px-6 lg:px-8">
-          <Link
-            className="flex items-center gap-3"
-            href="#top"
-            onClick={(event) => {
-              event.preventDefault();
-              handleSectionNavigation("#top");
-            }}
+        <motion.div
+          animate="visible"
+          className="flex h-16 w-full items-center justify-between px-4 [perspective:800px] transition-[padding] duration-500 ease-out sm:px-6 lg:px-8"
+          initial="hidden"
+        >
+          <motion.div
+            className="[transform-style:preserve-3d]"
+            custom={0}
+            variants={navbarItemVariants}
           >
-            <span className="flex size-15 items-center justify-center ">
-              <Image
-                alt={profile.logoAlt}
-                className="h-auto w-full"
-                height={500}
-                src={profile.logoSrc}
-                width={500}
-              />
-            </span>
-            <span className="hidden leading-tight sm:block">
-              <span className="block text-lg font-semibold">
-                {profile.name}
+            <Link
+              className="flex items-center gap-3"
+              href="#top"
+              onClick={(event) => {
+                event.preventDefault();
+                handleSectionNavigation("#top");
+              }}
+            >
+              <span className="flex size-15 items-center justify-center ">
+                <Image
+                  alt={profile.logoAlt}
+                  className="h-auto w-full"
+                  height={500}
+                  src={profile.logoSrc}
+                  width={500}
+                />
               </span>
-            </span>
-          </Link>
+              <span className="hidden leading-tight sm:block">
+                <span className="block text-lg font-semibold">
+                  {profile.name}
+                </span>
+              </span>
+            </Link>
+          </motion.div>
           <nav aria-label="Primary navigation" className="flex">
             <div className="hidden items-center gap-1 lg:flex">
-              {" "}
-              {navigationItems.map((item) => (
-                <Button asChild key={item.href} size="sm" variant="ghost">
-                  <Link
-                    href={item.href}
-                    onClick={(event) => {
-                      event.preventDefault();
-                      handleSectionNavigation(item.href);
-                    }}
-                  >
-                    {item.label}
-                  </Link>
-                </Button>
+              {navigationItems.map((item, index) => (
+                <motion.div
+                  className="[transform-style:preserve-3d]"
+                  custom={index + 1}
+                  key={item.href}
+                  variants={navbarItemVariants}
+                >
+                  <Button asChild size="sm" variant="ghost">
+                    <Link
+                      href={item.href}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        handleSectionNavigation(item.href);
+                      }}
+                    >
+                      {item.label}
+                    </Link>
+                  </Button>
+                </motion.div>
               ))}
             </div>
             <div className="flex  items-center gap-2">
-              <CommandMenu />
-              <ThemeToggle />
-              <Button
-                aria-controls="mobile-navigation"
-                aria-expanded={isMobileMenuOpen}
-                aria-label={
-                  isMobileMenuOpen
-                    ? "Close navigation menu"
-                    : "Open navigation menu"
-                }
-                className={cn(
-                  "text-muted-foreground transition-colors lg:hidden",
-                  isMobileMenuOpen && "bg-accent text-foreground",
-                )}
-                onClick={() => setIsMobileMenuOpen((current) => !current)}
-                size="icon"
-                type="button"
-                variant="ghost"
+              <motion.div custom={navigationItems.length + 1} variants={navbarItemVariants}>
+                <CommandMenu />
+              </motion.div>
+              <motion.div custom={navigationItems.length + 2} variants={navbarItemVariants}>
+                <ThemeToggle />
+              </motion.div>
+              <motion.div
+                className="[transform-style:preserve-3d] lg:hidden"
+                custom={navigationItems.length + 3}
+                variants={navbarItemVariants}
               >
-                <span className="relative block h-4 w-5">
-                  <span
-                    className={cn(
-                      "absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition-all duration-300 ease-out",
-                      isMobileMenuOpen && "top-1.5 rotate-45",
-                    )}
-                  />
-                  <span
-                    className={cn(
-                      "absolute left-0 top-1.5 h-0.5 w-5 rounded-full bg-current transition-all duration-200 ease-out",
-                      isMobileMenuOpen && "opacity-0",
-                    )}
-                  />
-                  <span
-                    className={cn(
-                      "absolute left-0 top-3 h-0.5 w-5 rounded-full bg-current transition-all duration-300 ease-out",
-                      isMobileMenuOpen && "top-1.5 -rotate-45",
-                    )}
-                  />
-                </span>
-              </Button>
+                <Button
+                  aria-controls="mobile-navigation"
+                  aria-expanded={isMobileMenuOpen}
+                  aria-label={
+                    isMobileMenuOpen
+                      ? "Close navigation menu"
+                      : "Open navigation menu"
+                  }
+                  className={cn(
+                    "text-muted-foreground transition-colors",
+                    isMobileMenuOpen && "bg-accent text-foreground",
+                  )}
+                  onClick={() => setIsMobileMenuOpen((current) => !current)}
+                  size="icon"
+                  type="button"
+                  variant="ghost"
+                >
+                  <span className="relative block h-4 w-5">
+                    <span
+                      className={cn(
+                        "absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition-all duration-300 ease-out",
+                        isMobileMenuOpen && "top-1.5 rotate-45",
+                      )}
+                    />
+                    <span
+                      className={cn(
+                        "absolute left-0 top-1.5 h-0.5 w-5 rounded-full bg-current transition-all duration-200 ease-out",
+                        isMobileMenuOpen && "opacity-0",
+                      )}
+                    />
+                    <span
+                      className={cn(
+                        "absolute left-0 top-3 h-0.5 w-5 rounded-full bg-current transition-all duration-300 ease-out",
+                        isMobileMenuOpen && "top-1.5 -rotate-45",
+                      )}
+                    />
+                  </span>
+                </Button>
+              </motion.div>
             </div>
           </nav>
-        </div>
+        </motion.div>
         <AnimatePresence initial={false}>
           {isMobileMenuOpen ? (
             <motion.div
