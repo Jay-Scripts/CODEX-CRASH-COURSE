@@ -33,6 +33,9 @@ const itemVariants = {
 };
 
 const floatingEase = "easeInOut" as const;
+const floatingCardRevealDelay = 1;
+const floatingCardRevealDuration = 1.1;
+const experienceCounterDuration = 1.2;
 type FloatingCardDirection = "left" | "right";
 
 const floatingCardVariants: Variants = {
@@ -57,24 +60,24 @@ const floatingCardVariants: Variants = {
     zIndex: 6,
     transition: {
       opacity: {
-        duration: 1.1,
+        duration: floatingCardRevealDuration,
         ease: smoothMotionEase,
-        delay: 1,
+        delay: floatingCardRevealDelay,
       },
       scale: {
-        duration: 1.1,
+        duration: floatingCardRevealDuration,
         ease: smoothMotionEase,
-        delay: 1,
+        delay: floatingCardRevealDelay,
       },
       x: {
-        duration: 1.1,
+        duration: floatingCardRevealDuration,
         ease: smoothMotionEase,
-        delay: 1,
+        delay: floatingCardRevealDelay,
       },
       rotateY: {
-        duration: 1.1,
+        duration: floatingCardRevealDuration,
         ease: smoothMotionEase,
-        delay: 1,
+        delay: floatingCardRevealDelay,
       },
       y: {
         duration: 4.5,
@@ -275,6 +278,8 @@ const AnimatedCounter = ({
 export const HeroSection = () => {
   const [isResumePreviewOpen, setIsResumePreviewOpen] = useState(false);
   const [isPortraitLoaded, setIsPortraitLoaded] = useState(false);
+  const [hasExperienceRevealFinished, setHasExperienceRevealFinished] =
+    useState(false);
   const techSupportExperienceMonths = getTimelineSpanMonthCount(
     experiences.filter(
       (experience) =>
@@ -288,6 +293,20 @@ export const HeroSection = () => {
   const techSupportExperienceSuffix =
     techSupportExperienceYears === 1 ? " yr" : " yrs";
   const appDevelopmentExperienceYears: number = 2;
+
+  useEffect(() => {
+    if (!isPortraitLoaded) {
+      return undefined;
+    }
+
+    const completionTimer = window.setTimeout(() => {
+      setHasExperienceRevealFinished(true);
+    }, (floatingCardRevealDelay + experienceCounterDuration) * 1000);
+
+    return () => {
+      window.clearTimeout(completionTimer);
+    };
+  }, [isPortraitLoaded]);
 
   return (
     <motion.section
@@ -315,9 +334,13 @@ export const HeroSection = () => {
       />
       {heroSpinnerBoxes.map((box) => (
         <div
-          className={`pointer-events-none absolute hidden opacity-60 md:block ${box.className}`}
+          className={`pointer-events-none absolute hidden md:block ${box.className}`}
           key={box.className}
-          style={{ transform: `rotate(${box.rotate})` }}
+          style={{
+            opacity: hasExperienceRevealFinished ? 0.92 : 0.6,
+            transform: `rotate(${box.rotate})`,
+            transition: "opacity 1.4s ease",
+          }}
         >
           <div
             className="relative size-full rounded-[1.35rem] border border-dashed"
@@ -331,6 +354,19 @@ export const HeroSection = () => {
                 "inset 0 0 0 1px color-mix(in oklab, var(--hero-background) 78%, transparent)",
             }}
           >
+            <motion.span
+              animate={{ opacity: hasExperienceRevealFinished ? 1 : 0 }}
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 rounded-[1.35rem]"
+              style={{
+                boxShadow:
+                  "0 0 20px var(--hero-portrait-glow), inset 0 0 0 1px var(--hero-portrait-glow)",
+              }}
+              transition={{
+                duration: 1.4,
+                ease: smoothMotionEase,
+              }}
+            />
             <span
               className={`absolute rounded-[0.9rem] border border-dashed ${box.innerClassName} ${box.innerSizeClassName}`}
               style={{
@@ -559,6 +595,7 @@ export const HeroSection = () => {
                 <AnimatedCounter
                   active={isPortraitLoaded}
                   delay={1}
+                  duration={experienceCounterDuration}
                   suffix={techSupportExperienceSuffix}
                   value={techSupportExperienceYears}
                 />
@@ -595,6 +632,7 @@ export const HeroSection = () => {
                 <AnimatedCounter
                   active={isPortraitLoaded}
                   delay={1}
+                  duration={experienceCounterDuration}
                   suffix={appDevelopmentExperienceYears === 1 ? " yr" : " yrs"}
                   value={appDevelopmentExperienceYears}
                 />
