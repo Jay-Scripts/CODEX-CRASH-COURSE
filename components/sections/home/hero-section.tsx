@@ -33,15 +33,55 @@ const itemVariants = {
 };
 
 const floatingEase = "easeInOut" as const;
+type FloatingCardDirection = "left" | "right";
 
-const floatVariantsDelayed: Variants = {
-  animate: {
+const floatingCardVariants: Variants = {
+  hidden: (direction: FloatingCardDirection = "left") => ({
+    opacity: 0,
+    scale: 0,
+    x: direction === "right" ? 800 : -800,
+    rotateY: direction === "right" ? -30 : 30,
+    y: 18,
+    transformOrigin: direction === "right" ? "100% 50%" : "-100% 50%",
+    transformPerspective: 1000,
+    zIndex: 2,
+  }),
+  visible: {
+    opacity: 1,
+    scale: 1,
+    x: 0,
+    rotateY: 0,
     y: [0, -6, 0],
+    transformOrigin: "1800px 50%",
+    transformPerspective: 1000,
+    zIndex: 6,
     transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: floatingEase,
-      delay: 1.5,
+      opacity: {
+        duration: 1.1,
+        ease: smoothMotionEase,
+        delay: 1,
+      },
+      scale: {
+        duration: 1.1,
+        ease: smoothMotionEase,
+        delay: 1,
+      },
+      x: {
+        duration: 1.1,
+        ease: smoothMotionEase,
+        delay: 1,
+      },
+      rotateY: {
+        duration: 1.1,
+        ease: smoothMotionEase,
+        delay: 1,
+      },
+      y: {
+        duration: 4.5,
+        repeat: Infinity,
+        ease: floatingEase,
+        delay: 2.1,
+      },
     },
   },
 };
@@ -180,13 +220,10 @@ const floatingCardStyle: CSSProperties = {
   boxShadow: "var(--hero-floating-shadow)",
 };
 
-const statTileStyle: CSSProperties = {
-  backgroundColor: "var(--hero-stat-surface)",
-  borderColor: "var(--hero-stat-border)",
-};
-
 type AnimatedCounterProps = {
+  active?: boolean;
   className?: string;
+  delay?: number;
   duration?: number;
   prefix?: string;
   style?: CSSProperties;
@@ -195,7 +232,9 @@ type AnimatedCounterProps = {
 };
 
 const AnimatedCounter = ({
+  active = true,
   className,
+  delay = 0,
   duration = 1.2,
   prefix = "",
   style,
@@ -205,7 +244,12 @@ const AnimatedCounter = ({
   const [displayValue, setDisplayValue] = useState(`${prefix}0${suffix}`);
 
   useEffect(() => {
+    if (!active) {
+      return;
+    }
+
     const controls = animate(0, value, {
+      delay,
       duration,
       ease: smoothMotionEase,
       onUpdate: (latestValue) => {
@@ -216,7 +260,7 @@ const AnimatedCounter = ({
     return () => {
       controls.stop();
     };
-  }, [duration, prefix, suffix, value]);
+  }, [active, delay, duration, prefix, suffix, value]);
 
   return (
     <span className={className} style={style}>
@@ -230,30 +274,20 @@ const AnimatedCounter = ({
  */
 export const HeroSection = () => {
   const [isResumePreviewOpen, setIsResumePreviewOpen] = useState(false);
-  const industryExperienceMonths = getTimelineSpanMonthCount(experiences);
-  const techRelatedExperienceMonths = getTimelineSpanMonthCount(
-    experiences.filter((experience) => experience.isTechRelated),
+  const [isPortraitLoaded, setIsPortraitLoaded] = useState(false);
+  const techSupportExperienceMonths = getTimelineSpanMonthCount(
+    experiences.filter(
+      (experience) =>
+        experience.organization === "Global Reciprocal Colleges",
+    ),
   );
-  const industryExperienceYears = Math.max(
+  const techSupportExperienceYears = Math.max(
     1,
-    Math.ceil(industryExperienceMonths / 12),
+    Math.floor(techSupportExperienceMonths / 12),
   );
-  const techRelatedExperienceYears = Math.max(
-    1,
-    Math.ceil(techRelatedExperienceMonths / 12),
-  );
-  const industryExperienceSuffix =
-    industryExperienceYears === 1 ? " yr" : " yrs";
-  const techRelatedExperienceSuffix =
-    techRelatedExperienceYears === 1 ? " yr" : " yrs";
-  const heroStats = [
-    {
-      label: "Tech-related exp.",
-      suffix: techRelatedExperienceSuffix,
-      value: techRelatedExperienceYears,
-    },
-    { label: "Certs", suffix: "", value: 14 },
-  ] as const;
+  const techSupportExperienceSuffix =
+    techSupportExperienceYears === 1 ? " yr" : " yrs";
+  const appDevelopmentExperienceYears: number = 2;
 
   return (
     <motion.section
@@ -476,6 +510,7 @@ export const HeroSection = () => {
                 src="/jr-pic-transparent.png"
                 unoptimized
                 width={1064}
+                onLoad={() => setIsPortraitLoaded(true)}
               />
             </div>
 
@@ -510,16 +545,17 @@ export const HeroSection = () => {
             </motion.div> */}
 
             <motion.div
-              animate="animate"
-              className="absolute -left-4 top-10 z-[6] rounded-xl border px-3.5 py-2.5 backdrop-blur-md sm:-left-14"
+              animate={isPortraitLoaded ? "visible" : "hidden"}
+              className="absolute -top-12 left-1/2 z-[6] -translate-x-1/2 rounded-xl border px-3.5 py-2.5 backdrop-blur-md sm:-left-14 sm:top-10 sm:translate-x-0"
+              custom="left"
               style={floatingCardStyle}
-              variants={floatVariantsDelayed}
+              variants={floatingCardVariants}
             >
               <p
                 className="text-[10px] uppercase tracking-wider"
                 style={{ color: "var(--hero-floating-label)" }}
               >
-                Industry Exp.
+                Tech Supp. Exp.
               </p>
               <p
                 className="font-bold"
@@ -530,46 +566,55 @@ export const HeroSection = () => {
                 }}
               >
                 <AnimatedCounter
-                  suffix={industryExperienceSuffix}
-                  value={industryExperienceYears}
+                  active={isPortraitLoaded}
+                  delay={1}
+                  suffix={techSupportExperienceSuffix}
+                  value={techSupportExperienceYears}
                 />
               </p>
               <p
                 className="text-[9px]"
                 style={{ color: "var(--hero-floating-copy)" }}
               >
-                included tech-related exp.
+                Scholar Service — IT Dept.
               </p>
             </motion.div>
-          </div>
 
-          <div className="mt-7 flex w-full gap-3">
-            {heroStats.map(({ label, suffix, value }) => (
-              <div
-                className="flex flex-1 flex-col items-center rounded-xl border py-2.5"
-                key={label}
-                style={statTileStyle}
+            <motion.div
+              animate={isPortraitLoaded ? "visible" : "hidden"}
+              className="absolute -bottom-2 -right-4 z-[6] rounded-xl border px-3.5 py-2.5 backdrop-blur-md sm:-bottom-5 sm:-right-14"
+              custom="right"
+              style={floatingCardStyle}
+              variants={floatingCardVariants}
+            >
+              <p
+                className="text-[10px] uppercase tracking-wider"
+                style={{ color: "var(--hero-floating-label)" }}
+              >
+                App Dev Exp.
+              </p>
+              <p
+                className="font-bold"
+                style={{
+                  color: "var(--hero-floating-value)",
+                  fontFamily: "'Syne', sans-serif",
+                  fontSize: 16,
+                }}
               >
                 <AnimatedCounter
-                  className="font-bold"
-                  style={{
-                    color: "var(--hero-stat-value)",
-                    fontFamily: "'Syne', sans-serif",
-                    fontSize: 20,
-                  }}
-                  suffix={suffix}
-                  value={value}
+                  active={isPortraitLoaded}
+                  delay={1}
+                  suffix={appDevelopmentExperienceYears === 1 ? " yr" : " yrs"}
+                  value={appDevelopmentExperienceYears}
                 />
-                <span
-                  className="mt-0.5 text-center text-[11px]"
-                  style={{
-                    color: "var(--hero-stat-label)",
-                  }}
-                >
-                  {label}
-                </span>
-              </div>
-            ))}
+              </p>
+              <p
+                className="text-[9px]"
+                style={{ color: "var(--hero-floating-copy)" }}
+              >
+                freelance, thesis &amp; internship
+              </p>
+            </motion.div>
           </div>
         </motion.div>
       </div>
