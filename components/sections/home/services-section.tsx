@@ -10,7 +10,7 @@ const serviceGridVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.5,
+      staggerChildren: 0.3,
     },
   },
 };

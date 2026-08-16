@@ -5,6 +5,33 @@ import { AnimatedSection } from "@/components/common/animated-section";
 import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
 import { SectionAccentBackdrop } from "@/components/common/section-accent-backdrop";
 import { SectionHeading } from "@/components/common/section-heading";
+import { smoothMotionEase } from "@/utils/animations.utils";
+import type { Variants } from "framer-motion";
+
+type AboutCardDirection = "left" | "right";
+
+const aboutCardVariants: Variants = {
+  hidden: (direction: AboutCardDirection = "left") => ({
+    opacity: 0,
+    scale: 0.96,
+    x: direction === "right" ? 420 : -420,
+    rotateY: direction === "right" ? -24 : 24,
+    transformOrigin: direction === "right" ? "100% 50%" : "0% 50%",
+    transformPerspective: 1000,
+  }),
+  visible: {
+    opacity: 1,
+    scale: 1,
+    x: 0,
+    rotateY: 0,
+    transformOrigin: "50% 50%",
+    transformPerspective: 1000,
+    transition: {
+      duration: 1,
+      ease: smoothMotionEase,
+    },
+  },
+};
 
 /**
  * Displays a recruiter-friendly profile overview with strengths, personal background, and goals.
@@ -23,43 +50,44 @@ export const AboutSection = () => {
           />
         </RevealItem>
 
-        <RevealGroup className="grid gap-3">
-          <RevealItem>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {aboutEntries.map((item) => {
-                const Icon = item.icon;
+        <RevealGroup className="grid gap-3 sm:grid-cols-2 [perspective:1000px]">
+          {aboutEntries.map((item, index) => {
+            const Icon = item.icon;
+            const direction: AboutCardDirection = index === 0 ? "left" : "right";
 
-                return (
-                  <section
-                    className="glass-panel glass-interactive relative overflow-hidden rounded-2xl p-5"
-                    key={item.title}
-                  >
-                    <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            return (
+              <RevealItem
+                className="[transform-style:preserve-3d]"
+                custom={direction}
+                key={item.title}
+                variants={aboutCardVariants}
+              >
+                <section className="glass-panel glass-interactive relative h-full overflow-hidden rounded-2xl p-5">
+                  <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-                    <div className="flex items-center gap-3">
-                      <span className="glass-inset grid size-9 place-items-center rounded-xl text-primary">
-                        <Icon className="size-4" />
-                      </span>
-                      <h4 className="text-sm font-semibold text-foreground">
-                        {item.title}
-                      </h4>
-                    </div>
+                  <div className="flex items-center gap-3">
+                    <span className="glass-inset grid size-9 place-items-center rounded-xl text-primary">
+                      <Icon className="size-4" />
+                    </span>
+                    <h4 className="text-sm font-semibold text-foreground">
+                      {item.title}
+                    </h4>
+                  </div>
 
-                    <div className="mt-4 space-y-2">
-                      {item.description.map((paragraph) => (
-                        <p
-                          className="text-sm leading-7 text-muted-foreground"
-                          key={paragraph}
-                        >
-                          {paragraph}
-                        </p>
-                      ))}
-                    </div>
-                  </section>
-                );
-              })}
-            </div>
-          </RevealItem>
+                  <div className="mt-4 space-y-2">
+                    {item.description.map((paragraph) => (
+                      <p
+                        className="text-sm leading-7 text-muted-foreground"
+                        key={paragraph}
+                      >
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                </section>
+              </RevealItem>
+            );
+          })}
         </RevealGroup>
       </RevealGroup>
     </AnimatedSection>
