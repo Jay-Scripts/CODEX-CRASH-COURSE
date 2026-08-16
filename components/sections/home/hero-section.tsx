@@ -343,14 +343,6 @@ export const HeroSection = () => {
           </div>
         </div>
       ))}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-40"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E\")",
-        }}
-      />
-
       <div className="relative z-10 mx-auto grid min-h-[calc(100svh-4rem)] w-full max-w-6xl items-center gap-8 px-4 py-12 transition-[gap,padding] duration-500 ease-out sm:gap-10 sm:px-6 sm:py-16 lg:grid-cols-[1fr_360px] lg:gap-16 lg:px-10 lg:py-24">
         <motion.div
           className="order-2 max-w-2xl text-center lg:order-1 lg:text-left"
@@ -508,7 +500,6 @@ export const HeroSection = () => {
                 priority
                 sizes="(min-width: 1024px) 280px, (min-width: 640px) 260px, calc(100vw - 4rem)"
                 src="/jr-pic-transparent.png"
-                unoptimized
                 width={1064}
                 onLoad={() => setIsPortraitLoaded(true)}
               />

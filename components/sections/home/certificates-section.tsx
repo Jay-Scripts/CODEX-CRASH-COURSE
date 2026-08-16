@@ -135,7 +135,6 @@ export const CertificatesSection = () => {
                                   fill
                                   sizes="(min-width: 1280px) 24rem, (min-width: 768px) 50vw, 100vw"
                                   src={certificate.imageSrc}
-                                  unoptimized
                                 />
                               </div>
                               <span className="absolute inset-0 flex items-center justify-center bg-background/75 opacity-0 backdrop-blur-[2px] transition-opacity duration-200 group-hover/certificate:opacity-100">

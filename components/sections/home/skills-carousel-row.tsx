@@ -53,7 +53,6 @@ const SkillLogoPill = ({ isDuplicate = false, skill }: SkillLogoPillProps) => {
               height={16}
               loading="lazy"
               src={skill.logo}
-              unoptimized
               width={16}
             />
             {skill.darkLogo ? (
@@ -63,7 +62,6 @@ const SkillLogoPill = ({ isDuplicate = false, skill }: SkillLogoPillProps) => {
                 height={16}
                 loading="lazy"
                 src={skill.darkLogo}
-                unoptimized
                 width={16}
               />
             ) : null}
@@ -103,6 +101,7 @@ export const SkillsCarouselRow = ({
     isDragging: false,
     isFocused: false,
     isHovered: false,
+    isVisible: true,
     lastFrameTime: 0,
     lastPointerTime: 0,
     lastPointerX: 0,
@@ -135,6 +134,11 @@ export const SkillsCarouselRow = ({
 
     const tick = (currentTime: number) => {
       const state = stateRef.current;
+      if (!state.isVisible) {
+        animationFrameId = 0;
+        return;
+      }
+
       if (!state.singleWidth) measure();
 
       const elapsedSeconds = state.lastFrameTime
@@ -169,8 +173,43 @@ export const SkillsCarouselRow = ({
       animationFrameId = requestAnimationFrame(tick);
     };
 
-    animationFrameId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(animationFrameId);
+    const startAnimation = () => {
+      if (!animationFrameId) {
+        animationFrameId = requestAnimationFrame(tick);
+      }
+    };
+
+    const stopAnimation = () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = 0;
+      }
+    };
+
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        stateRef.current.isVisible = entry.isIntersecting;
+
+        if (entry.isIntersecting) {
+          stateRef.current.lastFrameTime = 0;
+          startAnimation();
+          return;
+        }
+
+        stopAnimation();
+      },
+      { rootMargin: "160px 0px" },
+    );
+
+    if (outerRef.current) {
+      visibilityObserver.observe(outerRef.current);
+    }
+
+    startAnimation();
+    return () => {
+      visibilityObserver.disconnect();
+      stopAnimation();
+    };
   }, [measure, movesRight, shouldReduceMotion, skills.length]);
 
   useEffect(() => {

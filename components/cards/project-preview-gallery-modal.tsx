@@ -32,7 +32,10 @@ export const ProjectPreviewGalleryModal = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeCategoryId, setActiveCategoryId] = useState("");
 
-  const previewImages = project.previewImages ?? [];
+  const previewImages = useMemo(
+    () => project.previewImages ?? [],
+    [project.previewImages],
+  );
   const previewCategories = useMemo<ProjectPreviewCategory[]>(() => {
     if (project.previewCategories?.length) {
       return project.previewCategories;
@@ -46,8 +49,11 @@ export const ProjectPreviewGalleryModal = ({
     );
   }, [previewImages, project.previewCategories]);
 
-  const selectedCategoryId =
-    activeCategoryId || previewCategories[0]?.id || "";
+  const selectedCategoryId = previewCategories.some(
+    (category) => category.id === activeCategoryId,
+  )
+    ? activeCategoryId
+    : previewCategories[0]?.id || "";
   const activeCategoryImages = useMemo(
     () =>
       previewImages.filter(
@@ -62,11 +68,15 @@ export const ProjectPreviewGalleryModal = ({
       return;
     }
 
-    setActiveIndex((currentIndex) =>
-      currentIndex === 0
+    setActiveIndex((currentIndex) => {
+      const safeIndex = currentIndex < activeCategoryImages.length
+        ? currentIndex
+        : 0;
+
+      return safeIndex === 0
         ? activeCategoryImages.length - 1
-        : currentIndex - 1,
-    );
+        : safeIndex - 1;
+    });
   }, [activeCategoryImages.length]);
 
   const showNext = useCallback(() => {
@@ -74,9 +84,15 @@ export const ProjectPreviewGalleryModal = ({
       return;
     }
 
-    setActiveIndex((currentIndex) =>
-      currentIndex === activeCategoryImages.length - 1 ? 0 : currentIndex + 1,
-    );
+    setActiveIndex((currentIndex) => {
+      const safeIndex = currentIndex < activeCategoryImages.length
+        ? currentIndex
+        : 0;
+
+      return safeIndex === activeCategoryImages.length - 1
+        ? 0
+        : safeIndex + 1;
+    });
   }, [activeCategoryImages.length]);
 
   const handleImageDragEnd = useCallback(
@@ -131,36 +147,6 @@ export const ProjectPreviewGalleryModal = ({
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, onClose, showNext, showPrevious]);
-
-  useEffect(() => {
-    if (!isOpen || !previewCategories.length) {
-      return;
-    }
-
-    setActiveCategoryId((currentCategoryId) => {
-      const hasCurrentCategory = previewCategories.some(
-        (category) => category.id === currentCategoryId,
-      );
-
-      return hasCurrentCategory ? currentCategoryId : previewCategories[0].id;
-    });
-  }, [isOpen, previewCategories]);
-
-  useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
-
-    setActiveIndex(0);
-  }, [activeCategoryId, isOpen]);
-
-  useEffect(() => {
-    if (activeIndex < activeCategoryImages.length) {
-      return;
-    }
-
-    setActiveIndex(0);
-  }, [activeIndex, activeCategoryImages.length]);
 
   if (!previewImages.length || !previewCategories.length || typeof document === "undefined") {
     return null;
@@ -331,7 +317,6 @@ export const ProjectPreviewGalleryModal = ({
                       priority={activeIndex === 0 && selectedCategoryId === previewCategories[0]?.id}
                       sizes="(min-width: 1280px) 64rem, (min-width: 1024px) 56rem, 100vw"
                       src={currentPreview.src}
-                      unoptimized
                     />
                   </div>
                 </motion.div>

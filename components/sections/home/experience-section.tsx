@@ -3,7 +3,6 @@ import { AnimatedSection } from "@/components/common/animated-section";
 import { SectionAccentBackdrop } from "@/components/common/section-accent-backdrop";
 import { RevealGroup, RevealItem } from "@/components/common/scroll-reveal";
 import { SectionHeading } from "@/components/common/section-heading";
-import { GitHubActivityCard } from "@/components/cards/github-activity-card";
 import { ExperienceCard } from "@/components/cards/experience-card";
 
 /**

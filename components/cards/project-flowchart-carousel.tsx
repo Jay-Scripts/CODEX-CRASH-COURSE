@@ -174,10 +174,8 @@ export const ProjectFlowchartCarousel = ({
                 alt={activePreview.alt}
                 className="object-contain p-3 sm:p-4"
                 fill
-                priority={activeIndex === 0}
                 sizes="(min-width: 1024px) 40rem, (min-width: 640px) calc(100vw - 4rem), 100vw"
                 src={activePreview.src}
-                unoptimized
               />
             </figure>
 

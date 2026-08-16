@@ -115,7 +115,6 @@ export const CertificatePreviewModal = ({
                         className="h-auto max-h-[65dvh] w-auto max-w-full rounded-xl object-contain"
                         height={1200}
                         src={certificate.imageSrc}
-                        unoptimized
                         width={1600}
                       />
                     </div>

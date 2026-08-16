@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import type {
   ExperienceProofItem,
@@ -98,6 +98,7 @@ const renderProofSurface = (
   options?: {
     compact?: boolean;
     desktopHoverVideo?: boolean;
+    playVideo?: boolean;
     sizes?: string;
   },
 ) => {
@@ -111,12 +112,16 @@ const renderProofSurface = (
     return (
       <div className="relative h-full w-full">
         <video
-          autoPlay={options?.desktopHoverVideo}
+          autoPlay={options?.playVideo}
           className="pointer-events-none h-full w-full object-cover"
-          loop={options?.desktopHoverVideo}
+          loop={options?.playVideo}
           muted
           playsInline
-          preload="metadata"
+          preload={
+            options?.desktopHoverVideo && !options.playVideo
+              ? "none"
+              : "metadata"
+          }
           src={item.src}
         />
       </div>
@@ -131,7 +136,6 @@ const renderProofSurface = (
         fill
         sizes={options?.sizes ?? "8rem"}
         src={item.src}
-        unoptimized
       />
     );
   }
@@ -226,6 +230,9 @@ export const ExperienceProofGallery = ({
   const [closingProof, setClosingProof] = useState<ExperienceProofItem | null>(
     null,
   );
+  const [hoveredProofIndex, setHoveredProofIndex] = useState<number | null>(
+    null,
+  );
 
   const activeProof =
     activeProofIndex !== null ? proofItems[activeProofIndex] : null;
@@ -264,6 +271,36 @@ export const ExperienceProofGallery = ({
   const mediumProofMotionClassName =
     cardAlignment === "left" ? "translate-x-6" : "-translate-x-6";
 
+  const showPreviousProof = useCallback(() => {
+    if (activeProofIndex === null || !proofItems.length) {
+      return;
+    }
+
+    setClosingProof(null);
+    setActiveProofIndex((currentIndex) => {
+      if (currentIndex === null) {
+        return 0;
+      }
+
+      return currentIndex === 0 ? proofItems.length - 1 : currentIndex - 1;
+    });
+  }, [activeProofIndex, proofItems.length]);
+
+  const showNextProof = useCallback(() => {
+    if (activeProofIndex === null || !proofItems.length) {
+      return;
+    }
+
+    setClosingProof(null);
+    setActiveProofIndex((currentIndex) => {
+      if (currentIndex === null) {
+        return 0;
+      }
+
+      return currentIndex === proofItems.length - 1 ? 0 : currentIndex + 1;
+    });
+  }, [activeProofIndex, proofItems.length]);
+
   useEffect(() => {
     if (!activeProof) {
       return undefined;
@@ -293,41 +330,11 @@ export const ExperienceProofGallery = ({
       document.body.style.overflow = originalOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [activeProof]);
+  }, [activeProof, showNextProof, showPreviousProof]);
 
   const openProofPreview = (index: number) => {
     setClosingProof(null);
     setActiveProofIndex(index);
-  };
-
-  const showPreviousProof = () => {
-    if (activeProofIndex === null || !proofItems.length) {
-      return;
-    }
-
-    setClosingProof(null);
-    setActiveProofIndex((currentIndex) => {
-      if (currentIndex === null) {
-        return 0;
-      }
-
-      return currentIndex === 0 ? proofItems.length - 1 : currentIndex - 1;
-    });
-  };
-
-  const showNextProof = () => {
-    if (activeProofIndex === null || !proofItems.length) {
-      return;
-    }
-
-    setClosingProof(null);
-    setActiveProofIndex((currentIndex) => {
-      if (currentIndex === null) {
-        return 0;
-      }
-
-      return currentIndex === proofItems.length - 1 ? 0 : currentIndex + 1;
-    });
   };
 
   const closeProofPreview = () => {
@@ -423,12 +430,17 @@ export const ExperienceProofGallery = ({
                     )}
                     key={item.label}
                     onClick={() => openProofPreview(originalIndex)}
+                    onFocus={() => setHoveredProofIndex(originalIndex)}
+                    onMouseEnter={() => setHoveredProofIndex(originalIndex)}
+                    onMouseLeave={() => setHoveredProofIndex(null)}
+                    onBlur={() => setHoveredProofIndex(null)}
                     type="button"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border/50 bg-background">
                       {renderProofSurface(item, {
                         compact: true,
                         desktopHoverVideo: true,
+                        playVideo: hoveredProofIndex === originalIndex,
                         sizes: "7rem",
                       })}
                     </div>
@@ -465,12 +477,17 @@ export const ExperienceProofGallery = ({
                   )}
                   key={item.label}
                   onClick={() => openProofPreview(originalIndex)}
+                  onFocus={() => setHoveredProofIndex(originalIndex)}
+                  onMouseEnter={() => setHoveredProofIndex(originalIndex)}
+                  onMouseLeave={() => setHoveredProofIndex(null)}
+                  onBlur={() => setHoveredProofIndex(null)}
                   type="button"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border/50 bg-background">
                     {renderProofSurface(item, {
                       compact: true,
                       desktopHoverVideo: true,
+                      playVideo: hoveredProofIndex === originalIndex,
                       sizes: "8rem",
                     })}
                   </div>
@@ -506,12 +523,17 @@ export const ExperienceProofGallery = ({
                   )}
                   key={item.label}
                   onClick={() => openProofPreview(originalIndex)}
+                  onFocus={() => setHoveredProofIndex(originalIndex)}
+                  onMouseEnter={() => setHoveredProofIndex(originalIndex)}
+                  onMouseLeave={() => setHoveredProofIndex(null)}
+                  onBlur={() => setHoveredProofIndex(null)}
                   type="button"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border/50 bg-background">
                     {renderProofSurface(item, {
                       compact: true,
                       desktopHoverVideo: true,
+                      playVideo: hoveredProofIndex === originalIndex,
                       sizes: "8rem",
                     })}
                   </div>
@@ -637,7 +659,6 @@ export const ExperienceProofGallery = ({
                               fill
                               sizes="100vw"
                               src={displayedProof.src}
-                              unoptimized
                             />
                           </div>
                         </div>

@@ -26,7 +26,7 @@
 
 ### `AnimatedSection`, `RevealGroup`, `RevealItem`, `SectionHeading`, `ScrollProgress`, `ScrollToTopButton`, `SectionAccentBackdrop`
 
-- Purpose: Provide shared motion wrappers, staggered reveal helpers, consistent section headings, fluid section surfaces, viewport-wide refractive glass lenses, the global scroll progress indicator, and a floating back-to-top button used across the site shell.
+- Purpose: Provide shared motion wrappers, staggered reveal helpers, consistent section headings, fluid section surfaces, viewport-wide refractive glass lenses, viewport-aware skill-carousel motion, the global scroll progress indicator, and a floating back-to-top button used across the site shell.
 - Location: `components/common/*`
 
 ## Cards
@@ -43,7 +43,7 @@
 
 ### `ExperienceProofGallery`
 
-- Purpose: Handles mobile proof lists, responsive desktop hover proof layouts for tighter and wider screens, and in-app proof modals for internship certificates, screenshots, videos, and spreadsheet previews without sending users to a new tab.
+- Purpose: Handles mobile proof lists, responsive desktop hover proof layouts for tighter and wider screens, lazy hover video previews, and in-app proof modals for internship certificates, screenshots, videos, and spreadsheet previews without sending users to a new tab.
 - Location: `components/cards/experience-proof-gallery.tsx`
 
 ### `ProjectFlowchartCarousel`, `ProjectFlowchartOverlay`

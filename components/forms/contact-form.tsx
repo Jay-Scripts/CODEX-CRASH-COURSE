@@ -4,7 +4,6 @@ import emailjs, { EmailJSResponseStatus } from "@emailjs/browser";
 import { CheckCircle2, Send, X } from "lucide-react";
 import type { ChangeEvent, FormEvent } from "react";
 import { useEffect, useState } from "react";
-import { profile } from "@/constants/portfolio.constants";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -117,10 +116,13 @@ export const ContactForm = () => {
 
   useEffect(() => {
     const rateLimitState = readRateLimitState() ?? getFreshRateLimitState();
+    const frameId = window.requestAnimationFrame(() => {
+      setMessagesRemaining(
+        Math.max(0, MAX_MESSAGES_PER_WINDOW - rateLimitState.count),
+      );
+    });
 
-    setMessagesRemaining(
-      Math.max(0, MAX_MESSAGES_PER_WINDOW - rateLimitState.count),
-    );
+    return () => window.cancelAnimationFrame(frameId);
   }, []);
 
   const updateField =

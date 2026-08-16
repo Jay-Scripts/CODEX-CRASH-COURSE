@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { profile } from "@/constants/portfolio.constants";
 import { ScrollProgress } from "@/components/common/scroll-progress";
 import { ScrollToTopButton } from "@/components/common/scroll-to-top-button";
@@ -8,16 +7,6 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { MotionProvider } from "@/components/providers/motion-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const seoDescription =
   "Full Stack Developer in Manila building responsive web applications with Next.js, React, TypeScript, Supabase, PostgreSQL, QA testing, and technical support.";
@@ -146,7 +135,7 @@ const RootLayout = ({
 }>) => {
   return (
     <html
-      className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth`}
+      className="h-full scroll-smooth"
       lang="en"
       suppressHydrationWarning
     >

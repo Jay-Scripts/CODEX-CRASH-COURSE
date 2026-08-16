@@ -138,7 +138,6 @@ export const SiteHeader = () => {
                 alt={profile.logoAlt}
                 className="h-auto w-full"
                 height={500}
-                priority
                 src={profile.logoSrc}
                 width={500}
               />

@@ -121,7 +121,6 @@ export const ProjectRecognitionModal = ({
                 className="h-auto w-full rounded-xl object-contain"
                 height={1200}
                 src={project.recognitionPreviewSrc}
-                unoptimized
                 width={1600}
               />
             </div>

@@ -272,14 +272,12 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                           alt={project.previewAlt ?? `${project.title} preview`}
                           className={previewImageClassName}
                           fill
-                          priority={project.primaryCategory === "user-manuals"}
                           sizes={
                             usesLandscapePreview
                               ? "(min-width: 1280px) 42rem, (min-width: 1024px) 34rem, 100vw"
                               : "(min-width: 640px) 10rem, 9rem"
                           }
                           src={project.previewSrc}
-                          unoptimized
                         />
                       ) : (
                         <iframe
@@ -320,14 +318,12 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                           alt={project.previewAlt ?? `${project.title} preview`}
                           className={previewImageClassName}
                           fill
-                          priority={project.primaryCategory === "user-manuals"}
                           sizes={
                             usesLandscapePreview
                               ? "(min-width: 1280px) 42rem, (min-width: 1024px) 34rem, 100vw"
                               : "(min-width: 640px) 10rem, 9rem"
                           }
                           src={project.previewSrc}
-                          unoptimized
                         />
                       ) : (
                         <iframe

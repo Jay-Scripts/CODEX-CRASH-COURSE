@@ -131,7 +131,6 @@ export const ProjectSystemPreviewModal = ({
                       className="h-auto w-full object-contain"
                       height={1200}
                       src={project.systemPreviewSrc}
-                      unoptimized
                       width={1600}
                     />
                   )}
