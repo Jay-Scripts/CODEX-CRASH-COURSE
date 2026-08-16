@@ -21,7 +21,7 @@ export const AnimatedSection = ({
 }: AnimatedSectionProps) => (
   <motion.section
     className={cn(
-      "fluid-section surface-grid scroll-mt-24 overflow-hidden motion-safe:transition-[padding] motion-safe:duration-500",
+      "fluid-section surface-grid min-h-[100svh] scroll-mt-24 overflow-hidden motion-safe:transition-[padding] motion-safe:duration-500",
       className,
     )}
     initial="hidden"
