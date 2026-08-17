@@ -108,6 +108,8 @@ HeroSection now adds a theme-aware completion glow to the rotating boxes after t
 
 AboutSection now gives its Personal details card a left-to-center 3D entrance and its About my goals card a right-to-center 3D entrance, matching the hero floating metric motion.
 
+HeroSection’s rotating decorative layer now displays one brand-colored icon each for JavaScript, PHP, React, HTML, CSS, Tailwind CSS, Next.js, shadcn/ui, MySQL, and PostgreSQL, with each icon receiving its own completion glow.
+
 ### `ProjectFilter`
 
 - Purpose: Supports interactive category-tab filtering for featured projects before handing each visible result to the shared project card layer.

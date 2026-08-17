@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, type CSSProperties } from "react";
 import { experiences, profile } from "@/constants/portfolio.constants";
+import { skillLogoMap } from "@/constants/skill-logos.constants";
 import { ProjectDocumentOverlay } from "@/components/cards/project-document-overlay";
 import { Button } from "@/components/ui/button";
 import { smoothMotionEase } from "@/utils/animations.utils";
@@ -91,57 +92,83 @@ const floatingCardVariants: Variants = {
 
 const heroSpinnerBoxes = [
   {
-    className: "left-[4%] top-24 size-16 sm:size-20",
+    className: "left-[3%] top-24 size-16 sm:size-20",
     delay: "-2s",
     duration: "18s",
-    innerClassName: "left-2 top-2",
-    innerSizeClassName: "size-8 sm:size-10",
     rotate: "-10deg",
+    skill: "JavaScript",
     spin: "hero-spin",
   },
   {
-    className: "left-[14%] bottom-24 size-24 sm:size-28",
+    className: "left-[12%] top-[46%] size-16 sm:size-20",
     delay: "-6s",
-    duration: "28s",
-    innerClassName: "bottom-3 right-3",
-    innerSizeClassName: "size-10 sm:size-12",
-    rotate: "8deg",
-    spin: "hero-spin-reverse",
-  },
-  {
-    className: "left-[46%] top-20 size-14 sm:size-[4.5rem]",
-    delay: "-8s",
-    duration: "20s",
-    innerClassName: "left-1.5 top-1.5",
-    innerSizeClassName: "size-7 sm:size-8",
-    rotate: "16deg",
-    spin: "hero-spin",
-  },
-  {
-    className: "right-[12%] top-28 size-20 sm:size-24",
-    delay: "-4s",
     duration: "24s",
-    innerClassName: "right-2 top-2",
-    innerSizeClassName: "size-8 sm:size-10",
-    rotate: "-14deg",
+    rotate: "8deg",
+    skill: "PHP",
     spin: "hero-spin-reverse",
   },
   {
-    className: "right-[4%] bottom-28 size-28 sm:size-36",
+    className: "left-[19%] bottom-24 size-18 sm:size-22",
     delay: "-10s",
-    duration: "34s",
-    innerClassName: "bottom-4 left-4",
-    innerSizeClassName: "size-12 sm:size-14",
-    rotate: "10deg",
+    duration: "28s",
+    rotate: "16deg",
+    skill: "React",
     spin: "hero-spin",
   },
   {
-    className: "right-[32%] bottom-12 size-[4.5rem] sm:size-24",
+    className: "left-[43%] top-20 size-16 sm:size-20",
+    delay: "-4s",
+    duration: "20s",
+    rotate: "-14deg",
+    skill: "HTML",
+    spin: "hero-spin-reverse",
+  },
+  {
+    className: "left-[48%] bottom-24 size-16 sm:size-20",
     delay: "-1s",
     duration: "22s",
-    innerClassName: "right-2 bottom-2",
-    innerSizeClassName: "size-7 sm:size-9",
+    rotate: "10deg",
+    skill: "CSS",
+    spin: "hero-spin",
+  },
+  {
+    className: "right-[10%] top-24 size-20 sm:size-24",
+    delay: "-8s",
+    duration: "26s",
     rotate: "-6deg",
+    skill: "Tailwind CSS",
+    spin: "hero-spin-reverse",
+  },
+  {
+    className: "right-[22%] top-[52%] size-16 sm:size-20",
+    delay: "-5s",
+    duration: "20s",
+    rotate: "12deg",
+    skill: "Next.js",
+    spin: "hero-spin",
+  },
+  {
+    className: "right-[4%] bottom-28 size-20 sm:size-24",
+    delay: "-10s",
+    duration: "34s",
+    rotate: "10deg",
+    skill: "shadcn/ui",
+    spin: "hero-spin-reverse",
+  },
+  {
+    className: "right-[30%] bottom-12 size-18 sm:size-22",
+    delay: "-3s",
+    duration: "22s",
+    rotate: "-6deg",
+    skill: "MySQL",
+    spin: "hero-spin",
+  },
+  {
+    className: "right-[45%] bottom-32 size-20 sm:size-24",
+    delay: "-7s",
+    duration: "30s",
+    rotate: "-6deg",
+    skill: "PostgreSQL",
     spin: "hero-spin-reverse",
   },
 ] as const;
@@ -332,8 +359,13 @@ export const HeroSection = () => {
             "radial-gradient(ellipse 70% 65% at 65% 45%, transparent 30%, var(--hero-radial-mask-end) 80%)",
         }}
       />
-      {heroSpinnerBoxes.map((box) => (
+      {heroSpinnerBoxes.map((box) => {
+        const skill = skillLogoMap[box.skill];
+        const glowColor = skill.glow ?? "var(--hero-portrait-glow)";
+
+        return (
         <div
+          aria-hidden="true"
           className={`pointer-events-none absolute hidden md:block ${box.className}`}
           key={box.className}
           style={{
@@ -343,42 +375,58 @@ export const HeroSection = () => {
           }}
         >
           <div
-            className="relative size-full rounded-[1.35rem] border border-dashed"
+            className="relative flex size-full items-center justify-center"
             style={{
               animation: `${box.spin} ${box.duration} linear infinite`,
               animationDelay: box.delay,
-              backgroundColor:
-                "color-mix(in oklab, var(--hero-chip-surface) 34%, transparent)",
-              borderColor: "var(--hero-portrait-ring)",
-              boxShadow:
-                "inset 0 0 0 1px color-mix(in oklab, var(--hero-background) 78%, transparent)",
             }}
           >
             <motion.span
-              animate={{ opacity: hasExperienceRevealFinished ? 1 : 0 }}
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 rounded-[1.35rem]"
+              animate={{
+                filter: hasExperienceRevealFinished
+                  ? `drop-shadow(0 0 14px ${glowColor})`
+                  : "drop-shadow(0 0 0 transparent)",
+              }}
+              className="relative z-[1] grid place-items-center"
               style={{
-                boxShadow:
-                  "0 0 20px var(--hero-portrait-glow), inset 0 0 0 1px var(--hero-portrait-glow)",
+                animation: `${box.spin === "hero-spin" ? "hero-spin-reverse" : "hero-spin"} ${box.duration} linear infinite`,
+                animationDelay: box.delay,
               }}
               transition={{
                 duration: 1.4,
                 ease: smoothMotionEase,
               }}
             />
-            <span
-              className={`absolute rounded-[0.9rem] border border-dashed ${box.innerClassName} ${box.innerSizeClassName}`}
-              style={{
-                animation: `${box.spin === "hero-spin" ? "hero-spin-reverse" : "hero-spin"} ${box.duration} linear infinite`,
-                animationDelay: box.delay,
-                borderColor:
-                  "color-mix(in oklab, var(--hero-portrait-corner) 70%, transparent)",
-              }}
-            />
+            {skill.logo ? (
+              <>
+                <Image
+                  alt=""
+                  className={
+                    skill.darkLogo
+                      ? "size-8 object-contain dark:hidden sm:size-9"
+                      : `size-8 object-contain sm:size-9 ${skill.logoClassName ?? ""}`
+                  }
+                  height={30}
+                  loading="lazy"
+                  src={skill.logo}
+                  width={30}
+                />
+                {skill.darkLogo ? (
+                  <Image
+                    alt=""
+                    className="hidden size-[30px] dark:block"
+                    height={30}
+                    loading="lazy"
+                    src={skill.darkLogo}
+                    width={30}
+                  />
+                ) : null}
+              </>
+            ) : null}
           </div>
         </div>
-      ))}
+        );
+      })}
       <div className="relative z-10 mx-auto grid min-h-[calc(100svh-4rem)] w-full max-w-6xl items-center gap-8 px-4 py-12 transition-[gap,padding] duration-500 ease-out sm:gap-10 sm:px-6 sm:py-16 lg:grid-cols-[1fr_360px] lg:gap-16 lg:px-10 lg:py-24">
         <motion.div
           className="order-2 max-w-2xl text-center lg:order-1 lg:text-left"

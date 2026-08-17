@@ -31,10 +31,10 @@ const mobileMenuVariants: Variants = {
     y: 0,
     height: "auto",
     transition: {
-      duration: 0.28,
+      duration: 0.5,
       ease: smoothMotionEase,
       when: "beforeChildren",
-      staggerChildren: 0.05,
+      staggerChildren: 0.01,
       delayChildren: 0.04,
     },
   },
@@ -204,10 +204,16 @@ export const SiteHeader = () => {
               ))}
             </div>
             <div className="flex  items-center gap-2">
-              <motion.div custom={navigationItems.length + 1} variants={navbarItemVariants}>
+              <motion.div
+                custom={navigationItems.length + 1}
+                variants={navbarItemVariants}
+              >
                 <CommandMenu />
               </motion.div>
-              <motion.div custom={navigationItems.length + 2} variants={navbarItemVariants}>
+              <motion.div
+                custom={navigationItems.length + 2}
+                variants={navbarItemVariants}
+              >
                 <ThemeToggle />
               </motion.div>
               <motion.div
