@@ -104,6 +104,8 @@
 - Purpose: Compose recruiter-facing home page sections with responsive layouts across mobile and desktop, including a staggered bottom-elliptic reveal for the “What I Can Provide” service cards; load-aware floating app-development and technical-support experience metrics with an elliptic slide-in reveal in the hero; generalized positioning for software development, technical support, software testing, and QA opportunities; a dedicated technical support and troubleshooting skills carousel with centered icon-free category headings; GitHub activity inside the About section; and accessible full-width skill carousels with smooth deterministic motion, pointer dragging, eased pause states, and reduced-motion support.
 - Location: `components/sections/home/*`
 
+HeroSection and SkillsCarouselRow serve their tiny SVG skill logos without the Next.js image optimizer so remote icon CDNs load directly instead of failing through Vercel's external-image proxy.
+
 HeroSection now adds a theme-aware completion glow to the rotating boxes after the floating experience counters finish revealing.
 
 AboutSection now gives its Personal details card a left-to-center 3D entrance and its About my goals card a right-to-center 3D entrance, matching the hero floating metric motion.

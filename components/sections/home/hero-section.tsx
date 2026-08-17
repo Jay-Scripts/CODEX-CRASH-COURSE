@@ -480,6 +480,7 @@ export const HeroSection = () => {
                   height={30}
                   loading="lazy"
                   src={skill.logo}
+                  unoptimized
                   width={30}
                 />
                 {skill.darkLogo ? (
@@ -489,6 +490,7 @@ export const HeroSection = () => {
                     height={30}
                     loading="lazy"
                     src={skill.darkLogo}
+                    unoptimized
                     width={30}
                   />
                 ) : null}

@@ -53,6 +53,7 @@ const SkillLogoPill = ({ isDuplicate = false, skill }: SkillLogoPillProps) => {
               height={16}
               loading="lazy"
               src={skill.logo}
+              unoptimized
               width={16}
             />
             {skill.darkLogo ? (
@@ -62,6 +63,7 @@ const SkillLogoPill = ({ isDuplicate = false, skill }: SkillLogoPillProps) => {
                 height={16}
                 loading="lazy"
                 src={skill.darkLogo}
+                unoptimized
                 width={16}
               />
             ) : null}
