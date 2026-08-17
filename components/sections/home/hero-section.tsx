@@ -108,7 +108,7 @@ const heroSpinnerBoxes = [
     spin: "hero-spin-reverse",
   },
   {
-    className: "left-[19%] bottom-24 size-18 sm:size-22",
+    className: "left-[21%] bottom-24 size-18 sm:size-22",
     delay: "-10s",
     duration: "28s",
     rotate: "16deg",
@@ -116,7 +116,7 @@ const heroSpinnerBoxes = [
     spin: "hero-spin",
   },
   {
-    className: "left-[43%] top-20 size-16 sm:size-20",
+    className: "left-[31%] top-20 size-16 sm:size-20",
     delay: "-4s",
     duration: "20s",
     rotate: "-14deg",
@@ -124,7 +124,7 @@ const heroSpinnerBoxes = [
     spin: "hero-spin-reverse",
   },
   {
-    className: "left-[48%] bottom-24 size-16 sm:size-20",
+    className: "left-[40%] bottom-24 size-16 sm:size-20",
     delay: "-1s",
     duration: "22s",
     rotate: "10deg",
@@ -132,7 +132,7 @@ const heroSpinnerBoxes = [
     spin: "hero-spin",
   },
   {
-    className: "right-[10%] top-24 size-20 sm:size-24",
+    className: "left-[6%] bottom-[42%] size-20 sm:size-24",
     delay: "-8s",
     duration: "26s",
     rotate: "-6deg",
@@ -140,7 +140,7 @@ const heroSpinnerBoxes = [
     spin: "hero-spin-reverse",
   },
   {
-    className: "right-[22%] top-[52%] size-16 sm:size-20",
+    className: "left-[47%] top-[48%] size-16 sm:size-20",
     delay: "-5s",
     duration: "20s",
     rotate: "12deg",
@@ -148,7 +148,7 @@ const heroSpinnerBoxes = [
     spin: "hero-spin",
   },
   {
-    className: "right-[4%] bottom-28 size-20 sm:size-24",
+    className: "right-[3%] top-24 size-20 sm:size-24",
     delay: "-10s",
     duration: "34s",
     rotate: "10deg",
@@ -156,7 +156,7 @@ const heroSpinnerBoxes = [
     spin: "hero-spin-reverse",
   },
   {
-    className: "right-[30%] bottom-12 size-18 sm:size-22",
+    className: "right-[7%] top-[38%] size-18 sm:size-22",
     delay: "-3s",
     duration: "22s",
     rotate: "-6deg",
@@ -164,11 +164,75 @@ const heroSpinnerBoxes = [
     spin: "hero-spin",
   },
   {
-    className: "right-[45%] bottom-32 size-20 sm:size-24",
+    className: "right-[3%] bottom-28 size-20 sm:size-24",
     delay: "-7s",
     duration: "30s",
     rotate: "-6deg",
     skill: "PostgreSQL",
+    spin: "hero-spin-reverse",
+  },
+  {
+    className: "right-[21%] top-[18%] size-16 sm:size-20",
+    delay: "-9s",
+    duration: "26s",
+    rotate: "-8deg",
+    skill: "Claude Code",
+    spin: "hero-spin",
+  },
+  {
+    className: "right-[30%] top-[10%] size-20 sm:size-24",
+    delay: "-11s",
+    duration: "32s",
+    rotate: "8deg",
+    skill: "Codex",
+    spin: "hero-spin-reverse",
+  },
+  {
+    className: "left-[9%] top-[10%] size-16 sm:size-20",
+    delay: "-13s",
+    duration: "24s",
+    rotate: "-12deg",
+    skill: "Git",
+    spin: "hero-spin",
+  },
+  {
+    className: "right-[7%] bottom-[10%] size-16 sm:size-20",
+    delay: "-15s",
+    duration: "28s",
+    rotate: "12deg",
+    skill: "GitHub",
+    spin: "hero-spin-reverse",
+  },
+  {
+    className: "right-[39%] top-[20%] size-18 sm:size-22",
+    delay: "-17s",
+    duration: "30s",
+    rotate: "-5deg",
+    skill: "Cursor",
+    spin: "hero-spin",
+  },
+  {
+    className: "right-[12%] top-[10%] size-16 sm:size-20",
+    delay: "-19s",
+    duration: "27s",
+    rotate: "6deg",
+    skill: "VS Code",
+    spin: "hero-spin-reverse",
+  },
+  {
+    className: "right-[48%] top-[12%] size-16 sm:size-20",
+    delay: "-21s",
+    duration: "29s",
+    rotate: "-7deg",
+    skill: "Claude",
+    spin: "hero-spin",
+  },
+  {
+    className: "right-[30%] bottom-[10%] size-20 sm:size-24",
+    delay: "-23s",
+    duration: "31s",
+    rotate: "9deg",
+    skill: "ChatGPT",
     spin: "hero-spin-reverse",
   },
 ] as const;
@@ -365,8 +429,7 @@ export const HeroSection = () => {
 
         return (
         <div
-          aria-hidden="true"
-          className={`pointer-events-none absolute hidden md:block ${box.className}`}
+          className={`pointer-events-none absolute hidden xl:block ${box.className}`}
           key={box.className}
           style={{
             opacity: hasExperienceRevealFinished ? 0.92 : 0.6,
@@ -400,7 +463,7 @@ export const HeroSection = () => {
             {skill.logo ? (
               <>
                 <Image
-                  alt=""
+                  alt={`${box.skill} logo`}
                   className={
                     skill.darkLogo
                       ? "size-8 object-contain dark:hidden sm:size-9"
@@ -413,7 +476,7 @@ export const HeroSection = () => {
                 />
                 {skill.darkLogo ? (
                   <Image
-                    alt=""
+                    alt={`${box.skill} logo`}
                     className="hidden size-[30px] dark:block"
                     height={30}
                     loading="lazy"

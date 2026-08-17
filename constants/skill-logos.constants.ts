@@ -32,9 +32,13 @@ export const skillLogoMap: Record<string, SkillLogoMeta> = {
   },
   CSS: {
     glow: "#1572B6",
-    logo: "https://cdn.simpleicons.org/css3/1572B6",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
   },
   "Bug Documentation": { icon: FileWarning },
+  Claude: {
+    glow: "#D97757",
+    logo: "https://cdn.simpleicons.org/claude/D97757",
+  },
   "Claude Code": { logo: "https://cdn.simpleicons.org/claudecode/D97757" },
   Codex: {
     logo: "/codex.svg",
@@ -64,6 +68,9 @@ export const skillLogoMap: Record<string, SkillLogoMeta> = {
   "JavaScript ES6": {
     glow: "#F7DF1E",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  },
+  ChatGPT: {
+    logo: "/gpt.svg",
   },
   JavaScript: {
     glow: "#F7DF1E",
