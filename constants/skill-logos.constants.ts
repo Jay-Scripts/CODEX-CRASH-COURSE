@@ -115,6 +115,9 @@ export const skillLogoMap: Record<string, SkillLogoMeta> = {
   "Tailwind CSS": {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
   },
+  TypeScript: {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  },
   UAT: { icon: UserCheck },
   "User Support": { icon: Headphones },
   Vercel: {

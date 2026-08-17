@@ -973,6 +973,7 @@ export const skillGroups: SkillGroup[] = [
       "Next.js",
       "React",
       "JavaScript ES6",
+      "TypeScript",
       "Tailwind CSS",
       "Flowbite",
       "shadcn/ui",

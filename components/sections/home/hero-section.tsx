@@ -102,6 +102,15 @@ const heroSpinnerBoxes = [
     spin: "hero-spin",
   },
   {
+    className:
+      "right-[1%] top-[24%] size-10 sm:right-auto sm:left-[2%] sm:top-[23%] sm:size-12 lg:size-14 xl:left-[16%] xl:top-[28%] xl:size-20",
+    delay: "-3s",
+    duration: "23s",
+    rotate: "6deg",
+    skill: "TypeScript",
+    spin: "hero-spin-reverse",
+  },
+  {
     className: "hidden left-[12%] top-[46%] size-20 xl:block",
     delay: "-6s",
     duration: "24s",
