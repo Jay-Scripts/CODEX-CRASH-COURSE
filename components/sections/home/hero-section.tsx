@@ -236,6 +236,38 @@ const heroSpinnerBoxes = [
     skill: "ChatGPT",
     spin: "hero-spin-reverse",
   },
+  {
+    className: "left-[2%] top-[30%] size-18 sm:size-22",
+    delay: "-25s",
+    duration: "28s",
+    rotate: "-9deg",
+    skill: "Node.js",
+    spin: "hero-spin",
+  },
+  {
+    className: "left-[2%] bottom-[18%] size-16 sm:size-20",
+    delay: "-27s",
+    duration: "26s",
+    rotate: "7deg",
+    skill: "Bootstrap",
+    spin: "hero-spin-reverse",
+  },
+  {
+    className: "right-[2%] top-[58%] size-16 sm:size-20",
+    delay: "-29s",
+    duration: "30s",
+    rotate: "-11deg",
+    skill: "Lucide React",
+    spin: "hero-spin",
+  },
+  {
+    className: "left-[12%] bottom-[4%] size-16 sm:size-20",
+    delay: "-31s",
+    duration: "32s",
+    rotate: "10deg",
+    skill: "React Native",
+    spin: "hero-spin-reverse",
+  },
 ] as const;
 
 const monthIndices: Record<string, number> = {

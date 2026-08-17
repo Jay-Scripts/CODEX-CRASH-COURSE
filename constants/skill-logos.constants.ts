@@ -82,6 +82,7 @@ export const skillLogoMap: Record<string, SkillLogoMeta> = {
   },
   Laragon: { logo: "https://cdn.simpleicons.org/laragon/0E83CD" },
   "Lucide React": {
+    glow: "#F56565",
     logo: "https://cdn.simpleicons.org/lucide",
     logoClassName: "dark:brightness-0 dark:invert",
   },
@@ -98,6 +99,7 @@ export const skillLogoMap: Record<string, SkillLogoMeta> = {
     logo: "https://cdn.simpleicons.org/nextdotjs/000000",
   },
   "Node.js": {
+    glow: "#5FA04E",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
   },
   npm: { logo: "https://cdn.simpleicons.org/npm/CB3837" },
@@ -113,6 +115,10 @@ export const skillLogoMap: Record<string, SkillLogoMeta> = {
   React: {
     glow: "#61DAFB",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  },
+  "React Native": {
+    glow: "#61DAFB",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/reactnative/reactnative-original.svg",
   },
   "Software Installation & Configuration": { icon: PackageCheck },
   "Software Troubleshooting": { icon: Wrench },

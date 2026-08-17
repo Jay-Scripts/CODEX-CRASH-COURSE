@@ -1024,6 +1024,7 @@ export const skillGroups: SkillGroup[] = [
       "Codex",
       "Claude Code",
       "Cursor",
+      "VS Code",
     ],
   },
 ];
