@@ -37,6 +37,7 @@ const floatingEase = "easeInOut" as const;
 const floatingCardRevealDelay = 1;
 const floatingCardRevealDuration = 1.1;
 const experienceCounterDuration = 1.2;
+const floatingIconPopDelay = 2;
 type FloatingCardDirection = "left" | "right";
 
 const floatingCardVariants: Variants = {
@@ -423,7 +424,7 @@ export const HeroSection = () => {
             "radial-gradient(ellipse 70% 65% at 65% 45%, transparent 30%, var(--hero-radial-mask-end) 80%)",
         }}
       />
-      {heroSpinnerBoxes.map((box) => {
+      {heroSpinnerBoxes.map((box, index) => {
         const skill = skillLogoMap[box.skill];
         const glowColor = skill.glow ?? "var(--hero-portrait-glow)";
 
@@ -444,6 +445,13 @@ export const HeroSection = () => {
               animationDelay: box.delay,
             }}
           >
+            <div
+              className="hero-icon-pop"
+              style={{
+                animation: "hero-icon-pop 720ms cubic-bezier(0.22, 1, 0.36, 1) both",
+                animationDelay: `${floatingIconPopDelay + index * 0.12}s`,
+              }}
+            >
             <motion.span
               animate={{
                 filter: hasExperienceRevealFinished
@@ -486,6 +494,7 @@ export const HeroSection = () => {
                 ) : null}
               </>
             ) : null}
+            </div>
           </div>
         </div>
         );
@@ -777,6 +786,27 @@ export const HeroSection = () => {
       @keyframes hero-spin-reverse {
         to {
           transform: rotate(-360deg);
+        }
+      }
+
+      @keyframes hero-icon-pop {
+        0% {
+          opacity: 0;
+          transform: scale(0.35) translateY(10px);
+        }
+        70% {
+          opacity: 1;
+          transform: scale(1.08) translateY(-2px);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero-icon-pop {
+          animation: none !important;
         }
       }
     `}</style>
