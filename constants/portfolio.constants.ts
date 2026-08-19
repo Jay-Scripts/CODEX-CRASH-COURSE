@@ -1272,7 +1272,7 @@ export const experiences: Experience[] = [
   {
     role: "Full Stack Developer (Intern)",
     organization: "Little Ark Foundation Inc.",
-    period: "Jan 2026 - July 2026",
+    period: "Nov 2025 - Aug 2026",
     icon: Code2,
     isTechRelated: true,
     proofItems: internshipProofItems,
@@ -1286,11 +1286,13 @@ export const experiences: Experience[] = [
       "Expo React Native",
     ],
     highlights: [
-      "Developed responsive UI improvements using Tailwind CSS, expanding application accessibility from desktop-only use to desktop, tablet, and mobile workflows.",
-      "Designed and executed 700+ structured QA test case entries to validate responsiveness, RBAC permissions, security-related issues, UX issues, design consistency, input validation, and end-to-end system workflows before deployment.",
-      "Documented, reported, and helped resolve system bugs, improving workflow reliability, validation behavior, and overall usability.",
-      "Coordinated with stakeholders to gather feedback and implement UX improvements, including mobile usability updates, detailed helper messages, auto-focus validation, and camera-based QR code scanning for faster tablet and mobile workflows.",
-      "Developed a donor-facing mobile application for event booking and contribution tracking, improving donor access to blood donation schedules, participation records, and personal donation history.",
+      "Developed responsive web and mobile features using Next.js, React, Expo React Native, Supabase, and PostgreSQL.",
+      "Designed and executed 700+ QA test cases covering RBAC, validation, responsiveness, UX, and end-to-end workflows.",
+      "Implemented system features and resolved bugs to improve workflow reliability and usability.",
+      "Created analytics dashboards and interactive charts for monitoring operational data and system performance.",
+      "Automated manual work reports into system-generated reports, reducing repetitive reporting tasks.",
+      "Developed donor mobile features for event booking, contribution tracking, and donation history.",
+      "Collaborated with stakeholders and developers to implement UX improvements and support feature development.",
     ],
   },
   {

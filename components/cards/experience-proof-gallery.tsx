@@ -270,6 +270,10 @@ export const ExperienceProofGallery = ({
       : "right-[calc(100%+2.75rem)]";
   const mediumProofMotionClassName =
     cardAlignment === "left" ? "translate-x-6" : "-translate-x-6";
+  const mediumProofAnimationClassName =
+    cardAlignment === "left"
+      ? "md:group-hover/experience:animate-[experience-proof-slide-in-right_700ms_ease-in-out_both]"
+      : "md:group-hover/experience:animate-[experience-proof-slide-in-left_700ms_ease-in-out_both]";
 
   const showPreviousProof = useCallback(() => {
     if (activeProofIndex === null || !proofItems.length) {
@@ -422,10 +426,11 @@ export const ExperienceProofGallery = ({
                 return (
                   <button
                     className={cn(
-                      "glass-panel pointer-events-auto w-full cursor-pointer rounded-2xl p-2 text-left transition-all duration-300 ease-out",
+                      "glass-panel pointer-events-auto w-full cursor-pointer rounded-2xl p-2 text-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
                       "opacity-0 scale-90",
                       mediumProofMotionClassName,
                       delayClassName,
+                      mediumProofAnimationClassName,
                       "md:group-hover/experience:translate-x-0 md:group-hover/experience:opacity-100 md:group-hover/experience:scale-100",
                     )}
                     key={item.label}
@@ -470,9 +475,10 @@ export const ExperienceProofGallery = ({
               return (
                 <button
                   className={cn(
-                    "glass-panel pointer-events-auto w-32 cursor-pointer rounded-2xl p-2 text-left transition-all duration-300 ease-out",
+                    "glass-panel pointer-events-auto w-32 cursor-pointer rounded-2xl p-2 text-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
                     "opacity-0 scale-90 -translate-x-8",
                     delayClassName,
+                    "md:group-hover/experience:animate-[experience-proof-slide-in-left_700ms_ease-in-out_both]",
                     "md:group-hover/experience:translate-x-0 md:group-hover/experience:opacity-100 md:group-hover/experience:scale-100",
                   )}
                   key={item.label}
@@ -516,9 +522,10 @@ export const ExperienceProofGallery = ({
               return (
                 <button
                   className={cn(
-                    "glass-panel pointer-events-auto w-32 cursor-pointer rounded-2xl p-2 text-left transition-all duration-300 ease-out",
+                    "glass-panel pointer-events-auto w-32 cursor-pointer rounded-2xl p-2 text-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
                     "opacity-0 scale-90 translate-x-8",
                     delayClassName,
+                    "md:group-hover/experience:animate-[experience-proof-slide-in-right_700ms_ease-in-out_both]",
                     "md:group-hover/experience:translate-x-0 md:group-hover/experience:opacity-100 md:group-hover/experience:scale-100",
                   )}
                   key={item.label}
