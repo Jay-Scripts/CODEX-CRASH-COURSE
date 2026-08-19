@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, type Variants } from "framer-motion";
 import { Award, Eye, FileBadge2 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
@@ -17,10 +17,40 @@ import { cn } from "@/lib/utils";
 import type { Certificate } from "@/types/portfolio.types";
 import {
   filteredItemExitState,
-  filteredItemInitialState,
-  filteredItemVisibleState,
-  responsiveLayoutTransition,
+  smoothMotionEase,
 } from "@/utils/animations.utils";
+
+const certificateGridVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const certificateCardVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0,
+    y: 80,
+    rotateX: 30,
+    transformOrigin: "50% 100%",
+    transformPerspective: 1000,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    rotateX: 0,
+    transformOrigin: "50% -1400px",
+    transformPerspective: 1000,
+    transition: {
+      duration: 0.9,
+      ease: smoothMotionEase,
+    },
+  },
+};
 
 const certificateFilters = [
   "all",
@@ -42,9 +72,7 @@ export const CertificatesSection = () => {
   const visibleCertificates =
     activeFilter === "all"
       ? certificates
-      : certificates.filter(
-          (certificate) => certificate.type === activeFilter,
-        );
+      : certificates.filter((certificate) => certificate.type === activeFilter);
 
   return (
     <AnimatedSection
@@ -67,27 +95,30 @@ export const CertificatesSection = () => {
               aria-label="Certificate categories"
               className="mb-8 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center"
             >
-              {certificateFilters.map((filter) => {
-                const isActive = activeFilter === filter;
-                const label = filter === "all" ? "All" : filter;
+              <RevealGroup className="contents">
+                {certificateFilters.map((filter) => {
+                  const isActive = activeFilter === filter;
+                  const label = filter === "all" ? "All" : filter;
 
-                return (
-                  <Button
-                    aria-pressed={isActive}
-                    className={cn(
-                      "glass-chip w-full border-primary/15 sm:w-auto",
-                      isActive &&
-                        "border-primary/30 bg-primary/12 text-foreground hover:bg-primary/18",
-                    )}
-                    key={filter}
-                    onClick={() => setActiveFilter(filter)}
-                    type="button"
-                    variant="outline"
-                  >
-                    {label}
-                  </Button>
-                );
-              })}
+                  return (
+                    <RevealItem key={filter}>
+                      <Button
+                        aria-pressed={isActive}
+                        className={cn(
+                          "glass-chip w-full border-primary/15 sm:w-auto",
+                          isActive &&
+                            "border-primary/30 bg-primary/12 text-foreground hover:bg-primary/18",
+                        )}
+                        onClick={() => setActiveFilter(filter)}
+                        type="button"
+                        variant="outline"
+                      >
+                        {label}
+                      </Button>
+                    </RevealItem>
+                  );
+                })}
+              </RevealGroup>
             </nav>
             <p
               aria-live="polite"
@@ -102,16 +133,17 @@ export const CertificatesSection = () => {
             <RevealGroup
               className="grid gap-4 md:grid-cols-2 xl:grid-cols-3"
               layout
+              variants={certificateGridVariants}
             >
-              <AnimatePresence initial={false} mode="sync">
+              <AnimatePresence mode="sync">
                 {visibleCertificates.map((certificate) => (
                   <RevealItem
-                    animate={filteredItemVisibleState}
+                    animate="visible"
                     exit={filteredItemExitState}
-                    initial={filteredItemInitialState}
+                    initial="hidden"
                     key={`${certificate.title}-${certificate.issued}`}
                     layout="position"
-                    transition={responsiveLayoutTransition}
+                    variants={certificateCardVariants}
                   >
                     <button
                       aria-label={`Preview ${certificate.title}`}
