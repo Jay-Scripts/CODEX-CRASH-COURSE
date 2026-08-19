@@ -1,3 +1,5 @@
+"use client";
+
 import { experiences } from "@/constants/portfolio.constants";
 import { AnimatedSection } from "@/components/common/animated-section";
 import { SectionAccentBackdrop } from "@/components/common/section-accent-backdrop";

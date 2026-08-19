@@ -27,6 +27,7 @@ type ExperienceProofGalleryProps = {
   mode: "desktop" | "mobile";
   proofItems: ExperienceProofItem[];
   proofSectionId: string;
+  previewVisible?: boolean;
 };
 
 const proofTypeLabels = {
@@ -225,6 +226,7 @@ export const ExperienceProofGallery = ({
   mode,
   proofItems,
   proofSectionId,
+  previewVisible = false,
 }: ExperienceProofGalleryProps) => {
   const [activeProofIndex, setActiveProofIndex] = useState<number | null>(null);
   const [closingProof, setClosingProof] = useState<ExperienceProofItem | null>(
@@ -427,11 +429,13 @@ export const ExperienceProofGallery = ({
                   <button
                     className={cn(
                       "glass-panel pointer-events-auto w-full cursor-pointer rounded-2xl p-2 text-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-                      "opacity-0 scale-90",
+                      previewVisible
+                        ? "opacity-100 scale-100"
+                        : "opacity-0 scale-90",
                       mediumProofMotionClassName,
                       delayClassName,
-                      mediumProofAnimationClassName,
-                      "md:group-hover/experience:translate-x-0 md:group-hover/experience:opacity-100 md:group-hover/experience:scale-100",
+                      previewVisible && mediumProofAnimationClassName,
+                      previewVisible && "translate-x-0",
                     )}
                     key={item.label}
                     onClick={() => openProofPreview(originalIndex)}
@@ -476,10 +480,12 @@ export const ExperienceProofGallery = ({
                 <button
                   className={cn(
                     "glass-panel pointer-events-auto w-32 cursor-pointer rounded-2xl p-2 text-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-                    "opacity-0 scale-90 -translate-x-8",
+                    previewVisible
+                      ? "opacity-100 scale-100 translate-x-0"
+                      : "opacity-0 scale-90 -translate-x-8",
                     delayClassName,
-                    "md:group-hover/experience:animate-[experience-proof-slide-in-left_700ms_ease-in-out_both]",
-                    "md:group-hover/experience:translate-x-0 md:group-hover/experience:opacity-100 md:group-hover/experience:scale-100",
+                    previewVisible &&
+                      "animate-[experience-proof-slide-in-left_700ms_ease-in-out_both]",
                   )}
                   key={item.label}
                   onClick={() => openProofPreview(originalIndex)}
@@ -523,10 +529,12 @@ export const ExperienceProofGallery = ({
                 <button
                   className={cn(
                     "glass-panel pointer-events-auto w-32 cursor-pointer rounded-2xl p-2 text-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-                    "opacity-0 scale-90 translate-x-8",
+                    previewVisible
+                      ? "opacity-100 scale-100 translate-x-0"
+                      : "opacity-0 scale-90 translate-x-8",
                     delayClassName,
-                    "md:group-hover/experience:animate-[experience-proof-slide-in-right_700ms_ease-in-out_both]",
-                    "md:group-hover/experience:translate-x-0 md:group-hover/experience:opacity-100 md:group-hover/experience:scale-100",
+                    previewVisible &&
+                      "animate-[experience-proof-slide-in-right_700ms_ease-in-out_both]",
                   )}
                   key={item.label}
                   onClick={() => openProofPreview(originalIndex)}
