@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import type {
   ExperienceProofItem,
@@ -27,6 +27,7 @@ type ExperienceProofGalleryProps = {
   mode: "desktop" | "mobile";
   proofItems: ExperienceProofItem[];
   proofSectionId: string;
+  desktopProofColumns?: 2 | 4;
   previewVisible?: boolean;
 };
 
@@ -226,6 +227,7 @@ export const ExperienceProofGallery = ({
   mode,
   proofItems,
   proofSectionId,
+  desktopProofColumns = 2,
   previewVisible = false,
 }: ExperienceProofGalleryProps) => {
   const [activeProofIndex, setActiveProofIndex] = useState<number | null>(null);
@@ -240,20 +242,14 @@ export const ExperienceProofGallery = ({
     activeProofIndex !== null ? proofItems[activeProofIndex] : null;
   const displayedProof = activeProof ?? closingProof;
 
-  const leftProofItems = useMemo(
-    () =>
-      proofItems
-        .map((item, index) => ({ index, item }))
-        .filter(({ index }) => index % 2 === 0),
-    [proofItems],
-  );
-  const rightProofItems = useMemo(
-    () =>
-      proofItems
-        .map((item, index) => ({ index, item }))
-        .filter(({ index }) => index % 2 !== 0),
-    [proofItems],
-  );
+  const leftDesktopProofItems =
+    cardAlignment === "right"
+      ? proofItems.map((item, index) => ({ index, item }))
+      : [];
+  const rightDesktopProofItems =
+    cardAlignment === "left"
+      ? proofItems.map((item, index) => ({ index, item }))
+      : [];
 
   const desktopProofDelayClasses = [
     "delay-0",
@@ -276,6 +272,14 @@ export const ExperienceProofGallery = ({
     cardAlignment === "left"
       ? "md:group-hover/experience:animate-[experience-proof-slide-in-right_700ms_ease-in-out_both]"
       : "md:group-hover/experience:animate-[experience-proof-slide-in-left_700ms_ease-in-out_both]";
+  const wideProofGridClassName =
+    desktopProofColumns === 4
+      ? "w-[35rem] grid-cols-4"
+      : "w-[17rem] grid-cols-2";
+  const wideProofLeftOffsetClassName =
+    desktopProofColumns === 4 ? "left-[-36rem]" : "left-[-18rem]";
+  const wideProofRightOffsetClassName =
+    desktopProofColumns === 4 ? "right-[-36rem]" : "right-[-18rem]";
 
   const showPreviousProof = useCallback(() => {
     if (activeProofIndex === null || !proofItems.length) {
@@ -469,103 +473,119 @@ export const ExperienceProofGallery = ({
               })}
             </div>
           </div>
-          <div className="absolute left-[-9rem] top-1/2 hidden -translate-y-1/2 flex-col gap-3 xl:flex">
-            {leftProofItems.map(({ item, index: originalIndex }, index) => {
-              const ProofIcon = proofTypeIcons[item.type];
-              const delayClassName =
-                desktopProofDelayClasses[index] ??
-                desktopProofDelayClasses.at(-1);
+          <div
+            className={cn(
+              "absolute top-1/2 hidden -translate-y-1/2 gap-3 xl:grid",
+              wideProofLeftOffsetClassName,
+              wideProofGridClassName,
+            )}
+          >
+            {leftDesktopProofItems.map(
+              ({ item, index: originalIndex }, index) => {
+                const ProofIcon = proofTypeIcons[item.type];
+                const delayClassName =
+                  desktopProofDelayClasses[index] ??
+                  desktopProofDelayClasses.at(-1);
 
-              return (
-                <button
-                  className={cn(
-                    "glass-panel pointer-events-auto w-32 cursor-pointer rounded-2xl p-2 text-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-                    previewVisible
-                      ? "opacity-100 scale-100 translate-x-0"
-                      : "opacity-0 scale-90 -translate-x-8",
-                    delayClassName,
-                    previewVisible &&
-                      "animate-[experience-proof-slide-in-left_700ms_ease-in-out_both]",
-                  )}
-                  key={item.label}
-                  onClick={() => openProofPreview(originalIndex)}
-                  onFocus={() => setHoveredProofIndex(originalIndex)}
-                  onMouseEnter={() => setHoveredProofIndex(originalIndex)}
-                  onMouseLeave={() => setHoveredProofIndex(null)}
-                  onBlur={() => setHoveredProofIndex(null)}
-                  type="button"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border/50 bg-background">
-                    {renderProofSurface(item, {
-                      compact: true,
-                      desktopHoverVideo: true,
-                      playVideo: hoveredProofIndex === originalIndex,
-                      sizes: "8rem",
-                    })}
-                  </div>
-                  <div className="mt-2 flex items-start justify-between gap-2">
-                    <div className="min-w-0">
-                      <p className="truncate text-[11px] font-semibold text-foreground">
-                        {item.label}
-                      </p>
-                      <p className="mt-1 flex items-center gap-1 text-[10px] text-muted-foreground">
-                        <ProofIcon className="size-3 text-primary" />
-                        {proofTypeLabels[item.type]}
-                      </p>
+                return (
+                  <button
+                    className={cn(
+                      "glass-panel pointer-events-auto w-32 cursor-pointer rounded-2xl p-2 text-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                      previewVisible
+                        ? "opacity-100 scale-100 translate-x-0"
+                        : "opacity-0 scale-90 -translate-x-8",
+                      delayClassName,
+                      previewVisible &&
+                        "animate-[experience-proof-slide-in-left_700ms_ease-in-out_both]",
+                    )}
+                    key={item.label}
+                    onClick={() => openProofPreview(originalIndex)}
+                    onFocus={() => setHoveredProofIndex(originalIndex)}
+                    onMouseEnter={() => setHoveredProofIndex(originalIndex)}
+                    onMouseLeave={() => setHoveredProofIndex(null)}
+                    onBlur={() => setHoveredProofIndex(null)}
+                    type="button"
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border/50 bg-background">
+                      {renderProofSurface(item, {
+                        compact: true,
+                        desktopHoverVideo: true,
+                        playVideo: hoveredProofIndex === originalIndex,
+                        sizes: "8rem",
+                      })}
                     </div>
-                  </div>
-                </button>
-              );
-            })}
+                    <div className="mt-2 flex items-start justify-between gap-2">
+                      <div className="min-w-0">
+                        <p className="truncate text-[11px] font-semibold text-foreground">
+                          {item.label}
+                        </p>
+                        <p className="mt-1 flex items-center gap-1 text-[10px] text-muted-foreground">
+                          <ProofIcon className="size-3 text-primary" />
+                          {proofTypeLabels[item.type]}
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+                );
+              },
+            )}
           </div>
-          <div className="absolute right-[-9rem] top-1/2 hidden -translate-y-1/2 flex-col gap-3 xl:flex">
-            {rightProofItems.map(({ item, index: originalIndex }, index) => {
-              const ProofIcon = proofTypeIcons[item.type];
-              const delayClassName =
-                desktopProofDelayClasses[index + leftProofItems.length] ??
-                desktopProofDelayClasses.at(-1);
+          <div
+            className={cn(
+              "absolute top-1/2 hidden -translate-y-1/2 gap-3 xl:grid",
+              wideProofRightOffsetClassName,
+              wideProofGridClassName,
+            )}
+          >
+            {rightDesktopProofItems.map(
+              ({ item, index: originalIndex }, index) => {
+                const ProofIcon = proofTypeIcons[item.type];
+                const delayClassName =
+                  desktopProofDelayClasses[index] ??
+                  desktopProofDelayClasses.at(-1);
 
-              return (
-                <button
-                  className={cn(
-                    "glass-panel pointer-events-auto w-32 cursor-pointer rounded-2xl p-2 text-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-                    previewVisible
-                      ? "opacity-100 scale-100 translate-x-0"
-                      : "opacity-0 scale-90 translate-x-8",
-                    delayClassName,
-                    previewVisible &&
-                      "animate-[experience-proof-slide-in-right_700ms_ease-in-out_both]",
-                  )}
-                  key={item.label}
-                  onClick={() => openProofPreview(originalIndex)}
-                  onFocus={() => setHoveredProofIndex(originalIndex)}
-                  onMouseEnter={() => setHoveredProofIndex(originalIndex)}
-                  onMouseLeave={() => setHoveredProofIndex(null)}
-                  onBlur={() => setHoveredProofIndex(null)}
-                  type="button"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border/50 bg-background">
-                    {renderProofSurface(item, {
-                      compact: true,
-                      desktopHoverVideo: true,
-                      playVideo: hoveredProofIndex === originalIndex,
-                      sizes: "8rem",
-                    })}
-                  </div>
-                  <div className="mt-2 flex items-start justify-between gap-2">
-                    <div className="min-w-0">
-                      <p className="truncate text-[11px] font-semibold text-foreground">
-                        {item.label}
-                      </p>
-                      <p className="mt-1 flex items-center gap-1 text-[10px] text-muted-foreground">
-                        <ProofIcon className="size-3 text-primary" />
-                        {proofTypeLabels[item.type]}
-                      </p>
+                return (
+                  <button
+                    className={cn(
+                      "glass-panel pointer-events-auto w-32 cursor-pointer rounded-2xl p-2 text-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                      previewVisible
+                        ? "opacity-100 scale-100 translate-x-0"
+                        : "opacity-0 scale-90 translate-x-8",
+                      delayClassName,
+                      previewVisible &&
+                        "animate-[experience-proof-slide-in-right_700ms_ease-in-out_both]",
+                    )}
+                    key={item.label}
+                    onClick={() => openProofPreview(originalIndex)}
+                    onFocus={() => setHoveredProofIndex(originalIndex)}
+                    onMouseEnter={() => setHoveredProofIndex(originalIndex)}
+                    onMouseLeave={() => setHoveredProofIndex(null)}
+                    onBlur={() => setHoveredProofIndex(null)}
+                    type="button"
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border/50 bg-background">
+                      {renderProofSurface(item, {
+                        compact: true,
+                        desktopHoverVideo: true,
+                        playVideo: hoveredProofIndex === originalIndex,
+                        sizes: "8rem",
+                      })}
                     </div>
-                  </div>
-                </button>
-              );
-            })}
+                    <div className="mt-2 flex items-start justify-between gap-2">
+                      <div className="min-w-0">
+                        <p className="truncate text-[11px] font-semibold text-foreground">
+                          {item.label}
+                        </p>
+                        <p className="mt-1 flex items-center gap-1 text-[10px] text-muted-foreground">
+                          <ProofIcon className="size-3 text-primary" />
+                          {proofTypeLabels[item.type]}
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+                );
+              },
+            )}
           </div>
         </div>
       ) : null}

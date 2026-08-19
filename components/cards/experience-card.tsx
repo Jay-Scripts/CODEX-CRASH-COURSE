@@ -19,6 +19,8 @@ export const ExperienceCard = ({ experience, isEven }: ExperienceCardProps) => {
   const cardAlignment = isEven ? "left" : "right";
   const proofItems = experience.proofItems ?? [];
   const hasProofItems = proofItems.length > 0;
+  const usesFourColumnProofGrid =
+    experience.role === "IT Support Assistant (Student Assistant)";
   const cardColumnClassName = isEven ? "md:col-start-1" : "md:col-start-3";
   const [isDesktopProofVisible, setIsDesktopProofVisible] = useState(false);
   const proofHideTimerRef = useRef<number | null>(null);
@@ -52,7 +54,7 @@ export const ExperienceCard = ({ experience, isEven }: ExperienceCardProps) => {
     proofHideTimerRef.current = window.setTimeout(() => {
       setIsDesktopProofVisible(false);
       proofHideTimerRef.current = null;
-    }, 3000);
+    }, 500);
   };
 
   return (
@@ -107,6 +109,7 @@ export const ExperienceCard = ({ experience, isEven }: ExperienceCardProps) => {
             mode="desktop"
             proofItems={proofItems}
             proofSectionId={proofSectionId}
+            desktopProofColumns={usesFourColumnProofGrid ? 4 : 2}
             previewVisible={isDesktopProofVisible}
           />
         ) : null}

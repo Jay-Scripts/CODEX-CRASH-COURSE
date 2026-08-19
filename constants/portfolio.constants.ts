@@ -735,6 +735,41 @@ const grcProofItems: ExperienceProofItem[] = [
     src: "/experience-proofs/grc%20it%20dept/library%20maintetance.jpg",
     type: "photo",
   },
+  {
+    alt: "Faculty PC troubleshooting proof from Global Reciprocal Colleges IT department work",
+    href: "/experience-proofs/grc%20it%20dept/faculty%20pc%20troubleshooting.jpg",
+    label: "Faculty PC troubleshooting",
+    src: "/experience-proofs/grc%20it%20dept/faculty%20pc%20troubleshooting.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Lab 3 PC setup proof from Global Reciprocal Colleges IT department work",
+    href: "/experience-proofs/grc%20it%20dept/new%20pc%20for%20lab%203%20setting%20up.jpg",
+    label: "Lab 3 PC setup",
+    src: "/experience-proofs/grc%20it%20dept/new%20pc%20for%20lab%203%20setting%20up.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Lab 3 PC setup continuation proof from Global Reciprocal Colleges IT department work",
+    href: "/experience-proofs/grc%20it%20dept/new%20pc%20for%20lab%203%20setting%20up%202.jpg",
+    label: "Lab 3 PC setup 2",
+    src: "/experience-proofs/grc%20it%20dept/new%20pc%20for%20lab%203%20setting%20up%202.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Lab 3 PC setup detail proof from Global Reciprocal Colleges IT department work",
+    href: "/experience-proofs/grc%20it%20dept/new%20pc%20for%20lab%203%20setting%20up%203.jpg",
+    label: "Lab 3 PC setup 3",
+    src: "/experience-proofs/grc%20it%20dept/new%20pc%20for%20lab%203%20setting%20up%203.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Storage device upgrade and software installation proof from Global Reciprocal Colleges IT department work",
+    href: "/experience-proofs/grc%20it%20dept/storage%20device%20upgrade%20OS%20installation%20and%20software%20installation%20for%20EDTech%20PC.jpg",
+    label: "EDTech PC upgrade and installation",
+    src: "/experience-proofs/grc%20it%20dept/storage%20device%20upgrade%20OS%20installation%20and%20software%20installation%20for%20EDTech%20PC.jpg",
+    type: "photo",
+  },
 ];
 
 export const certificates: Certificate[] = [
