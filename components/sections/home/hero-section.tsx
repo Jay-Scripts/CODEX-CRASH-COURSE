@@ -111,7 +111,8 @@ const heroSpinnerBoxes = [
     spin: "hero-spin-reverse",
   },
   {
-    className: "hidden left-[12%] top-[46%] size-20 xl:block",
+    className:
+      "left-[10%] top-[18%] size-10 sm:left-[12%] sm:top-[18%] sm:size-12 lg:size-14 xl:left-[12%] xl:top-[46%] xl:size-20",
     delay: "-6s",
     duration: "24s",
     rotate: "8deg",
@@ -128,7 +129,8 @@ const heroSpinnerBoxes = [
     spin: "hero-spin",
   },
   {
-    className: "hidden left-[31%] top-20 size-20 xl:block",
+    className:
+      "right-[10%] top-[12%] size-10 sm:right-[12%] sm:top-20 sm:size-12 lg:size-14 xl:left-[31%] xl:top-20 xl:size-20",
     delay: "-4s",
     duration: "20s",
     rotate: "-14deg",
@@ -136,7 +138,8 @@ const heroSpinnerBoxes = [
     spin: "hero-spin-reverse",
   },
   {
-    className: "hidden left-[40%] bottom-24 size-20 xl:block",
+    className:
+      "left-[10%] top-[88%] size-10 sm:left-[12%] sm:top-auto sm:bottom-24 sm:size-12 lg:size-14 xl:left-[40%] xl:bottom-24 xl:size-20",
     delay: "-1s",
     duration: "22s",
     rotate: "10deg",
@@ -145,7 +148,7 @@ const heroSpinnerBoxes = [
   },
   {
     className:
-      "hidden right-[2%] top-[27%] size-12 sm:block lg:size-14 xl:right-auto xl:top-auto xl:left-[6%] xl:bottom-[42%] xl:size-24",
+      "right-[18%] top-[24%] size-10 sm:right-[2%] sm:top-[27%] sm:size-12 lg:size-14 xl:right-auto xl:top-auto xl:left-[6%] xl:bottom-[42%] xl:size-24",
     delay: "-8s",
     duration: "26s",
     rotate: "-6deg",
@@ -162,7 +165,8 @@ const heroSpinnerBoxes = [
     spin: "hero-spin",
   },
   {
-    className: "hidden right-[3%] top-24 size-24 xl:block",
+    className:
+      "right-[10%] top-[52%] size-10 sm:right-[12%] sm:top-24 sm:size-12 lg:size-14 xl:right-[3%] xl:top-24 xl:size-24",
     delay: "-10s",
     duration: "34s",
     rotate: "10deg",
@@ -171,7 +175,7 @@ const heroSpinnerBoxes = [
   },
   {
     className:
-      "hidden left-[2%] top-[46%] size-12 sm:block lg:size-14 xl:left-auto xl:right-[7%] xl:top-[38%] xl:size-22",
+      "left-[18%] top-[36%] size-10 sm:left-[2%] sm:top-[46%] sm:size-12 lg:size-14 xl:left-auto xl:right-[7%] xl:top-[38%] xl:size-22",
     delay: "-3s",
     duration: "22s",
     rotate: "-6deg",
@@ -179,7 +183,8 @@ const heroSpinnerBoxes = [
     spin: "hero-spin",
   },
   {
-    className: "hidden right-[3%] bottom-28 size-24 xl:block",
+    className:
+      "right-[10%] top-[78%] size-10 sm:right-[12%] sm:top-auto sm:bottom-28 sm:size-12 lg:size-14 xl:right-[3%] xl:bottom-28 xl:size-24",
     delay: "-7s",
     duration: "30s",
     rotate: "-6deg",
@@ -204,7 +209,7 @@ const heroSpinnerBoxes = [
   },
   {
     className:
-      "hidden right-[2%] top-[73%] size-12 sm:block lg:size-14 xl:right-auto xl:left-[9%] xl:top-[10%] xl:size-20",
+      "right-[18%] top-[64%] size-10 sm:right-[2%] sm:top-[73%] sm:size-12 lg:size-14 xl:right-auto xl:left-[9%] xl:top-[10%] xl:size-20",
     delay: "-13s",
     duration: "24s",
     rotate: "-12deg",
@@ -213,7 +218,7 @@ const heroSpinnerBoxes = [
   },
   {
     className:
-      "hidden left-[2%] top-[93%] size-12 sm:block lg:size-14 xl:left-auto xl:top-auto xl:right-[7%] xl:bottom-[10%] xl:size-20",
+      "left-[18%] top-[92%] size-10 sm:left-[2%] sm:top-[93%] sm:size-12 lg:size-14 xl:left-auto xl:top-auto xl:right-[7%] xl:bottom-[10%] xl:size-20",
     delay: "-15s",
     duration: "28s",
     rotate: "12deg",
@@ -221,7 +226,8 @@ const heroSpinnerBoxes = [
     spin: "hero-spin-reverse",
   },
   {
-    className: "hidden right-[39%] top-[20%] size-22 xl:block",
+    className:
+      "right-[38%] top-[28%] size-9 sm:right-[39%] sm:top-[20%] sm:size-12 lg:size-14 xl:right-[39%] xl:top-[20%] xl:size-22",
     delay: "-17s",
     duration: "30s",
     rotate: "-5deg",
