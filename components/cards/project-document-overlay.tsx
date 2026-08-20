@@ -31,7 +31,10 @@ type PdfDoc = {
 };
 
 type PdfPage = {
-  getViewport: (options: { scale: number }) => { width: number; height: number };
+  getViewport: (options: { scale: number }) => {
+    width: number;
+    height: number;
+  };
   render: (options: {
     canvasContext: CanvasRenderingContext2D;
     viewport: ReturnType<PdfPage["getViewport"]>;
@@ -333,7 +336,7 @@ export const ProjectDocumentOverlay = ({
     try {
       await Promise.all([
         renderOne(leftPage, leftCanvasRef.current, leftRenderTaskRef),
-      rightPage
+        rightPage
           ? renderOne(rightPage, rightCanvasRef.current, rightRenderTaskRef)
           : Promise.resolve(clearCanvas(rightCanvasRef.current)),
       ]);
@@ -369,7 +372,10 @@ export const ProjectDocumentOverlay = ({
 
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const focusTimer = window.setTimeout(() => closeButtonRef.current?.focus(), 50);
+    const focusTimer = window.setTimeout(
+      () => closeButtonRef.current?.focus(),
+      50,
+    );
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -452,7 +458,7 @@ export const ProjectDocumentOverlay = ({
       {isOpen ? (
         <motion.div
           animate={{ opacity: 1 }}
-          className="fixed inset-0 z-[70] flex items-end sm:items-center sm:justify-center sm:p-4 md:p-6 lg:p-8"
+          className="fixed inset-0 z-9999 flex items-center justify-center p-2 sm:p-4 md:p-6 lg:p-8"
           exit={{ opacity: 0 }}
           initial={{ opacity: 0 }}
         >
@@ -473,212 +479,218 @@ export const ProjectDocumentOverlay = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             aria-label={`${title} fullscreen preview`}
             aria-modal="true"
-            className="relative flex h-[92dvh] w-full flex-col overflow-hidden rounded-t-2xl bg-background shadow-2xl sm:h-[calc(100dvh-2rem)] sm:max-w-5xl sm:rounded-xl sm:border sm:border-border/60 md:max-w-6xl lg:max-w-7xl"
+            className="relative flex h-[70dvh] w-full flex-col overflow-hidden rounded-2xl bg-background shadow-2xl sm:h-[calc(100dvh-2rem)] sm:max-w-5xl sm:rounded-xl sm:border sm:border-border/60 md:max-w-6xl lg:max-w-7xl"
             exit={{ opacity: 0, scale: 0.98, y: 24 }}
             initial={{ opacity: 0, scale: 0.98, y: 24 }}
             role="dialog"
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
           >
-        <div className="flex shrink-0 items-center justify-between gap-3 border-b border-border/60 bg-background px-4 py-3 sm:px-5">
-          <div
-            aria-hidden="true"
-            className="absolute left-1/2 top-2 h-1 w-10 -translate-x-1/2 rounded-full bg-muted-foreground/25 sm:hidden"
-          />
-
-          <div className="min-w-0 pt-1 sm:pt-0">
-            <p className="truncate text-sm font-semibold sm:text-base">
-              {title}
-            </p>
-            {totalPages > 0 ? (
-              <p className="text-xs text-muted-foreground">
-                Pages {currentPage}
-                {!isSinglePageLayout && showRightPage ? `-${currentPage + 1}` : ""}{" "}
-                of {totalPages}
-              </p>
-            ) : null}
-          </div>
-
-          <div className="flex shrink-0 items-center gap-1.5">
-            <Button
-              aria-label="Zoom out"
-              className="size-8"
-              disabled={zoomLevel <= MIN_ZOOM_LEVEL}
-              onClick={() =>
-                setZoomLevel((level) =>
-                  Math.max(level - ZOOM_STEP, MIN_ZOOM_LEVEL),
-                )
-              }
-              size="icon"
-              type="button"
-              variant="outline"
-            >
-              <ZoomOut className="size-4" />
-            </Button>
-
-            <Button
-              aria-label="Zoom in"
-              className="size-8"
-              disabled={zoomLevel >= MAX_ZOOM_LEVEL}
-              onClick={() =>
-                setZoomLevel((level) =>
-                  Math.min(level + ZOOM_STEP, MAX_ZOOM_LEVEL),
-                )
-              }
-              size="icon"
-              type="button"
-              variant="outline"
-            >
-              <ZoomIn className="size-4" />
-            </Button>
-
-            <Button
-              asChild
-              className="hidden h-8 gap-1.5 px-3 text-xs sm:flex"
-              variant="outline"
-            >
-              <a href={src} rel="noopener noreferrer" target="_blank">
-                <Expand className="size-3.5" />
-                Open PDF
-              </a>
-            </Button>
-
-            {downloadUrl ? (
-              <Button
-                asChild
-                className="hidden h-8 gap-1.5 px-3 text-xs sm:flex"
-                variant="default"
-              >
-                <a download href={downloadUrl}>
-                  {downloadLabel}
-                </a>
-              </Button>
-            ) : null}
-
-            <Button
-              asChild
-              aria-label="Open PDF in new tab"
-              className="size-8 sm:hidden"
-              size="icon"
-              variant="outline"
-            >
-              <a href={src} rel="noopener noreferrer" target="_blank">
-                <Expand className="size-4" />
-              </a>
-            </Button>
-
-            {downloadUrl ? (
-              <Button
-                asChild
-                aria-label={downloadLabel}
-                className="size-8 sm:hidden"
-                size="icon"
-                variant="default"
-              >
-                <a download href={downloadUrl}>
-                  <Download className="size-4" />
-                </a>
-              </Button>
-            ) : null}
-
-            <Button
-              ref={closeButtonRef}
-              aria-label="Close preview"
-              className="size-8 cursor-pointer"
-              onClick={onClose}
-              size="icon"
-              type="button"
-              variant="outline"
-            >
-              <X className="size-4" />
-            </Button>
-          </div>
-        </div>
-
-        <div
-          ref={scrollRef}
-          className="relative min-h-0 flex-1 overflow-auto bg-muted/30 p-3 sm:p-5"
-        >
-          {!loading && !error ? (
-            <>
-              <Button
-                aria-label={
-                  isSinglePageLayout ? "Previous page" : "Previous spread"
-                }
-                className="absolute left-3 top-1/2 z-10 size-10 -translate-y-1/2 rounded-full border-border/70 bg-background/90 shadow-lg backdrop-blur sm:left-5"
-                disabled={!canGoPrev}
-                onClick={() =>
-                  setCurrentPage((page) => Math.max(page - pageStep, 1))
-                }
-                size="icon"
-                type="button"
-                variant="outline"
-              >
-                <ChevronLeft className="size-4" />
-              </Button>
-
-              <Button
-                aria-label={isSinglePageLayout ? "Next page" : "Next spread"}
-                className="absolute right-3 top-1/2 z-10 size-10 -translate-y-1/2 rounded-full border-border/70 bg-background/90 shadow-lg backdrop-blur sm:right-5"
-                disabled={!canGoNext}
-                onClick={() =>
-                  setCurrentPage((page) => Math.min(page + pageStep, totalPages))
-                }
-                size="icon"
-                type="button"
-                variant="outline"
-              >
-                <ChevronRight className="size-4" />
-              </Button>
-            </>
-          ) : null}
-
-          {loading ? (
-            <div className="flex h-full items-center justify-center gap-2 text-sm text-muted-foreground">
-              <Loader2 className="size-5 animate-spin" />
-              Loading document...
-            </div>
-          ) : null}
-
-          {error ? (
-            <div className="flex h-full items-center justify-center text-sm text-destructive">
-              {error}
-            </div>
-          ) : null}
-
-          {!loading && !error ? (
-            <motion.div
-              className={`mx-auto flex min-h-full w-full items-start justify-center ${
-                isSinglePageLayout ? "" : "gap-3"
-              }`}
-              onPanEnd={canSwipePages ? handlePagePanEnd : undefined}
-              style={{ touchAction: "pan-y" }}
-            >
-              <canvas
-                ref={leftCanvasRef}
-                className="h-auto max-w-full rounded-md border border-border/50 bg-card shadow-md"
-                style={{ display: "block" }}
+            <div className="flex shrink-0 items-center justify-between gap-3 border-b border-border/60 bg-background px-4 py-3 sm:px-5">
+              <div
+                aria-hidden="true"
+                className="absolute left-1/2 top-2 h-1 w-10 -translate-x-1/2 rounded-full bg-muted-foreground/25 sm:hidden"
               />
-              <canvas
-                ref={rightCanvasRef}
-                className="h-auto max-w-full rounded-md border border-border/50 bg-card shadow-md"
-                style={{
-                  display:
-                    !isSinglePageLayout && showRightPage ? "block" : "none",
-                }}
-              />
-            </motion.div>
-          ) : null}
-        </div>
 
-        <div className="flex shrink-0 items-center justify-center border-t border-border/60 bg-background px-4 py-2.5 sm:px-5">
-          <span className="text-xs tabular-nums text-muted-foreground">
-            {totalPages > 0
-              ? isSinglePageLayout
-                ? `${currentPage} / ${totalPages} pages`
-                : `${Math.ceil(currentPage / 2)} / ${Math.ceil(totalPages / 2)} spreads`
-              : "-"}
-          </span>
-        </div>
+              <div className="min-w-0 pt-1 sm:pt-0">
+                <p className="truncate text-sm font-semibold sm:text-base">
+                  {title}
+                </p>
+                {totalPages > 0 ? (
+                  <p className="text-xs text-muted-foreground">
+                    Pages {currentPage}
+                    {!isSinglePageLayout && showRightPage
+                      ? `-${currentPage + 1}`
+                      : ""}{" "}
+                    of {totalPages}
+                  </p>
+                ) : null}
+              </div>
+
+              <div className="flex shrink-0 items-center gap-1.5">
+                <Button
+                  aria-label="Zoom out"
+                  className="size-8"
+                  disabled={zoomLevel <= MIN_ZOOM_LEVEL}
+                  onClick={() =>
+                    setZoomLevel((level) =>
+                      Math.max(level - ZOOM_STEP, MIN_ZOOM_LEVEL),
+                    )
+                  }
+                  size="icon"
+                  type="button"
+                  variant="outline"
+                >
+                  <ZoomOut className="size-4" />
+                </Button>
+
+                <Button
+                  aria-label="Zoom in"
+                  className="size-8"
+                  disabled={zoomLevel >= MAX_ZOOM_LEVEL}
+                  onClick={() =>
+                    setZoomLevel((level) =>
+                      Math.min(level + ZOOM_STEP, MAX_ZOOM_LEVEL),
+                    )
+                  }
+                  size="icon"
+                  type="button"
+                  variant="outline"
+                >
+                  <ZoomIn className="size-4" />
+                </Button>
+
+                <Button
+                  asChild
+                  className="hidden h-8 gap-1.5 px-3 text-xs sm:flex"
+                  variant="outline"
+                >
+                  <a href={src} rel="noopener noreferrer" target="_blank">
+                    <Expand className="size-3.5" />
+                    Open PDF
+                  </a>
+                </Button>
+
+                {downloadUrl ? (
+                  <Button
+                    asChild
+                    className="hidden h-8 gap-1.5 px-3 text-xs sm:flex"
+                    variant="default"
+                  >
+                    <a download href={downloadUrl}>
+                      {downloadLabel}
+                    </a>
+                  </Button>
+                ) : null}
+
+                <Button
+                  asChild
+                  aria-label="Open PDF in new tab"
+                  className="size-8 sm:hidden"
+                  size="icon"
+                  variant="outline"
+                >
+                  <a href={src} rel="noopener noreferrer" target="_blank">
+                    <Expand className="size-4" />
+                  </a>
+                </Button>
+
+                {downloadUrl ? (
+                  <Button
+                    asChild
+                    aria-label={downloadLabel}
+                    className="size-8 sm:hidden"
+                    size="icon"
+                    variant="default"
+                  >
+                    <a download href={downloadUrl}>
+                      <Download className="size-4" />
+                    </a>
+                  </Button>
+                ) : null}
+
+                <Button
+                  ref={closeButtonRef}
+                  aria-label="Close preview"
+                  className="size-8 cursor-pointer"
+                  onClick={onClose}
+                  size="icon"
+                  type="button"
+                  variant="outline"
+                >
+                  <X className="size-4" />
+                </Button>
+              </div>
+            </div>
+
+            <div
+              ref={scrollRef}
+              className="relative min-h-0 flex-1 overflow-auto bg-muted/30 p-3 sm:p-5"
+            >
+              {!loading && !error ? (
+                <>
+                  <Button
+                    aria-label={
+                      isSinglePageLayout ? "Previous page" : "Previous spread"
+                    }
+                    className="absolute left-3 top-1/2 z-10 size-10 -translate-y-1/2 rounded-full border-border/70 bg-background/90 shadow-lg backdrop-blur sm:left-5"
+                    disabled={!canGoPrev}
+                    onClick={() =>
+                      setCurrentPage((page) => Math.max(page - pageStep, 1))
+                    }
+                    size="icon"
+                    type="button"
+                    variant="outline"
+                  >
+                    <ChevronLeft className="size-4" />
+                  </Button>
+
+                  <Button
+                    aria-label={
+                      isSinglePageLayout ? "Next page" : "Next spread"
+                    }
+                    className="absolute right-3 top-1/2 z-10 size-10 -translate-y-1/2 rounded-full border-border/70 bg-background/90 shadow-lg backdrop-blur sm:right-5"
+                    disabled={!canGoNext}
+                    onClick={() =>
+                      setCurrentPage((page) =>
+                        Math.min(page + pageStep, totalPages),
+                      )
+                    }
+                    size="icon"
+                    type="button"
+                    variant="outline"
+                  >
+                    <ChevronRight className="size-4" />
+                  </Button>
+                </>
+              ) : null}
+
+              {loading ? (
+                <div className="flex h-full items-center justify-center gap-2 text-sm text-muted-foreground">
+                  <Loader2 className="size-5 animate-spin" />
+                  Loading document...
+                </div>
+              ) : null}
+
+              {error ? (
+                <div className="flex h-full items-center justify-center text-sm text-destructive">
+                  {error}
+                </div>
+              ) : null}
+
+              {!loading && !error ? (
+                <motion.div
+                  className={`mx-auto flex min-h-full w-full items-start justify-center ${
+                    isSinglePageLayout ? "" : "gap-3"
+                  }`}
+                  onPanEnd={canSwipePages ? handlePagePanEnd : undefined}
+                  style={{ touchAction: "pan-y" }}
+                >
+                  <canvas
+                    ref={leftCanvasRef}
+                    className="h-auto max-w-full rounded-md border border-border/50 bg-card shadow-md"
+                    style={{ display: "block" }}
+                  />
+                  <canvas
+                    ref={rightCanvasRef}
+                    className="h-auto max-w-full rounded-md border border-border/50 bg-card shadow-md"
+                    style={{
+                      display:
+                        !isSinglePageLayout && showRightPage ? "block" : "none",
+                    }}
+                  />
+                </motion.div>
+              ) : null}
+            </div>
+
+            <div className="flex shrink-0 items-center justify-center border-t border-border/60 bg-background px-4 py-2.5 sm:px-5">
+              <span className="text-xs tabular-nums text-muted-foreground">
+                {totalPages > 0
+                  ? isSinglePageLayout
+                    ? `${currentPage} / ${totalPages} pages`
+                    : `${Math.ceil(currentPage / 2)} / ${Math.ceil(totalPages / 2)} spreads`
+                  : "-"}
+              </span>
+            </div>
           </motion.div>
         </motion.div>
       ) : null}

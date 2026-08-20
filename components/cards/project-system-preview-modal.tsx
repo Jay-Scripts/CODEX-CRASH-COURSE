@@ -62,7 +62,7 @@ export const ProjectSystemPreviewModal = ({
       {isOpen ? (
         <motion.div
           animate={{ opacity: 1 }}
-          className="fixed inset-0 z-[80] flex items-end sm:items-center sm:justify-center sm:p-4 md:p-6"
+          className="fixed inset-0 z-9999 flex items-center justify-center p-2 sm:p-4 md:p-6"
           exit={{ opacity: 0 }}
           initial={{ opacity: 0 }}
         >
@@ -82,7 +82,7 @@ export const ProjectSystemPreviewModal = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             aria-label={`${project.title} system preview`}
             aria-modal="true"
-            className="relative flex h-[92dvh] w-full flex-col overflow-hidden rounded-t-2xl border border-border/60 bg-background shadow-2xl sm:h-[calc(100dvh-2rem)] sm:max-w-6xl sm:rounded-2xl"
+            className="relative flex h-[70dvh] w-full flex-col overflow-hidden rounded-2xl border border-border/60 bg-background shadow-2xl sm:h-[calc(100dvh-2rem)] sm:max-w-6xl"
             exit={{ opacity: 0, scale: 0.98, y: 24 }}
             initial={{ opacity: 0, scale: 0.98, y: 24 }}
             role="dialog"
@@ -127,7 +127,10 @@ export const ProjectSystemPreviewModal = ({
                     />
                   ) : (
                     <Image
-                      alt={project.systemPreviewAlt ?? `${project.title} system preview`}
+                      alt={
+                        project.systemPreviewAlt ??
+                        `${project.title} system preview`
+                      }
                       className="h-auto w-full object-contain"
                       height={1200}
                       src={project.systemPreviewSrc}

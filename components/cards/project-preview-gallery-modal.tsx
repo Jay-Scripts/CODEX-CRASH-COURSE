@@ -56,9 +56,7 @@ export const ProjectPreviewGalleryModal = ({
     : previewCategories[0]?.id || "";
   const activeCategoryImages = useMemo(
     () =>
-      previewImages.filter(
-        (image) => image.category === selectedCategoryId,
-      ),
+      previewImages.filter((image) => image.category === selectedCategoryId),
     [previewImages, selectedCategoryId],
   );
   const activePreview = activeCategoryImages[activeIndex];
@@ -69,13 +67,10 @@ export const ProjectPreviewGalleryModal = ({
     }
 
     setActiveIndex((currentIndex) => {
-      const safeIndex = currentIndex < activeCategoryImages.length
-        ? currentIndex
-        : 0;
+      const safeIndex =
+        currentIndex < activeCategoryImages.length ? currentIndex : 0;
 
-      return safeIndex === 0
-        ? activeCategoryImages.length - 1
-        : safeIndex - 1;
+      return safeIndex === 0 ? activeCategoryImages.length - 1 : safeIndex - 1;
     });
   }, [activeCategoryImages.length]);
 
@@ -85,13 +80,10 @@ export const ProjectPreviewGalleryModal = ({
     }
 
     setActiveIndex((currentIndex) => {
-      const safeIndex = currentIndex < activeCategoryImages.length
-        ? currentIndex
-        : 0;
+      const safeIndex =
+        currentIndex < activeCategoryImages.length ? currentIndex : 0;
 
-      return safeIndex === activeCategoryImages.length - 1
-        ? 0
-        : safeIndex + 1;
+      return safeIndex === activeCategoryImages.length - 1 ? 0 : safeIndex + 1;
     });
   }, [activeCategoryImages.length]);
 
@@ -148,7 +140,11 @@ export const ProjectPreviewGalleryModal = ({
     };
   }, [isOpen, onClose, showNext, showPrevious]);
 
-  if (!previewImages.length || !previewCategories.length || typeof document === "undefined") {
+  if (
+    !previewImages.length ||
+    !previewCategories.length ||
+    typeof document === "undefined"
+  ) {
     return null;
   }
 
@@ -159,7 +155,7 @@ export const ProjectPreviewGalleryModal = ({
       {isOpen ? (
         <motion.div
           animate={{ opacity: 1 }}
-          className="fixed inset-0 z-[80] flex items-end sm:items-center sm:justify-center sm:p-4 md:p-6"
+          className="fixed inset-0 z-9999 flex items-center justify-center p-2 sm:p-4 md:p-6"
           exit={{ opacity: 0 }}
           initial={{ opacity: 0 }}
         >
@@ -179,7 +175,7 @@ export const ProjectPreviewGalleryModal = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             aria-label={`${project.title} preview gallery`}
             aria-modal="true"
-            className="relative flex h-[92dvh] w-full flex-col overflow-hidden rounded-t-2xl border border-border/60 bg-background shadow-2xl sm:h-[calc(100dvh-2rem)] sm:max-w-6xl sm:rounded-2xl"
+            className="relative flex h-[70dvh] w-full flex-col overflow-hidden rounded-2xl border border-border/60 bg-background shadow-2xl sm:h-[calc(100dvh-2rem)] sm:max-w-6xl"
             exit={{ opacity: 0, scale: 0.98, y: 24 }}
             initial={{ opacity: 0, scale: 0.98, y: 24 }}
             role="dialog"
@@ -270,8 +266,8 @@ export const ProjectPreviewGalleryModal = ({
               </div>
             </div>
 
-            <div className="relative min-h-0 flex-1 overflow-auto bg-muted/30 p-2 sm:p-4">
-              <div className="mx-auto flex max-w-5xl flex-col gap-3">
+            <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-auto bg-muted/30 p-2 sm:p-4">
+              <div className="mx-auto flex w-full max-w-5xl flex-col justify-center gap-3">
                 <Button
                   aria-label="Previous preview image"
                   className="absolute left-3 top-1/2 z-10 size-10 -translate-y-1/2 rounded-full border-border/70 bg-background/90 shadow-lg backdrop-blur sm:left-5 md:left-6"
@@ -307,20 +303,22 @@ export const ProjectPreviewGalleryModal = ({
                   style={{ touchAction: "pan-y" }}
                   whileTap={{ cursor: "grabbing" }}
                 >
-                  <div className="relative h-[min(76dvh,48rem)] w-full cursor-grab select-none active:cursor-grabbing">
+                  <div className="relative h-[min(54dvh,48rem)] w-full cursor-grab select-none active:cursor-grabbing sm:h-[min(76dvh,48rem)]">
                     <Image
                       key={currentPreview.src}
                       alt={currentPreview.alt}
                       className="object-contain p-2 sm:p-3"
                       fill
                       draggable={false}
-                      priority={activeIndex === 0 && selectedCategoryId === previewCategories[0]?.id}
+                      priority={
+                        activeIndex === 0 &&
+                        selectedCategoryId === previewCategories[0]?.id
+                      }
                       sizes="(min-width: 1280px) 64rem, (min-width: 1024px) 56rem, 100vw"
                       src={currentPreview.src}
                     />
                   </div>
                 </motion.div>
-
               </div>
             </div>
           </motion.div>
