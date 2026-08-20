@@ -94,7 +94,7 @@ const floatingCardVariants: Variants = {
 const heroSpinnerBoxes = [
   {
     className:
-      "left-[1%] top-[9%] size-10 sm:left-[2%] sm:top-[7%] sm:size-12 lg:size-14 xl:left-[3%] xl:top-24 xl:size-20",
+      "left-[1%] top-[9%] size-12 sm:left-[2%] sm:top-[7%] sm:size-14 lg:size-16 xl:left-[3%] xl:top-24 xl:size-20",
     delay: "-2s",
     duration: "18s",
     rotate: "-10deg",
@@ -103,7 +103,7 @@ const heroSpinnerBoxes = [
   },
   {
     className:
-      "right-[1%] top-[24%] size-10 sm:right-auto sm:left-[2%] sm:top-[23%] sm:size-12 lg:size-14 xl:left-[16%] xl:top-[28%] xl:size-20",
+      "right-[1%] top-[24%] size-12 sm:right-auto sm:left-[2%] sm:top-[23%] sm:size-14 lg:size-16 xl:left-[16%] xl:top-[28%] xl:size-20",
     delay: "-3s",
     duration: "23s",
     rotate: "6deg",
@@ -120,7 +120,7 @@ const heroSpinnerBoxes = [
   },
   {
     className:
-      "right-[1%] top-[17%] size-10 sm:right-[2%] sm:top-[16%] sm:size-12 lg:size-14 xl:right-auto xl:top-auto xl:left-[21%] xl:bottom-24 xl:size-22",
+      "right-[1%] top-[17%] size-12 sm:right-[2%] sm:top-[16%] sm:size-14 lg:size-16 xl:right-auto xl:top-auto xl:left-[21%] xl:bottom-24 xl:size-22",
     delay: "-10s",
     duration: "28s",
     rotate: "16deg",
@@ -154,7 +154,7 @@ const heroSpinnerBoxes = [
   },
   {
     className:
-      "left-[1%] top-[31%] size-10 sm:left-[2%] sm:top-[32%] sm:size-12 lg:size-14 xl:left-[47%] xl:top-[48%] xl:size-20",
+      "left-[1%] top-[31%] size-12 sm:left-[2%] sm:top-[32%] sm:size-14 lg:size-16 xl:left-[47%] xl:top-[48%] xl:size-20",
     delay: "-5s",
     duration: "20s",
     rotate: "12deg",
@@ -230,7 +230,7 @@ const heroSpinnerBoxes = [
   },
   {
     className:
-      "right-[1%] top-[87%] size-10 sm:right-[2%] sm:top-[86%] sm:size-12 lg:size-14 xl:right-[12%] xl:top-[10%] xl:size-20",
+      "right-[1%] top-[87%] size-12 sm:right-[2%] sm:top-[86%] sm:size-14 lg:size-16 xl:right-[12%] xl:top-[10%] xl:size-20",
     delay: "-19s",
     duration: "27s",
     rotate: "6deg",
@@ -255,7 +255,7 @@ const heroSpinnerBoxes = [
   },
   {
     className:
-      "right-[1%] top-[40%] size-10 sm:right-[2%] sm:top-[41%] sm:size-12 lg:size-14 xl:right-auto xl:left-[2%] xl:top-[30%] xl:size-22",
+      "right-[1%] top-[40%] size-12 sm:right-[2%] sm:top-[41%] sm:size-14 lg:size-16 xl:right-auto xl:left-[2%] xl:top-[30%] xl:size-22",
     delay: "-25s",
     duration: "28s",
     rotate: "-9deg",
@@ -264,7 +264,7 @@ const heroSpinnerBoxes = [
   },
   {
     className:
-      "right-[1%] top-[63%] size-10 sm:right-[2%] sm:top-[64%] sm:size-12 lg:size-14 xl:right-auto xl:top-auto xl:left-[2%] xl:bottom-[18%] xl:size-20",
+      "right-[1%] top-[63%] size-12 sm:right-[2%] sm:top-[64%] sm:size-14 lg:size-16 xl:right-auto xl:top-auto xl:left-[2%] xl:bottom-[18%] xl:size-20",
     delay: "-27s",
     duration: "26s",
     rotate: "7deg",
@@ -273,7 +273,7 @@ const heroSpinnerBoxes = [
   },
   {
     className:
-      "left-[1%] top-[76%] size-10 sm:left-[2%] sm:top-[78%] sm:size-12 lg:size-14 xl:left-auto xl:right-[2%] xl:top-[58%] xl:size-20",
+      "left-[1%] top-[76%] size-12 sm:left-[2%] sm:top-[78%] sm:size-14 lg:size-16 xl:left-auto xl:right-[2%] xl:top-[58%] xl:size-20",
     delay: "-29s",
     duration: "30s",
     rotate: "-11deg",
@@ -282,7 +282,7 @@ const heroSpinnerBoxes = [
   },
   {
     className:
-      "left-[1%] top-[53%] size-10 sm:left-[2%] sm:top-[57%] sm:size-12 lg:size-14 xl:top-auto xl:left-[12%] xl:bottom-[4%] xl:size-20",
+      "left-[1%] top-[53%] size-12 sm:left-[2%] sm:top-[57%] sm:size-14 lg:size-16 xl:top-auto xl:left-[12%] xl:bottom-[4%] xl:size-20",
     delay: "-31s",
     duration: "32s",
     rotate: "10deg",
@@ -427,8 +427,7 @@ export const HeroSection = () => {
     useState(false);
   const techSupportExperienceMonths = getTimelineSpanMonthCount(
     experiences.filter(
-      (experience) =>
-        experience.organization === "Global Reciprocal Colleges",
+      (experience) => experience.organization === "Global Reciprocal Colleges",
     ),
   );
   const techSupportExperienceYears = Math.max(
@@ -444,9 +443,12 @@ export const HeroSection = () => {
       return undefined;
     }
 
-    const completionTimer = window.setTimeout(() => {
-      setHasExperienceRevealFinished(true);
-    }, (floatingCardRevealDelay + experienceCounterDuration) * 1000);
+    const completionTimer = window.setTimeout(
+      () => {
+        setHasExperienceRevealFinished(true);
+      },
+      (floatingCardRevealDelay + experienceCounterDuration) * 1000,
+    );
 
     return () => {
       window.clearTimeout(completionTimer);
@@ -481,65 +483,66 @@ export const HeroSection = () => {
         const skill = skillLogoMap[box.skill];
 
         return (
-        <div
-          aria-hidden="true"
-          className={`pointer-events-none absolute transition-opacity duration-1000 ${
-            hasExperienceRevealFinished
-              ? "opacity-75 xl:opacity-[0.92]"
-              : "opacity-40 xl:opacity-60"
-          } ${box.className}`}
-          key={box.className}
-          style={{
-            transform: `rotate(${box.rotate})`,
-          }}
-        >
           <div
-            className="relative flex size-full items-center justify-center"
+            aria-hidden="true"
+            className={`pointer-events-none absolute transition-opacity duration-1000 ${
+              hasExperienceRevealFinished
+                ? "opacity-75 xl:opacity-[0.92]"
+                : "opacity-40 xl:opacity-60"
+            } ${box.className}`}
+            key={box.className}
             style={{
-              animation: `${box.spin} ${box.duration} linear infinite`,
-              animationDelay: box.delay,
+              transform: `rotate(${box.rotate})`,
             }}
           >
             <div
-              className="hero-icon-pop"
+              className="relative flex size-full items-center justify-center"
               style={{
-                animation: "hero-icon-pop 720ms cubic-bezier(0.22, 1, 0.36, 1) both",
-                animationDelay: `${floatingIconPopDelay + index * 0.12}s`,
+                animation: `${box.spin} ${box.duration} linear infinite`,
+                animationDelay: box.delay,
               }}
             >
-            <span className="relative z-[1] grid place-items-center">
-            {skill.logo ? (
-              <>
-                <Image
-                  alt=""
-                  className={
-                    skill.darkLogo
-                      ? "size-5 object-contain dark:hidden sm:size-6 lg:size-7 xl:size-9"
-                      : `size-5 object-contain sm:size-6 lg:size-7 xl:size-9 ${skill.logoClassName ?? ""}`
-                  }
-                  height={30}
-                  loading="lazy"
-                  src={skill.logo}
-                  unoptimized
-                  width={30}
-                />
-                {skill.darkLogo ? (
-                  <Image
-                    alt=""
-                    className="hidden size-5 dark:block sm:size-6 lg:size-7 xl:size-9"
-                    height={30}
-                    loading="lazy"
-                    src={skill.darkLogo}
-                    unoptimized
-                    width={30}
-                  />
-                ) : null}
-              </>
-            ) : null}
-            </span>
+              <div
+                className="hero-icon-pop"
+                style={{
+                  animation:
+                    "hero-icon-pop 720ms cubic-bezier(0.22, 1, 0.36, 1) both",
+                  animationDelay: `${floatingIconPopDelay + index * 0.12}s`,
+                }}
+              >
+                <span className="relative z-[1] grid place-items-center">
+                  {skill.logo ? (
+                    <>
+                      <Image
+                        alt=""
+                        className={
+                          skill.darkLogo
+                            ? "size-6 object-contain dark:hidden sm:size-7 lg:size-8 xl:size-9"
+                            : `size-6 object-contain sm:size-7 lg:size-8 xl:size-9 ${skill.logoClassName ?? ""}`
+                        }
+                        height={30}
+                        loading="lazy"
+                        src={skill.logo}
+                        unoptimized
+                        width={30}
+                      />
+                      {skill.darkLogo ? (
+                        <Image
+                          alt=""
+                          className="hidden size-6 dark:block sm:size-7 lg:size-8 xl:size-9"
+                          height={30}
+                          loading="lazy"
+                          src={skill.darkLogo}
+                          unoptimized
+                          width={30}
+                        />
+                      ) : null}
+                    </>
+                  ) : null}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
         );
       })}
       <div className="relative z-10 mx-auto grid min-h-[calc(100svh-4rem)] w-full max-w-6xl items-center gap-8 px-4 py-12 transition-[gap,padding] duration-500 ease-out sm:gap-10 sm:px-6 sm:py-16 lg:grid-cols-[1fr_360px] lg:gap-16 lg:px-10 lg:py-24">
@@ -548,7 +551,7 @@ export const HeroSection = () => {
           variants={containerVariants}
         >
           <motion.h1
-            className="text-balance text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl"
+            className="text-balance text-2xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl"
             style={{
               color: "var(--hero-heading)",
               fontFamily: "'Syne', sans-serif",
@@ -571,7 +574,7 @@ export const HeroSection = () => {
           </motion.h1>
 
           <motion.p
-            className="mt-4 max-w-md text-sm leading-relaxed sm:text-base lg:max-w-lg"
+            className="mt-4 max-w-md text-xs md:text-sm leading-relaxed sm:text-base lg:max-w-lg"
             style={{ color: "var(--hero-body)" }}
             variants={itemVariants}
           >
@@ -628,8 +631,8 @@ export const HeroSection = () => {
           >
             <Button
               asChild
-              className="hero-primary-button sm:min-w-40"
-              size="lg"
+              className="hero-primary-button sm:min-w-40 sm:h-11 sm:px-6"
+              size="default"
             >
               <Link href="#projects">
                 View Projects
@@ -637,9 +640,9 @@ export const HeroSection = () => {
               </Link>
             </Button>
             <Button
-              className="hero-outline-button sm:min-w-40"
+              className="hero-outline-button sm:min-w-40 sm:h-11 sm:px-6"
               onClick={() => setIsResumePreviewOpen(true)}
-              size="lg"
+              size="default"
               type="button"
               variant="outline"
             >
@@ -650,8 +653,8 @@ export const HeroSection = () => {
             </Button>
             <Button
               asChild
-              className="hero-ghost-button sm:min-w-40"
-              size="lg"
+              className="hero-ghost-button sm:min-w-40 sm:h-11 sm:px-6"
+              size="default"
               variant="ghost"
             >
               <Link href="#contact">
@@ -663,10 +666,10 @@ export const HeroSection = () => {
         </motion.div>
 
         <motion.div
-          className="order-1 mx-auto flex w-full max-w-[320px] flex-col items-center gap-0 lg:order-2 lg:max-w-[360px] lg:justify-self-end"
+          className="order-1 mx-auto flex w-full max-w-[280px] flex-col items-center gap-0 lg:order-2 lg:max-w-[360px] lg:justify-self-end"
           variants={itemVariants}
         >
-          <div className="relative w-[min(72vw,280px)]">
+          <div className="relative w-[min(58vw,220px)] sm:w-[min(58vw,260px)] lg:w-[min(30vw,300px)]">
             <div
               className="absolute -inset-3.5 z-[1] rounded-[22px] border border-dashed"
               style={{
@@ -736,13 +739,13 @@ export const HeroSection = () => {
 
             <motion.div
               animate={isPortraitLoaded ? "visible" : "hidden"}
-              className="absolute -top-12 left-1/2 z-[6] -translate-x-1/2 rounded-xl border px-3.5 py-2.5 backdrop-blur-md sm:-left-14 sm:top-10 sm:translate-x-0"
+              className="absolute -left-14 top-8 z-[6] max-w-[calc(100%+2rem)] rounded-xl border px-2.5 py-2 backdrop-blur-md sm:top-10 sm:max-w-none sm:px-3.5 sm:py-2.5"
               custom="left"
               style={floatingCardStyle}
               variants={floatingCardVariants}
             >
               <p
-                className="text-[10px] uppercase tracking-wider"
+                className="text-[9px] uppercase tracking-wider sm:text-[10px]"
                 style={{ color: "var(--hero-floating-label)" }}
               >
                 Tech Supp. Exp.
@@ -752,7 +755,7 @@ export const HeroSection = () => {
                 style={{
                   color: "var(--hero-floating-value)",
                   fontFamily: "'Syne', sans-serif",
-                  fontSize: 16,
+                  fontSize: 14,
                 }}
               >
                 <AnimatedCounter
@@ -764,7 +767,7 @@ export const HeroSection = () => {
                 />
               </p>
               <p
-                className="text-[9px]"
+                className="text-[8px] sm:text-[9px]"
                 style={{ color: "var(--hero-floating-copy)" }}
               >
                 Scholar Service — IT Dept.
@@ -773,13 +776,13 @@ export const HeroSection = () => {
 
             <motion.div
               animate={isPortraitLoaded ? "visible" : "hidden"}
-              className="absolute -bottom-2 -right-4 z-[6] rounded-xl border px-3.5 py-2.5 backdrop-blur-md sm:-bottom-5 sm:-right-14"
+              className="absolute -bottom-3 -right-14 z-[6] max-w-[calc(100%+2rem)] rounded-xl border px-2.5 py-2 backdrop-blur-md sm:-bottom-5 sm:max-w-none sm:px-3.5 sm:py-2.5"
               custom="right"
               style={floatingCardStyle}
               variants={floatingCardVariants}
             >
               <p
-                className="text-[10px] uppercase tracking-wider"
+                className="text-[9px] uppercase tracking-wider sm:text-[10px]"
                 style={{ color: "var(--hero-floating-label)" }}
               >
                 App Dev Exp.
@@ -789,7 +792,7 @@ export const HeroSection = () => {
                 style={{
                   color: "var(--hero-floating-value)",
                   fontFamily: "'Syne', sans-serif",
-                  fontSize: 16,
+                  fontSize: 14,
                 }}
               >
                 <AnimatedCounter
@@ -801,7 +804,7 @@ export const HeroSection = () => {
                 />
               </p>
               <p
-                className="text-[9px]"
+                className="text-[8px] sm:text-[9px]"
                 style={{ color: "var(--hero-floating-copy)" }}
               >
                 freelance, thesis &amp; internship
