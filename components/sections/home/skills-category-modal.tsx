@@ -154,7 +154,10 @@ export const SkillsCategoryModal = ({
                             ) : null}
                           </>
                         ) : (
-                          <Icon aria-hidden="true" className="size-4 sm:size-5" />
+                          <Icon
+                            aria-hidden="true"
+                            className="size-4 sm:size-5"
+                          />
                         )}
                       </span>
                       <span className="wrap-break-word text-[11px] font-medium leading-tight text-foreground sm:text-sm">
