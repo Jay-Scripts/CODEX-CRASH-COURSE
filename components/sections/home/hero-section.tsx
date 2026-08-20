@@ -578,9 +578,10 @@ export const HeroSection = () => {
             style={{ color: "var(--hero-body)" }}
             variants={itemVariants}
           >
-            IT professional open to software development, technical support,
-            software testing, and quality assurance roles. I bring hands-on
-            experience building, troubleshooting, documenting, and validating
+            IT professional in Manila open to technical support, IT operations,
+            software testing, quality assurance, systems documentation, and
+            software development roles. I bring hands-on experience
+            troubleshooting, validating, documenting, and improving
             user-friendly systems.
           </motion.p>
 

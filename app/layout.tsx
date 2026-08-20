@@ -9,7 +9,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import "./globals.css";
 
 const seoDescription =
-  "Full Stack Developer in Manila building responsive web applications with Next.js, React, TypeScript, Supabase, PostgreSQL, QA testing, and technical support.";
+  "IT professional in Manila, Philippines, with experience in technical support, software testing, quality assurance, systems documentation, troubleshooting, and software development.";
 
 const structuredData = [
   {
@@ -29,14 +29,18 @@ const structuredData = [
     sameAs: [profile.githubUrl, profile.linkedinUrl, profile.facebookUrl],
     alumniOf: "Global Reciprocal Colleges",
     knowsAbout: [
+      "Information Technology",
+      "IT Technical Support",
+      "IT Troubleshooting",
+      "Systems Documentation",
+      "Software Testing",
+      "Quality Assurance",
       "Next.js",
       "React",
       "TypeScript",
       "Supabase",
       "PostgreSQL",
-      "Quality Assurance",
       "Responsive Web Development",
-      "Technical Support",
       "UI/UX",
       "PHP",
       "MySQL",
@@ -69,6 +73,16 @@ export const metadata: Metadata = {
   description: seoDescription,
   keywords: [
     "Cornelio A. Gatbonton Jr",
+    "IT Professional Manila",
+    "IT Professional Philippines",
+    "Information Technology Professional",
+    "IT Support Manila",
+    "Technical Support Philippines",
+    "IT Troubleshooting",
+    "Systems Documentation",
+    "Software Testing Philippines",
+    "Quality Assurance Philippines",
+    "IT Operations",
     "Full Stack Developer Manila",
     "Full Stack Developer Philippines",
     "Web Applications",
@@ -134,15 +148,9 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <html
-      className="h-full scroll-smooth"
-      lang="en"
-      suppressHydrationWarning
-    >
+    <html className="h-full scroll-smooth" lang="en" suppressHydrationWarning>
       <body className="flex min-h-full flex-col overflow-x-clip bg-background font-sans text-foreground antialiased">
-        <script
-          type="application/ld+json"
-        >
+        <script type="application/ld+json">
           {JSON.stringify(structuredData)}
         </script>
         <MotionProvider>
