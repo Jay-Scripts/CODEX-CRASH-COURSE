@@ -9,7 +9,7 @@
 
 ### `SiteFooter`
 
-- Purpose: Renders a mobile-first footer with centered phone layout, smoother tablet-to-desktop responsiveness, and outbound profile links including optional Facebook access when present in profile data.
+- Purpose: Renders a modern, recruiter-focused footer with general IT positioning, site navigation, location, and outbound profile links including optional Facebook access when present in profile data.
 - Location: `components/layout/site-footer.tsx`
 
 ### `ThemeToggle`
