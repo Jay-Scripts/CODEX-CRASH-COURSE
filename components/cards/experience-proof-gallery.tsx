@@ -596,7 +596,7 @@ export const ExperienceProofGallery = ({
               {activeProof ? (
                 <motion.div
                   animate={{ opacity: 1 }}
-                  className="fixed inset-0 z-[80] flex items-end sm:items-center sm:justify-center sm:p-4 md:p-6"
+                  className="fixed inset-0 z-9999 flex items-center justify-center p-2 sm:p-4 md:p-6"
                   exit={{ opacity: 0 }}
                   initial={{ opacity: 0 }}
                 >
@@ -616,7 +616,7 @@ export const ExperienceProofGallery = ({
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     aria-label={`${displayedProof.label} preview`}
                     aria-modal="true"
-                    className="relative flex h-[92dvh] w-full flex-col overflow-hidden rounded-t-2xl border border-border/60 bg-background shadow-2xl sm:h-[calc(100dvh-2rem)] sm:max-w-5xl sm:rounded-2xl"
+                    className="relative flex h-[70dvh] w-full flex-col overflow-hidden rounded-2xl border border-border/60 bg-background shadow-2xl sm:h-[calc(100dvh-2rem)] sm:max-w-5xl"
                     exit={{ opacity: 0, scale: 0.98, y: 24 }}
                     initial={{ opacity: 0, scale: 0.98, y: 24 }}
                     role="dialog"
@@ -643,7 +643,7 @@ export const ExperienceProofGallery = ({
                       </Button>
                     </div>
 
-                    <div className="relative min-h-0 flex-1 overflow-auto bg-muted/30 p-3 sm:p-5">
+                    <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-auto bg-muted/30 p-2 sm:p-5">
                       <Button
                         aria-label="Previous proof"
                         className="absolute left-3 top-1/2 z-10 size-10 -translate-y-1/2 rounded-full border-border/70 bg-background/90 shadow-lg backdrop-blur sm:left-5"
@@ -673,7 +673,7 @@ export const ExperienceProofGallery = ({
                           sheets={displayedProof.spreadsheetPreview.sheets}
                         />
                       ) : isVideoProof(displayedProof.src) ? (
-                        <div className="flex h-full min-h-[24rem] items-center justify-center">
+                        <div className="flex h-full min-h-64 w-full items-center justify-center sm:min-h-96">
                           <video
                             autoPlay
                             className="max-h-full w-full rounded-2xl border border-border/60 bg-black object-contain shadow-xl"
@@ -686,8 +686,8 @@ export const ExperienceProofGallery = ({
                           />
                         </div>
                       ) : isImageProof(displayedProof.src) ? (
-                        <div className="flex h-full min-h-[24rem] items-center justify-center">
-                          <div className="relative h-full min-h-[24rem] w-full overflow-hidden rounded-2xl border border-border/60 bg-background shadow-xl">
+                        <div className="flex h-full min-h-64 w-full items-center justify-center sm:min-h-96">
+                          <div className="relative h-full min-h-64 w-full overflow-hidden rounded-2xl border border-border/60 bg-background shadow-xl sm:min-h-96">
                             <Image
                               alt={displayedProof.alt}
                               className="object-contain"
@@ -698,7 +698,7 @@ export const ExperienceProofGallery = ({
                           </div>
                         </div>
                       ) : (
-                        <div className="flex h-full min-h-[24rem] items-center justify-center">
+                        <div className="flex h-full min-h-64 items-center justify-center sm:min-h-96">
                           <div className="flex max-w-md flex-col items-center gap-3 rounded-2xl border border-border/60 bg-background p-8 text-center shadow-xl">
                             {renderDocumentTile(
                               getDocumentProofIcon(displayedProof.src),
