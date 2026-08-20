@@ -8,15 +8,17 @@ import { MotionProvider } from "@/components/providers/motion-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import "./globals.css";
 
+const seoRole =
+  "IT Professional | Software Engineer | Software Developer | Mobile Developer";
 const seoDescription =
-  "IT professional in Manila, Philippines, with experience in technical support, software testing, quality assurance, systems documentation, troubleshooting, and software development.";
+  "IT Professional, Software Engineer, Software Developer, and Mobile Developer in Manila, Philippines, with experience in technical support, software testing, quality assurance, systems documentation, troubleshooting, and IT operations.";
 
 const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "Person",
     name: profile.name,
-    jobTitle: profile.role,
+    jobTitle: seoRole,
     description: seoDescription,
     email: profile.email,
     url: "https://cornelio-portfolio.vercel.app/",
@@ -29,6 +31,10 @@ const structuredData = [
     sameAs: [profile.githubUrl, profile.linkedinUrl, profile.facebookUrl],
     alumniOf: "Global Reciprocal Colleges",
     knowsAbout: [
+      "IT Professional",
+      "Software Engineer",
+      "Software Developer",
+      "Mobile Developer",
       "Information Technology",
       "IT Technical Support",
       "IT Troubleshooting",
@@ -63,7 +69,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://cornelio-portfolio.vercel.app/"),
   applicationName: "Cornelio A. Gatbonton Jr Portfolio",
   title: {
-    default: `${profile.name} | ${profile.role}`,
+    default: `${profile.name} | ${seoRole}`,
     template: "%s | Cornelio A. Gatbonton Jr",
   },
   icons: {
@@ -73,6 +79,10 @@ export const metadata: Metadata = {
   description: seoDescription,
   keywords: [
     "Cornelio A. Gatbonton Jr",
+    "IT Professional",
+    "Software Engineer",
+    "Software Developer",
+    "Mobile Developer",
     "IT Professional Manila",
     "IT Professional Philippines",
     "Information Technology Professional",
@@ -112,7 +122,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: `${profile.name} | ${profile.role}`,
+    title: `${profile.name} | ${seoRole}`,
     description: seoDescription,
     type: "website",
     locale: "en_US",
@@ -133,7 +143,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} | ${profile.role}`,
+    title: `${profile.name} | ${seoRole}`,
     description: seoDescription,
     images: ["/jr-pic-transparent.png"],
   },
