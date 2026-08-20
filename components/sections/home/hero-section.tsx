@@ -630,6 +630,20 @@ export const HeroSection = () => {
               <ShieldCheck className="size-3 text-primary" />
               Technical Support
             </span>
+            <span
+              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs backdrop-blur-md"
+              style={chipStyle}
+            >
+              <ShieldCheck className="size-3 text-primary" />
+              Hardware &amp; Software Troubleshooting
+            </span>
+            <span
+              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs backdrop-blur-md"
+              style={chipStyle}
+            >
+              <ShieldCheck className="size-3 text-primary" />
+              IT Operations
+            </span>
           </motion.div>
 
           <motion.div
