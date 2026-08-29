@@ -22,6 +22,8 @@ export const ExperienceCard = ({ experience, isEven }: ExperienceCardProps) => {
   const usesFourColumnProofGrid =
     experience.role === "IT Support Assistant (Student Assistant)";
   const cardColumnClassName = isEven ? "md:col-start-1" : "md:col-start-3";
+  const [isDesktopViewport, setIsDesktopViewport] = useState(false);
+  const [isWideViewport, setIsWideViewport] = useState(false);
   const [isDesktopProofVisible, setIsDesktopProofVisible] = useState(false);
   const proofHideTimerRef = useRef<number | null>(null);
   const proofSectionId = `${experience.role}-${experience.organization}`
@@ -36,6 +38,24 @@ export const ExperienceCard = ({ experience, isEven }: ExperienceCardProps) => {
     },
     [],
   );
+
+  useEffect(() => {
+    const desktopQuery = window.matchMedia("(min-width: 768px)");
+    const wideQuery = window.matchMedia("(min-width: 1280px)");
+    const syncDesktopViewport = () => {
+      setIsDesktopViewport(desktopQuery.matches);
+      setIsWideViewport(wideQuery.matches);
+    };
+
+    syncDesktopViewport();
+    desktopQuery.addEventListener("change", syncDesktopViewport);
+    wideQuery.addEventListener("change", syncDesktopViewport);
+
+    return () => {
+      desktopQuery.removeEventListener("change", syncDesktopViewport);
+      wideQuery.removeEventListener("change", syncDesktopViewport);
+    };
+  }, []);
 
   const showDesktopProof = () => {
     if (proofHideTimerRef.current !== null) {
@@ -93,7 +113,7 @@ export const ExperienceCard = ({ experience, isEven }: ExperienceCardProps) => {
               ))}
             </ul>
 
-            {hasProofItems ? (
+            {hasProofItems && !isDesktopViewport ? (
               <ExperienceProofGallery
                 mode="mobile"
                 proofItems={proofItems}
@@ -103,9 +123,10 @@ export const ExperienceCard = ({ experience, isEven }: ExperienceCardProps) => {
           </CardContent>
         </Card>
 
-        {hasProofItems ? (
+        {hasProofItems && isDesktopViewport ? (
           <ExperienceProofGallery
             cardAlignment={cardAlignment}
+            desktopLayout={isWideViewport ? "wide" : "medium"}
             mode="desktop"
             proofItems={proofItems}
             proofSectionId={proofSectionId}

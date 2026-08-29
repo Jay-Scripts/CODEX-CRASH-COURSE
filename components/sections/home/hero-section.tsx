@@ -518,32 +518,15 @@ export const HeroSection = () => {
               >
                 <span className="relative z-[1] grid place-items-center">
                   {skill.logo ? (
-                    <>
-                      <Image
-                        alt=""
-                        className={
-                          skill.darkLogo
-                            ? "size-6 object-contain dark:hidden sm:size-7 lg:size-8 xl:size-9"
-                            : `size-6 object-contain sm:size-7 lg:size-8 xl:size-9 ${skill.logoClassName ?? ""}`
-                        }
-                        height={30}
-                        loading="lazy"
-                        src={skill.logo}
-                        unoptimized
-                        width={30}
-                      />
-                      {skill.darkLogo ? (
-                        <Image
-                          alt=""
-                          className="hidden size-6 dark:block sm:size-7 lg:size-8 xl:size-9"
-                          height={30}
-                          loading="lazy"
-                          src={skill.darkLogo}
-                          unoptimized
-                          width={30}
-                        />
-                      ) : null}
-                    </>
+                    <Image
+                      alt=""
+                      className={`size-6 object-contain sm:size-7 lg:size-8 xl:size-9 ${skill.logoClassName ?? ""}`}
+                      height={30}
+                      loading="lazy"
+                      src={skill.logo}
+                      unoptimized
+                      width={30}
+                    />
                   ) : null}
                 </span>
               </div>
@@ -596,49 +579,49 @@ export const HeroSection = () => {
             variants={itemVariants}
           >
             <span
-              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs backdrop-blur-md"
+              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs"
               style={chipStyle}
             >
               <MapPin className="size-3 text-primary" />
               {profile.location}
             </span>
             <span
-              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs backdrop-blur-md"
+              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs"
               style={chipStyle}
             >
               <ShieldCheck className="size-3 text-primary" />
               Software Development
             </span>
             <span
-              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs backdrop-blur-md"
+              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs"
               style={chipStyle}
             >
               <ShieldCheck className="size-3 text-primary" />
               Software Testing
             </span>
             <span
-              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs backdrop-blur-md"
+              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs"
               style={chipStyle}
             >
               <ShieldCheck className="size-3 text-primary" />
               Quality Assurance
             </span>
             <span
-              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs backdrop-blur-md"
+              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs"
               style={chipStyle}
             >
               <ShieldCheck className="size-3 text-primary" />
               Technical Support
             </span>
             <span
-              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs backdrop-blur-md"
+              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs"
               style={chipStyle}
             >
               <ShieldCheck className="size-3 text-primary" />
               Hardware &amp; Software Troubleshooting
             </span>
             <span
-              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs backdrop-blur-md"
+              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs"
               style={chipStyle}
             >
               <ShieldCheck className="size-3 text-primary" />
@@ -730,7 +713,7 @@ export const HeroSection = () => {
 
             {/* <motion.div
               animate="animate"
-              className="absolute -right-14 bottom-16 z-[6] rounded-xl border px-3.5 py-2.5 backdrop-blur-md"
+              className="absolute -right-14 bottom-16 z-[6] rounded-xl border px-3.5 py-2.5"
               style={floatingCardStyle}
               variants={floatVariants}
             >
@@ -760,7 +743,7 @@ export const HeroSection = () => {
 
             <motion.div
               animate={isPortraitLoaded ? "visible" : "hidden"}
-              className="absolute -left-14 top-8 z-[6] max-w-[calc(100%+2rem)] rounded-xl border px-2.5 py-2 backdrop-blur-md sm:top-10 sm:max-w-none sm:px-3.5 sm:py-2.5"
+              className="absolute -left-14 top-8 z-[6] max-w-[calc(100%+2rem)] rounded-xl border px-2.5 py-2 sm:top-10 sm:max-w-none sm:px-3.5 sm:py-2.5"
               custom="left"
               style={floatingCardStyle}
               variants={floatingCardVariants}
@@ -797,7 +780,7 @@ export const HeroSection = () => {
 
             <motion.div
               animate={isPortraitLoaded ? "visible" : "hidden"}
-              className="absolute -bottom-3 -right-14 z-[6] max-w-[calc(100%+2rem)] rounded-xl border px-2.5 py-2 backdrop-blur-md sm:-bottom-5 sm:max-w-none sm:px-3.5 sm:py-2.5"
+              className="absolute -bottom-3 -right-14 z-[6] max-w-[calc(100%+2rem)] rounded-xl border px-2.5 py-2 sm:-bottom-5 sm:max-w-none sm:px-3.5 sm:py-2.5"
               custom="right"
               style={floatingCardStyle}
               variants={floatingCardVariants}

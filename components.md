@@ -14,7 +14,7 @@
 
 ### `ThemeToggle`
 
-- Purpose: Switches between light and dark modes with a smooth compositor-level fade and an accessible reduced-motion fallback.
+- Purpose: Switches immediately between light and dark modes without expensive full-page snapshots or transition resets.
 - Location: `components/layout/theme-toggle.tsx`
 
 ### `CommandMenu`
@@ -33,7 +33,7 @@
 
 ### `ProjectCard`, `ExperienceCard`
 
-- Purpose: Render recruiter-facing project and experience content as reusable card patterns with stronger semantic structure, including flexible portrait or landscape project preview surfaces plus experience-side supporting material previews for certificates, photos, reports, and hover-preview videos.
+- Purpose: Render recruiter-facing project and experience content as reusable card patterns with stronger semantic structure, including flexible portrait or landscape project preview surfaces plus on-demand supporting-material previews that avoid hidden responsive duplicates and defer video loading until playback.
 - Location: `components/cards/*`
 
 ### `GitHubActivityCard`
@@ -101,7 +101,7 @@
 
 ### `HeroSection`, `ServicesSection`, `AboutSection`, `SkillsSection`, `SkillsCarouselRow`, `SkillsCategoryModal`, `ProjectsSection`, `ExperienceSection`, `CertificatesSection`, `CertificatePreviewModal`, `ContactSection`
 
-- Purpose: Compose recruiter-facing home page sections with responsive layouts across mobile and desktop, including a staggered bottom-elliptic reveal for the “What I Can Provide” service cards; load-aware floating app-development and technical-support experience metrics with an elliptic slide-in reveal in the hero; generalized positioning for software development, technical support, software testing, and QA opportunities; clickable skill-category headings that open a responsive modal inventory of every categorized tool; GitHub activity inside the About section; and accessible full-width skill carousels with smooth deterministic motion, pointer dragging, eased pause states, and reduced-motion support.
+- Purpose: Compose recruiter-facing home page sections with responsive layouts across mobile and desktop, including a staggered bottom-elliptic reveal for the “What I Can Provide” service cards; load-aware floating app-development and technical-support experience metrics with an elliptic slide-in reveal in the hero; generalized positioning for software development, technical support, software testing, and QA opportunities; clickable skill-category headings that open a responsive modal inventory of every categorized tool; GitHub activity inside the About section; and accessible full-width skill carousels with a minimal two-copy loop, smooth deterministic motion, pointer dragging, eased pause states, and reduced-motion support.
 - Location: `components/sections/home/*`
 
 HeroSection and SkillsCarouselRow serve their tiny SVG skill logos without the Next.js image optimizer so remote icon CDNs load directly instead of failing through Vercel's external-image proxy.

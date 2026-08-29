@@ -5,7 +5,6 @@
   --motion-duration-fast: 160ms;
   --motion-duration-base: 280ms;
   --motion-duration-slow: 520ms;
-  --motion-duration-theme: 320ms;
   --motion-ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
   --motion-ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
   --background: oklch(0.99 0.003 247.858);
@@ -214,9 +213,6 @@ body {
     );
   color: var(--foreground);
   min-width: 320px;
-  transition:
-    background-color var(--motion-duration-base) var(--motion-ease-standard),
-    color var(--motion-duration-base) var(--motion-ease-standard);
 }
 
 main {
@@ -229,62 +225,24 @@ button {
   touch-action: manipulation;
 }
 
-.site-chrome {
-  transition:
-    background-color var(--motion-duration-base) var(--motion-ease-standard),
-    border-color var(--motion-duration-base) var(--motion-ease-standard),
-    color var(--motion-duration-base) var(--motion-ease-standard);
-}
-
-::view-transition-old(root) {
-  animation: theme-fade-out var(--motion-duration-theme)
-    var(--motion-ease-standard) both;
-  mix-blend-mode: normal;
-}
-
-::view-transition-new(root) {
-  animation: theme-fade-in var(--motion-duration-theme)
-    var(--motion-ease-standard) both;
-  mix-blend-mode: normal;
-}
-
 .glass-panel {
   background:
     linear-gradient(135deg, var(--glass-highlight), transparent 38%),
     var(--glass-surface);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
-  -webkit-backdrop-filter: blur(14px) saturate(125%);
-  backdrop-filter: blur(14px) saturate(125%);
-  transition:
-    background-color var(--motion-duration-base) var(--motion-ease-standard),
-    border-color var(--motion-duration-base) var(--motion-ease-standard),
-    box-shadow var(--motion-duration-base) var(--motion-ease-standard),
-    color var(--motion-duration-base) var(--motion-ease-standard);
 }
 
 .glass-inset {
   background: var(--glass-inset);
   border: 1px solid var(--glass-border);
   box-shadow: inset 0 1px 0 var(--glass-highlight);
-  -webkit-backdrop-filter: blur(12px) saturate(125%);
-  backdrop-filter: blur(12px) saturate(125%);
-  transition:
-    background-color var(--motion-duration-fast) var(--motion-ease-standard),
-    border-color var(--motion-duration-fast) var(--motion-ease-standard),
-    color var(--motion-duration-fast) var(--motion-ease-standard);
 }
 
 .glass-chip {
   background: var(--glass-surface-strong);
   border-color: var(--glass-border);
   box-shadow: inset 0 1px 0 var(--glass-highlight);
-  -webkit-backdrop-filter: blur(12px) saturate(125%);
-  backdrop-filter: blur(12px) saturate(125%);
-  transition:
-    background-color var(--motion-duration-fast) var(--motion-ease-standard),
-    border-color var(--motion-duration-fast) var(--motion-ease-standard),
-    color var(--motion-duration-fast) var(--motion-ease-standard);
 }
 
 .glass-chip[aria-pressed="true"] {
@@ -309,12 +267,8 @@ button {
 }
 
 .glass-interactive {
-  transition:
-    background-color var(--motion-duration-base) var(--motion-ease-standard),
-    border-color var(--motion-duration-base) var(--motion-ease-standard),
-    box-shadow var(--motion-duration-base) var(--motion-ease-standard),
-    color var(--motion-duration-base) var(--motion-ease-standard),
-    transform var(--motion-duration-base) var(--motion-ease-emphasized);
+  transition: transform var(--motion-duration-base)
+    var(--motion-ease-emphasized);
 }
 
 @media (hover: hover) {
@@ -340,9 +294,28 @@ button {
       transparent 46%
     );
   border-top: 1px solid var(--section-divider);
-  transition:
-    border-color var(--motion-duration-base) var(--motion-ease-standard),
-    padding var(--motion-duration-slow) var(--motion-ease-emphasized);
+  transition: padding var(--motion-duration-slow) var(--motion-ease-emphasized);
+}
+
+main > .fluid-section:not(#top) {
+  content-visibility: auto;
+  contain-intrinsic-block-size: 1000px;
+}
+
+main > #skills.fluid-section {
+  contain-intrinsic-block-size: 1020px;
+}
+
+main > #projects.fluid-section {
+  contain-intrinsic-block-size: 4515px;
+}
+
+main > #experience.fluid-section {
+  contain-intrinsic-block-size: 3584px;
+}
+
+main > #certificates.fluid-section {
+  contain-intrinsic-block-size: 3373px;
 }
 
 .section-glass-lens {
@@ -355,19 +328,6 @@ button {
 
 .section-glass-lens--delayed {
   animation-delay: -9s;
-}
-
-@supports not (
-  (-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))
-) {
-  .glass-panel,
-  .glass-chip {
-    background: var(--card);
-  }
-
-  .glass-inset {
-    background: var(--muted);
-  }
 }
 
 .hero-primary-button {
@@ -493,26 +453,6 @@ button {
   }
 }
 
-@keyframes theme-fade-out {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes theme-fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
 ::selection {
   background: color-mix(in oklab, var(--primary) 30%, transparent);
   color: var(--foreground);
@@ -542,15 +482,6 @@ button {
   }
 }
 
-@media (max-width: 767px) {
-  .glass-panel,
-  .glass-inset,
-  .glass-chip {
-    -webkit-backdrop-filter: blur(6px) saturate(110%);
-    backdrop-filter: blur(6px) saturate(110%);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -563,11 +494,6 @@ button {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
-  }
-
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation-duration: 0.01ms !important;
   }
 
   .glass-interactive,

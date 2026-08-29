@@ -127,32 +127,18 @@ export const SkillsCategoryModal = ({
                     >
                       <span className="grid size-7 place-items-center text-primary sm:size-10">
                         {skill.logo ? (
-                          <>
-                            <Image
-                              alt=""
-                              className={cn(
-                                "size-4 object-contain sm:size-6",
-                                skill.darkLogo && "dark:hidden",
-                                skill.logoClassName,
-                              )}
-                              height={24}
-                              loading="lazy"
-                              src={skill.logo}
-                              unoptimized
-                              width={24}
-                            />
-                            {skill.darkLogo ? (
-                              <Image
-                                alt=""
-                                className="hidden size-4 object-contain dark:block sm:size-6"
-                                height={24}
-                                loading="lazy"
-                                src={skill.darkLogo}
-                                unoptimized
-                                width={24}
-                              />
-                            ) : null}
-                          </>
+                          <Image
+                            alt=""
+                            className={cn(
+                              "size-4 object-contain sm:size-6",
+                              skill.logoClassName,
+                            )}
+                            height={24}
+                            loading="lazy"
+                            src={skill.logo}
+                            unoptimized
+                            width={24}
+                          />
                         ) : (
                           <Icon
                             aria-hidden="true"

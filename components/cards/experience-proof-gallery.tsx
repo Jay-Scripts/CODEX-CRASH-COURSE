@@ -24,6 +24,7 @@ import { cn } from "@/lib/utils";
 
 type ExperienceProofGalleryProps = {
   cardAlignment?: "left" | "right";
+  desktopLayout?: "medium" | "wide";
   mode: "desktop" | "mobile";
   proofItems: ExperienceProofItem[];
   proofSectionId: string;
@@ -119,11 +120,7 @@ const renderProofSurface = (
           loop={options?.playVideo}
           muted
           playsInline
-          preload={
-            options?.desktopHoverVideo && !options.playVideo
-              ? "none"
-              : "metadata"
-          }
+          preload={options?.playVideo ? "metadata" : "none"}
           src={item.src}
         />
       </div>
@@ -224,6 +221,7 @@ const SpreadsheetPreview = ({
  */
 export const ExperienceProofGallery = ({
   cardAlignment = "left",
+  desktopLayout = "medium",
   mode,
   proofItems,
   proofSectionId,
@@ -408,7 +406,7 @@ export const ExperienceProofGallery = ({
         </section>
       ) : null}
 
-      {mode === "desktop" ? (
+      {mode === "desktop" && previewVisible ? (
         <div
           aria-labelledby={`${proofSectionId}-proof-desktop`}
           className="pointer-events-none absolute -inset-6 z-20 hidden md:block"
@@ -416,12 +414,13 @@ export const ExperienceProofGallery = ({
           <div className="sr-only" id={`${proofSectionId}-proof-desktop`}>
             Supporting materials
           </div>
-          <div
-            className={cn(
-              "absolute top-1/2 hidden w-60 -translate-y-1/2 md:block xl:hidden",
-              mediumProofContainerClassName,
-            )}
-          >
+          {desktopLayout === "medium" ? (
+            <div
+              className={cn(
+                "absolute top-1/2 w-60 -translate-y-1/2",
+                mediumProofContainerClassName,
+              )}
+            >
             <div className="grid grid-cols-2 gap-3">
               {proofItems.map((item, originalIndex) => {
                 const ProofIcon = proofTypeIcons[item.type];
@@ -472,10 +471,12 @@ export const ExperienceProofGallery = ({
                 );
               })}
             </div>
-          </div>
-          <div
+            </div>
+          ) : null}
+          {desktopLayout === "wide" ? (
+            <div
             className={cn(
-              "absolute top-1/2 hidden -translate-y-1/2 gap-3 xl:grid",
+              "absolute top-1/2 grid -translate-y-1/2 gap-3",
               wideProofLeftOffsetClassName,
               wideProofGridClassName,
             )}
@@ -529,10 +530,12 @@ export const ExperienceProofGallery = ({
                 );
               },
             )}
-          </div>
-          <div
+            </div>
+          ) : null}
+          {desktopLayout === "wide" ? (
+            <div
             className={cn(
-              "absolute top-1/2 hidden -translate-y-1/2 gap-3 xl:grid",
+              "absolute top-1/2 grid -translate-y-1/2 gap-3",
               wideProofRightOffsetClassName,
               wideProofGridClassName,
             )}
@@ -586,7 +589,8 @@ export const ExperienceProofGallery = ({
                 );
               },
             )}
-          </div>
+            </div>
+          ) : null}
         </div>
       ) : null}
 

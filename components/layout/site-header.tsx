@@ -144,7 +144,7 @@ export const SiteHeader = () => {
   }, []);
 
   return (
-    <header className="site-chrome sticky top-0 z-50 border-b border-border bg-background/92 backdrop-blur-md">
+    <header className="site-chrome sticky top-0 z-50 border-b border-border bg-background">
       <div className="relative ">
         <motion.div
           animate="visible"

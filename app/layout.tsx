@@ -167,7 +167,6 @@ const RootLayout = ({
           <ThemeProvider
             attribute="class"
             defaultTheme="light"
-            disableTransitionOnChange
             enableSystem={false}
           >
             <ScrollProgress />

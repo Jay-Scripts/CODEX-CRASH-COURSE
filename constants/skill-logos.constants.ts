@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 
 export type SkillLogoMeta = {
-  darkLogo?: string;
   icon?: LucideIcon;
   logo?: string;
   logoClassName?: string;
@@ -85,8 +84,8 @@ export const skillLogoMap: Record<string, SkillLogoMeta> = {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
   },
   "Next.js": {
-    darkLogo: "https://cdn.simpleicons.org/nextdotjs/ffffff",
     logo: "https://cdn.simpleicons.org/nextdotjs/000000",
+    logoClassName: "dark:invert",
   },
   "Node.js": {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",

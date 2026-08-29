@@ -16,7 +16,7 @@ import {
 } from "@/constants/skill-logos.constants";
 import { cn } from "@/lib/utils";
 
-const COPY_COUNT = 3;
+const COPY_COUNT = 2;
 const GAP_PX = 12;
 const BASE_SPEED_PX_PER_SECOND = 30;
 const MAX_DRAG_SPEED_PX_PER_SECOND = BASE_SPEED_PX_PER_SECOND * 4;
@@ -42,32 +42,15 @@ const SkillLogoPill = ({ isDuplicate = false, skill }: SkillLogoPillProps) => {
     >
       <span className="glass-inset grid size-6 shrink-0 place-items-center rounded-md text-primary">
         {skill.logo ? (
-          <>
-            <Image
-              alt=""
-              className={cn(
-                "size-4 object-contain",
-                skill.darkLogo && "dark:hidden",
-                skill.logoClassName,
-              )}
-              height={16}
-              loading="lazy"
-              src={skill.logo}
-              unoptimized
-              width={16}
-            />
-            {skill.darkLogo ? (
-              <Image
-                alt=""
-                className="hidden size-4 object-contain dark:block"
-                height={16}
-                loading="lazy"
-                src={skill.darkLogo}
-                unoptimized
-                width={16}
-              />
-            ) : null}
-          </>
+          <Image
+            alt=""
+            className={cn("size-4 object-contain", skill.logoClassName)}
+            height={16}
+            loading="lazy"
+            src={skill.logo}
+            unoptimized
+            width={16}
+          />
         ) : (
           <Icon aria-hidden="true" className="size-3.5" />
         )}
