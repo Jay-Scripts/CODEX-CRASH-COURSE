@@ -328,7 +328,7 @@ export const ContactForm = () => {
           className="fixed inset-0 z-[90] flex items-center justify-center bg-background/80 px-4 backdrop-blur-sm"
           role="dialog"
         >
-          <div className="relative w-full max-w-sm rounded-2xl border border-border/70 bg-background p-6 shadow-2xl">
+          <div className="neomorphic-modal-panel relative w-full max-w-sm rounded-2xl p-6">
             <button
               aria-label="Close success message"
               className="absolute right-3 top-3 rounded-full p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"

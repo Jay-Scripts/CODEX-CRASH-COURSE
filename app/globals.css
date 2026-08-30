@@ -7,30 +7,30 @@
   --motion-duration-slow: 520ms;
   --motion-ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
   --motion-ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
-  --background: oklch(0.99 0.003 247.858);
+  --background: #e0e5ec;
   --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(1 0 0);
+  --card: #e0e5ec;
   --card-foreground: oklch(0.141 0.005 285.823);
   --primary: oklch(0.488 0.243 264.376);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.967 0.001 286.375);
+  --secondary: #e0e5ec;
   --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
+  --muted: #d8dfe8;
   --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
+  --accent: #e7ecf2;
   --accent-foreground: oklch(0.21 0.006 285.885);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
+  --border: rgb(163 177 198 / 0.34);
+  --input: rgb(163 177 198 / 0.42);
   --ring: oklch(0.623 0.214 259.815);
-  --hero-background: oklch(0.972 0.02 287);
+  --hero-background: #e0e5ec;
   --hero-grid-line: oklch(0.623 0.214 259.815 / 0.12);
-  --hero-radial-mask-end: oklch(0.985 0.008 286);
+  --hero-radial-mask-end: #e0e5ec;
   --hero-heading: oklch(0.19 0.03 285);
   --hero-heading-accent-start: oklch(0.59 0.22 272);
   --hero-heading-accent-end: oklch(0.72 0.16 286);
   --hero-role: oklch(0.44 0.05 286);
   --hero-body: oklch(0.38 0.03 286);
-  --hero-chip-surface: oklch(1 0 0 / 0.58);
+  --hero-chip-surface: #e0e5ec;
   --hero-chip-border: oklch(0.623 0.214 259.815 / 0.16);
   --hero-chip-text: oklch(0.4 0.04 286);
   --hero-portrait-ring: oklch(0.623 0.214 259.815 / 0.22);
@@ -39,13 +39,13 @@
   --hero-portrait-start: oklch(0.96 0.04 286);
   --hero-portrait-middle: oklch(0.93 0.06 280);
   --hero-portrait-end: oklch(0.9 0.08 270);
-  --hero-floating-surface: oklch(0.99 0.01 286 / 0.84);
+  --hero-floating-surface: #e0e5ec;
   --hero-floating-border: oklch(0.623 0.214 259.815 / 0.18);
-  --hero-floating-shadow: 0 8px 32px rgb(67 44 125 / 0.14);
+  --hero-floating-shadow: var(--neomorph-raised-shadow);
   --hero-floating-label: oklch(0.47 0.03 286);
   --hero-floating-value: oklch(0.2 0.05 286);
   --hero-floating-copy: oklch(0.36 0.03 286);
-  --hero-stat-surface: oklch(1 0 0 / 0.52);
+  --hero-stat-surface: #e0e5ec;
   --hero-stat-border: oklch(0.623 0.214 259.815 / 0.12);
   --hero-stat-value: oklch(0.38 0.12 280);
   --hero-stat-label: oklch(0.43 0.03 286);
@@ -55,58 +55,72 @@
     oklch(0.623 0.214 259.815 / 0.18),
     transparent
   );
-  --hero-cta-shadow: 0 4px 24px oklch(0.623 0.214 259.815 / 0.24);
-  --hero-cta-shadow-hover: 0 6px 32px oklch(0.623 0.214 259.815 / 0.34);
-  --hero-outline-surface: oklch(1 0 0 / 0.55);
-  --hero-outline-surface-hover: oklch(1 0 0 / 0.72);
+  --hero-cta-shadow: var(--neomorph-compact-shadow);
+  --hero-cta-shadow-hover: var(--neomorph-raised-hover-shadow);
+  --hero-outline-surface: #e0e5ec;
+  --hero-outline-surface-hover: #e5eaf0;
   --hero-outline-border: oklch(0.623 0.214 259.815 / 0.14);
   --hero-outline-border-hover: oklch(0.623 0.214 259.815 / 0.34);
   --hero-outline-text: oklch(0.27 0.04 286);
   --hero-ghost-text: oklch(0.42 0.03 286);
   --hero-ghost-text-hover: oklch(0.5 0.13 275);
   --surface-grid-line: oklch(0.623 0.214 259.815 / 0.14);
-  --ambient-glow-primary: oklch(0.68 0.13 275 / 0.14);
-  --ambient-glow-secondary: oklch(0.76 0.08 225 / 0.1);
-  --glass-surface: oklch(1 0 0 / 0.68);
-  --glass-surface-strong: oklch(1 0 0 / 0.84);
-  --glass-inset: oklch(0.99 0.006 286 / 0.56);
-  --glass-border: oklch(0.52 0.05 270 / 0.18);
-  --glass-border-hover: oklch(0.623 0.214 259.815 / 0.3);
-  --glass-highlight: oklch(1 0 0 / 0.82);
-  --glass-shadow:
-    0 24px 64px -42px rgb(48 40 78 / 0.34), inset 0 1px 0 var(--glass-highlight);
-  --glass-shadow-hover:
-    0 28px 72px -40px rgb(48 40 78 / 0.42), inset 0 1px 0 var(--glass-highlight);
+  --ambient-glow-primary: transparent;
+  --ambient-glow-secondary: transparent;
+  --neomorph-background: #e0e5ec;
+  --neomorph-surface: #e0e5ec;
+  --neomorph-inset-surface: #dce2ea;
+  --neomorph-shadow-dark: rgb(163 177 198 / 0.68);
+  --neomorph-shadow-light: rgb(255 255 255 / 0.9);
+  --neomorph-border: rgb(255 255 255 / 0.42);
+  --neomorph-border-hover: oklch(0.623 0.214 259.815 / 0.32);
+  --neomorph-raised-shadow:
+    9px 9px 18px var(--neomorph-shadow-dark),
+    -9px -9px 18px var(--neomorph-shadow-light);
+  --neomorph-raised-hover-shadow:
+    11px 11px 21px var(--neomorph-shadow-dark),
+    -11px -11px 21px var(--neomorph-shadow-light);
+  --neomorph-compact-shadow:
+    4px 4px 9px var(--neomorph-shadow-dark),
+    -4px -4px 9px var(--neomorph-shadow-light);
+  --neomorph-inset-shadow:
+    inset 4px 4px 8px var(--neomorph-shadow-dark),
+    inset -4px -4px 8px var(--neomorph-shadow-light);
   --section-surface: oklch(0.985 0.008 275 / 0.56);
   --section-divider: oklch(0.623 0.214 259.815 / 0.1);
   --section-lens: oklch(0.72 0.12 278 / 0.1);
+  --service-neomorph-background: var(--neomorph-background);
+  --service-neomorph-surface: var(--neomorph-surface);
+  --service-neomorph-shadow-dark: var(--neomorph-shadow-dark);
+  --service-neomorph-shadow-light: var(--neomorph-shadow-light);
+  --service-neomorph-border: var(--neomorph-border);
 }
 
 .dark {
-  --background: oklch(0.141 0.005 285.823);
+  --background: #20232b;
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
+  --card: #20232b;
   --card-foreground: oklch(0.985 0 0);
   --primary: oklch(0.623 0.214 259.815);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.274 0.006 286.033);
+  --secondary: #20232b;
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.274 0.006 286.033);
+  --muted: #272b35;
   --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
+  --accent: #292d37;
   --accent-foreground: oklch(0.985 0 0);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.623 0.214 259.815);
-  --hero-background: oklch(0.18 0.03 285);
+  --hero-background: #20232b;
   --hero-grid-line: oklch(0.623 0.214 259.815 / 0.14);
-  --hero-radial-mask-end: oklch(0.18 0.03 285);
+  --hero-radial-mask-end: #20232b;
   --hero-heading: oklch(0.97 0.01 286);
   --hero-heading-accent-start: oklch(0.72 0.19 276);
   --hero-heading-accent-end: oklch(0.83 0.12 292);
   --hero-role: oklch(0.74 0.02 286);
   --hero-body: oklch(0.68 0.02 286);
-  --hero-chip-surface: oklch(0.28 0.01 286 / 0.56);
+  --hero-chip-surface: #20232b;
   --hero-chip-border: oklch(1 0 0 / 0.08);
   --hero-chip-text: oklch(0.74 0.02 286);
   --hero-portrait-ring: oklch(0.623 0.214 259.815 / 0.25);
@@ -115,13 +129,13 @@
   --hero-portrait-start: oklch(0.25 0.03 285);
   --hero-portrait-middle: oklch(0.28 0.05 278);
   --hero-portrait-end: oklch(0.31 0.08 266);
-  --hero-floating-surface: oklch(0.24 0.02 286 / 0.9);
+  --hero-floating-surface: #20232b;
   --hero-floating-border: oklch(0.623 0.214 259.815 / 0.18);
-  --hero-floating-shadow: 0 8px 32px rgb(0 0 0 / 0.4);
+  --hero-floating-shadow: var(--neomorph-raised-shadow);
   --hero-floating-label: oklch(0.5 0.02 286);
   --hero-floating-value: oklch(0.92 0.04 286);
   --hero-floating-copy: oklch(0.63 0.03 286);
-  --hero-stat-surface: oklch(0.26 0.01 286 / 0.52);
+  --hero-stat-surface: #20232b;
   --hero-stat-border: oklch(1 0 0 / 0.08);
   --hero-stat-value: oklch(0.83 0.11 286);
   --hero-stat-label: oklch(0.54 0.02 286);
@@ -131,28 +145,25 @@
     oklch(0.623 0.214 259.815 / 0.18),
     transparent
   );
-  --hero-cta-shadow: 0 4px 24px oklch(0.623 0.214 259.815 / 0.4);
-  --hero-cta-shadow-hover: 0 6px 32px oklch(0.623 0.214 259.815 / 0.55);
-  --hero-outline-surface: oklch(1 0 0 / 0.06);
-  --hero-outline-surface-hover: oklch(1 0 0 / 0.1);
+  --hero-cta-shadow: var(--neomorph-compact-shadow);
+  --hero-cta-shadow-hover: var(--neomorph-raised-hover-shadow);
+  --hero-outline-surface: #20232b;
+  --hero-outline-surface-hover: #252933;
   --hero-outline-border: oklch(1 0 0 / 0.1);
   --hero-outline-border-hover: oklch(0.623 0.214 259.815 / 0.5);
   --hero-outline-text: oklch(0.82 0.02 286);
   --hero-ghost-text: oklch(0.68 0.02 286);
   --hero-ghost-text-hover: oklch(0.8 0.12 286);
   --surface-grid-line: oklch(0.623 0.214 259.815 / 0.18);
-  --ambient-glow-primary: oklch(0.6 0.16 270 / 0.12);
-  --ambient-glow-secondary: oklch(0.62 0.09 225 / 0.07);
-  --glass-surface: oklch(0.21 0.014 285 / 0.72);
-  --glass-surface-strong: oklch(0.24 0.016 285 / 0.86);
-  --glass-inset: oklch(0.18 0.012 285 / 0.68);
-  --glass-border: oklch(0.88 0.03 280 / 0.12);
-  --glass-border-hover: oklch(0.68 0.18 268 / 0.32);
-  --glass-highlight: oklch(1 0 0 / 0.09);
-  --glass-shadow:
-    0 26px 70px -42px rgb(0 0 0 / 0.72), inset 0 1px 0 var(--glass-highlight);
-  --glass-shadow-hover:
-    0 30px 78px -40px rgb(0 0 0 / 0.82), inset 0 1px 0 var(--glass-highlight);
+  --ambient-glow-primary: transparent;
+  --ambient-glow-secondary: transparent;
+  --neomorph-background: #20232b;
+  --neomorph-surface: #20232b;
+  --neomorph-inset-surface: #1d2027;
+  --neomorph-shadow-dark: rgb(5 7 10 / 0.58);
+  --neomorph-shadow-light: rgb(255 255 255 / 0.075);
+  --neomorph-border: rgb(255 255 255 / 0.075);
+  --neomorph-border-hover: oklch(0.6 0.14 268 / 0.32);
   --section-surface: oklch(0.18 0.018 285 / 0.58);
   --section-divider: oklch(0.72 0.12 275 / 0.08);
   --section-lens: oklch(0.64 0.16 272 / 0.09);
@@ -225,44 +236,66 @@ button {
   touch-action: manipulation;
 }
 
+[class*="backdrop-blur"] {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.site-chrome {
+  background: var(--neomorph-surface);
+  border-color: var(--neomorph-border);
+  box-shadow: var(--neomorph-raised-shadow);
+}
+
+.neomorphic-modal-panel,
+[role="dialog"]:not(.fixed) {
+  background: var(--neomorph-surface) !important;
+  border: 1px solid var(--neomorph-border) !important;
+  box-shadow:
+    14px 14px 28px var(--neomorph-shadow-dark),
+    -14px -14px 28px var(--neomorph-shadow-light) !important;
+}
+
+[role="dialog"]:not(.fixed) > div:first-child {
+  background: var(--neomorph-surface) !important;
+  border-color: var(--neomorph-border) !important;
+  box-shadow: var(--neomorph-compact-shadow);
+}
+
+[role="dialog"] [class*="bg-muted/20"],
+[role="dialog"] [class*="bg-muted/30"] {
+  background: var(--neomorph-inset-surface) !important;
+  box-shadow: var(--neomorph-inset-shadow);
+}
+
 .glass-panel {
-  background:
-    linear-gradient(135deg, var(--glass-highlight), transparent 38%),
-    var(--glass-surface);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
+  background: var(--neomorph-surface);
+  border: 1px solid var(--neomorph-border);
+  box-shadow: var(--neomorph-raised-shadow);
 }
 
 .glass-inset {
-  background: var(--glass-inset);
-  border: 1px solid var(--glass-border);
-  box-shadow: inset 0 1px 0 var(--glass-highlight);
+  background: var(--neomorph-inset-surface);
+  border: 1px solid var(--neomorph-border);
+  box-shadow: var(--neomorph-inset-shadow);
 }
 
 .glass-chip {
-  background: var(--glass-surface-strong);
-  border-color: var(--glass-border);
-  box-shadow: inset 0 1px 0 var(--glass-highlight);
+  background: var(--neomorph-surface);
+  border-color: var(--neomorph-border);
+  box-shadow: var(--neomorph-compact-shadow);
 }
 
 .glass-chip[aria-pressed="true"] {
-  background: color-mix(
-    in oklab,
-    var(--glass-surface-strong) 80%,
-    var(--primary) 20%
-  );
-  border-color: var(--glass-border-hover);
+  background: var(--neomorph-inset-surface);
+  border-color: var(--neomorph-border-hover);
+  box-shadow: var(--neomorph-inset-shadow);
 }
 
 @media (hover: hover) {
   button.glass-chip:hover,
   .glass-inset:is(a, button):hover {
-    background: color-mix(
-      in oklab,
-      var(--glass-surface-strong) 88%,
-      var(--primary) 12%
-    );
-    border-color: var(--glass-border-hover);
+    border-color: var(--neomorph-border-hover);
   }
 }
 
@@ -273,28 +306,46 @@ button {
 
 @media (hover: hover) {
   .glass-interactive:hover {
-    border-color: var(--glass-border-hover);
-    box-shadow: var(--glass-shadow-hover);
-    transform: translateY(-3px);
+    border-color: var(--neomorph-border-hover);
+    box-shadow: var(--neomorph-raised-hover-shadow);
+    transform: translateY(-2px);
   }
 }
 
 .fluid-section {
-  background:
-    linear-gradient(
-      180deg,
-      transparent,
-      var(--section-surface) 14%,
-      var(--section-surface) 86%,
-      transparent
-    ),
-    radial-gradient(
-      ellipse at 50% 0%,
-      var(--ambient-glow-primary),
-      transparent 46%
-    );
-  border-top: 1px solid var(--section-divider);
+  background: var(--neomorph-background);
+  border-top: 1px solid var(--neomorph-border);
   transition: padding var(--motion-duration-slow) var(--motion-ease-emphasized);
+}
+
+.services-neomorphic-section.fluid-section {
+  background: var(--service-neomorph-background);
+  border-color: transparent;
+}
+
+.services-neomorphic-section.surface-grid::before {
+  opacity: 0.16;
+}
+
+.service-neomorphic-panel {
+  background: var(--service-neomorph-surface);
+  border: 1px solid var(--service-neomorph-border);
+  box-shadow: var(--neomorph-raised-shadow);
+  transition:
+    box-shadow var(--motion-duration-base) var(--motion-ease-emphasized),
+    transform var(--motion-duration-base) var(--motion-ease-emphasized);
+}
+
+.service-neomorphic-inset {
+  background: var(--service-neomorph-surface);
+  box-shadow: var(--neomorph-inset-shadow);
+}
+
+@media (hover: hover) {
+  .service-neomorphic-panel:hover {
+    box-shadow: var(--neomorph-raised-hover-shadow);
+    transform: translateY(-2px);
+  }
 }
 
 main > .fluid-section:not(#top) {
@@ -319,11 +370,9 @@ main > #certificates.fluid-section {
 }
 
 .section-glass-lens {
-  background:
-    linear-gradient(145deg, var(--glass-highlight), transparent 48%),
-    var(--section-lens);
-  border: 1px solid var(--glass-border);
-  box-shadow: inset 0 1px 0 var(--glass-highlight);
+  background: var(--neomorph-surface);
+  border: 1px solid var(--neomorph-border);
+  box-shadow: var(--neomorph-raised-shadow);
 }
 
 .section-glass-lens--delayed {
@@ -341,12 +390,14 @@ main > #certificates.fluid-section {
 .hero-outline-button {
   background-color: var(--hero-outline-surface);
   border-color: var(--hero-outline-border);
+  box-shadow: var(--neomorph-compact-shadow);
   color: var(--hero-outline-text);
 }
 
 .hero-outline-button:hover {
   background-color: var(--hero-outline-surface-hover);
   border-color: var(--hero-outline-border-hover);
+  box-shadow: var(--neomorph-raised-hover-shadow);
   color: var(--hero-outline-text);
 }
 
@@ -502,7 +553,8 @@ main > #certificates.fluid-section {
     transition: none;
   }
 
-  .glass-interactive:hover {
+  .glass-interactive:hover,
+  .service-neomorphic-panel:hover {
     transform: none;
   }
 

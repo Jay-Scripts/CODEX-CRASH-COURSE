@@ -24,7 +24,7 @@ const accentLayouts: Record<
 };
 
 /**
- * Displays viewport-wide fluid-glass lenses behind section content.
+ * Displays viewport-wide neomorphic relief shapes behind section content.
  */
 export const SectionAccentBackdrop = ({
   className,

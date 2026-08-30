@@ -267,7 +267,7 @@ export const SiteHeader = () => {
           {isMobileMenuOpen ? (
             <motion.div
               animate="open"
-              className="absolute inset-x-4 top-full overflow-hidden rounded-b-lg border border-t-0 border-border/70 bg-background/95 shadow-2xl backdrop-blur-2xl sm:inset-x-6 lg:hidden"
+              className="glass-panel absolute inset-x-4 top-full overflow-hidden rounded-b-lg border border-t-0 sm:inset-x-6 lg:hidden"
               exit="closed"
               id="mobile-navigation"
               initial="closed"

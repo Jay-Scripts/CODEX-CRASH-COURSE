@@ -131,7 +131,7 @@ export const SiteFooter = () => {
                     rel={isExternal ? "noopener noreferrer" : undefined}
                     target={isExternal ? "_blank" : undefined}
                   >
-                    <span className="grid size-8 place-items-center rounded-full border border-border bg-background transition-colors group-hover:border-primary/30 group-hover:bg-primary/5">
+                    <span className="glass-chip grid size-8 place-items-center rounded-full border transition-colors group-hover:border-primary/30">
                       {icon}
                     </span>
                     {label}

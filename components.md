@@ -4,12 +4,12 @@
 
 ### `SiteHeader`
 
-- Purpose: Renders the sticky site navigation with staggered top-slide entrance motion across the logo, links, command search, theme toggle, and mobile menu control.
+- Purpose: Renders the raised neomorphic sticky site navigation with staggered top-slide entrance motion across the logo, links, command search, theme toggle, and mobile menu control.
 - Location: `components/layout/site-header.tsx`
 
 ### `SiteFooter`
 
-- Purpose: Renders a modern, recruiter-focused footer with general IT positioning, site navigation, location, and outbound profile links including optional Facebook access when present in profile data.
+- Purpose: Renders a raised neomorphic recruiter-focused footer with general IT positioning, site navigation, location, and outbound profile links including optional Facebook access when present in profile data.
 - Location: `components/layout/site-footer.tsx`
 
 ### `ThemeToggle`
@@ -26,7 +26,7 @@
 
 ### `AnimatedSection`, `RevealGroup`, `RevealItem`, `SectionHeading`, `ScrollProgress`, `ScrollToTopButton`, `SectionAccentBackdrop`, `InteractiveConstellation`
 
-- Purpose: Provide shared motion wrappers with a minimum one-viewport section rhythm, staggered reveal helpers, consistent section headings, fluid section surfaces, viewport-wide refractive glass lenses, a 20%-denser pointer-responsive constellation canvas whose continuously drifting nodes form and release proximity links across the non-hero home-page sections, viewport-aware skill-carousel motion, the global scroll progress indicator, and a floating back-to-top button used across the site shell.
+- Purpose: Provide shared motion wrappers with a minimum one-viewport section rhythm, staggered reveal helpers, consistent section headings, solid neomorphic section surfaces, viewport-wide raised relief shapes, a 20%-denser pointer-responsive constellation canvas whose continuously drifting nodes form and release proximity links across the non-hero home-page sections, viewport-aware skill-carousel motion, the global scroll progress indicator, and a floating back-to-top button used across the site shell.
 - Location: `components/common/*`
 
 ## Cards
@@ -43,39 +43,39 @@
 
 ### `ExperienceProofGallery`
 
-- Purpose: Handles mobile proof lists, responsive desktop hover proof layouts for tighter and wider screens, lazy hover video previews, and in-app proof modals for internship certificates, screenshots, videos, and spreadsheet previews without sending users to a new tab.
+- Purpose: Handles mobile proof lists, responsive desktop hover proof layouts for tighter and wider screens, lazy hover video previews, and raised neomorphic in-app proof modals for internship certificates, screenshots, videos, and spreadsheet previews without sending users to a new tab.
 - Location: `components/cards/experience-proof-gallery.tsx`
 
 ### `ProjectFlowchartCarousel`, `ProjectFlowchartOverlay`
 
-- Purpose: Display ordered project flowchart previews and a fullscreen inspection overlay for system diagrams with built-in zoom controls, open-in-tab access, centered carousel-style navigation, and smoother diagram switching without duplicating that interaction logic inside sections.
+- Purpose: Display ordered project flowchart previews and a raised neomorphic fullscreen inspection overlay for system diagrams with inset viewing space, built-in zoom controls, open-in-tab access, centered carousel-style navigation, and smoother diagram switching without duplicating that interaction logic inside sections.
 - Location: `components/cards/*`
 
 ### `ProjectDocumentOverlay`
 
-- Purpose: Displays a fullscreen document preview modal for project assets and resume PDFs with centered in-view navigation, zoom controls, non-transforming swipe gestures that keep first-open canvas rendering correctly oriented, and optional direct download access while keeping the portfolio page in place underneath.
+- Purpose: Displays a raised neomorphic fullscreen document preview modal for project assets and resume PDFs with an inset viewer, centered in-view navigation, zoom controls, non-transforming swipe gestures that keep first-open canvas rendering correctly oriented, and optional direct download access while keeping the portfolio page in place underneath.
 - Location: `components/cards/project-document-overlay.tsx`
 
 ### `ProjectPreviewGalleryModal`
 
-- Purpose: Displays a fullscreen image gallery modal for project screenshot previews with categorized tabs, keyboard navigation, and direct image opening without leaving the portfolio.
+- Purpose: Displays a raised neomorphic fullscreen image gallery modal for project screenshot previews with an inset viewer, categorized tabs, keyboard navigation, and direct image opening without leaving the portfolio.
 - Location: `components/cards/project-preview-gallery-modal.tsx`
 
 ### `ProjectSystemPreviewModal`
 
-- Purpose: Opens in-page placeholder or real project walkthrough previews for project cards without redirecting users away from the portfolio.
+- Purpose: Opens raised neomorphic in-page placeholder or real project walkthrough previews for project cards without redirecting users away from the portfolio.
 - Location: `components/cards/project-system-preview-modal.tsx`
 
 ### `ProjectRecognitionModal`
 
-- Purpose: Opens in-page project recognition and award proofs for project cards without redirecting users away from the portfolio.
+- Purpose: Opens raised neomorphic in-page project recognition and award proofs for project cards without redirecting users away from the portfolio.
 - Location: `components/cards/project-recognition-modal.tsx`
 
 ## Forms
 
 ### `ContactForm`
 
-- Purpose: Validates, sanitizes, and renders the reusable recruiter contact form with shared shadcn form controls and EmailJS submission.
+- Purpose: Validates, sanitizes, and renders the reusable recruiter contact form with shared shadcn form controls, EmailJS submission, and a raised neomorphic success dialog.
 - Location: `components/forms/contact-form.tsx`
 
 ## Providers
@@ -94,14 +94,14 @@
 
 ### `Button`, `Badge`, `Card`, `Input`, `Textarea`, `Label`, `Skeleton`, `Separator`
 
-- Purpose: Shared shadcn-style primitives used throughout the app for actions, typography, fluid-glass card surfaces, and translucent form controls that remain legible in light and dark themes.
+- Purpose: Shared shadcn-style primitives used throughout the app for actions, typography, classic soft-UI surfaces that share the page material, compact upper-left/lower-right relief shadows, inset form controls, and matched light- and dark-mode depth.
 - Location: `components/ui/*`
 
 ## Home Sections
 
 ### `HeroSection`, `HeroIconConnections`, `ServicesSection`, `AboutSection`, `SkillsSection`, `SkillsCarouselRow`, `SkillsCategoryModal`, `ProjectsSection`, `ExperienceSection`, `CertificatesSection`, `CertificatePreviewModal`, `ContactSection`
 
-- Purpose: Compose recruiter-facing home page sections with responsive layouts across mobile and desktop, including cursor-triggered connection lines between nearby floating hero technology icons without particle dots; a staggered bottom-elliptic reveal for the “What I Can Provide” service cards; load-aware floating app-development and technical-support experience metrics with an elliptic slide-in reveal in the hero; generalized positioning for software development, technical support, software testing, and QA opportunities; clickable skill-category headings that open a responsive modal inventory of every categorized tool; GitHub activity inside the About section; and accessible full-width skill carousels with a minimal two-copy loop, smooth deterministic motion, pointer dragging, eased pause states, and reduced-motion support.
+- Purpose: Compose recruiter-facing home page sections with responsive neomorphic layouts across mobile and desktop, including cursor-triggered connection lines between nearby floating hero technology icons without particle dots; softly raised contribution cards and inset icon wells; load-aware floating app-development and technical-support experience metrics with an elliptic slide-in reveal in the hero; generalized positioning for software development, technical support, software testing, and QA opportunities; clickable skill-category headings that open a responsive modal inventory of every categorized tool; GitHub activity inside the About section; and accessible full-width skill carousels with a minimal two-copy loop, smooth deterministic motion, pointer dragging, eased pause states, and reduced-motion support.
 - Location: `components/sections/home/*`
 
 HeroSection and SkillsCarouselRow serve their tiny SVG skill logos without the Next.js image optimizer so remote icon CDNs load directly instead of failing through Vercel's external-image proxy.

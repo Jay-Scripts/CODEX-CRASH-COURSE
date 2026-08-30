@@ -366,6 +366,8 @@ const getTimelineSpanMonthCount = (
 const chipStyle: CSSProperties = {
   backgroundColor: "var(--hero-chip-surface)",
   borderColor: "var(--hero-chip-border)",
+  boxShadow:
+    "var(--neomorph-compact-shadow)",
   color: "var(--hero-chip-text)",
 };
 
