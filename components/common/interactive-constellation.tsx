@@ -17,7 +17,7 @@ type ConstellationPoint = {
   radius: number;
 };
 
-const CONNECTION_DISTANCE = 225;
+const CONNECTION_DISTANCE = 190;
 const POINTER_CONNECTION_DISTANCE = 245;
 const POINT_DENSITY = 15_000;
 
@@ -254,7 +254,9 @@ export const InteractiveConstellation = ({
       attributes: true,
       attributeFilter: ["class"],
     });
-    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    window.addEventListener("pointermove", handlePointerMove, {
+      passive: true,
+    });
     window.addEventListener("blur", handlePointerLeave);
     reducedMotionQuery.addEventListener("change", restartAnimation);
 

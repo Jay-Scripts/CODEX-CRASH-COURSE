@@ -8,6 +8,7 @@ import { useEffect, useState, type CSSProperties } from "react";
 import { experiences, profile } from "@/constants/portfolio.constants";
 import { skillLogoMap } from "@/constants/skill-logos.constants";
 import { ProjectDocumentOverlay } from "@/components/cards/project-document-overlay";
+import { HeroIconConnections } from "@/components/sections/home/hero-icon-connections";
 import { Button } from "@/components/ui/button";
 import { smoothMotionEase } from "@/utils/animations.utils";
 
@@ -485,17 +486,19 @@ export const HeroSection = () => {
             "radial-gradient(ellipse 70% 65% at 65% 45%, transparent 30%, var(--hero-radial-mask-end) 80%)",
         }}
       />
+      <HeroIconConnections />
       {heroSpinnerBoxes.map((box, index) => {
         const skill = skillLogoMap[box.skill];
 
         return (
           <div
             aria-hidden="true"
-            className={`pointer-events-none absolute transition-opacity duration-1000 ${
+            className={`pointer-events-none absolute z-[3] transition-opacity duration-1000 ${
               hasExperienceRevealFinished
                 ? "opacity-75 xl:opacity-[0.92]"
                 : "opacity-40 xl:opacity-60"
             } ${box.className}`}
+            data-hero-floating-icon
             key={box.className}
             style={{
               transform: `rotate(${box.rotate})`,

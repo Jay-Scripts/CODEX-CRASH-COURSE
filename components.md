@@ -99,9 +99,9 @@
 
 ## Home Sections
 
-### `HeroSection`, `ServicesSection`, `AboutSection`, `SkillsSection`, `SkillsCarouselRow`, `SkillsCategoryModal`, `ProjectsSection`, `ExperienceSection`, `CertificatesSection`, `CertificatePreviewModal`, `ContactSection`
+### `HeroSection`, `HeroIconConnections`, `ServicesSection`, `AboutSection`, `SkillsSection`, `SkillsCarouselRow`, `SkillsCategoryModal`, `ProjectsSection`, `ExperienceSection`, `CertificatesSection`, `CertificatePreviewModal`, `ContactSection`
 
-- Purpose: Compose recruiter-facing home page sections with responsive layouts across mobile and desktop, including a staggered bottom-elliptic reveal for the “What I Can Provide” service cards; load-aware floating app-development and technical-support experience metrics with an elliptic slide-in reveal in the hero; generalized positioning for software development, technical support, software testing, and QA opportunities; clickable skill-category headings that open a responsive modal inventory of every categorized tool; GitHub activity inside the About section; and accessible full-width skill carousels with a minimal two-copy loop, smooth deterministic motion, pointer dragging, eased pause states, and reduced-motion support.
+- Purpose: Compose recruiter-facing home page sections with responsive layouts across mobile and desktop, including cursor-triggered connection lines between nearby floating hero technology icons without particle dots; a staggered bottom-elliptic reveal for the “What I Can Provide” service cards; load-aware floating app-development and technical-support experience metrics with an elliptic slide-in reveal in the hero; generalized positioning for software development, technical support, software testing, and QA opportunities; clickable skill-category headings that open a responsive modal inventory of every categorized tool; GitHub activity inside the About section; and accessible full-width skill carousels with a minimal two-copy loop, smooth deterministic motion, pointer dragging, eased pause states, and reduced-motion support.
 - Location: `components/sections/home/*`
 
 HeroSection and SkillsCarouselRow serve their tiny SVG skill logos without the Next.js image optimizer so remote icon CDNs load directly instead of failing through Vercel's external-image proxy.
