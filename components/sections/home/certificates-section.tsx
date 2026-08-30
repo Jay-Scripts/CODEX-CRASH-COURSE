@@ -24,29 +24,32 @@ const certificateGridVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.2,
+      delayChildren: 0.06,
+      staggerChildren: 0.12,
     },
   },
 };
 
 const certificateCardVariants: Variants = {
-  hidden: {
+  hidden: (direction: number = 1) => ({
     opacity: 0,
-    scale: 0,
-    y: 80,
-    rotateX: 30,
-    transformOrigin: "50% 100%",
-    transformPerspective: 1000,
-  },
+    rotateX: 10,
+    rotateZ: direction * 5,
+    scale: 1.16,
+    transformOrigin: "50% 50%",
+    transformPerspective: 900,
+    y: -28,
+  }),
   visible: {
     opacity: 1,
+    rotateZ: 0,
     scale: 1,
     y: 0,
     rotateX: 0,
     transformOrigin: "50% -1400px",
     transformPerspective: 1000,
     transition: {
-      duration: 0.9,
+      duration: 0.68,
       ease: smoothMotionEase,
     },
   },
@@ -76,7 +79,7 @@ export const CertificatesSection = () => {
 
   return (
     <AnimatedSection
-      className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+      className="px-3 py-16 sm:px-6 sm:py-20 lg:px-8"
       id="certificates"
     >
       <RevealGroup className="relative mx-auto max-w-7xl">
@@ -131,14 +134,15 @@ export const CertificatesSection = () => {
               .
             </p>
             <RevealGroup
-              className="grid gap-4 md:grid-cols-2 xl:grid-cols-3"
+              className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-3"
               layout
               variants={certificateGridVariants}
             >
               <AnimatePresence mode="sync">
-                {visibleCertificates.map((certificate) => (
+                {visibleCertificates.map((certificate, certificateIndex) => (
                   <RevealItem
                     animate="visible"
+                    custom={certificateIndex % 2 === 0 ? -1 : 1}
                     exit={filteredItemExitState}
                     initial="hidden"
                     key={`${certificate.title}-${certificate.issued}`}
@@ -154,10 +158,10 @@ export const CertificatesSection = () => {
                       }}
                       type="button"
                     >
-                      <Card className="glass-interactive h-full overflow-hidden">
+                      <Card className="glass-interactive h-full overflow-hidden rounded-xl sm:rounded-2xl">
                         <CardContent className="flex h-full flex-col p-0">
                           {certificate.imageSrc ? (
-                            <div className="relative aspect-[4/3] overflow-hidden border-b border-border/60 bg-muted/20 p-3 backdrop-blur-sm">
+                            <div className="relative aspect-[4/3] overflow-hidden border-b border-border/60 bg-muted/20 p-1.5 backdrop-blur-sm sm:p-3">
                               <div className="relative h-full w-full">
                                 <Image
                                   alt={
@@ -165,7 +169,7 @@ export const CertificatesSection = () => {
                                   }
                                   className="rounded-lg object-contain"
                                   fill
-                                  sizes="(min-width: 1280px) 24rem, (min-width: 768px) 50vw, 100vw"
+                                  sizes="(min-width: 1280px) 24rem, (min-width: 768px) 50vw, 50vw"
                                   src={certificate.imageSrc}
                                 />
                               </div>
@@ -182,21 +186,21 @@ export const CertificatesSection = () => {
                             </div>
                           )}
 
-                          <article className="flex h-full flex-col p-5 sm:p-6">
-                            <div className="flex items-start justify-between gap-3">
-                              <div>
-                                <p className="text-sm text-primary">
+                          <article className="flex h-full flex-col p-3 sm:p-6">
+                            <div className="flex flex-col items-start gap-2 sm:flex-row sm:justify-between sm:gap-3">
+                              <div className="min-w-0">
+                                <p className="text-[10px] text-primary sm:text-sm">
                                   {certificate.issued}
                                 </p>
-                                <h3 className="mt-2 text-lg font-semibold text-foreground sm:text-xl">
+                                <h3 className="mt-1 line-clamp-3 text-xs font-semibold leading-snug text-foreground sm:mt-2 sm:text-xl">
                                   {certificate.title}
                                 </h3>
-                                <p className="mt-1 text-sm text-muted-foreground">
+                                <p className="mt-1 line-clamp-2 text-[10px] leading-4 text-muted-foreground sm:text-sm">
                                   {certificate.issuer}
                                 </p>
                               </div>
                               <Badge
-                                className="border-primary/20 bg-primary/10 text-primary"
+                                className="border-primary/20 bg-primary/10 px-1.5 py-0 text-[9px] text-primary sm:px-2.5 sm:py-0.5 sm:text-xs"
                                 variant="outline"
                               >
                                 {certificate.type}
@@ -204,7 +208,7 @@ export const CertificatesSection = () => {
                             </div>
 
                             {certificate.credentialId ? (
-                              <p className="mt-4 text-sm text-muted-foreground">
+                              <p className="mt-4 hidden text-sm text-muted-foreground sm:block">
                                 <span className="font-medium text-foreground">
                                   Credential ID:
                                 </span>{" "}
@@ -213,7 +217,7 @@ export const CertificatesSection = () => {
                             ) : null}
 
                             {certificate.skills?.length ? (
-                              <div className="mt-4 flex flex-wrap gap-2">
+                              <div className="mt-4 hidden flex-wrap gap-2 sm:flex">
                                 {certificate.skills.map((skill) => (
                                   <Badge
                                     className="glass-chip text-muted-foreground"
