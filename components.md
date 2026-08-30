@@ -24,9 +24,9 @@
 
 ## Common
 
-### `AnimatedSection`, `RevealGroup`, `RevealItem`, `SectionHeading`, `ScrollProgress`, `ScrollToTopButton`, `SectionAccentBackdrop`
+### `AnimatedSection`, `RevealGroup`, `RevealItem`, `SectionHeading`, `ScrollProgress`, `ScrollToTopButton`, `SectionAccentBackdrop`, `InteractiveConstellation`
 
-- Purpose: Provide shared motion wrappers with a minimum one-viewport section rhythm, staggered reveal helpers, consistent section headings, fluid section surfaces, viewport-wide refractive glass lenses, viewport-aware skill-carousel motion, the global scroll progress indicator, and a floating back-to-top button used across the site shell.
+- Purpose: Provide shared motion wrappers with a minimum one-viewport section rhythm, staggered reveal helpers, consistent section headings, fluid section surfaces, viewport-wide refractive glass lenses, a 20%-denser pointer-responsive constellation canvas with more responsive proximity links shared by the non-hero home-page sections, viewport-aware skill-carousel motion, the global scroll progress indicator, and a floating back-to-top button used across the site shell.
 - Location: `components/common/*`
 
 ## Cards

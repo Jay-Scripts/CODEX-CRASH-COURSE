@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { ComponentProps } from "react";
+import { InteractiveConstellation } from "@/components/common/interactive-constellation";
 import { cn } from "@/lib/utils";
 
 type AnimatedSectionProps = ComponentProps<typeof motion.section>;
@@ -30,6 +31,7 @@ export const AnimatedSection = ({
     whileInView="visible"
     {...props}
   >
+    <InteractiveConstellation className="z-[1] opacity-70 dark:opacity-85" />
     {children}
   </motion.section>
 );
