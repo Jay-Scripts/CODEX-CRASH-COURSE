@@ -37,14 +37,14 @@ const SkillLogoPill = ({ isDuplicate = false, skill }: SkillLogoPillProps) => {
   return (
     <Badge
       aria-hidden={isDuplicate || undefined}
-      className="glass-chip h-9 shrink-0 gap-2 px-3 py-0 text-sm font-medium text-foreground"
+      className="glass-chip h-8 shrink-0 gap-1.5 px-2.5 py-0 text-xs font-medium text-foreground sm:h-9 sm:gap-2 sm:px-3 sm:text-sm"
       variant="outline"
     >
-      <span className="glass-inset grid size-6 shrink-0 place-items-center rounded-md text-primary">
+      <span className="glass-inset grid size-5 shrink-0 place-items-center rounded-md text-primary sm:size-6">
         {skill.logo ? (
           <Image
             alt=""
-            className={cn("size-4 object-contain", skill.logoClassName)}
+            className={cn("size-3.5 object-contain sm:size-4", skill.logoClassName)}
             height={16}
             loading="lazy"
             src={skill.logo}
@@ -52,7 +52,7 @@ const SkillLogoPill = ({ isDuplicate = false, skill }: SkillLogoPillProps) => {
             width={16}
           />
         ) : (
-          <Icon aria-hidden="true" className="size-3.5" />
+          <Icon aria-hidden="true" className="size-3 sm:size-3.5" />
         )}
       </span>
       <span className="whitespace-nowrap">{skill.name}</span>

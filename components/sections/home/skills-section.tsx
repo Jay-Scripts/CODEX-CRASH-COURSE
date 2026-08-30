@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, type Variants } from "framer-motion";
 import { LayoutGrid } from "lucide-react";
 import { useState } from "react";
 import { AnimatedSection } from "@/components/common/animated-section";
@@ -11,6 +12,40 @@ import { SkillsCarouselRow } from "@/components/sections/home/skills-carousel-ro
 import { skillGroups } from "@/constants/portfolio.constants";
 import { cn } from "@/lib/utils";
 import type { SkillGroup } from "@/types/portfolio.types";
+
+const skillLaneGroupVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.08,
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const skillLaneVariants: Variants = {
+  hidden: (movesRight: boolean) => ({
+    clipPath: movesRight
+      ? "inset(0 0 0 100% round 0.75rem)"
+      : "inset(0 100% 0 0 round 0.75rem)",
+    opacity: 0,
+    rotateZ: movesRight ? 1.5 : -1.5,
+    x: movesRight ? 44 : -44,
+  }),
+  visible: {
+    clipPath: "inset(0 0 0 0 round 0.75rem)",
+    opacity: 1,
+    rotateZ: 0,
+    transition: {
+      duration: 0.64,
+      ease: [0.22, 1, 0.36, 1],
+    },
+    transitionEnd: {
+      clipPath: "none",
+    },
+    x: 0,
+  },
+};
 
 /** Displays technical skills in categorized, alternating infinite carousels. */
 export const SkillsSection = () => {
@@ -29,26 +64,30 @@ export const SkillsSection = () => {
           />
         </RevealItem>
 
-        <RevealItem>
-          <div className="overflow-hidden rounded-2xl border border-border/60 bg-transparent">
-            {skillGroups.map((group, groupIndex) => {
-              const movesRight = groupIndex % 2 !== 0;
+        <RevealGroup
+          className="overflow-visible bg-transparent sm:overflow-hidden sm:rounded-2xl sm:border sm:border-border/60"
+          variants={skillLaneGroupVariants}
+        >
+          {skillGroups.map((group, groupIndex) => {
+            const movesRight = groupIndex % 2 !== 0;
 
-              return (
-                <article
+            return (
+              <motion.article
                   className={cn(
-                    "min-w-0 max-w-full p-4 sm:p-5",
-                    groupIndex > 0 && "border-t border-border/60",
+                    "skills-toolbelt-lane mb-4 min-w-0 max-w-full p-3.5 last:mb-0 sm:mb-0 sm:p-5",
+                    groupIndex > 0 && "sm:border-t sm:border-border/60",
                   )}
+                  custom={movesRight}
                   key={group.title}
+                  variants={skillLaneVariants}
                 >
-                  <div className="mb-3 flex items-center justify-center">
+                  <div className="mb-2.5 flex items-center justify-between gap-3 sm:mb-3 sm:justify-center">
                     <h3>
                       <button
                         aria-controls="skills-category-modal"
                         aria-expanded={selectedGroup?.title === group.title}
                         aria-haspopup="dialog"
-                        className="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-transparent px-3 py-1.5 text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground transition-colors hover:border-primary/20 hover:bg-primary/5 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                        className="group inline-flex cursor-pointer items-center gap-2 rounded-lg border border-transparent px-1 py-1 text-left text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:border-primary/20 hover:bg-primary/5 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:rounded-full sm:px-3 sm:py-1.5 sm:text-center sm:text-xs sm:tracking-widest"
                         onClick={() => setSelectedGroup(group)}
                         type="button"
                       >
@@ -57,14 +96,17 @@ export const SkillsSection = () => {
                           aria-hidden="true"
                           className="size-3.5 text-primary/70 transition-transform group-hover:scale-110"
                         />
+                        <span className="rounded-full bg-primary/10 px-1.5 py-0.5 text-[9px] tabular-nums text-primary sm:hidden">
+                          {group.skills.length}
+                        </span>
                       </button>
                     </h3>
                     <div
                       aria-hidden="true"
-                      className="hidden"
+                      className="flex min-w-12 items-center gap-1.5 text-primary/55 sm:hidden"
                     >
-                      <span className="h-px flex-1 bg-border/60" />
-                      <span className="text-[10px] text-muted-foreground/50">
+                      <span className="h-px flex-1 bg-primary/20" />
+                      <span className="text-xs">
                         {movesRight ? "→" : "←"}
                       </span>
                     </div>
@@ -75,11 +117,10 @@ export const SkillsSection = () => {
                     group={group.title}
                     skills={group.skills}
                   />
-                </article>
-              );
-            })}
-          </div>
-        </RevealItem>
+              </motion.article>
+            );
+          })}
+        </RevealGroup>
       </RevealGroup>
 
       <SkillsCategoryModal
