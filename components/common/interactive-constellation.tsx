@@ -10,8 +10,6 @@ type InteractiveConstellationProps = {
 type ConstellationPoint = {
   x: number;
   y: number;
-  originX: number;
-  originY: number;
   velocityX: number;
   velocityY: number;
   radius: number;
@@ -78,14 +76,14 @@ export const InteractiveConstellation = ({
         const cellHeight = height / rowCount;
         const x = cellWidth * (column + 0.2 + Math.random() * 0.6);
         const y = cellHeight * (row + 0.2 + Math.random() * 0.6);
+        const travelAngle = Math.random() * Math.PI * 2;
+        const travelSpeed = 0.14 + Math.random() * 0.18;
 
         return {
           x,
           y,
-          originX: x,
-          originY: y,
-          velocityX: (Math.random() - 0.5) * 0.16,
-          velocityY: (Math.random() - 0.5) * 0.16,
+          velocityX: Math.cos(travelAngle) * travelSpeed,
+          velocityY: Math.sin(travelAngle) * travelSpeed,
           radius: 1 + Math.random() * 1.2,
         };
       });
@@ -129,13 +127,28 @@ export const InteractiveConstellation = ({
           point.x += point.velocityX;
           point.y += point.velocityY;
 
-          if (Math.abs(point.x - point.originX) > 24) {
+          if (
+            (point.x <= point.radius && point.velocityX < 0) ||
+            (point.x >= width - point.radius && point.velocityX > 0)
+          ) {
             point.velocityX *= -1;
           }
 
-          if (Math.abs(point.y - point.originY) > 24) {
+          if (
+            (point.y <= point.radius && point.velocityY < 0) ||
+            (point.y >= height - point.radius && point.velocityY > 0)
+          ) {
             point.velocityY *= -1;
           }
+
+          point.x = Math.min(
+            Math.max(point.x, point.radius),
+            width - point.radius,
+          );
+          point.y = Math.min(
+            Math.max(point.y, point.radius),
+            height - point.radius,
+          );
         }
 
         for (
