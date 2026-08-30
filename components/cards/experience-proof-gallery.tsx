@@ -371,54 +371,28 @@ export const ExperienceProofGallery = ({
       {mode === "mobile" ? (
         <section
           aria-labelledby={`${proofSectionId}-proof-mobile`}
-          className="mt-5 border-t border-border/50 pt-4 md:hidden"
+          className="mt-3 border-t border-border/50 pt-3 md:hidden"
         >
-          <div className="mb-3 flex items-center justify-between gap-3">
-            <div>
-              <h4
-                className="text-sm font-semibold text-foreground"
-                id={`${proofSectionId}-proof-mobile`}
-              >
-                Supporting materials
-              </h4>
-              <p className="text-xs text-muted-foreground">
-                Tap a proof item to preview it without leaving the portfolio.
-              </p>
-            </div>
+          <h4 className="sr-only" id={`${proofSectionId}-proof-mobile`}>
+            Supporting materials
+          </h4>
+          <Button
+            className="h-auto w-full justify-between rounded-lg px-3 py-2.5 text-xs"
+            onClick={() => openProofPreview(0)}
+            type="button"
+            variant="outline"
+          >
+            <span className="flex items-center gap-2">
+              <ImageIcon className="size-3.5 text-primary" />
+              View supporting materials
+            </span>
             <Badge
               className="border-primary/20 bg-primary/10 text-primary"
               variant="outline"
             >
               {proofItems.length} items
             </Badge>
-          </div>
-          <div className="grid gap-3">
-            {proofItems.map((item, index) => {
-              const ProofIcon = proofTypeIcons[item.type];
-
-              return (
-                <button
-                  className="glass-inset flex cursor-pointer items-center gap-3 rounded-xl p-3 text-left transition-colors hover:border-primary/20"
-                  key={item.label}
-                  onClick={() => openProofPreview(index)}
-                  type="button"
-                >
-                  <div className="relative aspect-[4/3] w-24 overflow-hidden rounded-lg border border-border/50 bg-background">
-                    {renderProofSurface(item, { compact: true, sizes: "6rem" })}
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-foreground">
-                      {item.label}
-                    </p>
-                    <p className="mt-1 flex items-center gap-1.5 text-xs text-muted-foreground">
-                      <ProofIcon className="size-3.5 text-primary" />
-                      {proofTypeLabels[item.type]}
-                    </p>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
+          </Button>
         </section>
       ) : null}
 
