@@ -9,32 +9,39 @@ const serviceGridVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.3,
+      delayChildren: 0.08,
+      staggerChildren: 0.14,
     },
   },
 };
 
-const serviceCardVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0,
-    y: 600,
-    rotateX: 30,
-    transformOrigin: "50% 100%",
-    transformPerspective: 1000,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    rotateX: 0,
-    transformOrigin: "50% -1400px",
-    transformPerspective: 1000,
-    transition: {
-      duration: 0.9,
-      ease: smoothMotionEase,
+const createServiceCardVariants = (index: number): Variants => {
+  const direction = index % 2 === 0 ? -1 : 1;
+
+  return {
+    hidden: {
+      opacity: 0,
+      rotateY: direction * 12,
+      rotateZ: direction * 3,
+      scale: 0.9,
+      transformPerspective: 900,
+      x: direction * 44,
+      y: 34,
     },
-  },
+    visible: {
+      opacity: 1,
+      rotateY: 0,
+      rotateZ: 0,
+      scale: 1,
+      transformPerspective: 900,
+      x: 0,
+      y: 0,
+      transition: {
+        duration: 0.68,
+        ease: smoothMotionEase,
+      },
+    },
+  };
 };
 
 /**
@@ -54,26 +61,26 @@ export const ServicesSection = () => (
         />
       </RevealItem>
       <RevealGroup
-        className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+        className="grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-7 lg:grid-cols-3 xl:grid-cols-5"
         variants={serviceGridVariants}
       >
-        {serviceOfferings.map((offering) => {
+        {serviceOfferings.map((offering, index) => {
           const Icon = offering.icon;
 
           return (
             <RevealItem
-              className="h-full [transform-style:preserve-3d]"
+              className="h-full [transform-style:preserve-3d] last:col-span-2 last:mx-auto last:w-[calc(50%_-_0.5rem)] sm:last:w-[calc(50%_-_0.875rem)] lg:last:col-span-1 lg:last:mx-0 lg:last:w-auto"
               key={offering.title}
-              variants={serviceCardVariants}
+              variants={createServiceCardVariants(index)}
             >
-              <article className="service-neomorphic-panel group relative flex h-full min-h-[17rem] flex-col items-center rounded-2xl px-5 py-7 text-center text-card-foreground xl:min-h-[19rem]">
-                <div className="service-neomorphic-inset grid size-12 place-items-center rounded-xl text-primary">
-                  <Icon className="size-5" />
+              <article className="service-neomorphic-panel group relative flex h-full min-h-60 flex-col items-center rounded-xl px-3 py-5 text-center text-card-foreground sm:min-h-[17rem] sm:rounded-2xl sm:px-5 sm:py-7 xl:min-h-[19rem]">
+                <div className="service-neomorphic-inset grid size-10 place-items-center rounded-lg text-primary sm:size-12 sm:rounded-xl">
+                  <Icon className="size-4 sm:size-5" />
                 </div>
-                <h3 className="mt-4 text-base font-medium text-foreground sm:text-lg">
+                <h3 className="mt-3 text-sm font-semibold leading-snug text-foreground sm:mt-4 sm:text-lg sm:font-medium">
                   {offering.title}
                 </h3>
-                <p className="mt-2 max-w-xs text-sm leading-6 text-muted-foreground">
+                <p className="mt-2 max-w-xs text-xs leading-5 text-muted-foreground sm:text-sm sm:leading-6">
                   {offering.description}
                 </p>
               </article>

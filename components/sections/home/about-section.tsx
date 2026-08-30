@@ -13,21 +13,25 @@ type AboutCardDirection = "left" | "right";
 const aboutCardVariants: Variants = {
   hidden: (direction: AboutCardDirection = "left") => ({
     opacity: 0,
-    scale: 0.96,
-    x: direction === "right" ? 420 : -420,
-    rotateY: direction === "right" ? -24 : 24,
+    rotateY: direction === "right" ? -52 : 52,
+    rotateZ: direction === "right" ? 2 : -2,
+    scale: 0.92,
     transformOrigin: direction === "right" ? "100% 50%" : "0% 50%",
-    transformPerspective: 1000,
+    transformPerspective: 900,
+    x: direction === "right" ? 28 : -28,
+    y: 24,
   }),
   visible: {
     opacity: 1,
+    rotateZ: 0,
     scale: 1,
     x: 0,
+    y: 0,
     rotateY: 0,
     transformOrigin: "50% 50%",
-    transformPerspective: 1000,
+    transformPerspective: 900,
     transition: {
-      duration: 1,
+      duration: 0.78,
       ease: smoothMotionEase,
     },
   },
@@ -50,7 +54,7 @@ export const AboutSection = () => {
           />
         </RevealItem>
 
-        <RevealGroup className="grid gap-3 sm:grid-cols-2 [perspective:1000px]">
+        <RevealGroup className="grid grid-cols-2 gap-4 sm:gap-5 [perspective:1000px]">
           {aboutEntries.map((item, index) => {
             const Icon = item.icon;
             const direction: AboutCardDirection = index === 0 ? "left" : "right";
@@ -62,22 +66,22 @@ export const AboutSection = () => {
                 key={item.title}
                 variants={aboutCardVariants}
               >
-                <section className="glass-panel glass-interactive relative h-full overflow-hidden rounded-2xl p-5">
-                  <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                <section className="glass-panel glass-interactive relative h-full overflow-hidden rounded-xl p-3 sm:rounded-2xl sm:p-5">
+                  <div className="absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent sm:inset-x-8" />
 
-                  <div className="flex items-center gap-3">
-                    <span className="glass-inset grid size-9 place-items-center rounded-xl text-primary">
-                      <Icon className="size-4" />
+                  <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-3">
+                    <span className="glass-inset grid size-8 shrink-0 place-items-center rounded-lg text-primary sm:size-9 sm:rounded-xl">
+                      <Icon className="size-3.5 sm:size-4" />
                     </span>
-                    <h4 className="text-sm font-semibold text-foreground">
+                    <h4 className="text-xs font-semibold leading-snug text-foreground sm:text-sm">
                       {item.title}
                     </h4>
                   </div>
 
-                  <div className="mt-4 space-y-2">
+                  <div className="mt-3 space-y-2 sm:mt-4">
                     {item.description.map((paragraph) => (
                       <p
-                        className="text-sm leading-7 text-muted-foreground"
+                        className="hyphens-auto text-[11px] leading-[1.55] text-muted-foreground min-[380px]:text-xs sm:text-sm sm:leading-7"
                         key={paragraph}
                       >
                         {paragraph}
