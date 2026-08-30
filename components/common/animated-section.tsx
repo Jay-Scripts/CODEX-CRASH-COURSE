@@ -1,11 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import type { ComponentProps } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import { InteractiveConstellation } from "@/components/common/interactive-constellation";
 import { cn } from "@/lib/utils";
 
-type AnimatedSectionProps = ComponentProps<typeof motion.section>;
+type AnimatedSectionProps = Omit<
+  ComponentProps<typeof motion.section>,
+  "children"
+> & {
+  children?: ReactNode;
+};
 
 const sectionRevealState = {
   hidden: {},
