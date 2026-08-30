@@ -33,7 +33,7 @@
 
 ### `ProjectCard`, `ExperienceCard`
 
-- Purpose: Render recruiter-facing project and experience content as reusable card patterns with stronger semantic structure, including flexible portrait or landscape project preview surfaces plus on-demand supporting-material previews that avoid hidden responsive duplicates and defer video loading until playback.
+- Purpose: Render recruiter-facing project and experience content as reusable card patterns with stronger semantic structure, including maximized mobile project previews, compact phone content density, side-by-side technical summaries, flexible portrait or landscape preview surfaces, and on-demand supporting-material previews that avoid hidden responsive duplicates and defer video loading until playback.
 - Location: `components/cards/*`
 
 ### `GitHubActivityCard`
@@ -112,5 +112,5 @@ HeroSection’s responsive rotating decorative layer displays flat, brand-colore
 
 ### `ProjectFilter`
 
-- Purpose: Supports interactive category-tab filtering for featured projects before handing each visible result to the shared project card layer.
+- Purpose: Supports interactive category-tab filtering for featured projects with a scrollbar-free two-column mobile tab grid, maximized phone-width project cards, and alternating blueprint-unfold reveals before handing each visible result to the shared project card layer.
 - Location: `components/sections/home/project-filter.tsx`

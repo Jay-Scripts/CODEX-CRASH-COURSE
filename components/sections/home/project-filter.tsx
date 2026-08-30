@@ -46,16 +46,19 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
 
   return (
     <>
-      <div className="mb-8 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center">
+      <div className="mb-6 grid grid-cols-2 gap-2 sm:mb-8 sm:flex sm:flex-wrap sm:justify-center">
         {filters.map((filter) => {
           const isActive = activeFilter === filter.value;
 
           return (
-            <RevealItem key={filter.value}>
+            <RevealItem
+              className="min-w-0 last:col-span-2 sm:last:col-span-1"
+              key={filter.value}
+            >
               <Button
                 aria-pressed={isActive}
                 className={cn(
-                  "glass-chip w-full border-primary/15 sm:w-auto",
+                  "glass-chip h-9 w-full border-primary/15 px-2 text-xs sm:h-10 sm:w-auto sm:px-4 sm:text-sm",
                   isActive &&
                     "border-primary/30 bg-primary/12 text-foreground hover:bg-primary/18",
                 )}
@@ -69,14 +72,32 @@ export const ProjectFilter = ({ projects }: ProjectFilterProps) => {
           );
         })}
       </div>
-      <RevealGroup className="grid gap-6" layout>
+      <RevealGroup className="grid gap-4 sm:gap-6 [perspective:1200px]" layout>
         <AnimatePresence initial={false} mode="sync">
           {visibleProjects.length ? (
-            visibleProjects.map((project) => (
+            visibleProjects.map((project, projectIndex) => (
               <RevealItem
-                animate={filteredItemVisibleState}
-                exit={filteredItemExitState}
-                initial={filteredItemInitialState}
+                animate={{
+                  ...filteredItemVisibleState,
+                  rotateX: 0,
+                  rotateZ: 0,
+                  scaleY: 1,
+                  transformPerspective: 1200,
+                }}
+                className="[transform-origin:50%_0%] [transform-style:preserve-3d]"
+                exit={{
+                  ...filteredItemExitState,
+                  rotateX: 8,
+                  scaleY: 0.96,
+                }}
+                initial={{
+                  ...filteredItemInitialState,
+                  rotateX: -14,
+                  rotateZ: projectIndex % 2 === 0 ? -1 : 1,
+                  scaleY: 0.88,
+                  transformPerspective: 1200,
+                  y: 42,
+                }}
                 key={project.id}
                 layout="position"
                 transition={responsiveLayoutTransition}

@@ -116,7 +116,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         ? "aspect-[3/4] w-full"
         : usesLandscapePreview
           ? "aspect-video w-full max-w-none"
-          : "aspect-[3/4] w-36 sm:w-40",
+          : "mx-auto aspect-[3/4] w-full max-w-60 sm:w-40",
   );
   const previewImageClassName = cn(
     isSystemFlowchartProject
@@ -209,7 +209,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <>
       <Card
-        className="glass-interactive group overflow-hidden"
+        className="glass-interactive group overflow-hidden rounded-xl sm:rounded-2xl"
         id={project.id}
       >
         <article
@@ -225,7 +225,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             {hasPreview ? (
               <>
                 {/* top bar */}
-                <div className="flex items-center gap-2 border-b border-border/30 px-4 py-2.5">
+                <div className="flex items-center gap-2 border-b border-border/30 px-3 py-2 sm:px-4 sm:py-2.5">
                   <span className="flex items-center gap-1.5 text-[11px] uppercase tracking-wide text-muted-foreground">
                     <FileText className="size-3 shrink-0 text-primary" />
                     Project preview
@@ -235,7 +235,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                 {/* thumbnail */}
                 <div
                   className={cn(
-                    "flex flex-1 items-stretch justify-stretch px-6 py-8",
+                    "flex flex-1 items-stretch justify-stretch px-3 py-3 sm:px-6 sm:py-8",
                     usesExpandedPreviewSurface && "px-4 py-4",
                     usesLandscapePreview && "px-3 py-4 sm:px-4 lg:px-4",
                   )}
@@ -340,7 +340,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                 </div>
 
                 {/* bottom bar */}
-                <div className="flex justify-center items-center border-t border-border/30 px-4 py-2 text-[10px] text-muted-foreground">
+                <div className="flex items-center justify-center border-t border-border/30 px-3 py-1.5 text-[10px] text-muted-foreground sm:px-4 sm:py-2">
                   <span>Click to See Previews</span>
                 </div>
               </>
@@ -374,11 +374,11 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           </div>
 
           {/* ── Content column ── */}
-          <CardContent className="flex flex-col gap-4 p-5 sm:p-6 lg:p-7">
+          <CardContent className="flex flex-col gap-3 p-3.5 sm:gap-4 sm:p-6 lg:p-7">
             {/* title + category */}
             <div className="flex flex-wrap items-start justify-between gap-2">
               <h3
-                className="text-lg font-semibold tracking-tight text-foreground sm:text-xl"
+                className="text-base font-semibold tracking-tight text-foreground sm:text-xl"
                 id={`${project.id}-title`}
               >
                 {project.title}
@@ -403,7 +403,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             ) : null}
 
             {/* summary */}
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-xs leading-5 text-muted-foreground sm:text-sm sm:leading-relaxed">
               {project.summary}
             </p>
 
@@ -455,7 +455,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             ) : null}
 
             {/* architecture + features */}
-            <div className="grid gap-5 sm:grid-cols-2">
+            <div className="grid grid-cols-2 gap-3 sm:gap-5">
               <section aria-labelledby={`${project.id}-architecture`}>
                 <h4
                   className="mb-2.5 flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-widest text-foreground"
@@ -468,7 +468,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                   {project.architecture.map((item) => (
                     <li
                       key={item}
-                      className="flex items-start gap-2 text-sm text-muted-foreground"
+                      className="flex items-start gap-1.5 text-xs leading-5 text-muted-foreground sm:gap-2 sm:text-sm"
                     >
                       <span className="mt-[7px] size-1 shrink-0 rounded-full bg-primary/40" />
                       {item}
@@ -489,7 +489,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                   {project.features.map((feature) => (
                     <li
                       key={feature}
-                      className="flex items-start gap-2 text-sm text-muted-foreground"
+                      className="flex items-start gap-1.5 text-xs leading-5 text-muted-foreground sm:gap-2 sm:text-sm"
                     >
                       <span className="mt-[7px] size-1 shrink-0 rounded-full bg-primary/40" />
                       {feature}

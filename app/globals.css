@@ -550,6 +550,7 @@ main > #certificates.fluid-section {
       transparent
     );
   }
+
 }
 
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {

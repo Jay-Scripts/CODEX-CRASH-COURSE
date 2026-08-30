@@ -10,7 +10,7 @@ import { ProjectFilter } from "./project-filter";
  */
 export const ProjectsSection = () => (
   <AnimatedSection
-    className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+    className="px-3 py-16 sm:px-6 sm:py-20 lg:px-8"
     id="projects"
   >
     <RevealGroup className="relative mx-auto max-w-7xl">
