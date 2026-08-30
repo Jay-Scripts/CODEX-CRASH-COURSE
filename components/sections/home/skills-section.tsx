@@ -52,12 +52,16 @@ export const SkillsSection = () => {
   const [selectedGroup, setSelectedGroup] = useState<SkillGroup | null>(null);
 
   return (
-    <AnimatedSection className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8" id="skills">
+    <AnimatedSection
+      className="scroll-mt-16 px-4 py-16 sm:px-6 sm:py-20 lg:min-h-[calc(100svh-4rem)] lg:px-8 lg:py-6"
+      id="skills"
+    >
       <RevealGroup className="relative w-full min-w-0">
         <SectionAccentBackdrop variant="center" />
 
         <RevealItem>
           <SectionHeading
+            className="lg:mb-4 lg:[&>div]:mb-2 lg:[&>p]:mt-2 lg:[&>p]:leading-6"
             description="A structured overview of my technical skills across software development, technical troubleshooting, user support, testing, quality assurance, and delivery workflows."
             eyebrow="Technical Skills"
             title="Development, technical support, testing, and QA"
@@ -74,14 +78,14 @@ export const SkillsSection = () => {
             return (
               <motion.article
                   className={cn(
-                    "skills-toolbelt-lane mb-4 min-w-0 max-w-full p-3.5 last:mb-0 sm:mb-0 sm:p-5",
+                    "skills-toolbelt-lane mb-4 min-w-0 max-w-full p-3.5 last:mb-0 sm:mb-0 sm:p-5 lg:px-3 lg:py-2.5",
                     groupIndex > 0 && "sm:border-t sm:border-border/60",
                   )}
                   custom={movesRight}
                   key={group.title}
                   variants={skillLaneVariants}
                 >
-                  <div className="mb-2.5 flex items-center justify-between gap-3 sm:mb-3 sm:justify-center">
+                  <div className="mb-2.5 flex items-center justify-between gap-3 sm:mb-3 sm:justify-center lg:mb-1.5">
                     <h3>
                       <button
                         aria-controls="skills-category-modal"

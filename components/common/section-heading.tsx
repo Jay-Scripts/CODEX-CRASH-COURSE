@@ -1,6 +1,8 @@
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 type SectionHeadingProps = {
+  className?: string;
   description: string;
   eyebrow: string;
   title: string;
@@ -10,11 +12,17 @@ type SectionHeadingProps = {
  * Displays the shared heading pattern used across home page sections.
  */
 export const SectionHeading = ({
+  className,
   description,
   eyebrow,
   title,
 }: SectionHeadingProps) => (
-  <header className="mx-auto mb-8 max-w-3xl text-center sm:mb-10 lg:mb-12">
+  <header
+    className={cn(
+      "mx-auto mb-8 max-w-3xl text-center sm:mb-10 lg:mb-12",
+      className,
+    )}
+  >
     <div className="mb-4 flex justify-center">
       <span className="h-px w-16 bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
     </div>
