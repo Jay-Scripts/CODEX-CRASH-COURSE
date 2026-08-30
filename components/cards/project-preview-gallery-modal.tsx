@@ -60,6 +60,31 @@ export const ProjectPreviewGalleryModal = ({
     [previewImages, selectedCategoryId],
   );
   const activePreview = activeCategoryImages[activeIndex];
+  const safeActiveIndex = activePreview ? activeIndex : 0;
+  const adjacentPreviews = useMemo(() => {
+    if (activeCategoryImages.length <= 1) {
+      return [];
+    }
+
+    const previousIndex =
+      safeActiveIndex === 0
+        ? activeCategoryImages.length - 1
+        : safeActiveIndex - 1;
+    const nextIndex =
+      safeActiveIndex === activeCategoryImages.length - 1
+        ? 0
+        : safeActiveIndex + 1;
+
+    return [
+      activeCategoryImages[nextIndex],
+      activeCategoryImages[previousIndex],
+    ].filter(
+      (preview, index, previews) =>
+        preview &&
+        previews.findIndex((candidate) => candidate?.src === preview.src) ===
+          index,
+    );
+  }, [activeCategoryImages, safeActiveIndex]);
 
   const showPrevious = useCallback(() => {
     if (!activeCategoryImages.length) {
@@ -305,7 +330,6 @@ export const ProjectPreviewGalleryModal = ({
                 >
                   <div className="relative h-[min(54dvh,48rem)] w-full cursor-grab select-none active:cursor-grabbing sm:h-[min(76dvh,48rem)]">
                     <Image
-                      key={currentPreview.src}
                       alt={currentPreview.alt}
                       className="object-contain p-2 sm:p-3"
                       fill
@@ -317,6 +341,18 @@ export const ProjectPreviewGalleryModal = ({
                       sizes="(min-width: 1280px) 64rem, (min-width: 1024px) 56rem, 100vw"
                       src={currentPreview.src}
                     />
+                    {adjacentPreviews.map((preview) => (
+                      <Image
+                        key={preview.src}
+                        alt=""
+                        aria-hidden="true"
+                        className="pointer-events-none invisible object-contain"
+                        fill
+                        loading="eager"
+                        sizes="(min-width: 1280px) 64rem, (min-width: 1024px) 56rem, 100vw"
+                        src={preview.src}
+                      />
+                    ))}
                   </div>
                 </motion.div>
               </div>

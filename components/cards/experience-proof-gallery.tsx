@@ -239,6 +239,22 @@ export const ExperienceProofGallery = ({
   const activeProof =
     activeProofIndex !== null ? proofItems[activeProofIndex] : null;
   const displayedProof = activeProof ?? closingProof;
+  const adjacentImageProofs =
+    activeProofIndex === null || proofItems.length <= 1
+      ? []
+      : [
+          proofItems[(activeProofIndex + 1) % proofItems.length],
+          proofItems[
+            (activeProofIndex - 1 + proofItems.length) % proofItems.length
+          ],
+        ].filter(
+          (item, index, items) =>
+            item &&
+            isImageProof(item.src) &&
+            item.src !== displayedProof?.src &&
+            items.findIndex((candidate) => candidate?.src === item.src) ===
+              index,
+        );
 
   const leftDesktopProofItems =
     cardAlignment === "right"
@@ -648,6 +664,22 @@ export const ExperienceProofGallery = ({
                     </div>
 
                     <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-auto bg-muted/30 p-2 sm:p-5">
+                      <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute size-px overflow-hidden opacity-0"
+                      >
+                        {adjacentImageProofs.map((item) => (
+                          <Image
+                            key={item.src}
+                            alt=""
+                            height={1200}
+                            loading="eager"
+                            sizes="100vw"
+                            src={item.src}
+                            width={1600}
+                          />
+                        ))}
+                      </div>
                       <Button
                         aria-label="Previous proof"
                         className="absolute left-3 top-1/2 z-10 size-10 -translate-y-1/2 rounded-full border-border/70 bg-background/90 shadow-lg backdrop-blur sm:left-5"

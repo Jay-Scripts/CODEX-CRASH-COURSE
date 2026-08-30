@@ -43,7 +43,7 @@
 
 ### `ExperienceProofGallery`
 
-- Purpose: Handles mobile proof lists, responsive desktop hover proof layouts for tighter and wider screens, lazy hover video previews, and raised neomorphic in-app proof modals for internship certificates, screenshots, videos, and spreadsheet previews without sending users to a new tab.
+- Purpose: Handles mobile proof lists, responsive desktop hover proof layouts for tighter and wider screens, lazy hover video previews, and raised neomorphic in-app proof modals with adjacent-image preloading for immediate navigation between internship certificates, screenshots, videos, and spreadsheet previews without sending users to a new tab.
 - Location: `components/cards/experience-proof-gallery.tsx`
 
 ### `ProjectFlowchartCarousel`, `ProjectFlowchartOverlay`
@@ -58,7 +58,7 @@
 
 ### `ProjectPreviewGalleryModal`
 
-- Purpose: Displays a raised neomorphic fullscreen image gallery modal for project screenshot previews with an inset viewer, categorized tabs, keyboard navigation, and direct image opening without leaving the portfolio.
+- Purpose: Displays a raised neomorphic fullscreen image gallery modal for project screenshot previews with an inset viewer, categorized tabs, keyboard navigation, adjacent-image preloading for immediate previous/next navigation, and direct image opening without leaving the portfolio.
 - Location: `components/cards/project-preview-gallery-modal.tsx`
 
 ### `ProjectSystemPreviewModal`
