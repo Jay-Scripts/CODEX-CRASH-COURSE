@@ -49,6 +49,7 @@ export const skillLogoMap: Record<string, SkillLogoMeta> = {
   },
   Flowbite: { icon: Sparkles },
   "Functional Testing": { icon: ClipboardCheck },
+  Graphify: { logo: "/graphify.svg" },
   Git: {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
   },
@@ -91,6 +92,13 @@ export const skillLogoMap: Record<string, SkillLogoMeta> = {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
   },
   npm: { logo: "https://cdn.simpleicons.org/npm/CB3837" },
+  Obsidian: {
+    logo: "https://cdn.simpleicons.org/obsidian/7C3AED",
+  },
+  "Obsidian Graphify": {
+    logo: "https://cdn.simpleicons.org/obsidian/7C3AED",
+  },
+  Playwright: { logo: "/playwright.svg" },
   PHP: {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
   },

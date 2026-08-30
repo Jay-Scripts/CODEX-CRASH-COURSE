@@ -108,7 +108,7 @@ HeroSection and SkillsCarouselRow serve their tiny SVG skill logos without the N
 
 AboutSection keeps Personal details and About my goals side by side from mobile upward, with compact phone typography and a paired 3D hinge entrance from opposite outer edges.
 
-HeroSection’s responsive rotating decorative layer displays flat, brand-colored icons for JavaScript, TypeScript, PHP, React, React Native, HTML, CSS, Tailwind CSS, Bootstrap 5, Next.js, Node.js, shadcn/ui, Lucide React, MySQL, PostgreSQL, Claude, Claude Code, Codex, ChatGPT, Git, GitHub, Cursor, and VS Code. Phones receive a compact nine-logo edge rail, tablets add four supporting tools, and wide desktops retain the full constellation; every tier scales its icons for the viewport, stays behind the hero content, and pops in after a two-second staggered entrance without glow or shadow effects.
+HeroSection’s responsive rotating decorative layer displays flat, brand-colored icons for JavaScript, TypeScript, PHP, React, React Native, HTML, CSS, Tailwind CSS, Bootstrap 5, Next.js, Node.js, shadcn/ui, Lucide React, MySQL, PostgreSQL, Claude, Claude Code, Codex, ChatGPT, Git, GitHub, Cursor, VS Code, Supabase, Playwright, and Obsidian Graphify. Phones receive a compact nine-logo edge rail, tablets add four supporting tools, and wide desktops retain the full constellation; every tier scales its icons for the viewport, stays behind the hero content, and pops in after a two-second staggered entrance without glow or shadow effects.
 
 ### `ProjectFilter`
 

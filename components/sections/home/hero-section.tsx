@@ -296,6 +296,31 @@ const heroSpinnerBoxes = [
     skill: "React Native",
     spin: "hero-spin-reverse",
   },
+  {
+    className: "hidden left-[56%] top-[14%] size-20 xl:block",
+    delay: "-33s",
+    duration: "27s",
+    rotate: "-8deg",
+    skill: "Supabase",
+    spin: "hero-spin",
+  },
+  {
+    className:
+      "hidden right-[2%] top-[48%] size-14 lg:block lg:right-[3%] lg:size-16 xl:right-[30%] xl:top-[1%] xl:size-20",
+    delay: "-35s",
+    duration: "29s",
+    rotate: "7deg",
+    skill: "Playwright",
+    spin: "hero-spin-reverse",
+  },
+  {
+    className: "hidden left-[28%] bottom-[10%] size-20 xl:block",
+    delay: "-37s",
+    duration: "31s",
+    rotate: "11deg",
+    skill: "Obsidian Graphify",
+    spin: "hero-spin",
+  },
 ] as const;
 
 const monthIndices: Record<string, number> = {

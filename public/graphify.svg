@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>Graphify logo</title>
+  <defs>
+    <linearGradient id="graphify-gradient" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67e8f9"/>
+      <stop offset="1" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <path d="M17 18 32 10l15 8v17L32 46l-15-11V18Z" fill="none" stroke="url(#graphify-gradient)" stroke-width="3" stroke-linejoin="round"/>
+  <path d="m17 18 15 9 15-9M32 27v19M24 40l8-5 8 5" fill="none" stroke="url(#graphify-gradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="17" cy="18" r="4" fill="#67e8f9"/>
+  <circle cx="32" cy="27" r="4" fill="#818cf8"/>
+  <circle cx="47" cy="18" r="4" fill="#6366f1"/>
+  <circle cx="32" cy="46" r="4" fill="#818cf8"/>
+</svg>
