@@ -731,9 +731,10 @@ export const HeroSection = () => {
             >
               <Image
                 alt={`${profile.name} portrait`}
-                className="mx-auto h-auto w-full object-contain drop-shadow-lg"
+                className="mx-auto h-auto w-full object-contain"
                 height={938}
                 priority
+                quality={100}
                 sizes="(min-width: 1024px) 280px, (min-width: 640px) 260px, calc(100vw - 4rem)"
                 src="/jr-pic-transparent.png"
                 width={1064}
