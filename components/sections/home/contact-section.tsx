@@ -27,6 +27,9 @@ const contactLinks = [
   },
 ];
 
+// Temporarily disabled until the EmailJS credentials are restored.
+const SHOW_CONTACT_FORM = false;
+
 /**
  * Displays profile links, resume access, and the validated contact form.
  */
@@ -41,7 +44,13 @@ export const ContactSection = () => (
           title="Let’s Connect"
         />
       </RevealItem>
-      <RevealGroup className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+      <RevealGroup
+        className={
+          SHOW_CONTACT_FORM
+            ? "grid gap-6 lg:grid-cols-[0.85fr_1.15fr]"
+            : "mx-auto max-w-2xl"
+        }
+      >
         <RevealItem>
           <Card className="overflow-hidden">
             <CardContent className="space-y-5 p-5 sm:p-6">
@@ -87,13 +96,15 @@ export const ContactSection = () => (
             </CardContent>
           </Card>
         </RevealItem>
-        <RevealItem>
-          <Card>
-            <CardContent className="p-5 sm:p-6">
-              <ContactForm />
-            </CardContent>
-          </Card>
-        </RevealItem>
+        {SHOW_CONTACT_FORM ? (
+          <RevealItem>
+            <Card>
+              <CardContent className="p-5 sm:p-6">
+                <ContactForm />
+              </CardContent>
+            </Card>
+          </RevealItem>
+        ) : null}
       </RevealGroup>
     </RevealGroup>
   </AnimatedSection>

@@ -1,12 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
-import type { ComponentProps, ReactNode } from "react";
+import { motion, type HTMLMotionProps } from "framer-motion";
+import type { ReactNode } from "react";
 import { InteractiveConstellation } from "@/components/common/interactive-constellation";
 import { cn } from "@/lib/utils";
 
 type AnimatedSectionProps = Omit<
-  ComponentProps<typeof motion.section>,
+  HTMLMotionProps<"section">,
   "children"
 > & {
   children?: ReactNode;
