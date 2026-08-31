@@ -104,19 +104,26 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   const activeFlowchartPreview =
     project.flowchartPreviews?.[activeFlowchartIndex];
   const usesLandscapePreview = project.previewLayout === "landscape";
+  const hasResponsiveCover = Boolean(
+    project.previewDesktopSrc && project.previewCompactSrc,
+  );
   const usesExpandedPreviewSurface =
-    project.previewSurface === "expanded" ||
-    isUserManualPreview ||
-    isSystemFlowchartProject;
+    !hasResponsiveCover &&
+    (project.previewSurface === "expanded" ||
+      isUserManualPreview ||
+      isSystemFlowchartProject);
   const [isPreviewGalleryOpen, setIsPreviewGalleryOpen] = useState(false);
   const previewFrameClassName = cn(
+    "lg:aspect-auto lg:min-h-[34rem] lg:w-full lg:max-w-none",
     isSystemFlowchartProject
-      ? "min-h-[20rem] w-full flex-1 lg:min-h-[24rem]"
-      : usesExpandedPreviewSurface
-        ? "aspect-[3/4] w-full"
-        : usesLandscapePreview
-          ? "aspect-video w-full max-w-none"
-          : "mx-auto aspect-[3/4] w-full max-w-60 sm:w-40",
+      ? "min-h-[20rem] w-full flex-1"
+      : hasResponsiveCover
+        ? "aspect-video w-full"
+        : usesExpandedPreviewSurface
+          ? "aspect-[3/4] w-full"
+          : usesLandscapePreview
+            ? "aspect-video w-full max-w-none"
+            : "mx-auto aspect-[3/4] w-full max-w-60 sm:w-40",
   );
   const previewImageClassName = cn(
     isSystemFlowchartProject
@@ -125,6 +132,54 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         ? "object-cover object-center"
         : "object-cover object-top",
   );
+
+  const renderPreviewMedia = () => {
+    if (hasResponsiveCover) {
+      return (
+        <>
+          <Image
+            alt={project.previewAlt ?? `${project.title} preview`}
+            className="object-cover object-center lg:hidden"
+            fill
+            sizes="(min-width: 640px) 48rem, 100vw"
+            src={project.previewCompactSrc!}
+          />
+          <Image
+            alt={project.previewAlt ?? `${project.title} preview`}
+            className="hidden object-cover object-center lg:block"
+            fill
+            sizes="24rem"
+            src={project.previewDesktopSrc!}
+          />
+        </>
+      );
+    }
+
+    if (project.previewSrc && isImagePreview(project.previewSrc)) {
+      return (
+        <Image
+          alt={project.previewAlt ?? `${project.title} preview`}
+          className={previewImageClassName}
+          fill
+          sizes={
+            usesLandscapePreview
+              ? "(min-width: 1280px) 42rem, (min-width: 1024px) 34rem, 100vw"
+              : "(min-width: 640px) 10rem, 9rem"
+          }
+          src={project.previewSrc}
+        />
+      );
+    }
+
+    return (
+      <iframe
+        aria-label={project.previewAlt}
+        className="h-full w-full bg-background"
+        src={project.previewSrc}
+        title={project.previewAlt ?? `${project.title} preview`}
+      />
+    );
+  };
 
   const openDocumentOverlay = (src: string, title: string) => {
     setActiveDocument({ src, title });
@@ -214,11 +269,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       >
         <article
           aria-labelledby={`${project.id}-title`}
-          className={cn(
-            "lg:grid lg:grid-cols-[minmax(15rem,18rem)_minmax(0,1fr)]",
-            usesLandscapePreview &&
-              "lg:grid-cols-[minmax(24rem,34rem)_minmax(0,1fr)] xl:grid-cols-[minmax(30rem,42rem)_minmax(0,1fr)]",
-          )}
+          className="lg:grid lg:grid-cols-[minmax(20rem,24rem)_minmax(0,1fr)]"
+          data-fd-id="project-card"
         >
           {/* ── Preview column ── */}
           <div className="flex flex-col border-b border-border/40 bg-muted/20 lg:border-b-0 lg:border-r lg:border-border/40">
@@ -234,11 +286,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
                 {/* thumbnail */}
                 <div
-                  className={cn(
-                    "flex flex-1 items-stretch justify-stretch px-3 py-3 sm:px-6 sm:py-8",
-                    usesExpandedPreviewSurface && "px-4 py-4",
-                    usesLandscapePreview && "px-3 py-4 sm:px-4 lg:px-4",
-                  )}
+                  className="flex flex-1 items-stretch justify-stretch px-3 py-4 sm:px-4 lg:p-4"
+                  data-fd-id="project-card-media"
                 >
                   {canOpenPreview ? (
                     <button
@@ -266,29 +315,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                       }}
                       type="button"
                     >
-                      {project.previewSrc &&
-                      isImagePreview(project.previewSrc) ? (
-                        <Image
-                          alt={project.previewAlt ?? `${project.title} preview`}
-                          className={previewImageClassName}
-                          fill
-                          sizes={
-                            usesLandscapePreview
-                              ? "(min-width: 1280px) 42rem, (min-width: 1024px) 34rem, 100vw"
-                              : "(min-width: 640px) 10rem, 9rem"
-                          }
-                          src={project.previewSrc}
-                        />
-                      ) : (
-                        <iframe
-                          aria-label={project.previewAlt}
-                          className="h-full w-full bg-background"
-                          src={project.previewSrc}
-                          title={
-                            project.previewAlt ?? `${project.title} preview`
-                          }
-                        />
-                      )}
+                      {renderPreviewMedia()}
                       {isUserManualPreview || isSystemFlowchartProject ? (
                         <span className="absolute inset-0 flex items-center justify-center bg-background/75 opacity-0 backdrop-blur-[2px] transition-opacity duration-200 group-hover/thumb:opacity-100">
                           <span className="inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm">
@@ -312,29 +339,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                         previewFrameClassName,
                       )}
                     >
-                      {project.previewSrc &&
-                      isImagePreview(project.previewSrc) ? (
-                        <Image
-                          alt={project.previewAlt ?? `${project.title} preview`}
-                          className={previewImageClassName}
-                          fill
-                          sizes={
-                            usesLandscapePreview
-                              ? "(min-width: 1280px) 42rem, (min-width: 1024px) 34rem, 100vw"
-                              : "(min-width: 640px) 10rem, 9rem"
-                          }
-                          src={project.previewSrc}
-                        />
-                      ) : (
-                        <iframe
-                          aria-label={project.previewAlt}
-                          className="h-full w-full bg-background"
-                          src={project.previewSrc}
-                          title={
-                            project.previewAlt ?? `${project.title} preview`
-                          }
-                        />
-                      )}
+                      {renderPreviewMedia()}
                     </figure>
                   )}
                 </div>
@@ -374,7 +379,10 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           </div>
 
           {/* ── Content column ── */}
-          <CardContent className="flex flex-col gap-3 p-3.5 sm:gap-4 sm:p-6 lg:p-7">
+          <CardContent
+            className="flex flex-col gap-3 p-3.5 sm:gap-4 sm:p-6 lg:p-7"
+            data-fd-id="project-card-content"
+          >
             {/* title + category */}
             <div className="flex flex-wrap items-start justify-between gap-2">
               <h3

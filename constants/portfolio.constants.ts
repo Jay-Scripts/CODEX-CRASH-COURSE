@@ -1103,6 +1103,10 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Jay-Scripts/CAPSTONE-SMART-POS",
     liveDemoUrl: "https://example.com/",
     previewAlt: "Smart POS system dashboard preview",
+    previewDesktopSrc:
+      "/project%20preview/SMART%20POS%20MODULES/Smart%20POS%20Portrait%20Cover.png",
+    previewCompactSrc:
+      "/project%20preview/SMART%20POS%20MODULES/Smart%20POS%20Landscape%20Cover.png",
     previewLayout: "landscape",
     previewSrc: "/project%20preview/smart%20pos.png",
     previewImages: smartPosPreviewImages,
@@ -1181,6 +1185,10 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Jay-Scripts/CAR-RENTAL-SYSTEM-.git",
     liveDemoUrl: "https://example.com/",
     previewAlt: "Car rental management system dashboard preview",
+    previewDesktopSrc:
+      "/project%20preview/CAR%20RENTAL%20MODULES/Car%20Rental%20Portrait%20Cover.png",
+    previewCompactSrc:
+      "/project%20preview/CAR%20RENTAL%20MODULES/Car%20Rental%20Landscape%20Cover.png",
     previewLayout: "landscape",
     previewSrc: "/project%20preview/car%20rental.png",
     previewImages: carRentalPreviewImages,
@@ -1227,6 +1235,10 @@ export const projects: Project[] = [
     liveDemoUrl: "/project%20preview/PINOY%20HEALTH%20BUDDY/PHB%201%20(1).png",
     projectBadges: ["School Hackathon", "School Project"],
     previewAlt: "Pinoy Health Buddy web app preview",
+    previewDesktopSrc:
+      "/project%20preview/PINOY%20HEALTH%20BUDDY/PNB%20Portrait%20Cover.png",
+    previewCompactSrc:
+      "/project%20preview/PINOY%20HEALTH%20BUDDY/PHB%20Landscape%20Cover.png",
     previewLayout: "landscape",
     previewSrc: "/project%20preview/PINOY%20HEALTH%20BUDDY/PHB%201%20(1).png",
     previewImages: pinoyHealthBuddyPreviewImages,
@@ -1272,6 +1284,10 @@ export const projects: Project[] = [
     liveDemoUrl: "https://example.com/",
     projectBadges: ["Intern", "Little Ark Foundation"],
     previewAlt: "BNN Donor mobile app preview page 1",
+    previewDesktopSrc:
+      "/project%20preview/BNN%20MOBILE%20APP/BNN%20Mobile%20Portrait%20Cover.png",
+    previewCompactSrc:
+      "/project%20preview/BNN%20MOBILE%20APP/BNN%20Mobile%20Landscape%20Cover.png",
     previewLayout: "portrait",
     previewSurface: "expanded",
     previewSrc: bnnPreviewImages[0].src,

@@ -92,6 +92,8 @@ export type Project = {
   id: string;
   liveDemoUrl: string;
   previewAlt?: string;
+  previewDesktopSrc?: string;
+  previewCompactSrc?: string;
   previewLayout?: ProjectPreviewLayout;
   previewSurface?: ProjectPreviewSurface;
   previewDialogSrc?: string;
