@@ -1139,6 +1139,10 @@ export const projects: Project[] = [
 
     flowchartPreviews: smartPosFlowchartPreviews,
     previewAlt: "Smart POS system flowchart preview for the options module",
+    previewDesktopSrc:
+      "/project%20preview/SMART%20POS%20DOCUMENTATION/Smart%20POS%20System%20Flowchart%20Portrait%20Cover.png",
+    previewCompactSrc:
+      "/project%20preview/SMART%20POS%20DOCUMENTATION/Smart%20POS%20System%20Flowchart%20Landscape%20Cover.png",
     previewSrc: "/sysflow-svg/SYSTEM FLOW SMART POS-Options Module.drawio.svg",
     challenges: [
       "Aligned multiple POS modules (kiosk, cashier, barista, CRM, and manager) into a unified flow that reflects real store operations.",
@@ -1316,6 +1320,10 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Jay-Scripts",
     liveDemoUrl: "/user-manual/SMART%20POS%20USER%20MANUAL.pdf",
     previewAlt: "Smart POS user manual front page cover preview",
+    previewDesktopSrc:
+      "/project%20preview/SMART%20POS%20DOCUMENTATION/Smart%20POS%20User%20Manual%20Portrait%20Cover.png",
+    previewCompactSrc:
+      "/project%20preview/SMART%20POS%20DOCUMENTATION/Smart%20POS%20User%20Manual%20Landscape%20Cover.png",
     previewDialogSrc:
       "/user-manual/SMART%20POS%20USER%20MANUAL.pdf#page=1&view=FitH",
     previewSrc: "/user-manual/SMART%20POS%20FRONT%20PAGE.png",

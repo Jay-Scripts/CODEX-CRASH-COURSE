@@ -143,6 +143,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             fill
             sizes="(min-width: 640px) 48rem, 100vw"
             src={project.previewCompactSrc!}
+            unoptimized
           />
           <Image
             alt={project.previewAlt ?? `${project.title} preview`}
@@ -150,6 +151,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             fill
             sizes="24rem"
             src={project.previewDesktopSrc!}
+            unoptimized
           />
         </>
       );
