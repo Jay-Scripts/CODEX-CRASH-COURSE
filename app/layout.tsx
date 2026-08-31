@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { profile } from "@/constants/portfolio.constants";
 import { ScrollProgress } from "@/components/common/scroll-progress";
 import { ScrollToTopButton } from "@/components/common/scroll-to-top-button";
@@ -176,6 +177,7 @@ const RootLayout = ({
             <SiteFooter />
           </ThemeProvider>
         </MotionProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
