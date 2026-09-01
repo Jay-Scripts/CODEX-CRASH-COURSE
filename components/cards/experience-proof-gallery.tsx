@@ -265,17 +265,6 @@ export const ExperienceProofGallery = ({
       ? proofItems.map((item, index) => ({ index, item }))
       : [];
 
-  const desktopProofDelayClasses = [
-    "delay-0",
-    "delay-75",
-    "delay-100",
-    "delay-150",
-    "delay-200",
-    "delay-300",
-    "delay-[350ms]",
-    "delay-[400ms]",
-  ] as const;
-
   const mediumProofContainerClassName =
     cardAlignment === "left"
       ? "left-[calc(100%+2.75rem)]"
@@ -411,12 +400,9 @@ export const ExperienceProofGallery = ({
                 mediumProofContainerClassName,
               )}
             >
-            <div className="grid grid-cols-2 gap-3">
+            <div className="experience-proof-grid grid grid-cols-2 gap-3">
               {proofItems.map((item, originalIndex) => {
                 const ProofIcon = proofTypeIcons[item.type];
-                const delayClassName =
-                  desktopProofDelayClasses[originalIndex] ??
-                  desktopProofDelayClasses.at(-1);
 
                 return (
                   <button
@@ -426,11 +412,11 @@ export const ExperienceProofGallery = ({
                         ? "opacity-100 scale-100"
                         : "opacity-0 scale-90",
                       mediumProofMotionClassName,
-                      delayClassName,
                       previewVisible && mediumProofAnimationClassName,
                       previewVisible && "translate-x-0",
                     )}
                     key={item.label}
+                    style={{ animationDelay: `${originalIndex * 0.2}s` }}
                     onClick={() => openProofPreview(originalIndex)}
                     onFocus={() => setHoveredProofIndex(originalIndex)}
                     onMouseEnter={() => setHoveredProofIndex(originalIndex)}
@@ -466,17 +452,13 @@ export const ExperienceProofGallery = ({
           {desktopLayout === "wide" ? (
             <div
             className={cn(
-              "absolute top-1/2 grid -translate-y-1/2 gap-3",
+              "experience-proof-grid absolute top-1/2 grid -translate-y-1/2 gap-3",
               wideProofLeftOffsetClassName,
               wideProofGridClassName,
             )}
           >
-            {leftDesktopProofItems.map(
-              ({ item, index: originalIndex }, index) => {
+            {leftDesktopProofItems.map(({ item, index: originalIndex }, index) => {
                 const ProofIcon = proofTypeIcons[item.type];
-                const delayClassName =
-                  desktopProofDelayClasses[index] ??
-                  desktopProofDelayClasses.at(-1);
 
                 return (
                   <button
@@ -485,11 +467,11 @@ export const ExperienceProofGallery = ({
                       previewVisible
                         ? "opacity-100 scale-100 translate-x-0"
                         : "opacity-0 scale-90 -translate-x-8",
-                      delayClassName,
                       previewVisible &&
                         "animate-[experience-proof-slide-in-left_700ms_ease-in-out_both]",
                     )}
                     key={item.label}
+                    style={{ animationDelay: `${index * 0.2}s` }}
                     onClick={() => openProofPreview(originalIndex)}
                     onFocus={() => setHoveredProofIndex(originalIndex)}
                     onMouseEnter={() => setHoveredProofIndex(originalIndex)}
@@ -525,17 +507,13 @@ export const ExperienceProofGallery = ({
           {desktopLayout === "wide" ? (
             <div
             className={cn(
-              "absolute top-1/2 grid -translate-y-1/2 gap-3",
+              "experience-proof-grid absolute top-1/2 grid -translate-y-1/2 gap-3",
               wideProofRightOffsetClassName,
               wideProofGridClassName,
             )}
           >
-            {rightDesktopProofItems.map(
-              ({ item, index: originalIndex }, index) => {
+            {rightDesktopProofItems.map(({ item, index: originalIndex }, index) => {
                 const ProofIcon = proofTypeIcons[item.type];
-                const delayClassName =
-                  desktopProofDelayClasses[index] ??
-                  desktopProofDelayClasses.at(-1);
 
                 return (
                   <button
@@ -544,11 +522,11 @@ export const ExperienceProofGallery = ({
                       previewVisible
                         ? "opacity-100 scale-100 translate-x-0"
                         : "opacity-0 scale-90 translate-x-8",
-                      delayClassName,
                       previewVisible &&
                         "animate-[experience-proof-slide-in-right_700ms_ease-in-out_both]",
                     )}
                     key={item.label}
+                    style={{ animationDelay: `${index * 0.2}s` }}
                     onClick={() => openProofPreview(originalIndex)}
                     onFocus={() => setHoveredProofIndex(originalIndex)}
                     onMouseEnter={() => setHoveredProofIndex(originalIndex)}

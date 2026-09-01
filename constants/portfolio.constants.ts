@@ -1360,7 +1360,7 @@ export const experiences: Experience[] = [
   {
     role: "Service Crew",
     organization: "Golden Arches Development Corporation - McDonald's",
-    period: "Aug 2022 - Jun 2026",
+    period: "Aug 2022 - Aug 2026",
     icon: ShieldCheck,
     proofItems: mcdoProofItems,
     highlights: [
