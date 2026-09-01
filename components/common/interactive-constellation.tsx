@@ -18,6 +18,9 @@ type ConstellationPoint = {
 const CONNECTION_DISTANCE = 190;
 const POINTER_CONNECTION_DISTANCE = 245;
 const POINT_DENSITY = 15_000;
+const MAX_POINTS = 84;
+const TARGET_FRAME_INTERVAL = 1000 / 60;
+const FRAME_INTERVAL_TOLERANCE = 0.5;
 
 /**
  * Draws a section-scoped field of drifting points that connect to nearby points and the visitor's pointer.
@@ -45,9 +48,17 @@ export const InteractiveConstellation = ({
     );
     const precisePointerQuery = window.matchMedia("(pointer: fine)");
     const pointer = { x: 0, y: 0, active: false };
+    const container = canvas.parentElement;
+
+    if (!container) {
+      return;
+    }
+
     let points: ConstellationPoint[] = [];
     let animationFrame = 0;
-    let isVisible = true;
+    let positionFrame = 0;
+    let isVisible = false;
+    let lastFrameTime = 0;
     let width = 0;
     let height = 0;
     let pointColor = "";
@@ -64,7 +75,7 @@ export const InteractiveConstellation = ({
     const createPoints = () => {
       const pointCount = Math.max(
         29,
-        Math.min(84, Math.round((width * height) / POINT_DENSITY)),
+        Math.min(MAX_POINTS, Math.round((width * height) / POINT_DENSITY)),
       );
 
       points = Array.from({ length: pointCount }, (_, index) => {
@@ -91,7 +102,7 @@ export const InteractiveConstellation = ({
 
     const resizeCanvas = () => {
       const bounds = canvas.getBoundingClientRect();
-      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.25);
       width = bounds.width;
       height = bounds.height;
       canvas.width = Math.round(width * pixelRatio);
@@ -118,7 +129,17 @@ export const InteractiveConstellation = ({
       context.stroke();
     };
 
-    const render = () => {
+    const render = (currentTime = performance.now()) => {
+      if (
+        !reducedMotionQuery.matches &&
+        currentTime - lastFrameTime <
+          TARGET_FRAME_INTERVAL - FRAME_INTERVAL_TOLERANCE
+      ) {
+        animationFrame = window.requestAnimationFrame(render);
+        return;
+      }
+
+      lastFrameTime = currentTime;
       context.clearRect(0, 0, width, height);
       const shouldMove = !reducedMotionQuery.matches;
 
@@ -157,12 +178,12 @@ export const InteractiveConstellation = ({
           neighborIndex += 1
         ) {
           const neighbor = points[neighborIndex];
-          const distance = Math.hypot(
-            point.x - neighbor.x,
-            point.y - neighbor.y,
-          );
+          const deltaX = point.x - neighbor.x;
+          const deltaY = point.y - neighbor.y;
+          const distanceSquared = deltaX * deltaX + deltaY * deltaY;
 
-          if (distance < CONNECTION_DISTANCE) {
+          if (distanceSquared < CONNECTION_DISTANCE * CONNECTION_DISTANCE) {
+            const distance = Math.sqrt(distanceSquared);
             drawLine(
               point.x,
               point.y,
@@ -174,12 +195,16 @@ export const InteractiveConstellation = ({
         }
 
         if (pointer.active && precisePointerQuery.matches) {
-          const pointerDistance = Math.hypot(
-            point.x - pointer.x,
-            point.y - pointer.y,
-          );
+          const pointerDeltaX = point.x - pointer.x;
+          const pointerDeltaY = point.y - pointer.y;
+          const pointerDistanceSquared =
+            pointerDeltaX * pointerDeltaX + pointerDeltaY * pointerDeltaY;
 
-          if (pointerDistance < POINTER_CONNECTION_DISTANCE) {
+          if (
+            pointerDistanceSquared <
+            POINTER_CONNECTION_DISTANCE * POINTER_CONNECTION_DISTANCE
+          ) {
+            const pointerDistance = Math.sqrt(pointerDistanceSquared);
             const connectionStrength =
               1 - pointerDistance / POINTER_CONNECTION_DISTANCE;
             drawLine(
@@ -241,28 +266,65 @@ export const InteractiveConstellation = ({
 
     const restartAnimation = () => {
       window.cancelAnimationFrame(animationFrame);
+      lastFrameTime = 0;
       render();
     };
 
+    const updateCanvasPosition = () => {
+      const bounds = container.getBoundingClientRect();
+      const maximumOffset = Math.max(0, bounds.height - window.innerHeight);
+      const offset = Math.min(Math.max(-bounds.top, 0), maximumOffset);
+
+      canvas.style.transform = `translate3d(0, ${offset}px, 0)`;
+    };
+
+    const requestPositionUpdate = () => {
+      if (!isVisible || positionFrame) {
+        return;
+      }
+
+      positionFrame = window.requestAnimationFrame(() => {
+        positionFrame = 0;
+        updateCanvasPosition();
+      });
+    };
+
     const resizeObserver = new ResizeObserver(() => {
+      if (!isVisible) {
+        return;
+      }
+
+      updateCanvasPosition();
       resizeCanvas();
       restartAnimation();
     });
-    const visibilityObserver = new IntersectionObserver(([entry]) => {
-      isVisible = entry.isIntersecting;
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
 
+        if (isVisible) {
+          canvas.style.willChange = "transform";
+          updateCanvasPosition();
+          resizeCanvas();
+          restartAnimation();
+        } else {
+          window.cancelAnimationFrame(animationFrame);
+          canvas.style.willChange = "auto";
+          points = [];
+          canvas.width = 1;
+          canvas.height = 1;
+        }
+      },
+      { threshold: 0 },
+    );
+    const themeObserver = new MutationObserver(() => {
       if (isVisible) {
-        restartAnimation();
-      } else {
-        window.cancelAnimationFrame(animationFrame);
+        readThemeColors();
       }
     });
-    const themeObserver = new MutationObserver(() => {
-      readThemeColors();
-    });
 
-    resizeObserver.observe(canvas);
-    visibilityObserver.observe(canvas);
+    resizeObserver.observe(container);
+    visibilityObserver.observe(container);
     themeObserver.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["class"],
@@ -271,30 +333,36 @@ export const InteractiveConstellation = ({
       passive: true,
     });
     window.addEventListener("blur", handlePointerLeave);
+    window.addEventListener("scroll", requestPositionUpdate, {
+      passive: true,
+    });
     reducedMotionQuery.addEventListener("change", restartAnimation);
-
-    resizeCanvas();
-    render();
 
     return () => {
       window.cancelAnimationFrame(animationFrame);
+      window.cancelAnimationFrame(positionFrame);
       resizeObserver.disconnect();
       visibilityObserver.disconnect();
       themeObserver.disconnect();
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("blur", handlePointerLeave);
+      window.removeEventListener("scroll", requestPositionUpdate);
       reducedMotionQuery.removeEventListener("change", restartAnimation);
     };
   }, []);
 
   return (
-    <canvas
+    <div
       aria-hidden="true"
       className={cn(
         "pointer-events-none !absolute inset-0 size-full",
         className,
       )}
-      ref={canvasRef}
-    />
+    >
+      <canvas
+        className="absolute left-0 top-0 block h-[100svh] w-full"
+        ref={canvasRef}
+      />
+    </div>
   );
 };

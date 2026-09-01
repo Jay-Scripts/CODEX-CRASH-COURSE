@@ -7,7 +7,6 @@ import {
   ExternalLink,
 } from "lucide-react";
 import Image from "next/image";
-import { useTheme } from "next-themes";
 import type { ReactNode } from "react";
 import { profile } from "@/constants/portfolio.constants";
 import { useMounted } from "@/hooks/use-mounted";
@@ -16,9 +15,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 const githubUsername = new URL(profile.githubUrl).pathname.replace("/", "");
-
-const getWidgetTheme = (theme?: string) =>
-  theme === "dark" ? "tokyonight" : "default";
 
 const getStatsUrl = (theme: string) =>
   `https://github-readme-stats.vercel.app/api?username=${githubUsername}&show_icons=true&count_private=true&hide_border=true&theme=${theme}`;
@@ -37,8 +33,7 @@ const getViewsUrl = () =>
  */
 export const GitHubActivityCard = () => {
   const mounted = useMounted();
-  const { resolvedTheme } = useTheme();
-  const widgetTheme = getWidgetTheme(resolvedTheme);
+  const widgetTheme = "default";
 
   return (
     <Card className="overflow-hidden">
@@ -73,7 +68,7 @@ export const GitHubActivityCard = () => {
               {mounted ? (
                 <Image
                   alt="GitHub stats card"
-                  className="h-auto w-full rounded-xl border border-border/60 bg-background"
+                  className="h-auto w-full rounded-xl border border-border/60 bg-background dark:invert dark:hue-rotate-180"
                   height={195}
                   src={getStatsUrl(widgetTheme)}
                   unoptimized
@@ -91,7 +86,7 @@ export const GitHubActivityCard = () => {
               {mounted ? (
                 <Image
                   alt="GitHub top languages card"
-                  className="h-auto w-full rounded-xl border border-border/60 bg-background"
+                  className="h-auto w-full rounded-xl border border-border/60 bg-background dark:invert dark:hue-rotate-180"
                   height={195}
                   src={getLanguagesUrl(widgetTheme)}
                   unoptimized
@@ -110,7 +105,7 @@ export const GitHubActivityCard = () => {
             {mounted ? (
               <Image
                 alt="GitHub contribution streak"
-                className="h-auto w-full rounded-xl border border-border/60 bg-background"
+                className="h-auto w-full rounded-xl border border-border/60 bg-background dark:invert dark:hue-rotate-180"
                 height={220}
                 src={getStreakUrl(widgetTheme)}
                 unoptimized

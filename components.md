@@ -26,7 +26,7 @@
 
 ### `AnimatedSection`, `RevealGroup`, `RevealItem`, `SectionHeading`, `ScrollProgress`, `ScrollToTopButton`, `SectionAccentBackdrop`, `InteractiveConstellation`
 
-- Purpose: Provide shared motion wrappers with a minimum one-viewport section rhythm, staggered reveal helpers, consistent section headings with optional section-specific spacing, solid neomorphic section surfaces, viewport-wide raised relief shapes, a 20%-denser pointer-responsive constellation canvas whose continuously drifting nodes form and release proximity links across the non-hero home-page sections, compact desktop and viewport-aware skill-carousel presentation with header-aligned anchor sizing, the global scroll progress indicator, and a floating back-to-top button used across the site shell.
+- Purpose: Provide shared motion wrappers with a minimum one-viewport section rhythm, staggered reveal helpers, consistent section headings with optional section-specific spacing, solid neomorphic section surfaces, viewport-wide raised relief shapes, the original dense pointer-responsive constellation effect targeting 60 FPS with a viewport-sized canvas that follows the visible slice through every full non-hero section and releases its backing store while offscreen, compact desktop and viewport-aware skill-carousel presentation with header-aligned anchor sizing, the global scroll progress indicator, and a floating back-to-top button used across the site shell.
 - Location: `components/common/*`
 
 ## Cards
@@ -38,7 +38,7 @@
 
 ### `GitHubActivityCard`
 
-- Purpose: Displays a recruiter-facing GitHub activity summary and contribution preview inside the experience section.
+- Purpose: Displays a recruiter-facing GitHub activity summary and contribution preview using stable widget URLs with local dark-mode adaptation so theme changes never refetch remote cards.
 - Location: `components/cards/github-activity-card.tsx`
 
 ### `ExperienceProofGallery`
