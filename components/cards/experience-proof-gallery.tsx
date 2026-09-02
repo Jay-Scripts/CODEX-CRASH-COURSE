@@ -388,7 +388,7 @@ export const ExperienceProofGallery = ({
       {mode === "desktop" && previewVisible ? (
         <div
           aria-labelledby={`${proofSectionId}-proof-desktop`}
-          className="pointer-events-none absolute -inset-6 z-20 hidden md:block"
+            className="pointer-events-none absolute -inset-6 z-20 hidden md:block"
         >
           <div className="sr-only" id={`${proofSectionId}-proof-desktop`}>
             Supporting materials
@@ -416,7 +416,6 @@ export const ExperienceProofGallery = ({
                       previewVisible && "translate-x-0",
                     )}
                     key={item.label}
-                    style={{ animationDelay: `${originalIndex * 0.2}s` }}
                     onClick={() => openProofPreview(originalIndex)}
                     onFocus={() => setHoveredProofIndex(originalIndex)}
                     onMouseEnter={() => setHoveredProofIndex(originalIndex)}
@@ -457,7 +456,8 @@ export const ExperienceProofGallery = ({
               wideProofGridClassName,
             )}
           >
-            {leftDesktopProofItems.map(({ item, index: originalIndex }, index) => {
+            {leftDesktopProofItems.map(
+              ({ item, index: originalIndex }, index) => {
                 const ProofIcon = proofTypeIcons[item.type];
 
                 return (
@@ -471,7 +471,6 @@ export const ExperienceProofGallery = ({
                         "animate-[experience-proof-slide-in-left_700ms_ease-in-out_both]",
                     )}
                     key={item.label}
-                    style={{ animationDelay: `${index * 0.2}s` }}
                     onClick={() => openProofPreview(originalIndex)}
                     onFocus={() => setHoveredProofIndex(originalIndex)}
                     onMouseEnter={() => setHoveredProofIndex(originalIndex)}
@@ -512,7 +511,8 @@ export const ExperienceProofGallery = ({
               wideProofGridClassName,
             )}
           >
-            {rightDesktopProofItems.map(({ item, index: originalIndex }, index) => {
+            {rightDesktopProofItems.map(
+              ({ item, index: originalIndex }, index) => {
                 const ProofIcon = proofTypeIcons[item.type];
 
                 return (
@@ -526,7 +526,6 @@ export const ExperienceProofGallery = ({
                         "animate-[experience-proof-slide-in-right_700ms_ease-in-out_both]",
                     )}
                     key={item.label}
-                    style={{ animationDelay: `${index * 0.2}s` }}
                     onClick={() => openProofPreview(originalIndex)}
                     onFocus={() => setHoveredProofIndex(originalIndex)}
                     onMouseEnter={() => setHoveredProofIndex(originalIndex)}

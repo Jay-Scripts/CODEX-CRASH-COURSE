@@ -532,15 +532,27 @@ const qaSheetTrackerPreview: ExperienceSpreadsheetPreview = {
   ],
 };
 
-// Kept temporarily as a source reference while the full workbook preview is disabled.
-void qaSheetTrackerPreview;
-
 const internshipProofItems: ExperienceProofItem[] = [
+  {
+    alt: "Certificate of completion proof for internship work",
+    href: "/experience-proofs/intern/CERTIFICATE%20OF%20COMPLETION%20-%20INTERN.png",
+    label: "Completion certificate",
+    src: "/experience-proofs/intern/CERTIFICATE%20OF%20COMPLETION%20-%20INTERN.png",
+    type: "certificate",
+  },
   {
     alt: "Bug report proof from internship QA and issue tracking work",
     href: "/experience-proofs/intern/bug%20report%20proof.png",
     label: "Bug report proof",
     src: "/experience-proofs/intern/bug%20report%20proof.png",
+    type: "document",
+  },
+  {
+    alt: "QA sheet tracker workbook from internship testing work",
+    href: "/experience-proofs/intern/Bloodnetwork%20Test%20Cases.xlsx",
+    label: "QA sheet tracker",
+    spreadsheetPreview: qaSheetTrackerPreview,
+    src: "/experience-proofs/intern/Bloodnetwork%20Test%20Cases.xlsx",
     type: "document",
   },
   {
@@ -1346,10 +1358,10 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    role: "Service Crew.",
+    role: "Service Crew",
     organization: "Golden Arches Development Corporation - McDonald's",
+    period: "Aug 2022 - Jun 2026",
     icon: ShieldCheck,
-    period: "Aug 2022 - Aug 2026",
     proofItems: mcdoProofItems,
     highlights: [
       "Processed customer orders, prepared food items, maintained cleanliness, and supported daily store operations in a fast-paced service environment.",
