@@ -532,27 +532,15 @@ const qaSheetTrackerPreview: ExperienceSpreadsheetPreview = {
   ],
 };
 
+// Kept temporarily as a source reference while the workbook preview is disabled.
+void qaSheetTrackerPreview;
+
 const internshipProofItems: ExperienceProofItem[] = [
-  {
-    alt: "Certificate of completion proof for internship work",
-    href: "/experience-proofs/intern/CERTIFICATE%20OF%20COMPLETION%20-%20INTERN.png",
-    label: "Completion certificate",
-    src: "/experience-proofs/intern/CERTIFICATE%20OF%20COMPLETION%20-%20INTERN.png",
-    type: "certificate",
-  },
   {
     alt: "Bug report proof from internship QA and issue tracking work",
     href: "/experience-proofs/intern/bug%20report%20proof.png",
     label: "Bug report proof",
     src: "/experience-proofs/intern/bug%20report%20proof.png",
-    type: "document",
-  },
-  {
-    alt: "QA sheet tracker workbook from internship testing work",
-    href: "/experience-proofs/intern/Bloodnetwork%20Test%20Cases.xlsx",
-    label: "QA sheet tracker",
-    spreadsheetPreview: qaSheetTrackerPreview,
-    src: "/experience-proofs/intern/Bloodnetwork%20Test%20Cases.xlsx",
     type: "document",
   },
   {
