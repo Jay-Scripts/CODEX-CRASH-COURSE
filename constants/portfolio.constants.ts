@@ -1346,10 +1346,10 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    role: "Service Crew",
+    role: "Service Crew.",
     organization: "Golden Arches Development Corporation - McDonald's",
-    period: "Aug 2022 - Aug 2026",
     icon: ShieldCheck,
+    period: "Aug 2022 - Aug 2026",
     proofItems: mcdoProofItems,
     highlights: [
       "Processed customer orders, prepared food items, maintained cleanliness, and supported daily store operations in a fast-paced service environment.",
