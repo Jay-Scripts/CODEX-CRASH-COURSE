@@ -8,6 +8,7 @@ export type SkillGroup = {
 
 export type ExperienceProofItem = {
   alt: string;
+  description?: string;
   href?: string;
   label: string;
   spreadsheetPreview?: ExperienceSpreadsheetPreview;

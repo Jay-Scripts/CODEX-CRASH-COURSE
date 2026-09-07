@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
 
 type ExperienceProofGalleryProps = {
   cardAlignment?: "left" | "right";
-  desktopLayout?: "medium" | "wide";
+  desktopLayout?: "filmstrip" | "medium" | "wide";
   mode: "desktop" | "mobile";
   proofItems: ExperienceProofItem[];
   proofSectionId: string;
@@ -264,6 +264,14 @@ export const ExperienceProofGallery = ({
     cardAlignment === "left"
       ? proofItems.map((item, index) => ({ index, item }))
       : [];
+  const filmstripRows = [
+    proofItems
+      .map((item, index) => ({ index, item }))
+      .filter((_, index) => index % 2 === 0),
+    proofItems
+      .map((item, index) => ({ index, item }))
+      .filter((_, index) => index % 2 === 1),
+  ];
 
   const mediumProofContainerClassName =
     cardAlignment === "left"
@@ -393,6 +401,66 @@ export const ExperienceProofGallery = ({
           <div className="sr-only" id={`${proofSectionId}-proof-desktop`}>
             Supporting materials
           </div>
+          {desktopLayout === "filmstrip" ? (
+            <div
+              className={cn(
+                "absolute top-1/2 w-[min(35rem,calc(100vw-3rem))] -translate-y-1/2",
+                mediumProofContainerClassName,
+              )}
+            >
+              <div className="experience-proof-filmstrip glass-panel rounded-3xl p-3">
+                <div className="mb-2 flex items-center justify-between px-2">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">
+                    Experience proof reel
+                  </p>
+                  <p className="text-[10px] text-muted-foreground">
+                    Click any frame to view
+                  </p>
+                </div>
+                <div className="experience-proof-filmstrip__viewport">
+                  <div className="space-y-3">
+                    {filmstripRows.map((row, rowIndex) => (
+                      <div
+                        className={cn(
+                          "experience-proof-filmstrip__track",
+                          rowIndex === 1 &&
+                            "experience-proof-filmstrip__track--right",
+                        )}
+                        key={`filmstrip-row-${rowIndex}`}
+                      >
+                        {[...row, ...row].map(({ item, index }, trackIndex) => {
+                          const ProofIcon = proofTypeIcons[item.type];
+
+                          return (
+                            <button
+                              className="experience-proof-filmstrip__item glass-panel pointer-events-auto w-40 shrink-0 cursor-pointer rounded-2xl p-2 text-left transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                              key={`${item.src}-${rowIndex}-${trackIndex}`}
+                              onClick={() => openProofPreview(index)}
+                              type="button"
+                            >
+                              <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border/50 bg-background">
+                                {renderProofSurface(item, {
+                                  compact: true,
+                                  sizes: "10rem",
+                                })}
+                              </div>
+                              <p className="mt-2 truncate text-[11px] font-semibold text-foreground">
+                                {item.label}
+                              </p>
+                              <p className="mt-1 flex items-center gap-1 text-[10px] text-muted-foreground">
+                                <ProofIcon className="size-3 text-primary" />
+                                {proofTypeLabels[item.type]}
+                              </p>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : null}
           {desktopLayout === "medium" ? (
             <div
               className={cn(
@@ -456,8 +524,7 @@ export const ExperienceProofGallery = ({
               wideProofGridClassName,
             )}
           >
-            {leftDesktopProofItems.map(
-              ({ item, index: originalIndex }, index) => {
+            {leftDesktopProofItems.map(({ item, index: originalIndex }) => {
                 const ProofIcon = proofTypeIcons[item.type];
 
                 return (
@@ -499,8 +566,7 @@ export const ExperienceProofGallery = ({
                     </div>
                   </button>
                 );
-              },
-            )}
+              })}
             </div>
           ) : null}
           {desktopLayout === "wide" ? (
@@ -511,8 +577,7 @@ export const ExperienceProofGallery = ({
               wideProofGridClassName,
             )}
           >
-            {rightDesktopProofItems.map(
-              ({ item, index: originalIndex }, index) => {
+            {rightDesktopProofItems.map(({ item, index: originalIndex }) => {
                 const ProofIcon = proofTypeIcons[item.type];
 
                 return (
@@ -554,8 +619,7 @@ export const ExperienceProofGallery = ({
                     </div>
                   </button>
                 );
-              },
-            )}
+              })}
             </div>
           ) : null}
         </div>
@@ -601,6 +665,11 @@ export const ExperienceProofGallery = ({
                         <p className="text-xs text-muted-foreground">
                           {proofTypeLabels[displayedProof.type]}
                         </p>
+                        {displayedProof.description ? (
+                          <p className="mt-2 max-w-2xl text-xs leading-5 text-muted-foreground sm:text-sm">
+                            {displayedProof.description}
+                          </p>
+                        ) : null}
                       </div>
                       <Button
                         aria-label="Close preview"

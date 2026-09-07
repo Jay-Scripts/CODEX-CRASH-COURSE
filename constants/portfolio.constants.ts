@@ -538,6 +538,7 @@ void qaSheetTrackerPreview;
 const internshipProofItems: ExperienceProofItem[] = [
   {
     alt: "Bug report proof from internship QA and issue tracking work",
+    description: "Documented a reported issue with the details needed for QA review and follow-up.",
     href: "/experience-proofs/intern/bug%20report%20proof.png",
     label: "Bug report proof",
     src: "/experience-proofs/intern/bug%20report%20proof.png",
@@ -545,6 +546,7 @@ const internshipProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Internship website proof screenshot one",
+    description: "Coordinated with stakeholders while reviewing the website work and project requirements.",
     href: "/experience-proofs/intern/proof%201.jpg",
     label: "Coordinated with stakeholders pic",
     src: "/experience-proofs/intern/proof%201.jpg",
@@ -552,6 +554,7 @@ const internshipProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Internship website proof screenshot two",
+    description: "Continued the stakeholder review and discussed updates for the website implementation.",
     href: "/experience-proofs/intern/proof%202.jpg",
     label: "Coordinated with stakeholders pic 2",
     src: "/experience-proofs/intern/proof%202.jpg",
@@ -559,6 +562,7 @@ const internshipProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Mobile workflow demo video from internship work",
+    description: "Demonstrated the mobile workflow and checked how the feature behaved on smaller screens.",
     href: "/experience-proofs/intern/mobile.mp4",
     label: "Mobile workflow demo",
     src: "/experience-proofs/intern/mobile.mp4",
@@ -566,6 +570,7 @@ const internshipProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "QR camera feature demo video from internship work",
+    description: "Demonstrated the QR camera feature and its scanning workflow in the application.",
     href: "/experience-proofs/intern/qr%20cam%20feature.mp4",
     label: "QR camera feature",
     src: "/experience-proofs/intern/qr%20cam%20feature.mp4",
@@ -573,6 +578,7 @@ const internshipProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Responsiveness and UX improvement demo video from internship work",
+    description: "Showed responsive layout and user experience improvements across different screen sizes.",
     href: "/experience-proofs/intern/responsiveness%20%26%20UX%20improvements.mp4",
     label: "Responsiveness and UX",
     src: "/experience-proofs/intern/responsiveness%20%26%20UX%20improvements.mp4",
@@ -583,6 +589,7 @@ const internshipProofItems: ExperienceProofItem[] = [
 const mcdoProofItems: ExperienceProofItem[] = [
   {
     alt: "McDonald's certificate of appreciation for standout performer for June 2025",
+    description: "Recognition for consistently strong performance and contribution as a McDonald’s service crew member.",
     href: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.24_1.jpeg",
     label: "Standout performer certificate",
     src: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.24_1.jpeg",
@@ -590,6 +597,7 @@ const mcdoProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "McDonald's certificate of appreciation for station champion service sunshine for September 2023",
+    description: "Recognition for dependable performance and service at the Service Sunshine station.",
     href: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.25_1.jpeg",
     label: "Service sunshine certificate",
     src: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.25_1.jpeg",
@@ -597,6 +605,7 @@ const mcdoProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "McDonald's certificate of appreciation for station champion chicken McDo master for June 2025",
+    description: "Recognition for skilled and consistent work at the Chicken McDo station.",
     href: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.26_1.jpeg",
     label: "Chicken McDo master certificate",
     src: "/experience-proofs/mcdo/CamScanner%206-10-26%2017.26_1.jpeg",
@@ -604,6 +613,7 @@ const mcdoProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Chicken station expert recognition photo from McDonald's service crew experience",
+    description: "Worked at the chicken station while following preparation, quality, and food safety procedures.",
     href: "/experience-proofs/mcdo/chx%20expert1.jpg",
     label: "Chicken expert",
     src: "/experience-proofs/mcdo/chx%20expert1.jpg",
@@ -611,6 +621,7 @@ const mcdoProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Chicken station proof photo from McDonald's service crew experience",
+    description: "Prepared and supported chicken station operations during a regular service shift.",
     href: "/experience-proofs/mcdo/chix%202.jpg",
     label: "Chicken station",
     src: "/experience-proofs/mcdo/chix%202.jpg",
@@ -618,6 +629,7 @@ const mcdoProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Sunshine service recognition photo from McDonald's service crew experience",
+    description: "Supported customer service and maintained a positive guest experience during the shift.",
     href: "/experience-proofs/mcdo/serv%20sunshine.jpg",
     label: "Service sunshine",
     src: "/experience-proofs/mcdo/serv%20sunshine.jpg",
@@ -625,6 +637,7 @@ const mcdoProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Standout McDonald's recognition photo from service crew experience",
+    description: "Received recognition for dependable service and strong performance as part of the store team.",
     href: "/experience-proofs/mcdo/standout%20mcdo.jpg",
     label: "Standout McDo",
     src: "/experience-proofs/mcdo/standout%20mcdo.jpg",
@@ -635,16 +648,146 @@ const mcdoProofItems: ExperienceProofItem[] = [
 const benchProofItems: ExperienceProofItem[] = [
   {
     alt: "Certificate of employment proof for Bench stock clerk experience",
+    description: "Official employment certificate documenting my Bench stock clerk experience.",
     href: "/experience-proofs/intern/bench/coe%20bench.jpg",
     label: "Employment certificate",
     src: "/experience-proofs/intern/bench/coe%20bench.jpg",
     type: "certificate",
+  },
+  {
+    alt: "Bench store report proof from stock clerk experience",
+    description: "Reviewed and prepared store reports to support inventory tracking and daily operations.",
+    href: "/experience-proofs/intern/bench/Store%20Reports.jpg",
+    label: "Store report",
+    src: "/experience-proofs/intern/bench/Store%20Reports.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Bench store report proof from stock clerk experience",
+    description: "Recorded store activity and organized report details for accurate operational monitoring.",
+    href: "/experience-proofs/intern/bench/Store%20Reports%202.jpg",
+    label: "Store report 2",
+    src: "/experience-proofs/intern/bench/Store%20Reports%202.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Bench store report proof from stock clerk experience",
+    description: "Compiled another store report while checking information used for stock and store management.",
+    href: "/experience-proofs/intern/bench/Store%20Reports%203.jpg",
+    label: "Store report 3",
+    src: "/experience-proofs/intern/bench/Store%20Reports%203.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Bench store report proof from stock clerk experience",
+    description: "Completed a store reporting task to help keep branch records updated and organized.",
+    href: "/experience-proofs/intern/bench/Store%20Reports%204.jpg",
+    label: "Store report 4",
+    src: "/experience-proofs/intern/bench/Store%20Reports%204.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Bench store maintenance proof from stock clerk experience",
+    description: "Performed basic store maintenance to help keep the branch safe, organized, and operational.",
+    href: "/experience-proofs/intern/bench/Store%20maintenance.jpg",
+    label: "Store maintenance",
+    src: "/experience-proofs/intern/bench/Store%20maintenance.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Bench track light maintenance proof from stock clerk experience",
+    description: "Checked and worked on the store track lights as part of routine branch maintenance.",
+    href: "/experience-proofs/intern/bench/Store%20maintenance%20track%20lights.jpg",
+    label: "Track lights",
+    src: "/experience-proofs/intern/bench/Store%20maintenance%20track%20lights.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Bench POS maintenance proof from stock clerk experience",
+    description: "Inspected the POS area and helped address basic equipment and workstation maintenance needs.",
+    href: "/experience-proofs/intern/bench/Store%20maintenance%20POS.jpg",
+    label: "POS maintenance",
+    src: "/experience-proofs/intern/bench/Store%20maintenance%20POS.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Bench panel board maintenance proof from stock clerk experience",
+    description: "Checked the panel board area while supporting basic store facility maintenance.",
+    href: "/experience-proofs/intern/bench/Store%20maintenance%20Panel%20%20board.jpg",
+    label: "Panel board",
+    src: "/experience-proofs/intern/bench/Store%20maintenance%20Panel%20%20board.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Bench light bulb maintenance proof from stock clerk experience",
+    description: "Replaced or checked store light bulbs to keep the sales floor properly illuminated.",
+    href: "/experience-proofs/intern/bench/Store%20maintenance%20light%20bulbs.jpg",
+    label: "Light bulbs",
+    src: "/experience-proofs/intern/bench/Store%20maintenance%20light%20bulbs.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Bench light bulb replacement follow-up proof from stock clerk experience",
+    description: "Followed up on the light bulb replacement work and checked the area again the next day.",
+    href: "/experience-proofs/intern/bench/Store%20maintenance%20light%20bulbs%20day%202.jpg",
+    label: "Light bulbs day 2",
+    src: "/experience-proofs/intern/bench/Store%20maintenance%20light%20bulbs%20day%202.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Bench human entrance defective bulb proof from stock clerk experience",
+    description: "Identified and documented a defective bulb near the human entrance for replacement.",
+    href: "/experience-proofs/intern/bench/Store%20maintenance%20Human%20entrance%20defective%20bulb.jpg",
+    label: "Entrance bulb",
+    src: "/experience-proofs/intern/bench/Store%20maintenance%20Human%20entrance%20defective%20bulb.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Bench defective table maintenance proof from stock clerk experience",
+    description: "Documented defective tables that needed attention during the store maintenance check.",
+    href: "/experience-proofs/intern/bench/store%20maintenance%20defetive%20tables.jpg",
+    label: "Defective tables",
+    src: "/experience-proofs/intern/bench/store%20maintenance%20defetive%20tables.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Bench busted bulb replacement proof from stock clerk experience",
+    description: "Replaced busted bulbs to improve lighting and maintain the store’s customer areas.",
+    href: "/experience-proofs/intern/bench/Store%20maintenance%20busted%20bulbs%20replacement.jpg",
+    label: "Busted bulb replacement",
+    src: "/experience-proofs/intern/bench/Store%20maintenance%20busted%20bulbs%20replacement.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Bench BUB area maintenance proof from stock clerk experience",
+    description: "Worked on maintenance concerns in the BUB area as part of the branch upkeep tasks.",
+    href: "/experience-proofs/intern/bench/Store%20maintenance%20BUB%20area.jpg",
+    label: "BUB area",
+    src: "/experience-proofs/intern/bench/Store%20maintenance%20BUB%20area.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Bench window spotlight maintenance proof from stock clerk experience",
+    description: "Checked the window spotlight and helped maintain the store’s display lighting.",
+    href: "/experience-proofs/intern/bench/Store%20maintenance%20%20Window%20spotlight.jpg",
+    label: "Window spotlight",
+    src: "/experience-proofs/intern/bench/Store%20maintenance%20%20Window%20spotlight.jpg",
+    type: "photo",
+  },
+  {
+    alt: "Bench POS area repainting proof from stock clerk experience",
+    description: "Helped repaint the POS area to refresh and maintain the store workspace.",
+    href: "/experience-proofs/intern/bench/repainting%20POS%20%20area%20Bench.jpg",
+    label: "POS area repainting",
+    src: "/experience-proofs/intern/bench/repainting%20POS%20%20area%20Bench.jpg",
+    type: "photo",
   },
 ];
 
 const jollibeeProofItems: ExperienceProofItem[] = [
   {
     alt: "Certificate of employment proof for Jollibee service crew experience",
+    description: "Official employment certificate documenting my experience as a Jollibee service crew member.",
     href: "/experience-proofs/intern/jb/coe%20jb.jpg",
     label: "Employment certificate",
     src: "/experience-proofs/intern/jb/coe%20jb.jpg",
@@ -655,6 +798,7 @@ const jollibeeProofItems: ExperienceProofItem[] = [
 const grcProofItems: ExperienceProofItem[] = [
   {
     alt: "Computer laboratory one setup proof from Global Reciprocal Colleges IT department work",
+    description: "Set up workstations and arranged equipment in Computer Laboratory 1 for classroom use.",
     href: "/experience-proofs/grc%20it%20dept/lab%201%20setting%20up.jpg",
     label: "Lab 1 setup",
     src: "/experience-proofs/grc%20it%20dept/lab%201%20setting%20up.jpg",
@@ -662,6 +806,7 @@ const grcProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Computer laboratory one setup continuation proof from Global Reciprocal Colleges IT department work",
+    description: "Continued preparing Computer Laboratory 1 workstations and checking the physical setup.",
     href: "/experience-proofs/grc%20it%20dept/lab%201%20setup.jpg",
     label: "Lab 1 setup 2",
     src: "/experience-proofs/grc%20it%20dept/lab%201%20setup.jpg",
@@ -669,6 +814,7 @@ const grcProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Computer laboratory one setup detail proof from Global Reciprocal Colleges IT department work",
+    description: "Completed additional workstation setup and organized equipment connections in Computer Laboratory 1.",
     href: "/experience-proofs/grc%20it%20dept/lab%201%20setup%202.jpg",
     label: "Lab 1 setup 3",
     src: "/experience-proofs/grc%20it%20dept/lab%201%20setup%202.jpg",
@@ -676,6 +822,7 @@ const grcProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Computer laboratory one maintenance proof from Global Reciprocal Colleges IT department work",
+    description: "Performed maintenance and troubleshooting on computers in Computer Laboratory 1.",
     href: "/experience-proofs/grc%20it%20dept/lab%201%20maintenance%202.jpg",
     label: "Lab 1 maintenance",
     src: "/experience-proofs/grc%20it%20dept/lab%201%20maintenance%202.jpg",
@@ -683,6 +830,7 @@ const grcProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Computer laboratory two maintenance proof from Global Reciprocal Colleges IT department work",
+    description: "Checked and maintained workstations in Computer Laboratory 2 to support lab operations.",
     href: "/experience-proofs/grc%20it%20dept/lab%202%20maintenance%202.jpg",
     label: "Lab 2 maintenance",
     src: "/experience-proofs/grc%20it%20dept/lab%202%20maintenance%202.jpg",
@@ -690,6 +838,7 @@ const grcProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "PC maintenance proof from Global Reciprocal Colleges IT department work",
+    description: "Performed basic PC maintenance and checked hardware condition for reliable daily use.",
     href: "/experience-proofs/grc%20it%20dept/pc%20maintenace.jpg",
     label: "PC maintenance",
     src: "/experience-proofs/grc%20it%20dept/pc%20maintenace.jpg",
@@ -697,6 +846,7 @@ const grcProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "PC cleanup proof from Global Reciprocal Colleges IT department work",
+    description: "Cleaned a PC and its components as part of preventive hardware maintenance.",
     href: "/experience-proofs/grc%20it%20dept/pc%20cleanup.jpg",
     label: "PC cleanup",
     src: "/experience-proofs/grc%20it%20dept/pc%20cleanup.jpg",
@@ -704,6 +854,7 @@ const grcProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Educational technology maintenance proof from Global Reciprocal Colleges IT department work",
+    description: "Maintained educational technology equipment used for classroom and faculty support.",
     href: "/experience-proofs/grc%20it%20dept/ed%20tech%20maintenance.jpg",
     label: "Ed tech maintenance",
     src: "/experience-proofs/grc%20it%20dept/ed%20tech%20maintenance.jpg",
@@ -711,6 +862,7 @@ const grcProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "New faculty LAN cable installation proof from Global Reciprocal Colleges IT department work",
+    description: "Installed and organized a new LAN cable connection to support a faculty workstation.",
     href: "/experience-proofs/grc%20it%20dept/new%20lan%20cable%20faculty.jpg",
     label: "LAN cable setup",
     src: "/experience-proofs/grc%20it%20dept/new%20lan%20cable%20faculty.jpg",
@@ -718,6 +870,7 @@ const grcProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Library maintenance proof from Global Reciprocal Colleges IT department work",
+    description: "Performed IT and equipment maintenance in the library to keep its workstations available.",
     href: "/experience-proofs/grc%20it%20dept/library%20maintetance.jpg",
     label: "Library maintenance",
     src: "/experience-proofs/grc%20it%20dept/library%20maintetance.jpg",
@@ -725,6 +878,7 @@ const grcProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Faculty PC troubleshooting proof from Global Reciprocal Colleges IT department work",
+    description: "Troubleshot a faculty PC and checked its hardware and connectivity issues.",
     href: "/experience-proofs/grc%20it%20dept/faculty%20pc%20troubleshooting.jpg",
     label: "Faculty PC troubleshooting",
     src: "/experience-proofs/grc%20it%20dept/faculty%20pc%20troubleshooting.jpg",
@@ -732,6 +886,7 @@ const grcProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Lab 3 PC setup proof from Global Reciprocal Colleges IT department work",
+    description: "Prepared and configured a new PC for Computer Laboratory 3.",
     href: "/experience-proofs/grc%20it%20dept/new%20pc%20for%20lab%203%20setting%20up.jpg",
     label: "Lab 3 PC setup",
     src: "/experience-proofs/grc%20it%20dept/new%20pc%20for%20lab%203%20setting%20up.jpg",
@@ -739,6 +894,7 @@ const grcProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Lab 3 PC setup continuation proof from Global Reciprocal Colleges IT department work",
+    description: "Continued assembling and arranging the new Computer Laboratory 3 workstation.",
     href: "/experience-proofs/grc%20it%20dept/new%20pc%20for%20lab%203%20setting%20up%202.jpg",
     label: "Lab 3 PC setup 2",
     src: "/experience-proofs/grc%20it%20dept/new%20pc%20for%20lab%203%20setting%20up%202.jpg",
@@ -746,6 +902,7 @@ const grcProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Lab 3 PC setup detail proof from Global Reciprocal Colleges IT department work",
+    description: "Completed additional setup checks and equipment connections for the Laboratory 3 PC.",
     href: "/experience-proofs/grc%20it%20dept/new%20pc%20for%20lab%203%20setting%20up%203.jpg",
     label: "Lab 3 PC setup 3",
     src: "/experience-proofs/grc%20it%20dept/new%20pc%20for%20lab%203%20setting%20up%203.jpg",
@@ -753,6 +910,7 @@ const grcProofItems: ExperienceProofItem[] = [
   },
   {
     alt: "Storage device upgrade and software installation proof from Global Reciprocal Colleges IT department work",
+    description: "Upgraded storage, installed the operating system, and configured software for an EDTech PC.",
     href: "/experience-proofs/grc%20it%20dept/storage%20device%20upgrade%20OS%20installation%20and%20software%20installation%20for%20EDTech%20PC.jpg",
     label: "EDTech PC upgrade and installation",
     src: "/experience-proofs/grc%20it%20dept/storage%20device%20upgrade%20OS%20installation%20and%20software%20installation%20for%20EDTech%20PC.jpg",
