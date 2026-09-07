@@ -214,9 +214,21 @@ export const SiteHeader = () => {
                     />
                   )}
                 </span>
-                <span className="hidden leading-tight sm:block">
-                  <span className="block text-lg font-semibold">
-                    {profile.name}
+                <span
+                  aria-label={profile.name}
+                  className="hidden items-baseline gap-x-1 leading-none sm:flex"
+                >
+                  <span className="text-lg font-black tracking-[-0.04em] text-foreground sm:text-xl">
+                    Cornelio
+                  </span>
+                  <span className="bg-linear-to-r from-[#5268ff] via-[#6374ff] to-[#7882ef] bg-clip-text text-lg font-black tracking-[-0.04em] text-transparent sm:text-xl">
+                    A.
+                  </span>
+                  <span className="bg-linear-to-r from-[#5268ff] via-[#6374ff] to-[#7882ef] bg-clip-text text-lg font-black tracking-[-0.04em] text-transparent sm:text-xl">
+                    Gatbonton
+                  </span>
+                  <span className="bg-linear-to-r from-[#7882ef] to-[#969cf4] bg-clip-text text-lg font-black tracking-[-0.04em] text-transparent sm:text-xl">
+                    Jr
                   </span>
                 </span>
               </Link>
